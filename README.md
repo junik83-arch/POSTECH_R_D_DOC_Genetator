@@ -15,20 +15,17 @@ https://<본인아이디>.github.io/postech-doc-generator/?key=AIzaSy...
 ```
 
 * **동작 방식**:
-  1. 팀원이 메신저/메일에서 위 링크를 **클릭 한 번**만 하면 끝납니다.
-  2. 웹앱이 API 키를 자동으로 인식하여 팀원 PC 브라우저에 저장하고, 주소창에서 `?key=...` 부분을 자동으로 삭제해 깔끔한 주소로 변경해 줍니다.
-  3. 이후 팀원은 주소창을 북마크(즐겨찾기)해두고 키 입력 없이 언제든지 바로 사용할 수 있습니다!
-* **보안상 이점**:
-  * GitHub 저장소 코드에는 API 키가 전혀 포함되지 않으므로 **GitHub 자동 차단 위험 0%**
-  * 팀원들에게 API 키 발급/복사-붙여넣기 과정을 요구하지 않아 **최고의 편의성 제공**
+  1. 팀원이 위 링크를 **클릭 한 번**만 하면 브라우저에 공용 키가 자동 등록됩니다.
+  2. 주소창에서 `?key=...` 부분이 자동으로 삭제되어 깔끔한 주소로 정리됩니다.
+  3. 이후 팀원은 키 입력 절차 없이 언제든 즐겨찾기로 바로 사용할 수 있습니다!
 
 ---
 
 ## ✨ 주요 기능
 
-1. **🤖 Gemini AI 기반 RFP 문서 자동 분석**:
+1. **🤖 Gemini AI 기반 RFP 문서 자동 분석 & 중복 단어 정제**:
    - **지원 포맷**: PDF, HWPX, 이미지(JPG, PNG), TXT 파일 및 텍스트 직접 붙여넣기 지원
-   - **스마트 추출**: 사업명, 공고기관, 사업유형(A/B/C), 사업목적, 지원규모, 주요일정, 지원대상, 필수이행사항, 첨부파일명 등 자동 추출
+   - **스마트 추출 & 중복 필터링**: '사업 공고 공고' 등 접미사 중복 방지 정제 및 사업명, 공고기관, 사업목적, 지원규모, 주요일정, 지원대상, 필수이행사항 자동 추출
    - **원문 충실 원칙 (No Hallucination)**: RFP에 명시되지 않은 정보는 임의 창작 없이 `[RFP 미기재]`로 자동 처리
 2. **📋 3가지 사업 유형 자동 분기**:
    - **유형 A (외부·교내심의)**: 대학 신청 과제 수 제한이 있어 교내 선발/심의가 필요한 사업
@@ -37,9 +34,9 @@ https://<본인아이디>.github.io/postech-doc-generator/?key=AIzaSy...
 3. **📄 가독성 최적화 공문 서식 & 자가검증**:
    - 들여쓰기(`- ` 불릿) 및 줄바꿈이 완벽하게 정돈된 실시간 미리보기
    - 5단계 자가검증 체크리스트를 통한 필수 항목 누락 방지
-4. **⚡ 원클릭 내보내기**:
-   - 클립보드 원클릭 복사 (그룹웨어, 한글HWP, 메일 등에 붙여넣기 시 들여쓰기 서식 유지)
-   - `[공문]사업명.txt` 파일 다운로드 지원
+4. **📋 전자결재 맞춤 '공문 본문 복사' & 파일 다운로드**:
+   - **[공문 본문 복사 (1~5번)]**: 제목·붙임 등을 제외한 **공문 본문(1번 ~ 5번 조항)만 정돈된 들여쓰기 서식으로 클립보드에 복사** (전자결재 기안문 본문에 바로 붙여넣기 최적화)
+   - **[.txt 내려받기 (전체)]**: 보관 및 출력용 전체 양식 텍스트 파일 저장 지원
 
 ---
 
@@ -54,7 +51,7 @@ https://<본인아이디>.github.io/postech-doc-generator/?key=AIzaSy...
 cd C:\Users\user\.gemini\antigravity\scratch\postech-doc-generator
 git init
 git add .
-git commit -m "feat: POSTECH Smart Doc Generator with AI & Secret Link"
+git commit -m "feat: POSTECH Smart Doc Generator with body-only copy & title sanitization"
 git branch -M main
 git remote add origin https://github.com/<본인아이디>/postech-doc-generator.git
 git push -u origin main

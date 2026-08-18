@@ -478,12 +478,13 @@
     margin-bottom:7px;
     white-space:pre-line;
     line-height:1.85;
+    font-weight:600;
   }
   .p-body .line:last-child{margin-bottom:0;}
   .p-body .subline{
     display:block;
     padding-left:18px;
-    text-indent:-12px;
+    text-indent:-14px;
     margin-bottom:5px;
     white-space:pre-line;
     line-height:1.8;
@@ -545,6 +546,9 @@
     background:var(--ink);
     color:#fff;
     transition:opacity .15s, background .15s;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
   }
   .btn:hover{opacity:.9;}
   .btn.ghost{background:#fff;color:var(--ink);}
@@ -757,7 +761,8 @@
       </div>
       <div class="field" id="criteriaWrap">
         <label>심의 기준</label>
-        <input type="text" id="criteria" placeholder="예: 사업 적합성·연구역량·기여도 등 평가지표" />
+        <input type="text" id="criteria" placeholder="예: 사업 적합성·연구역량·기여도 등" />
+        <div class="hint">항목이 많을 경우 대표 2~3개 지표 뒤에 '등'을 붙여 간결하게 자동 정돈됩니다.</div>
       </div>
     </div>
 
@@ -766,7 +771,8 @@
       <div class="glabel">사업내용 (2번 본문)</div>
       <div class="field">
         <label>1) 사업목적</label>
-        <textarea id="purpose" placeholder="RFP 발췌 · 미기재 시 [RFP 미기재]"></textarea>
+        <textarea id="purpose" placeholder="- 지역 주력산업 분야 혁신을 주도할 거점 연구센터 육성&#10;- 우수 지역 연구인력 양성 및 기술사업화 촉진"></textarea>
+        <div class="hint">여러 항목 입력 시 줄바꿈하면 자동으로 '- ' 서브항목으로 정돈됩니다.</div>
       </div>
 
       <!-- 2) 사업규모 · A/B 세부 입력 -->
@@ -784,7 +790,7 @@
 
       <div class="field">
         <label>3) 지원대상 및 분야</label>
-        <textarea id="target" placeholder="대상 · 분야 (예: 신청자격, 지원대상 및 연구분야)"></textarea>
+        <textarea id="target" placeholder="- 신청자격: ...&#10;- 지원분야: ..."></textarea>
       </div>
 
       <!-- 4) 주요일정 · A/B 세부 입력 -->
@@ -803,7 +809,7 @@
 
       <div class="field">
         <label id="mandatoryLabel">5) 필수이행사항(지원조건)</label>
-        <textarea id="mandatory" placeholder="발췌 · 미기재 시 [RFP 미기재]"></textarea>
+        <textarea id="mandatory" placeholder="- 주관연구개발기관 자격 준수&#10;- 연구시설 구축 및 공동활용"></textarea>
       </div>
     </div>
 
@@ -831,8 +837,12 @@
       <div class="paper" id="paper"><!-- JS 렌더 --></div>
 
       <div class="toolbar">
-        <button class="btn" id="copyBtn">공문 복사</button>
-        <button class="btn ghost" id="dlBtn">.txt 내려받기</button>
+        <button class="btn" id="copyBtn" title="공문의 1번~5번 본문 내용만 클립보드에 복사합니다">
+          <span>📋</span> 공문 본문 복사 (1~5번)
+        </button>
+        <button class="btn ghost" id="dlBtn" title="공문 전체 양식 텍스트 파일로 저장합니다">
+          <span>💾</span> .txt 내려받기 (전체)
+        </button>
       </div>
 
       <div class="verify" id="verify"><!-- JS 렌더 --></div>
@@ -911,7 +921,6 @@
           setTimeout(function(){
             showToast("🔑 팀 공용 API 키가 자동 등록되었습니다!");
           }, 400);
-          // 주소창에서 ?key= 파라미터를 제거하여 깔끔하게 정리
           if(window.history && window.history.replaceState){
             var cleanUrl = window.location.pathname + window.location.hash;
             window.history.replaceState({}, document.title, cleanUrl);
@@ -1047,7 +1056,39 @@
     });
   }
 
-  // ── 4. Gemini API 동적 모델 탐색 & 호출 ──
+  // ── 4. 사업명 및 심의기준 정제 헬퍼 ──
+  function sanitizeBizName(name){
+    if(!name) return '';
+    var s = name.trim();
+    s = s.replace(/\s*(신규과제\s*)?(시행계획\s*)?(사업\s*)?(공고문|시행공고|사업공고|공고안내|시행안내|공고|공모)$/g, '').trim();
+    s = s.replace(/\s*-\s*$/, '').trim();
+    return s || name.trim();
+  }
+
+  function formatCriteria(text){
+    if(!text) return '';
+    var raw = text.trim();
+    if(!raw) return '';
+
+    var cleaned = raw.replace(/^[-•*○]\s*/gm, '').replace(/^\d+[\.)]\s*/gm, '');
+    var items = cleaned.split(/[,/·;\n]+/g).map(function(s){
+      return s.replace(/\s*등$/g, '').trim();
+    }).filter(function(s){
+      return s.length > 0;
+    });
+
+    if(items.length === 0) return raw;
+
+    if(items.length <= 2){
+      var joined = items.join('·');
+      return joined.endsWith('등') ? joined : (joined + ' 등');
+    }
+
+    var topItems = items.slice(0, 3);
+    return topItems.join('·') + ' 등';
+  }
+
+  // ── 5. Gemini API 동적 모델 탐색 & 호출 ──
   var runAiBtn = document.getElementById("runAiBtn");
   var aiStatus = document.getElementById("aiStatus");
 
@@ -1101,23 +1142,25 @@
     var promptSystem = `당신은 포항공과대학교(POSTECH) 연구처 R&D전략팀의 공문 작성 전문 AI 어시스턴트입니다.
 제공된 공고문 / RFP / 사업 안내 문서를 분석하여 아래 JSON 포맷으로 응답하세요. (마크다운 백틱 없이 순수 JSON만 출력)
 
-[중요: 가독성 및 서식 작성 규칙]
-1. purpose (사업목적): 긴 글을 한 줄로 뭉치지 말고, 1~2개 핵심 문장으로 간결하게 작성하세요. (줄바꿈이 필요한 경우 \\n 사용)
-2. target (지원대상 및 분야): 지원 자격과 지원 분야를 명확하게 구분하고, 항목이 여러 개면 줄바꿈(\\n)과 '- ' 기호로 정돈하세요.
-3. mandatory (필수이행사항/지원조건): 긴 본문 대신 핵심 의무사항(예: 주관기관 자격, 기술료, 대응자금, 성과제출 등)을 '- ' 불릿 기호를 사용하여 개조식으로 줄바꿈(\\n)하여 정리하세요.
-4. bizPeriod, totalCost, annualCost, dueDate 등 일정/규모는 군더더기 없이 핵심 일시/금액만 정갈하게 기재하세요.
-5. bizType:
+[중요: 작성 및 정제 규칙]
+1. bizName (사업명): '공고', '공모', '시행공고', '공고문' 등의 접미사를 제외한 순수 사업명만 추출하세요. (예: '2026년 OO지원사업 공고' (X) -> '2026년 OO지원사업' (O))
+2. purpose (사업목적): 핵심 목적을 1~3개의 항목으로 나누어 '- ' 불릿 기호를 사용하여 개조식으로 줄바꿈(\\n)하여 작성하세요.
+3. target (지원대상 및 분야): 지원 자격과 지원 분야를 명확하게 구분하고, 항목이 여러 개면 줄바꿈(\\n)과 '- ' 기호로 정돈하세요.
+4. mandatory (필수이행사항/지원조건): 핵심 의무사항(예: 주관기관 자격, 기술료, 대응자금, 성과제출 등)을 '- ' 불릿 기호를 사용하여 개조식으로 줄바꿈(\\n)하여 정리하세요.
+5. criteria (교내 심의기준): 심의/평가 기준이 여러 개일 경우, 핵심 2~3개 지표만 '·'로 연결하고 끝에 '등'을 붙여 간결하게 작성하세요. (예: '사업 적합성·연구역량·기여도 등')
+6. bizPeriod, totalCost, annualCost, dueDate 등 일정/규모는 군더더기 없이 핵심 일시/금액만 정갈하게 기재하세요.
+7. bizType:
    - 'A': 대학당 신청 과제수 제한(예: 대학 1개 제한)으로 교내 심의/선발이 필요한 사업
    - 'B': 과제수 제한이 없거나 단순 안내 및 동향 파악용 외부사업
    - 'C': 포항공대 내부 자체 연구지원사업
-6. 원문에 없는 내용은 절대 지어내지 말고 "[RFP 미기재]"로 표기하세요.
+8. 원문에 없는 내용은 절대 지어내지 말고 "[RFP 미기재]"로 표기하세요.
 
 [출력 JSON 구조]
 {
   "bizType": "A",
   "bizName": "2026년 ... 지원사업",
   "org": "한국연구재단",
-  "purpose": "사업 목적 내용 요약",
+  "purpose": "- 지역 주력산업 분야 혁신을 주도할 거점 연구센터 육성\\n- 우수 지역 연구인력 양성 및 기술사업화 촉진",
   "bizPeriod": "2026. 7. 1. ~ 2031. 6. 30. (5년)",
   "totalCost": "총 100억원 이내",
   "annualCost": "연간 20억원 내외",
@@ -1130,7 +1173,7 @@
   "attach": "2026년_지원사업_공고문.hwpx",
   "teamCount": 1,
   "reviewYN": "Y",
-  "criteria": "사업 적합성 및 연구역량 등"
+  "criteria": "사업 적합성·연구역량·기여도 등"
 }`;
 
     runAiBtn.disabled = true;
@@ -1278,7 +1321,7 @@
       }
     }
 
-    if(data.bizName) setVal('bizName', data.bizName);
+    if(data.bizName) setVal('bizName', sanitizeBizName(data.bizName));
     if(data.org && data.bizType !== 'C') setVal('org', data.org);
     if(data.purpose) setVal('purpose', data.purpose);
     if(data.bizPeriod) setVal('bizPeriod', data.bizPeriod);
@@ -1298,12 +1341,12 @@
       document.getElementById('reviewYN').value = data.reviewYN;
       document.getElementById('criteriaWrap').style.display = (data.reviewYN === 'Y') ? 'block' : 'none';
     }
-    if(data.criteria) setVal('criteria', data.criteria);
+    if(data.criteria) setVal('criteria', formatCriteria(data.criteria));
 
     render();
   }
 
-  // ── 5. 기존 공문 생성 & 렌더링 로직 (가독성 강화) ──
+  // ── 6. 기존 공문 생성 & 렌더링 로직 (가독성 강화) ──
   var typeBtns = document.querySelectorAll('.type-pick button');
   typeBtns.forEach(function(b){
     b.addEventListener('click', function(){
@@ -1349,16 +1392,19 @@
   function esc(s){ return String(s).replace(/[&<>]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]; }); }
   function slotText(val, ph){ return val ? val : ph; }
 
+  // 서브항목 렌더링 함수: 줄마다 '- ' 불릿 및 들여쓰기 자동 보장
   function formatMultilineHtml(text, isSubItem){
     if(!text) return '';
     var lines = text.split('\n');
-    if(lines.length <= 1) return withPH(text);
-
     return lines.map(function(line){
       var clean = line.trim();
       if(!clean) return '';
+      var formatted = clean;
+      if(isSubItem && !clean.startsWith('-') && !clean.startsWith('○') && !clean.startsWith('•')){
+        formatted = '- ' + clean;
+      }
       var cls = isSubItem ? 'subline' : 'line';
-      return '<span class="' + cls + '">' + withPH(clean) + '</span>';
+      return '<span class="' + cls + '">' + withPH(formatted) + '</span>';
     }).filter(Boolean).join('');
   }
 
@@ -1370,6 +1416,9 @@
     f.biz = bizRaw;
     f.bizPH = slotText(bizRaw, PH);
 
+    var cleanBiz = sanitizeBizName(bizRaw);
+    f.cleanBizPH = slotText(cleanBiz, PH);
+
     f.orgRaw = (t === 'C') ? '연구처 R&D전략팀' : v('org');
     f.orgPH = slotText(f.orgRaw, PH);
 
@@ -1378,13 +1427,13 @@
     f.act = (t === 'C') ? '신청' : '회신';
 
     if(t === 'A'){
-      f.clause1 = f.orgPH + '에서는 「' + f.bizPH + '」을(를) 다음과 같이 공모하고 있습니다. '
+      f.clause1 = f.orgPH + '에서는 「' + f.cleanBizPH + '」을(를) 다음과 같이 공모하고 있습니다. '
         + '해당 내용을 확인하시고, 회신 의사가 있는 경우 아래를 참고하여 주시기 바랍니다.';
     } else if(t === 'B'){
-      f.clause1 = f.orgPH + '에서는 「' + f.bizPH + '」 시행계획을 다음과 같이 공고하였습니다. '
+      f.clause1 = f.orgPH + '에서는 「' + f.cleanBizPH + '」 시행계획을 다음과 같이 공고하였습니다. '
         + '해당 내용을 확인하시고, 회신 의사가 있는 경우 아래를 참고하여 주시기 바랍니다.';
     } else {
-      f.clause1 = '연구처 R&D전략팀에서는 「' + f.bizPH + '」을(를) 다음과 같이 시행하고 있습니다. '
+      f.clause1 = '연구처 R&D전략팀에서는 「' + f.cleanBizPH + '」을(를) 다음과 같이 시행하고 있습니다. '
         + '해당 내용을 확인하시고, 신청 의사가 있는 경우 아래를 참고하여 주시기 바랍니다.';
     }
 
@@ -1412,9 +1461,11 @@
     if(isNaN(N) || N < 1) N = 1;
     f.teamCount = N;
     var reviewYN = document.getElementById('reviewYN').value;
-    var criteria = v('criteria');
-    f.criteriaFilled = !!criteria;
-    var criteriaShown = slotText(criteria, '심의기준');
+    
+    var rawCriteria = v('criteria');
+    var formattedCriteria = formatCriteria(rawCriteria);
+    f.criteriaFilled = !!rawCriteria;
+    var criteriaShown = slotText(formattedCriteria, '심의기준');
 
     if(t === 'A'){
       var capPhrase = (N === 1) ? '1개 과제만 신청 가능' : ('최대 ' + N + '개 과제 신청 가능');
@@ -1481,7 +1532,7 @@
     f.attachFilled = !!att;
     f.attach = slotText(att, PH);
 
-    f.title = f.bizPH + ' ' + f.titleVerb;
+    f.title = f.cleanBizPH + ' ' + f.titleVerb;
     f.actGuide = f.act;
     f.replyHeader = (t === 'C') ? '신청 안내' : '교내 회신 안내';
 
@@ -1506,22 +1557,14 @@
     h += '<li>사업내용';
     h += '<div class="sub">';
     
-    // 1) 사업목적
-    if(f.purpose.indexOf('\n') !== -1){
-      h += '<span class="line">1) 사업목적</span>';
-      h += formatMultilineHtml(f.purpose, true);
-    } else {
-      h += '<span class="line">1) 사업목적: '+ withPH(f.purpose) +'</span>';
-    }
+    // 1) 사업목적 (서브항목 일관 렌더링)
+    h += '<span class="line">1) 사업목적</span>';
+    h += formatMultilineHtml(f.purpose, true);
 
     // 2) 사업규모
     if(f.scaleMode === 'single'){
-      if(f.scale.indexOf('\n') !== -1){
-        h += '<span class="line">2) 사업규모('+ f.scaleLabel +')</span>';
-        h += formatMultilineHtml(f.scale, true);
-      } else {
-        h += '<span class="line">2) 사업규모('+ f.scaleLabel +'): '+ withPH(f.scale) +'</span>';
-      }
+      h += '<span class="line">2) 사업규모('+ f.scaleLabel +')</span>';
+      h += formatMultilineHtml(f.scale, true);
     } else {
       h += '<span class="line">2) 사업규모</span>';
       f.scaleItems.forEach(function(it){
@@ -1530,21 +1573,13 @@
     }
 
     // 3) 지원대상 및 분야
-    if(f.target.indexOf('\n') !== -1){
-      h += '<span class="line">3) 지원대상 및 분야</span>';
-      h += formatMultilineHtml(f.target, true);
-    } else {
-      h += '<span class="line">3) 지원대상 및 분야: '+ withPH(f.target) +'</span>';
-    }
+    h += '<span class="line">3) 지원대상 및 분야</span>';
+    h += formatMultilineHtml(f.target, true);
 
     // 4) 주요일정
     if(f.scaleMode === 'single'){
-      if(f.schedule.indexOf('\n') !== -1){
-        h += '<span class="line">4) 주요일정('+ f.scheduleLabel +')</span>';
-        h += formatMultilineHtml(f.schedule, true);
-      } else {
-        h += '<span class="line">4) 주요일정('+ f.scheduleLabel +'): '+ withPH(f.schedule) +'</span>';
-      }
+      h += '<span class="line">4) 주요일정('+ f.scheduleLabel +')</span>';
+      h += formatMultilineHtml(f.schedule, true);
     } else {
       h += '<span class="line">4) 주요일정</span>';
       f.scheduleItems.forEach(function(it){
@@ -1553,12 +1588,8 @@
     }
 
     // 5) 필수이행사항
-    if(f.mandatory.indexOf('\n') !== -1){
-      h += '<span class="line">5) '+ f.mandatoryLabel +'</span>';
-      h += formatMultilineHtml(f.mandatory, true);
-    } else {
-      h += '<span class="line">5) '+ f.mandatoryLabel +': '+ withPH(f.mandatory) +'</span>';
-    }
+    h += '<span class="line">5) '+ f.mandatoryLabel +'</span>';
+    h += formatMultilineHtml(f.mandatory, true);
 
     h += '</div></li>';
 
@@ -1596,41 +1627,31 @@
   }
   function slotWrap(val){ return withPH(val); }
 
+  // 서브항목 텍스트 생성: label 다음 행에 '   - ' 불릿 들여쓰기 보장
   function formatMultilineText(label, text, indent){
     indent = indent || '   ';
     var subIndent = indent + '   ';
-    if(!text) return indent + label + ': ';
-    var lines = text.split('\n');
-    if(lines.length === 1){
-      return indent + label + ': ' + lines[0].trim();
-    }
+    if(!text) return indent + label;
+    var lines = text.split('\n').map(function(l){ return l.trim(); }).filter(Boolean);
+    if(lines.length === 0) return indent + label;
+
     var res = [indent + label];
-    lines.forEach(function(l){
-      var clean = l.trim();
-      if(clean){
-        if(clean.startsWith('-') || clean.startsWith('○') || clean.startsWith('•')){
-          res.push(subIndent + clean);
-        } else {
-          res.push(subIndent + '- ' + clean);
-        }
+    lines.forEach(function(clean){
+      if(clean.startsWith('-') || clean.startsWith('○') || clean.startsWith('•')){
+        res.push(subIndent + clean);
+      } else {
+        res.push(subIndent + '- ' + clean);
       }
     });
     return res.join('\n');
   }
 
-  function buildText(f){
+  // ── [공문 복사용] 제목·붙임 제외 본문(1~5번)만 생성 ──
+  function buildBodyOnlyText(f){
     var L = [];
-    L.push('포 항 공 과 대 학 교');
-    L.push('');
-    L.push('수신자  ' + f.susinja);
-    L.push('(경유)');
-    L.push('');
-    L.push('제 목  ' + f.title);
-    L.push('');
     L.push('1. ' + f.clause1);
     L.push('');
     L.push('2. 사업내용');
-    
     L.push(formatMultilineText('1) 사업목적', f.purpose));
 
     if(f.scaleMode === 'single'){
@@ -1660,6 +1681,20 @@
     L.push('4. 교내 선정 절차: ' + f.procedure);
     L.push('');
     L.push('5. 문의처: ' + f.inquiry);
+    return L.join('\n');
+  }
+
+  // ── [.txt 파일 다운로드용] 전체 공문 양식 생성 ──
+  function buildFullText(f){
+    var L = [];
+    L.push('포 항 공 과 대 학 교');
+    L.push('');
+    L.push('수신자  ' + f.susinja);
+    L.push('(경유)');
+    L.push('');
+    L.push('제 목  ' + f.title);
+    L.push('');
+    L.push(buildBodyOnlyText(f));
     L.push('');
     L.push('붙임  ' + f.attach + '. 끝.');
     L.push('');
@@ -1704,12 +1739,11 @@
     document.getElementById('verify').innerHTML = h;
   }
 
-  var lastText = '';
+  var currentFields = null;
   function render(){
-    var f = computeFields();
-    renderPaper(f);
-    renderVerify(f);
-    lastText = buildText(f);
+    currentFields = computeFields();
+    renderPaper(currentFields);
+    renderVerify(currentFields);
   }
 
   document.querySelectorAll('input, textarea, select').forEach(function(el){
@@ -1721,36 +1755,46 @@
   function showToast(msg){
     toast.textContent = msg;
     toast.classList.add('show');
-    setTimeout(function(){ toast.classList.remove('show'); }, 1600);
+    setTimeout(function(){ toast.classList.remove('show'); }, 1800);
   }
+
+  // 공문 본문 복사
   document.getElementById('copyBtn').addEventListener('click', function(){
+    if(!currentFields) currentFields = computeFields();
+    var bodyText = buildBodyOnlyText(currentFields);
+
     var doCopy = function(text){
       if(navigator.clipboard && navigator.clipboard.writeText){
-        navigator.clipboard.writeText(text).then(function(){ showToast('공문이 복사되었습니다'); })
-          .catch(function(){ fallbackCopy(text); });
+        navigator.clipboard.writeText(text).then(function(){
+          showToast('📋 공문 본문(1~5번)이 복사되었습니다');
+        }).catch(function(){ fallbackCopy(text); });
       } else { fallbackCopy(text); }
     };
     var fallbackCopy = function(text){
       var ta = document.createElement('textarea');
       ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
       document.body.appendChild(ta); ta.select();
-      try{ document.execCommand('copy'); showToast('공문이 복사되었습니다'); }
+      try{ document.execCommand('copy'); showToast('📋 공문 본문(1~5번)이 복사되었습니다'); }
       catch(e){ showToast('복사 실패 — 직접 선택해 주세요'); }
       document.body.removeChild(ta);
     };
-    doCopy(lastText);
+    doCopy(bodyText);
   });
+
+  // .txt 내려받기
   document.getElementById('dlBtn').addEventListener('click', function(){
-    var f = computeFields();
-    var fname = (f.biz ? f.biz.replace(/[\\/:*?"<>|]/g,'_').slice(0,40) : '사업안내공문');
-    var blob = new Blob([lastText], {type:'text/plain;charset=utf-8'});
+    if(!currentFields) currentFields = computeFields();
+    var fullText = buildFullText(currentFields);
+    var cleanBiz = sanitizeBizName(currentFields.biz);
+    var fname = (cleanBiz ? cleanBiz.replace(/[\\/:*?"<>|]/g,'_').slice(0,40) : '사업안내공문');
+    var blob = new Blob([fullText], {type:'text/plain;charset=utf-8'});
     var a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
     a.download = '[공문]' + fname + '.txt';
     document.body.appendChild(a); a.click();
     document.body.removeChild(a);
     setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
-    showToast('내려받기를 시작합니다');
+    showToast('💾 공문 전체 텍스트 파일을 내려받습니다');
   });
 
   // 초기화
