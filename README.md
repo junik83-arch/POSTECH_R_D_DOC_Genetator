@@ -64,5 +64,18 @@ git push -u origin main
 
 ---
 
+---
+
+## 🧠 POSTECH 교원 R&D 위키 (LLM Wiki)
+
+`wiki/` 디렉터리에는 교원 실적 데이터(`data/faculty_profiles_source.json`, 298명)로부터
+생성한 마크다운 지식베이스가 있습니다. 자세한 내용은 [wiki/README.md](wiki/README.md) 참고.
+
+```bash
+python3 scripts/build_wiki.py   # data/*.json → wiki/**/*.md 재생성
+```
+
+---
+
 ## 📄 라이선스
 MIT License
