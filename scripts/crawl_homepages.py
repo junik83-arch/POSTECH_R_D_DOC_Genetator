@@ -8,13 +8,13 @@ crawl_homepages.py — 교원 홈페이지 크롤러 (로컬 전용)
    인터넷 접근이 가능한 로컬 PC 등에서 실행하세요.
 
 동작:
-    data/faculty_profiles_source.json 의 "홈페이지" URL(중복 제거)을 순회하며
+    sources/faculty_profiles_source.json 의 "홈페이지" URL(중복 제거)을 순회하며
     0) 여러 교원이 정확히 같은 URL을 쓰는 경우(학과/그룹 공통 포털)는 개인 정보와
        무관하다고 보고 아예 크롤링하지 않습니다.
     1) 홈페이지 첫 화면을 가져오고
     2) 그 안에서 같은 사이트 내부로 연결되는 링크(연구/논문/CV 등 탭)를 찾아
        최대 --max-subpages 개까지 함께 가져옵니다. 구성원/뉴스·공지 링크는 제외합니다.
-    결과를 data/homepage_crawl.json 에 아래 형태로 저장합니다:
+    결과를 sources/homepage_crawl.json 에 아래 형태로 저장합니다:
 
         {
           "<홈페이지 URL>": {
@@ -60,7 +60,7 @@ except ImportError:
     sys.exit(1)
 
 ROOT = Path(__file__).resolve().parent.parent
-DATA_DIR = ROOT / "data"
+DATA_DIR = ROOT / "sources"
 SOURCE_FILE = DATA_DIR / "faculty_profiles_source.json"
 OUTPUT_FILE = DATA_DIR / "homepage_crawl.json"
 
@@ -101,7 +101,7 @@ ZERO_WIDTH_CHARS = "﻿​‌‍\xa0"
 def normalize_url(url: str) -> str:
     """요청에 실제로 사용할 URL을 정리한다 (BOM/제로폭 공백 제거, 스킴 누락 보정).
 
-    data/homepage_crawl.json 의 최상위 키는 원본 그대로 유지해야 build_wiki.py 의
+    sources/homepage_crawl.json 의 최상위 키는 원본 그대로 유지해야 build_wiki.py 의
     조회가 맞아떨어지므로, 이 함수의 결과는 요청에만 쓰고 저장 키에는 쓰지 않는다.
     """
     cleaned = url.strip()

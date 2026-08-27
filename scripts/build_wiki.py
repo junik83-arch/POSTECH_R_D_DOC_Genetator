@@ -3,12 +3,12 @@
 """
 build_wiki.py — POSTECH 교원 LLM Wiki 생성기
 
-data/faculty_profiles_source.json (원본, 필수)
-data/homepage_crawl.json          (홈페이지 크롤링 결과, 선택 — scripts/crawl_homepages.py 로 생성)
+sources/faculty_profiles_source.json (원본, 필수)
+sources/homepage_crawl.json          (홈페이지 크롤링 결과, 선택 — scripts/crawl_homepages.py 로 생성)
 
 위 두 소스만 읽어서 wiki/ 아래 마크다운 파일들을 결정론적으로 (재실행해도 동일한 결과가
 나오도록) 생성합니다. wiki/**/*.md 는 직접 손으로 수정하지 마세요 — 원본을 고치고 다시
-이 스크립트를 실행하세요. 자세한 설계 원칙은 wiki/SCHEMA.md 참고.
+이 스크립트를 실행하세요. 자세한 설계 원칙은 CLAUDE.md 참고.
 
 사용법:
     python3 scripts/build_wiki.py
@@ -22,7 +22,7 @@ from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DATA_DIR = ROOT / "data"
+DATA_DIR = ROOT / "sources"
 WIKI_DIR = ROOT / "wiki"
 SOURCE_FILE = DATA_DIR / "faculty_profiles_source.json"
 CRAWL_FILE = DATA_DIR / "homepage_crawl.json"
@@ -44,7 +44,7 @@ def slugify_dept(name: str) -> str:
 
 
 def dept_link(dept: str) -> str:
-    return f"[{dept}](../departments/{slugify_dept(dept)}.md)"
+    return f"[{dept}](../domain/{slugify_dept(dept)}.moc.md)"
 
 
 def faculty_filename(rec: dict) -> str:
@@ -169,7 +169,7 @@ def render_faculty_page(rec: dict, crawl: dict) -> str:
     else:
         lines.append(
             "_아직 크롤링되지 않았습니다. `scripts/crawl_homepages.py` 를 인터넷 접근이 "
-            "가능한 환경에서 실행해 `data/homepage_crawl.json` 을 만든 뒤 "
+            "가능한 환경에서 실행해 `sources/homepage_crawl.json` 을 만든 뒤 "
             "`scripts/build_wiki.py` 를 다시 실행하면 이 섹션이 채워집니다._"
         )
     lines.append("")
@@ -182,65 +182,40 @@ def render_faculty_page(rec: dict, crawl: dict) -> str:
     return "\n".join(lines)
 
 
-def render_department_page(dept: str, members: list[dict]) -> str:
-    members_sorted = sorted(members, key=lambda r: r["성명"])
-    total_perf = Counter()
-    for r in members:
-        for k, v in (r.get("실적건수") or {}).items():
-            total_perf[k] += v
-
-    lines = []
-    lines.append("---")
-    lines.append(f"department: {dept}")
-    lines.append(f"faculty_count: {len(members)}")
-    lines.append(f"updated: {BUILD_DATE}")
-    lines.append("---")
-    lines.append("")
-    lines.append(f"# {dept}")
-    lines.append("")
-    lines.append(f"- 소속 교원 수: **{len(members)}명**")
-    lines.append("")
-    lines.append("## 학과 전체 실적 합계")
-    lines.append(render_perf_table(dict(total_perf)))
-    lines.append("## 교원 목록")
-    for r in members_sorted:
-        interests = (r.get("관심분야") or "").replace("￭", "").strip()
-        interests_short = interests[:80] + ("…" if len(interests) > 80 else "")
-        lines.append(f"- {faculty_link_from(r)} — {interests_short}")
-    lines.append("")
-    lines.append("[← 전체 인덱스로](../index.md)")
-    lines.append("")
-    return "\n".join(lines)
-
-
 def render_index(records: list[dict], by_dept: dict[str, list[dict]]) -> str:
+    """색인(index.md) — 기계가 유지하는 평면 카탈로그. 도메인을 어떻게 읽어야 하는지는
+    큐레이션된 wiki/home.md 와 wiki/domain/*.moc.md 쪽을 참고 (이 파일들은 스크립트가
+    아니라 LLM이 직접 쓰고 유지한다 — CLAUDE.md 참고)."""
     lines = []
     lines.append("---")
-    lines.append("title: POSTECH 교원 R&D 위키")
+    lines.append("title: POSTECH 교원 R&D 위키 색인")
     lines.append(f"faculty_count: {len(records)}")
     lines.append(f"updated: {BUILD_DATE}")
     lines.append("---")
     lines.append("")
-    lines.append("# POSTECH 교원 R&D 위키")
+    lines.append("# 색인")
     lines.append("")
     lines.append(
-        "POSTECH R&D 실적 데이터베이스를 원본(source)으로 삼아 생성한 교원 지식베이스입니다. "
-        "구조와 갱신 규칙은 [SCHEMA.md](SCHEMA.md) 를 참고하세요."
+        "이 파일은 `scripts/build_wiki.py` 가 매번 다시 생성하는 **평면 카탈로그**입니다. "
+        "큐레이션된 진입점은 [home.md](home.md), 구조·갱신 규칙은 [CLAUDE.md](../CLAUDE.md) 를 보세요."
     )
     lines.append("")
     lines.append(f"- 전체 교원: **{len(records)}명**")
     lines.append(f"- 학과 수: **{len(by_dept)}개**")
     lines.append(f"- 최종 생성일: {BUILD_DATE}")
     lines.append("")
-    lines.append("## 학과별 인덱스")
+    lines.append("## 학과별 교원 목록")
     lines.append("")
     for dept in sorted(by_dept.keys()):
         members = by_dept[dept]
-        lines.append(f"- [{dept}](departments/{slugify_dept(dept)}.md) ({len(members)}명)")
+        lines.append(f"- {dept} ({len(members)}명) — MOC: [domain/{slugify_dept(dept)}.moc.md](domain/{slugify_dept(dept)}.moc.md)")
     lines.append("")
     lines.append("## 기타")
+    lines.append("- [home.md](home.md) — 큐레이션된 진입점")
     lines.append("- [연구분야 키워드 인덱스](research-areas.md)")
     lines.append("- [전체 교원 가나다순 목록](faculty-index.md)")
+    lines.append("- [log.md](log.md) — 변경 이력")
+    lines.append("- [open-questions.md](open-questions.md) — 모순·미해결 이슈")
     lines.append("")
     return "\n".join(lines)
 
@@ -299,29 +274,26 @@ def main() -> None:
         by_dept[dept].append(r)
 
     faculty_dir = WIKI_DIR / "faculty"
-    dept_dir = WIKI_DIR / "departments"
     faculty_dir.mkdir(parents=True, exist_ok=True)
-    dept_dir.mkdir(parents=True, exist_ok=True)
 
     for r in records:
         page = render_faculty_page(r, crawl)
         (faculty_dir / faculty_filename(r)).write_text(page, encoding="utf-8")
-
-    for dept, members in by_dept.items():
-        page = render_department_page(dept, members)
-        (dept_dir / f"{slugify_dept(dept)}.md").write_text(page, encoding="utf-8")
 
     (WIKI_DIR / "index.md").write_text(render_index(records, by_dept), encoding="utf-8")
     (WIKI_DIR / "faculty-index.md").write_text(render_faculty_flat_index(records), encoding="utf-8")
     (WIKI_DIR / "research-areas.md").write_text(render_research_areas(records), encoding="utf-8")
 
     print(f"생성 완료: 교원 {len(records)}명, 학과 {len(by_dept)}개")
-    print(f"  wiki/faculty/      {len(records)} 개 파일")
-    print(f"  wiki/departments/  {len(by_dept)} 개 파일")
+    print(f"  wiki/faculty/      {len(records)} 개 파일 (결정론적 생성)")
     print("  wiki/index.md, wiki/faculty-index.md, wiki/research-areas.md")
+    print(
+        "  wiki/home.md, wiki/domain/*.moc.md, wiki/log.md, wiki/open-questions.md 는 "
+        "이 스크립트가 건드리지 않습니다 (LLM이 직접 쓰고 유지하는 큐레이션 레이어 — CLAUDE.md 참고)"
+    )
     if not crawl:
         print(
-            "참고: data/homepage_crawl.json 이 없어 '홈페이지 추가 정보' 섹션은 "
+            "참고: sources/homepage_crawl.json 이 없어 '홈페이지 추가 정보' 섹션은 "
             "플레이스홀더로 채워졌습니다. scripts/crawl_homepages.py 참고."
         )
 

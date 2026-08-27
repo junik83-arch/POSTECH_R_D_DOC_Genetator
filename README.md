@@ -64,15 +64,14 @@ git push -u origin main
 
 ---
 
----
-
 ## 🧠 POSTECH 교원 R&D 위키 (LLM Wiki)
 
-`wiki/` 디렉터리에는 교원 실적 데이터(`data/faculty_profiles_source.json`, 298명)로부터
-생성한 마크다운 지식베이스가 있습니다. 자세한 내용은 [wiki/README.md](wiki/README.md) 참고.
+`wiki/` 디렉터리에는 교원 실적 데이터(`sources/faculty_profiles_source.json`, 298명)로부터
+생성·종합한 마크다운 지식베이스가 있습니다. 시작은 [wiki/home.md](wiki/home.md), 구조·갱신
+규칙은 [CLAUDE.md](CLAUDE.md) 참고.
 
 ```bash
-python3 scripts/build_wiki.py   # data/*.json → wiki/**/*.md 재생성
+python3 scripts/build_wiki.py   # sources/*.json → wiki/faculty/*.md, index.md 등 재생성
 ```
 
 ---
