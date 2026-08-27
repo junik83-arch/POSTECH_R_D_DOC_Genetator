@@ -9,9 +9,11 @@ crawl_homepages.py — 교원 홈페이지 크롤러 (로컬 전용)
 
 동작:
     data/faculty_profiles_source.json 의 "홈페이지" URL(중복 제거)을 순회하며
+    0) 여러 교원이 정확히 같은 URL을 쓰는 경우(학과/그룹 공통 포털)는 개인 정보와
+       무관하다고 보고 아예 크롤링하지 않습니다.
     1) 홈페이지 첫 화면을 가져오고
-    2) 그 안에서 같은 사이트 내부로 연결되는 링크(연구/논문/구성원/CV 등 탭)를 찾아
-       최대 --max-subpages 개까지 함께 가져옵니다.
+    2) 그 안에서 같은 사이트 내부로 연결되는 링크(연구/논문/CV 등 탭)를 찾아
+       최대 --max-subpages 개까지 함께 가져옵니다. 구성원/뉴스·공지 링크는 제외합니다.
     결과를 data/homepage_crawl.json 에 아래 형태로 저장합니다:
 
         {
@@ -22,6 +24,7 @@ crawl_homepages.py — 교원 홈페이지 크롤러 (로컬 전용)
               ...
             }
           },
+          "<학과 공통 포털 URL>": {"skipped": "shared_portal", "shared_by": 8, "fetched_at": "..."},
           ...
         }
 
@@ -77,11 +80,20 @@ SKIP_EXTENSIONS = {
 # (링크 텍스트 + href 양쪽에 대해 대소문자 구분 없이 매칭)
 SUBPAGE_KEYWORDS = [
     "research", "publication", "paper", "cv", "biograph", "profile", "about",
-    "member", "people", "news", "award", "project", "lab", "course", "teaching",
-    "vitae", "bio",
-    "연구", "논문", "성과", "구성원", "멤버", "수상", "프로젝트", "연구실",
+    "award", "project", "lab", "course", "teaching", "vitae", "bio",
+    "연구", "논문", "성과", "수상", "프로젝트", "연구실",
     "소개", "이력", "경력", "강의", "교육", "연구원", "업적", "저서",
 ]
+
+# 이 키워드가 포함된 링크는 아예 서브페이지 후보에서 제외한다
+# (구성원/멤버 명단, 뉴스/공지 게시판은 교수 개인의 연구 정보와 관련이 적음)
+SUBPAGE_EXCLUDE_KEYWORDS = [
+    "member", "people", "news", "구성원", "멤버", "뉴스", "공지",
+]
+
+# 여러 교원이 정확히 같은 URL을 "홈페이지"로 등록한 경우(학과/그룹 공통 포털)의
+# 판단 기준: 이 값 이상 겹치면 개인 페이지가 아니라 공통 포털로 본다
+PORTAL_SHARE_THRESHOLD = 2
 
 ZERO_WIDTH_CHARS = "﻿​‌‍\xa0"
 
@@ -184,6 +196,8 @@ def discover_subpage_links(html: str, base_url: str, homepage_url: str, limit: i
         seen.add(norm)
 
         haystack = f"{a.get_text(' ', strip=True)} {href}".lower()
+        if any(kw in haystack for kw in SUBPAGE_EXCLUDE_KEYWORDS):
+            continue
         score = sum(1 for kw in SUBPAGE_KEYWORDS if kw in haystack)
         scored.append((score, idx, abs_url))
 
@@ -201,6 +215,19 @@ def load_urls() -> list[str]:
             seen.add(url)
             urls.append(url)
     return urls
+
+
+def load_portal_share_counts() -> dict[str, int]:
+    """여러 교원이 정확히 같은 URL을 '홈페이지'로 등록한 경우, 그 URL이 몇 명에게
+    쓰이는지 센다. PORTAL_SHARE_THRESHOLD 이상이면 개인 페이지가 아니라 학과/그룹
+    공통 포털로 보고 크롤링 대상에서 제외한다 (교수 개인 연구와 무관한 내용이므로)."""
+    records = json.loads(SOURCE_FILE.read_text(encoding="utf-8"))
+    counts: dict[str, int] = {}
+    for r in records:
+        url = (r.get("홈페이지") or "").strip()
+        if url:
+            counts[url] = counts.get(url, 0) + 1
+    return {url: c for url, c in counts.items() if c >= PORTAL_SHARE_THRESHOLD}
 
 
 def save(result: dict) -> None:
@@ -239,6 +266,7 @@ def main() -> None:
         urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
     urls = load_urls()
+    portal_shares = load_portal_share_counts()
     if args.limit:
         urls = urls[: args.limit]
 
@@ -247,7 +275,19 @@ def main() -> None:
         result = json.loads(OUTPUT_FILE.read_text(encoding="utf-8"))
 
     print(f"대상 교원 {len(urls)}명 (홈페이지 URL 중복 제거됨)")
+    if portal_shares:
+        print(f"  이 중 {len(portal_shares)}개 URL은 여러 교원이 공유하는 학과/그룹 포털로 보고 제외합니다.")
     for i, url in enumerate(urls, 1):
+        if url in portal_shares:
+            print(f"[{i}/{len(urls)}] {url} — 학과/그룹 공통 포털({portal_shares[url]}명 공유)로 판단되어 건너뜀")
+            result[url] = {
+                "skipped": "shared_portal",
+                "shared_by": portal_shares[url],
+                "fetched_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            }
+            save(result)
+            continue
+
         existing = result.get(url, {})
         done = existing.get("text") and "subpages" in existing
         if done and not args.force:
@@ -308,9 +348,13 @@ def main() -> None:
         save(result)
         time.sleep(args.delay)
 
+    skipped_n = sum(1 for v in result.values() if v.get("skipped"))
     ok = sum(1 for v in result.values() if v.get("text"))
     sub_ok = sum(len([s for s in v.get("subpages", {}).values() if s.get("text")]) for v in result.values())
-    print(f"\n완료: 홈페이지 {ok}/{len(result)} 성공, 서브페이지 {sub_ok}개 성공. 결과 저장: {OUTPUT_FILE}")
+    print(
+        f"\n완료: 홈페이지 {ok}/{len(result) - skipped_n} 성공"
+        f" ({skipped_n}개는 공통 포털로 판단해 제외), 서브페이지 {sub_ok}개 성공. 결과 저장: {OUTPUT_FILE}"
+    )
     print("다음 단계: python3 scripts/build_wiki.py 를 다시 실행해 위키에 반영하세요.")
 
 

@@ -134,7 +134,12 @@ def render_faculty_page(rec: dict, crawl: dict) -> str:
 
     lines.append("## 홈페이지 추가 정보")
     crawled = crawl.get(homepage) if homepage else None
-    if crawled and crawled.get("text"):
+    if crawled and crawled.get("skipped") == "shared_portal":
+        lines.append(
+            f"_이 URL은 다른 교원과 함께 쓰는 학과/그룹 공통 포털로 판단되어 "
+            f"(총 {crawled.get('shared_by', '?')}명이 동일 URL 등록) 크롤링하지 않았습니다._"
+        )
+    elif crawled and crawled.get("text"):
         lines.append(f"> 크롤링 시각: {crawled.get('fetched_at', '알 수 없음')} · 출처: <{homepage}>")
         lines.append("")
         lines.append(crawled["text"].strip())
