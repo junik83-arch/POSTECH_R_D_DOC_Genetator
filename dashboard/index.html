@@ -677,12 +677,15 @@
   };
   var byId = {};
 
-  // posicube-services/llm-agent-api 의 a1~a3 단일 호출 API 기본 엔드포인트
-  // (https://github.com/posicube-services/llm-agent-api/blob/main/a1_a3_README.md)
+  // posicube-services/llm-agent-api 의 a1~a3 단일 호출 API 엔드포인트를, 브라우저 CORS
+  // 차단을 우회하기 위해 배포해 둔 Cloudflare Worker 프록시(dashboard/cors-proxy/worker.js,
+  // postech-ai-proxy.junik83.workers.dev) 경유 주소로 기본값 설정.
+  // genai.postech.ac.kr를 브라우저에서 직접 호출하면 CORS 프리플라이트가 막혀
+  // "Failed to fetch"가 나므로, 이 프록시를 거치지 않는 원본 주소는 기본값으로 쓰지 않는다.
   var DEFAULT_ENDPOINTS = {
-    gpt: "https://genai.postech.ac.kr/agent/api/a1/gpt",
-    gemini: "https://genai.postech.ac.kr/agent/api/a2/gemini",
-    claude: "https://genai.postech.ac.kr/agent/api/a3/claude"
+    gpt: "https://postech-ai-proxy.junik83.workers.dev/proxy/agent/api/a1/gpt",
+    gemini: "https://postech-ai-proxy.junik83.workers.dev/proxy/agent/api/a2/gemini",
+    claude: "https://postech-ai-proxy.junik83.workers.dev/proxy/agent/api/a3/claude"
   };
 
   var EXAMPLES = [
