@@ -18,14 +18,15 @@
 
 ```
 sources/                       ← 1) 원본 자료 — 절대 수정하지 않음
-  faculty_profiles_source.json    POSTECH R&D 실적 데이터베이스 (교원 298명)
-  homepage_crawl.json             교원 홈페이지 크롤링 결과 (로컬에서 생성, 선택)
+  faculty_profiles_source.json    POSTECH R&D 실적 데이터베이스 (교원 298명, 연 1회 수동 업로드)
+  homepage_crawl.json             교원 홈페이지 크롤링 결과 + AI 요약 (자동 생성, 매월 갱신)
 
 wiki/                           ← 2) 위키 — 두 종류의 페이지가 섞여 있음
   faculty/<개인번호>-<성명>.md    [기계 생성] 교원 1인당 1페이지 — 결정론적 추출
   index.md                        [기계 생성] 전체 평면 카탈로그
   faculty-index.md                [기계 생성] 가나다순 전체 목록
   research-areas.md               [기계 생성] 연구분야 키워드 인덱스
+  national-strategic-tech.md      [기계 생성] 정부 12대 국가전략기술 분야별 인덱스
   home.md                         [LLM 큐레이션] 최상위 진입점, 학과 간 공통 흐름 종합
   domain/<학과>.moc.md            [LLM 큐레이션] 학과별 연구 클러스터 종합 (mermaid 포함)
   log.md                          [LLM 큐레이션] 시간순 append-only 변경 기록
@@ -33,8 +34,16 @@ wiki/                           ← 2) 위키 — 두 종류의 페이지가 섞
 
 scripts/                        ← 3) 파이프라인
   build_wiki.py                    sources/*.json → wiki/faculty/*.md, index.md 등 (결정론적)
-  crawl_homepages.py               (로컬 전용) 홈페이지+서브페이지 크롤링 → sources/homepage_crawl.json
+  crawl_homepages.py               홈페이지+서브페이지 크롤링 → sources/homepage_crawl.json
+  summarize_homepages.py           크롤링 원문을 Gemini API로 요약 → homepage_crawl.json 의 summary 필드
+
+.github/workflows/refresh-wiki.yml  매월 1일 위 세 스크립트를 순서대로 실행해 main에 자동 커밋
 ```
+
+`sources/homepage_crawl.json` 안의 `text`/`subpages`는 크롤링 원문 그대로지만, `summary`
+필드는 그 원문을 LLM(Gemini)이 요약한 **파생 데이터**입니다 — 편의상 같은 파일에 저장하지만
+"원본 그 자체"는 아니라는 점에 유의하세요 (교원 페이지에는 "AI 생성 요약"이라고 명시해 출처를
+구분합니다).
 
 이 문서(`CLAUDE.md`)가 3번째 레이어인 **스키마**입니다.
 
@@ -69,10 +78,17 @@ LLM(Claude)이 직접 쓰고 유지합니다. **스크립트가 건드리지 않
 
 ## 운영 (Operations)
 
-**Ingest (새 원본 반영)**: 새 원본 자료(예: 재크롤링 결과, 갱신된 실적 데이터)가 들어오면
-1) `sources/` 에 넣고 2) `python3 scripts/build_wiki.py` 로 기계 생성 페이지를 갱신한 뒤
-3) 영향받는 `domain/*.moc.md` 를 다시 읽고 클러스터·통계가 여전히 맞는지 확인해 필요하면
-고치고 4) `log.md` 에 항목을 추가합니다.
+**Ingest (새 원본 반영)**: 두 원본은 갱신 방식이 다릅니다.
+- `faculty_profiles_source.json`(실적 데이터베이스)은 **연 1회 사람이 새 파일을 받아 수동으로
+  교체**합니다 — 자동화 대상이 아닙니다.
+- `homepage_crawl.json`(홈페이지 크롤링 + AI 요약)은 `.github/workflows/refresh-wiki.yml`
+  이 매월 자동으로 갱신합니다.
+
+어느 쪽이든 새 원본이 들어오면 1) `sources/` 에 반영하고 2) `python3 scripts/build_wiki.py`
+로 기계 생성 페이지를 갱신한 뒤 3) 영향받는 `domain/*.moc.md` 를 다시 읽고 클러스터·통계가
+여전히 맞는지 확인해 필요하면 고치고 4) `log.md` 에 항목을 추가합니다. 실적 데이터베이스가
+수동 교체될 때는 학과 구성이나 인원이 크게 바뀔 수 있으니 `domain/*.moc.md` 재확인이 특히
+중요합니다.
 
 **Query (질의)**: `home.md` → 관련 `domain/*.moc.md` → 개별 `faculty/*.md` 순으로 훑는
 것이 색인을 임베딩 검색 없이도 효율적으로 타는 방법입니다. 좋은 답변(비교, 분석, 발견한
@@ -90,9 +106,10 @@ LLM(Claude)이 직접 쓰고 유지합니다. **스크립트가 건드리지 않
 `scripts/crawl_homepages.py` 를 **인터넷 접근이 가능한 환경**에서 실행해
 `sources/homepage_crawl.json` 을 만든 뒤, `scripts/build_wiki.py` 로 위키에 반영합니다.
 
-**자동 정기 갱신**: `.github/workflows/refresh-wiki.yml` 이 매월 1일 크롤러(`--force`,
-전체 재크롤링)와 `build_wiki.py` 를 실행해 결과를 `main`에 직접 커밋합니다 — GitHub Actions
-러너는 일반 인터넷에 접근할 수 있어 이 작업을 이 세션 대신 대신해줍니다. Actions 탭에서
+**자동 정기 갱신**: `.github/workflows/refresh-wiki.yml` 이 매월 1일 ① 크롤러(`--force`,
+전체 재크롤링) ② `summarize_homepages.py`(Gemini API로 원문 요약, `GEMINI_API_KEY` 시크릿이
+설정된 경우에만) ③ `build_wiki.py` 순서로 실행해 결과를 `main`에 직접 커밋합니다 — GitHub
+Actions 러너는 일반 인터넷에 접근할 수 있어 이 작업을 이 세션 대신 해줍니다. Actions 탭에서
 수동 실행(`workflow_dispatch`)도 가능합니다. (이 워크플로가 실제로 켜지려면 `main` 브랜치에
 머지되어 있어야 합니다 — GitHub는 스케줄 트리거를 기본 브랜치의 워크플로 파일 기준으로만
 실행합니다.) 로컬에서 급하게 한 번 더 돌리고 싶을 때는 아래처럼 수동으로 실행해도 됩니다.
@@ -102,5 +119,14 @@ LLM(Claude)이 직접 쓰고 유지합니다. **스크립트가 건드리지 않
   링크는 제외합니다 (`SUBPAGE_EXCLUDE_KEYWORDS`).
 - **학과/그룹 공통 포털 제외**: 여러 교원이 정확히 같은 URL을 홈페이지로 등록한 경우
   (`PORTAL_SHARE_THRESHOLD = 2` 이상 공유) 개인 페이지가 아니라고 보고 크롤링하지 않습니다.
+- **AI 요약 (Gemini)**: `scripts/summarize_homepages.py` 가 크롤링 원문(첫 화면 + 서브페이지)을
+  교원 1인당 3~5문장으로 요약해 `homepage_crawl.json`의 `summary` 필드에 저장합니다.
+  `index.html`(RFP 공문 생성기)과 동일하게 Gemini API를 REST로 직접 호출합니다(동적 모델
+  탐색 + 폴백 후보 목록). **저장소 Settings → Secrets and variables → Actions 에서
+  `GEMINI_API_KEY` 시크릿을 등록해야 이 단계가 실행됩니다** — 없으면 이 단계는 조용히
+  건너뜁니다(크롤링·위키 재생성은 정상 진행). 원문 안에 다른 교원 이름이 섞여 있을 때
+  잘못 귀속시키지 않도록 프롬프트에 가드레일을 넣었지만, 100% 보장되진 않으니 가끔
+  스팟체크하세요 (`open-questions.md` 참고).
 
-자세한 크롤러 옵션은 `scripts/crawl_homepages.py` 의 docstring을 참고하세요.
+자세한 크롤러 옵션은 `scripts/crawl_homepages.py` 의 docstring을, 요약 옵션은
+`scripts/summarize_homepages.py` 의 docstring을 참고하세요.

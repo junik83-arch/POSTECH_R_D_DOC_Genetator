@@ -221,6 +221,14 @@ def render_faculty_page(rec: dict, crawl: dict) -> str:
     elif crawled and crawled.get("text"):
         lines.append(f"> 크롤링 시각: {crawled.get('fetched_at', '알 수 없음')} · 출처: <{homepage}>")
         lines.append("")
+
+        summary = (crawled.get("summary") or "").strip()
+        if summary:
+            lines.append(f"**AI 생성 요약** _(Gemini 자동 요약 · {crawled.get('summary_generated_at', '')} · 원문은 아래에서 확인 가능)_")
+            lines.append("")
+            lines.append(summary)
+            lines.append("")
+
         main_text = crawled["text"].strip()
         if len(main_text) > 300:
             lines.extend(render_details("홈페이지 원문 보기", main_text))

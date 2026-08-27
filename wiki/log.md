@@ -27,5 +27,15 @@ POSTECH R&D 실적 데이터베이스(교원 298명, `faculty_profiles.json`)를
 ## [2026-08-27] ingest | 홈페이지 크롤링 정기 자동화 (GitHub Actions, 매월 1일)
 사용자가 "수시로 업데이트해서 DB에 쌓을 방법"을 문의. `.github/workflows/refresh-wiki.yml` 추가 — 매월 1일 GitHub Actions 러너(이 세션과 달리 실제 인터넷 접근 가능)에서 `crawl_homepages.py --force` + `build_wiki.py` 를 실행해 main에 직접 커밋. 사용자 로컬 PC 없이도 홈페이지 정보가 계속 최신화됨. `main` 브랜치에 머지되어야 스케줄이 실제로 켜짐.
 
+## [2026-08-27] lint | 실적 데이터베이스는 연 1회 수동 업로드로 확정
+사용자가 `faculty_profiles_source.json`(실적 DB)은 매년 새 파일을 받아 수동 교체해야 한다고 확인. 자동화 대상이 아님을 CLAUDE.md에 명시.
+
+## [2026-08-27] ingest | 홈페이지 원문 AI 요약 추가 (Gemini API)
+사용자가 "크롤링한 원문을 그대로 접어두지 말고, 교원 개인에 대해 읽고 이해한 것처럼 정리해달라"고 요청. Claude API 대신 이 저장소의 index.html(RFP 공문 생성기)이 이미 쓰고 있는 Gemini API(REST, 동적 모델 탐색 + 폴백 목록)를 재사용하기로 결정 — 별도 결제 체계 없이 기존 패턴 재활용.
+
+`scripts/summarize_homepages.py` 신설: 크롤링 원문(첫 화면 + 서브페이지)을 교원 1인당 3~5문장으로 요약해 `homepage_crawl.json`의 `summary` 필드에 저장. 원문에 다른 교원 이름이 섞여 있을 때(학과 뉴스 게시판이 서브페이지로 잡힌 경우 등) 잘못 귀속되지 않도록 프롬프트에 "요약 대상 1인만" 가드레일 포함 — 완전하지는 않아 `open-questions.md`에 한계 기록. 원문 해시가 안 바뀌면 재요약을 건너뛰어 비용 절감.
+
+`.github/workflows/refresh-wiki.yml`에 요약 단계 추가 (`GEMINI_API_KEY` 시크릿이 설정된 경우에만 실행, 없으면 조용히 건너뜀). `build_wiki.py`가 "AI 생성 요약"이라는 라벨과 함께 요약을 교원 페이지 상단에 표시 (원문은 접이식 블록으로 계속 보존).
+
 ## [2026-08-27] ingest | 국가전략기술 인덱스 신설
 원본 `text_public`의 `국가전략기술` 필드(정부 12대 국가전략기술 분류를 참조하는 자유 서술형 텍스트)를 발견 — 298명 중 195명이 태그를 갖고 있었으나 지금까지 위키에 반영되지 않았음. 번호매김·괄호 세부사항이 뒤섞인 원문을 표준 12개 명칭으로 정규화하는 파서(`parse_national_tech()`)를 `build_wiki.py`에 추가해 `wiki/national-strategic-tech.md` 생성 — RFP·공모사업 기술 분야와 매칭되는 교원을 바로 찾을 수 있도록 함 (루트 `index.html` RFP 공문 생성기와의 연계 지점이 될 수 있음).
