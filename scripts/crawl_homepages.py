@@ -231,7 +231,24 @@ def load_portal_share_counts() -> dict[str, int]:
 
 
 def save(result: dict) -> None:
-    OUTPUT_FILE.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+    """결과를 저장한다. 백신·클라우드 동기화(OneDrive 등)가 파일을 순간적으로 잠그면
+    Windows에서 PermissionError가 나는 경우가 있어, 몇 번 재시도하고 그래도 안 되면
+    (크롤링 전체를 중단시키지 않도록) 경고만 남기고 계속 진행한다 — 이번에 못 쓴
+    내용은 다음 저장 때 같이 반영된다."""
+    payload = json.dumps(result, ensure_ascii=False, indent=2)
+    tmp_path = OUTPUT_FILE.with_suffix(".json.tmp")
+    for attempt in range(5):
+        try:
+            tmp_path.write_text(payload, encoding="utf-8")
+            tmp_path.replace(OUTPUT_FILE)  # 원자적 교체: 쓰다가 중단돼도 기존 파일은 안전
+            return
+        except PermissionError:
+            if attempt < 4:
+                time.sleep(1.5)
+    print(
+        f"  경고: {OUTPUT_FILE.name} 저장 실패(파일이 잠겨 있는 것 같습니다 — 백신/OneDrive 등을 "
+        f"확인해보세요). 이번 결과는 다음 저장 때 다시 시도합니다."
+    )
 
 
 def main() -> None:
