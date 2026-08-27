@@ -81,6 +81,38 @@ def parse_text_public(text: str) -> "OrderedDict[str, str]":
     return sections
 
 
+def split_list_items(text: str) -> list[str] | None:
+    """￭ 또는 반복되는 '; ' 로 나열된 텍스트를 항목 리스트로 쪼갠다. 나열형이 아니면
+    (구분자가 2개 미만이면) None을 돌려줘 원문 그대로 쓰게 한다. 순수 표시 형식만
+    바꾸는 것이라 원본 내용은 그대로 유지된다 (No Hallucination 원칙 준수)."""
+    if not text:
+        return None
+    if "￭" in text:
+        parts = [p.strip() for p in text.split("￭") if p.strip()]
+        if len(parts) >= 2:
+            return parts
+    if text.count("; ") >= 2:
+        parts = [p.strip() for p in text.split("; ") if p.strip()]
+        if len(parts) >= 2:
+            return parts
+    return None
+
+
+def render_list_or_text(text: str) -> str:
+    """나열형 필드는 불릿 리스트로, 아니면 원문 그대로 렌더링 — 긴 한 덩어리 문단이
+    되는 것을 막아 가독성을 높인다."""
+    items = split_list_items(text)
+    if items:
+        return "\n".join(f"- {item}" for item in items)
+    return text
+
+
+def render_details(summary: str, body: str) -> list[str]:
+    """접이식 블록. 크롤링한 홈페이지 원문처럼 길고 스캔하기 어려운 텍스트를
+    기본은 접어두고, 필요하면 펼쳐볼 수 있게 한다."""
+    return ["<details>", f"<summary>{summary}</summary>", "", body, "", "</details>"]
+
+
 def render_perf_table(perf: dict) -> str:
     if not perf:
         return "_실적 데이터 없음_\n"
@@ -120,7 +152,7 @@ def render_faculty_page(rec: dict, crawl: dict) -> str:
         lines.append("- 홈페이지: _등록된 홈페이지 없음_")
     lines.append("")
     lines.append("## 연구관심분야")
-    lines.append(interests)
+    lines.append(render_list_or_text(interests))
     lines.append("")
     lines.append("## 실적 요약")
     lines.append(render_perf_table(perf))
@@ -129,7 +161,7 @@ def render_faculty_page(rec: dict, crawl: dict) -> str:
         if label in SKIP_LABELS:
             continue
         lines.append(f"## {label}")
-        lines.append(content)
+        lines.append(render_list_or_text(content))
         lines.append("")
 
     lines.append("## 홈페이지 추가 정보")
@@ -142,19 +174,27 @@ def render_faculty_page(rec: dict, crawl: dict) -> str:
     elif crawled and crawled.get("text"):
         lines.append(f"> 크롤링 시각: {crawled.get('fetched_at', '알 수 없음')} · 출처: <{homepage}>")
         lines.append("")
-        lines.append(crawled["text"].strip())
+        main_text = crawled["text"].strip()
+        if len(main_text) > 300:
+            lines.extend(render_details("홈페이지 원문 보기", main_text))
+        else:
+            lines.append(main_text)
         lines.append("")
 
         subpages = {u: s for u, s in (crawled.get("subpages") or {}).items() if s.get("text")}
         if subpages:
-            lines.append("### 홈페이지 내 세부 페이지")
+            lines.append(f"### 홈페이지 내 세부 페이지 ({len(subpages)}개)")
             lines.append("")
             for sub_url, sub in subpages.items():
                 sub_title = sub.get("title") or sub_url
                 lines.append(f"#### {sub_title}")
                 lines.append(f"> 출처: <{sub_url}>")
                 lines.append("")
-                lines.append(sub["text"].strip())
+                sub_text = sub["text"].strip()
+                if len(sub_text) > 300:
+                    lines.extend(render_details("내용 보기", sub_text))
+                else:
+                    lines.append(sub_text)
                 lines.append("")
     elif not homepage:
         lines.append("_등록된 홈페이지가 없어 크롤링 대상이 아닙니다._")

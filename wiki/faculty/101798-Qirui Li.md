@@ -15,7 +15,13 @@ updated: 2026-08-27
 - 홈페이지: <http://qirui.li>
 
 ## 연구관심분야
-￭ Arithmetic Geometry ￭ Gross Zagier Formula, ￭ Automorphic Representations, ￭ Elliptic Curves, ￭ p-divisible Groups, ￭ Shimura Varieties, ￭ Local Shtukas
+- Arithmetic Geometry
+- Gross Zagier Formula,
+- Automorphic Representations,
+- Elliptic Curves,
+- p-divisible Groups,
+- Shimura Varieties,
+- Local Shtukas
 
 ## 실적 요약
 | 구분 | 건수 |
