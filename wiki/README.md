@@ -27,21 +27,24 @@ python3 scripts/build_wiki.py
 직접 고치지 말고, 원본(`data/faculty_profiles_source.json`)이 바뀌면 다시 실행하세요.
 생성 규칙과 원칙은 [SCHEMA.md](SCHEMA.md)에 정리되어 있습니다.
 
-## 교원 홈페이지 정보를 추가하려면 (선택)
+## 교원 홈페이지 정보 (크롤링 완료)
 
-이 저장소를 다루는 Claude Code 원격 환경은 `postech.ac.kr` 도메인에 접근할 수 없어
-(네트워크 egress 차단) 홈페이지를 직접 크롤링하지 못합니다. 인터넷이 되는 로컬 환경에서
-아래 2단계를 실행하세요.
+이 저장소를 다루는 Claude Code 원격 환경은 `postech.ac.kr` 등 외부 도메인에 접근할 수 없어
+(네트워크 egress 차단) 직접 크롤링하지 못합니다. 대신 로컬 환경에서 `scripts/crawl_homepages.py`
+를 실행해 만든 `data/homepage_crawl.json` 을 받아 반영했습니다.
+
+- 대상 URL 280개(중복 제거) 중 **252개 성공**
+- 나머지 28개는 사이트 자체 오류(404/403/타임아웃/SSL 인증서 오류 등)로 실패 — 각 교원
+  페이지의 "홈페이지 추가 정보" 섹션에 실패 사유가 함께 표시됩니다.
+
+다시 크롤링하거나 실패한 항목만 재시도하려면:
 
 ```bash
 pip install -r scripts/requirements.txt
-python3 scripts/crawl_homepages.py      # data/homepage_crawl.json 생성
-python3 scripts/build_wiki.py           # 위키에 반영 (홈페이지 추가 정보 섹션이 채워짐)
+python3 scripts/crawl_homepages.py      # 기본: 이전에 실패한 URL만 재시도
+python3 scripts/crawl_homepages.py --force  # 전부 다시 시도
+python3 scripts/build_wiki.py           # 위키에 반영
 ```
-
-`--limit 10` 옵션으로 일부만 먼저 테스트해볼 수 있습니다. 결과(`data/homepage_crawl.json`)를
-커밋한 뒤 이 브랜치에 푸시하면, 이후 `build_wiki.py` 재실행 시 자동으로 각 교원 페이지의
-"홈페이지 추가 정보" 섹션에 반영됩니다.
 
 ## 알려진 데이터 이슈
 

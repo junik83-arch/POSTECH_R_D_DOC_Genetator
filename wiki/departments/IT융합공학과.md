@@ -1,7 +1,7 @@
 ---
 department: IT융합공학과
 faculty_count: 11
-updated: 2026-08-26
+updated: 2026-08-27
 ---
 
 # IT융합공학과

@@ -140,6 +140,14 @@ def render_faculty_page(rec: dict, crawl: dict) -> str:
         lines.append(crawled["text"].strip())
     elif not homepage:
         lines.append("_등록된 홈페이지가 없어 크롤링 대상이 아닙니다._")
+    elif crawled is not None:
+        # 크롤링을 시도는 했으나 텍스트를 얻지 못한 경우 (접속 실패, 빈 페이지 등)
+        reason = crawled.get("error") or (f"HTTP {crawled.get('status')}" if crawled.get("status") else "알 수 없는 사유")
+        lines.append(
+            f"_크롤링을 시도했지만 내용을 가져오지 못했습니다 ({reason}). "
+            f"홈페이지가 자바스크립트로 렌더링되거나 접근이 제한되어 있을 수 있습니다. "
+            f"시도 시각: {crawled.get('fetched_at', '알 수 없음')}_"
+        )
     else:
         lines.append(
             "_아직 크롤링되지 않았습니다. `scripts/crawl_homepages.py` 를 인터넷 접근이 "

@@ -19,9 +19,10 @@ crawl_homepages.py — 교원 홈페이지 크롤러 (로컬 전용)
     pip install -r scripts/requirements.txt
 
 사용법:
-    python3 scripts/crawl_homepages.py                # 전체 URL 크롤링
+    python3 scripts/crawl_homepages.py                # 전체 URL 크롤링 (이미 성공한 URL은 건너뜀)
     python3 scripts/crawl_homepages.py --limit 10      # 앞 10개만 (테스트용)
     python3 scripts/crawl_homepages.py --delay 2.0     # 요청 간 대기시간(초), 기본 1.0
+    python3 scripts/crawl_homepages.py --force         # 이미 성공한 URL도 전부 다시 시도
 """
 from __future__ import annotations
 
@@ -62,6 +63,24 @@ def extract_text(html: str) -> tuple[str, str]:
     return title, joined[:MAX_CHARS]
 
 
+ZERO_WIDTH_CHARS = "﻿​‌‍\xa0"
+
+
+def normalize_url(url: str) -> str:
+    """요청에 실제로 사용할 URL을 정리한다 (BOM/제로폭 공백 제거, 스킴 누락 보정).
+
+    data/homepage_crawl.json 의 키는 원본 그대로 유지해야 build_wiki.py 의 조회가
+    맞아떨어지므로, 이 함수의 결과는 요청에만 쓰고 저장 키에는 쓰지 않는다.
+    """
+    cleaned = url.strip()
+    for ch in ZERO_WIDTH_CHARS:
+        cleaned = cleaned.replace(ch, "")
+    cleaned = cleaned.strip()
+    if "://" not in cleaned:
+        cleaned = "https://" + cleaned
+    return cleaned
+
+
 def load_urls() -> list[str]:
     records = json.loads(SOURCE_FILE.read_text(encoding="utf-8"))
     urls = []
@@ -79,6 +98,11 @@ def main() -> None:
     ap.add_argument("--limit", type=int, default=None, help="처리할 최대 URL 개수 (테스트용)")
     ap.add_argument("--delay", type=float, default=1.0, help="요청 간 대기시간(초)")
     ap.add_argument("--timeout", type=float, default=15.0, help="요청 타임아웃(초)")
+    ap.add_argument(
+        "--force",
+        action="store_true",
+        help="이미 성공적으로 크롤링된 URL도 다시 시도 (기본값: 실패했던 URL만 재시도)",
+    )
     args = ap.parse_args()
 
     if not SOURCE_FILE.exists():
@@ -94,9 +118,12 @@ def main() -> None:
 
     print(f"대상 URL {len(urls)}개 (중복 제거됨)")
     for i, url in enumerate(urls, 1):
+        if not args.force and result.get(url, {}).get("text"):
+            print(f"[{i}/{len(urls)}] {url} — 이미 성공, 건너뜀")
+            continue
         print(f"[{i}/{len(urls)}] {url}")
         try:
-            resp = requests.get(url, headers=HEADERS, timeout=args.timeout)
+            resp = requests.get(normalize_url(url), headers=HEADERS, timeout=args.timeout)
             resp.raise_for_status()
             title, text = extract_text(resp.text)
             result[url] = {

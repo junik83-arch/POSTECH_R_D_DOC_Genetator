@@ -4,7 +4,7 @@ name: Valentin Buciumas
 department: 수학과
 email: buciumas@postech.ac.kr
 homepage: https://buciumas.github.io/
-updated: 2026-08-26
+updated: 2026-08-27
 ---
 
 # Valentin Buciumas (수학과)
@@ -47,8 +47,53 @@ METAPLECTIC COVERS OF p-ADIC GROUPS AND QUANTUM GROUPS AT ROOTS OF UNITY (2025; 
 On some p-q dualities (Representation Theory Seminar); The fundamental local equivalence via special functions (Conference on Algebraic Representation Theory); Hecke algebras, Whittaker functions and quantum groups (Representation Theory Seminar); Whittaker functions on p-adic groups (Twelfth Bucharest Number Theory Days); Hecke algebras, Whittaker functions and quantum groups (Solvable Lattice Models, Number Theory and Combinatorics); Metaplectic Whittaker functions and Lusztig's quantum group (Representation Theory Seminar); Hecke algebras, Whittaker functions and quantum groups (Seminar on Pure Mathematics); Hecke algebras, Whittaker functions and quantum groups (Geometry, Algebra and Physics Seminar); Hecke algebras, Whittaker functions and quantum groups (SNU Algebra Camp 2024)
 
 ## 홈페이지 추가 정보
-_아직 크롤링되지 않았습니다. `scripts/crawl_homepages.py` 를 인터넷 접근이 가능한 환경에서 실행해 `data/homepage_crawl.json` 을 만든 뒤 `scripts/build_wiki.py` 를 다시 실행하면 이 섹션이 채워집니다._
+> 크롤링 시각: 2026-08-27T00:09:29+00:00 · 출처: <https://buciumas.github.io/>
+
+Valentin Buciumas - Mathematics Homepage
+Assistant Professor
+POSTECH, Department of Mathematics
+77 Cheongam-ro, Nam-gu, Pohang, Korea 790-784
+Office 221 Mathematical Science Building
+Email: buciumas at postech dot ac dot kr
+Personal email: valentin dot buciumas at gmail dot com
+About me
+I am an Assistant Professor in
+Mathematics
+at
+POSTECH
+in Pohang, South Korea.
+I received my PhD in 2016 from Stanford University where I was a student of
+Daniel Bump
+.
+Between 2016 and 2023 I was a postdoc at the KdV Institute / University of Amsterdam (with Jasper Stokman, 2021-2023), University of Alberta (with Manish Patnaik, 2020-2021), University of Queensland (with Masoud Kamgarpour, 2018-2020), Hebrew University of Jerusalem (with David Kazhdan, 2017-2018) and the Max Planck Institute in Bonn (2016-2017).
+Research
+My interest is in representation theory (broadly interpreted to include connections with mathematical physics, number theory, algebraic combinatorics and geometry).
+I am specifically interested in the representation theory of $p$-adic groups and their generalizations (like metaplectic groups or loop groups), their Hecke algebras and connections to quantum theory (quantum groups, quantum symmetric pairs, categorification, Kazhdan-Lusztig combinatorics etc.).
+I also have a long standing interest in solvable lattice models and special functions appearing in algebraic combinatorics, representation theory and geometry.
+For more information, see my
+publication list
+.
+I am currently working on understading conncetions between quantum groups and metaplectic groups, c.f. my recent
+paper
+with Manish Patnaik.
+Recently, I also became interested in the Gaiotto conjectures and relative Langlands dualities.
+If you feel like you have common interests, feel free to get in touch.
+News
+Job announcement:
+postdoc position
+in arithmetic geometry and number theory at postech, deadline July 31, 2026.
+I gave a lecture series on quantum groups in the relative Langlands program in
+Singapore
+.
+See events in
+representation theory
+at POSTECH.
+Together with
+Sungmun Cho
+, Yeansu Kim and Qirui Li, we organized a lecture series on
+relative Langlands
+at POSTECH.
 
 ## 출처
 - POSTECH R&D 실적 데이터베이스 (개인번호 101792)
-- 최종 갱신: 2026-08-26
+- 최종 갱신: 2026-08-27

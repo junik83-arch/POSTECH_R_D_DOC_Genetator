@@ -4,7 +4,7 @@ name: Qirui Li
 department: 수학과
 email: qiruili@postech.ac.kr
 homepage: http://qirui.li
-updated: 2026-08-26
+updated: 2026-08-27
 ---
 
 # Qirui Li (수학과)
@@ -44,8 +44,10 @@ Arithmetic Transfer for inner forms of GL2n (2025; Forum of Mathematics, Sigma)
 Arithmetic Transfer for inner forms of GL2n (2025; Forum of Mathematics, Sigma)
 
 ## 홈페이지 추가 정보
-_아직 크롤링되지 않았습니다. `scripts/crawl_homepages.py` 를 인터넷 접근이 가능한 환경에서 실행해 `data/homepage_crawl.json` 을 만든 뒤 `scripts/build_wiki.py` 를 다시 실행하면 이 섹션이 채워집니다._
+> 크롤링 시각: 2026-08-27T00:09:28+00:00 · 출처: <http://qirui.li>
+
+Document
 
 ## 출처
 - POSTECH R&D 실적 데이터베이스 (개인번호 101798)
-- 최종 갱신: 2026-08-26
+- 최종 갱신: 2026-08-27
