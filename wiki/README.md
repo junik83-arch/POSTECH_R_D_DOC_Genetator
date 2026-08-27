@@ -27,24 +27,27 @@ python3 scripts/build_wiki.py
 직접 고치지 말고, 원본(`data/faculty_profiles_source.json`)이 바뀌면 다시 실행하세요.
 생성 규칙과 원칙은 [SCHEMA.md](SCHEMA.md)에 정리되어 있습니다.
 
-## 교원 홈페이지 정보 (크롤링 완료)
+## 교원 홈페이지 정보 (크롤링 완료 + 서브페이지 확장)
 
 이 저장소를 다루는 Claude Code 원격 환경은 `postech.ac.kr` 등 외부 도메인에 접근할 수 없어
 (네트워크 egress 차단) 직접 크롤링하지 못합니다. 대신 로컬 환경에서 `scripts/crawl_homepages.py`
 를 실행해 만든 `data/homepage_crawl.json` 을 받아 반영했습니다.
 
-- 대상 URL 280개(중복 제거) 중 **262개 성공** (93.6%)
-- 나머지 18개는 사이트 자체 문제(끊긴 링크·서버 다운·봇 차단·자바스크립트 렌더링 등)로
-  실패 — 각 교원 페이지의 "홈페이지 추가 정보" 섹션에 실패 사유가 함께 표시됩니다.
-  URL 오타·스킴 누락·프레임셋 구조는 `scripts/crawl_homepages.py` 가 자동으로 보정합니다.
+- 홈페이지 첫 화면: 대상 URL 280개(중복 제거) 중 **262개 성공** (93.6%). 나머지 18개는
+  사이트 자체 문제(끊긴 링크·서버 다운·봇 차단·자바스크립트 렌더링 등)로 실패 — 각 교원
+  페이지의 "홈페이지 추가 정보" 섹션에 실패 사유가 함께 표시됩니다.
+- **홈페이지 내부 탭(연구/논문/구성원/CV 등)도 자동으로 함께 크롤링**합니다. 첫 화면 안의
+  내부 링크 중 관련 키워드가 있는 것 위주로 교원 1명당 최대 8개까지 가져와 "홈페이지 내
+  세부 페이지" 소제목으로 덧붙입니다 (정확도 높은 실제 연구/실적 정보 확보 목적).
 
 다시 크롤링하거나 실패한 항목만 재시도하려면:
 
 ```bash
 pip install -r scripts/requirements.txt
-python3 scripts/crawl_homepages.py      # 기본: 이전에 실패한 URL만 재시도
-python3 scripts/crawl_homepages.py --force  # 전부 다시 시도
-python3 scripts/build_wiki.py           # 위키에 반영
+python3 scripts/crawl_homepages.py            # 기본: 안 끝난 항목(홈페이지+서브페이지)만 시도
+python3 scripts/crawl_homepages.py --force    # 전부 다시 시도
+python3 scripts/crawl_homepages.py --max-subpages 12  # 서브페이지 개수 조절 (기본 8)
+python3 scripts/build_wiki.py                 # 위키에 반영
 ```
 
 ## 알려진 데이터 이슈

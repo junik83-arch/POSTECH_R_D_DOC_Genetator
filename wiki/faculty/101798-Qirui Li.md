@@ -48,6 +48,7 @@ Arithmetic Transfer for inner forms of GL2n (2025; Forum of Mathematics, Sigma)
 
 Document
 
+
 ## 출처
 - POSTECH R&D 실적 데이터베이스 (개인번호 101798)
 - 최종 갱신: 2026-08-27

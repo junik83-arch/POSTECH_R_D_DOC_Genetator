@@ -138,6 +138,19 @@ def render_faculty_page(rec: dict, crawl: dict) -> str:
         lines.append(f"> 크롤링 시각: {crawled.get('fetched_at', '알 수 없음')} · 출처: <{homepage}>")
         lines.append("")
         lines.append(crawled["text"].strip())
+        lines.append("")
+
+        subpages = {u: s for u, s in (crawled.get("subpages") or {}).items() if s.get("text")}
+        if subpages:
+            lines.append("### 홈페이지 내 세부 페이지")
+            lines.append("")
+            for sub_url, sub in subpages.items():
+                sub_title = sub.get("title") or sub_url
+                lines.append(f"#### {sub_title}")
+                lines.append(f"> 출처: <{sub_url}>")
+                lines.append("")
+                lines.append(sub["text"].strip())
+                lines.append("")
     elif not homepage:
         lines.append("_등록된 홈페이지가 없어 크롤링 대상이 아닙니다._")
     elif crawled is not None:
