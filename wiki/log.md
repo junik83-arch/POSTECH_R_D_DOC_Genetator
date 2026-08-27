@@ -24,5 +24,8 @@ POSTECH R&D 실적 데이터베이스(교원 298명, `faculty_profiles.json`)를
 ## [2026-08-27] lint | 교원 개별 페이지 가독성 개선
 `wiki/faculty/*.md`가 최대 39KB까지 늘어나 스캔하기 어렵다는 피드백. ￭/`; ` 로 나열된 필드를 불릿 리스트로 렌더링하고, 홈페이지 크롤링 원문·서브페이지(최대 8개)를 `<details>` 접이식 블록으로 감싸 기본은 접어두도록 `build_wiki.py` 수정.
 
+## [2026-08-27] ingest | 홈페이지 크롤링 정기 자동화 (GitHub Actions, 매월 1일)
+사용자가 "수시로 업데이트해서 DB에 쌓을 방법"을 문의. `.github/workflows/refresh-wiki.yml` 추가 — 매월 1일 GitHub Actions 러너(이 세션과 달리 실제 인터넷 접근 가능)에서 `crawl_homepages.py --force` + `build_wiki.py` 를 실행해 main에 직접 커밋. 사용자 로컬 PC 없이도 홈페이지 정보가 계속 최신화됨. `main` 브랜치에 머지되어야 스케줄이 실제로 켜짐.
+
 ## [2026-08-27] ingest | 국가전략기술 인덱스 신설
 원본 `text_public`의 `국가전략기술` 필드(정부 12대 국가전략기술 분류를 참조하는 자유 서술형 텍스트)를 발견 — 298명 중 195명이 태그를 갖고 있었으나 지금까지 위키에 반영되지 않았음. 번호매김·괄호 세부사항이 뒤섞인 원문을 표준 12개 명칭으로 정규화하는 파서(`parse_national_tech()`)를 `build_wiki.py`에 추가해 `wiki/national-strategic-tech.md` 생성 — RFP·공모사업 기술 분야와 매칭되는 교원을 바로 찾을 수 있도록 함 (루트 `index.html` RFP 공문 생성기와의 연계 지점이 될 수 있음).

@@ -87,9 +87,15 @@ LLM(Claude)이 직접 쓰고 유지합니다. **스크립트가 건드리지 않
 
 이 저장소를 다루는 Claude Code 원격 환경은 네트워크 정책상 `postech.ac.kr` 등 외부 도메인에
 접근할 수 없습니다 (egress 차단 — WebFetch 도구도 동일하게 막힘). 따라서 크롤링은
-`scripts/crawl_homepages.py` 를 **인터넷 접근이 가능한 로컬 환경**에서 실행해
-`sources/homepage_crawl.json` 을 만든 뒤, `scripts/build_wiki.py` 로 위키에 반영하는
-2단계로 진행합니다.
+`scripts/crawl_homepages.py` 를 **인터넷 접근이 가능한 환경**에서 실행해
+`sources/homepage_crawl.json` 을 만든 뒤, `scripts/build_wiki.py` 로 위키에 반영합니다.
+
+**자동 정기 갱신**: `.github/workflows/refresh-wiki.yml` 이 매월 1일 크롤러(`--force`,
+전체 재크롤링)와 `build_wiki.py` 를 실행해 결과를 `main`에 직접 커밋합니다 — GitHub Actions
+러너는 일반 인터넷에 접근할 수 있어 이 작업을 이 세션 대신 대신해줍니다. Actions 탭에서
+수동 실행(`workflow_dispatch`)도 가능합니다. (이 워크플로가 실제로 켜지려면 `main` 브랜치에
+머지되어 있어야 합니다 — GitHub는 스케줄 트리거를 기본 브랜치의 워크플로 파일 기준으로만
+실행합니다.) 로컬에서 급하게 한 번 더 돌리고 싶을 때는 아래처럼 수동으로 실행해도 됩니다.
 
 - **서브페이지(탭) 크롤링**: 홈페이지 첫 화면 안의 같은 사이트 내부 링크 중 연구/논문/CV
   등 키워드로 우선순위를 매겨 교원 1명당 기본 8개까지 함께 가져옵니다. 구성원 명단·뉴스/공지

@@ -31,8 +31,12 @@ python3 scripts/build_wiki.py
 
 ## 교원 홈페이지 정보 크롤링
 
-이 저장소를 다루는 Claude Code 원격 환경은 `postech.ac.kr` 등 외부 도메인에 접근할 수 없어
-(네트워크 egress 차단 — WebFetch 도구도 동일) 직접 크롤링하지 못합니다. 로컬 환경에서:
+**매월 1일 자동으로 갱신됩니다** — `.github/workflows/refresh-wiki.yml` 이 GitHub Actions
+러너(인터넷 접근 가능)에서 크롤러 전체를 다시 돌리고 결과를 `main`에 직접 커밋합니다.
+Actions 탭에서 수동 실행도 가능합니다.
+
+수동으로 로컬에서 돌리고 싶다면 (이 저장소를 다루는 Claude Code 원격 환경은
+`postech.ac.kr` 등 외부 도메인 egress가 차단돼 있어 직접 크롤링은 못 합니다):
 
 ```bash
 pip install -r scripts/requirements.txt
