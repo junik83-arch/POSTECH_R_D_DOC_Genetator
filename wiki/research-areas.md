@@ -1,0 +1,31 @@
+# 연구분야 키워드 인덱스
+
+원본 `관심분야` 필드를 그대로 분리·집계한 목록입니다 (자유 서술형 텍스트라 완전히 정규화되어 있지는 않습니다). 2명 이상이 공유하는 키워드만 표시합니다.
+
+- **Machine Learning** (11명): [이재호](faculty/101549-이재호.md), [곽수하](faculty/100926-곽수하.md), [김동우](faculty/101219-김동우.md), [김원화](faculty/101359-김원화.md), [박상돈](faculty/101770-박상돈.md), [손진희](faculty/102147-손진희.md), [옥정슬](faculty/101165-옥정슬.md), [유환조](faculty/100090-유환조.md), [이남훈](faculty/101506-이남훈.md), [이원열](faculty/102028-이원열.md), [조민수](faculty/100777-조민수.md)
+- **Computer Vision** (7명): [김진태](faculty/101836-김진태.md), [곽수하](faculty/100926-곽수하.md), [김원화](faculty/101359-김원화.md), [류일우](faculty/101859-류일우.md), [손진희](faculty/102147-손진희.md), [조민수](faculty/100777-조민수.md), [조성현](faculty/101166-조성현.md)
+- **Computer Graphics** (3명): [류일우](faculty/101859-류일우.md), [이승용](faculty/20333-이승용.md), [조성현](faculty/101166-조성현.md)
+- **Deep Learning** (3명): [채민우](faculty/101144-채민우.md), [김동우](faculty/101219-김동우.md), [이남훈](faculty/101506-이남훈.md)
+- **Algorithms** (2명): [안희갑](faculty/100051-안희갑.md), [오은진](faculty/101146-오은진.md)
+- **Cloud computing** (2명): [전명재](faculty/101944-전명재.md), [한욱신](faculty/100581-한욱신.md)
+- **Computational Social Science** (2명): [정우성](faculty/100339-정우성.md), [옥정슬](faculty/101165-옥정슬.md)
+- **Computational and Discrete Geometry** (2명): [안희갑](faculty/100051-안희갑.md), [오은진](faculty/101146-오은진.md)
+- **Data Structures** (2명): [안희갑](faculty/100051-안희갑.md), [오은진](faculty/101146-오은진.md)
+- **Haptics** (2명): [김기훈](faculty/101199-김기훈.md), [최승문](faculty/20629-최승문.md)
+- **Human-Computer Interaction** (2명): [한성호](faculty/20241-한성호.md), [조은경](faculty/102141-조은경.md)
+- **MEMS/NEMS** (2명): [김석](faculty/101366-김석.md), [김준원](faculty/20620-김준원.md)
+- **MIMO communications** (2명): [이남윤](faculty/102092-이남윤.md), [전요셉](faculty/101231-전요셉.md)
+- **Operating Systems** (2명): [박지성](faculty/101600-박지성.md), [이성진](faculty/102093-이성진.md)
+- **Optimization** (2명): [김병인](faculty/20606-김병인.md), [이남훈](faculty/101506-이남훈.md)
+- **Organelle network** (2명): [박승열](faculty/101143-박승열.md), [유주연](faculty/20564-유주연.md)
+- **Power Electronics** (2명): [신세운](faculty/101768-신세운.md), [채수용](faculty/101578-채수용.md)
+- **Probability** (2명): [김건우](faculty/100745-김건우.md), [김진수](faculty/101468-김진수.md)
+- **Protein Design** (2명): [이지오](faculty/101045-이지오.md), [이상민](faculty/101831-이상민.md)
+- **Quantum Communication** (2명): [김윤호](faculty/20567-김윤호.md), [이승우](faculty/102127-이승우.md)
+- **Reinforcement Learning** (2명): [김병인](faculty/20606-김병인.md), [옥정슬](faculty/101165-옥정슬.md)
+- **Risk management** (2명): [신민석](faculty/101955-신민석.md), [정광민](faculty/101297-정광민.md)
+- **Robotics** (2명): [김기훈](faculty/101199-김기훈.md), [김정훈](faculty/101134-김정훈.md)
+- **Theory of Computation** (2명): [안희갑](faculty/100051-안희갑.md), [오은진](faculty/101146-오은진.md)
+- **Wireless communications** (2명): [이남윤](faculty/102092-이남윤.md), [전요셉](faculty/101231-전요셉.md)
+
+[← 전체 인덱스로](index.md)
