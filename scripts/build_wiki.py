@@ -24,6 +24,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "sources"
 WIKI_DIR = ROOT / "wiki"
+TOOLS_DIR = ROOT / "tools"
 SOURCE_FILE = DATA_DIR / "faculty_profiles_source.json"
 CRAWL_FILE = DATA_DIR / "homepage_crawl.json"
 
@@ -397,6 +398,29 @@ def render_national_tech(records: list[dict]) -> str:
     return "\n".join(lines)
 
 
+def build_search_data(records: list[dict]) -> list[dict]:
+    """tools/faculty-search.html 이 fetch로 읽는 경량 검색 데이터. 원본 JSON(4MB+,
+    text_full/text_public 포함)을 그대로 브라우저에 내려보내지 않도록, 검색·표시에
+    필요한 필드만 추려 별도 파일로 만든다."""
+    out = []
+    for r in records:
+        out.append(
+            {
+                "id": r["개인번호"],
+                "name": r["성명"],
+                "dept": r.get("학과", "").strip() or "미분류",
+                "email": r.get("이메일") or "",
+                "homepage": r.get("홈페이지") or "",
+                "interests": (r.get("관심분야") or "").replace("￭", "·").strip(),
+                "perf": r.get("실적건수") or {},
+                "nationalTech": parse_national_tech(r.get("text_public", "")),
+                "wikiPath": f"wiki/faculty/{faculty_filename(r)}",
+            }
+        )
+    out.sort(key=lambda x: x["name"])
+    return out
+
+
 def main() -> None:
     if not SOURCE_FILE.exists():
         raise SystemExit(f"원본 파일이 없습니다: {SOURCE_FILE}")
@@ -424,9 +448,16 @@ def main() -> None:
     (WIKI_DIR / "research-areas.md").write_text(render_research_areas(records), encoding="utf-8")
     (WIKI_DIR / "national-strategic-tech.md").write_text(render_national_tech(records), encoding="utf-8")
 
+    TOOLS_DIR.mkdir(parents=True, exist_ok=True)
+    search_data = build_search_data(records)
+    (TOOLS_DIR / "faculty-search-data.json").write_text(
+        json.dumps(search_data, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+
     print(f"생성 완료: 교원 {len(records)}명, 학과 {len(by_dept)}개")
     print(f"  wiki/faculty/      {len(records)} 개 파일 (결정론적 생성)")
     print("  wiki/index.md, wiki/faculty-index.md, wiki/research-areas.md, wiki/national-strategic-tech.md")
+    print("  tools/faculty-search-data.json (교원 검색 웹앱용 경량 데이터)")
     print(
         "  wiki/home.md, wiki/domain/*.moc.md, wiki/log.md, wiki/open-questions.md 는 "
         "이 스크립트가 건드리지 않습니다 (LLM이 직접 쓰고 유지하는 큐레이션 레이어 — CLAUDE.md 참고)"

@@ -1,17 +1,24 @@
-# 🏛️ POSTECH R&D전략팀 스마트 사업 안내 공문 생성기
-> **Google Gemini AI 연동 · RFP/공고문 자동 분석 및 표준 공문 작성 도구**
+# 🏛️ POSTECH R&D전략팀 도구 모음
 
-포항공과대학교(POSTECH) 연구처 R&D전략팀에서 사용하는 사업 안내 공문을 표준 서식에 맞춰 신속하고 정확하게 작성할 수 있도록 지원하는 웹 애플리케이션입니다.
+> **R&D전략팀 업무를 지원하는 웹 도구 모음** — 필요에 따라 하나씩 늘어납니다.
+
+`index.html`을 열면 도구 허브(랜딩 페이지)가 뜨고, 거기서 각 도구로 들어갑니다.
+
+| 도구 | 위치 | 설명 |
+|---|---|---|
+| 📋 사업 안내 공문 생성기 | [`tools/doc-generator.html`](tools/doc-generator.html) | Google Gemini AI 연동 · RFP/공고문을 분석해 표준 서식의 안내 공문 초안 자동 작성 |
+| 🔍 교원 R&D 검색 | [`tools/faculty-search.html`](tools/faculty-search.html) | POSTECH 교원 298명의 연구분야·실적·국가전략기술 분야 검색 ([`wiki/`](wiki/) 데이터 기반) |
 
 ---
 
 ## ⚡ 팀원들을 위한 가장 간편한 공유 방법 (시크릿 링크)
 
-GitHub에 소스코드를 올리고 **GitHub Pages**를 활성화한 뒤, 팀원들에게 공유할 때 링크 뒤에 `?key=발급받은API키`를 붙여서 1회 전달하세요.
+GitHub에 소스코드를 올리고 **GitHub Pages**를 활성화한 뒤, 공문 생성기를 공유할 때 링크 뒤에
+`?key=발급받은API키`를 붙여서 1회 전달하세요.
 
 ### 🔗 팀원 공유용 시크릿 링크 형식:
 ```text
-https://<본인아이디>.github.io/postech-doc-generator/?key=AIzaSy...
+https://<본인아이디>.github.io/postech-doc-generator/tools/doc-generator.html?key=AIzaSy...
 ```
 
 * **동작 방식**:
@@ -19,9 +26,14 @@ https://<본인아이디>.github.io/postech-doc-generator/?key=AIzaSy...
   2. 주소창에서 `?key=...` 부분이 자동으로 삭제되어 깔끔한 주소로 정리됩니다.
   3. 이후 팀원은 키 입력 절차 없이 언제든 즐겨찾기로 바로 사용할 수 있습니다!
 
+> 예전에는 루트(`.../postech-doc-generator/?key=...`)가 곧 공문 생성기였습니다. 이제 루트는
+> 도구 허브지만, **예전 형식의 링크도 계속 동작합니다** — 허브가 `?key=`를 감지하면 자동으로
+> 공문 생성기로 넘겨줍니다. 새로 공유할 때는 위의 새 형식(`tools/doc-generator.html?key=...`)을
+> 쓰는 걸 권장합니다.
+
 ---
 
-## ✨ 주요 기능
+## ✨ 공문 생성기 주요 기능
 
 1. **🤖 Gemini AI 기반 RFP 문서 자동 분석 & 중복 단어 정제**:
    - **지원 포맷**: PDF, HWPX, 이미지(JPG, PNG), TXT 파일 및 텍스트 직접 붙여넣기 지원
@@ -37,6 +49,16 @@ https://<본인아이디>.github.io/postech-doc-generator/?key=AIzaSy...
 4. **📋 전자결재 맞춤 '공문 본문 복사' & 파일 다운로드**:
    - **[공문 본문 복사 (1~5번)]**: 제목·붙임 등을 제외한 **공문 본문(1번 ~ 5번 조항)만 정돈된 들여쓰기 서식으로 클립보드에 복사** (전자결재 기안문 본문에 바로 붙여넣기 최적화)
    - **[.txt 내려받기 (전체)]**: 보관 및 출력용 전체 양식 텍스트 파일 저장 지원
+
+---
+
+## 🔍 교원 R&D 검색
+
+이름·학과·연구분야·정부 12대 국가전략기술 분야로 POSTECH 교원 298명을 검색·필터링합니다.
+데이터는 [`tools/faculty-search-data.json`](tools/faculty-search-data.json)이며,
+`python3 scripts/build_wiki.py` 실행 시 [`wiki/`](wiki/)와 함께 자동 재생성됩니다. 각 검색
+결과는 GitHub의 교원 위키 페이지로 바로 연결됩니다. 위키의 구조와 운영 방식은
+[CLAUDE.md](CLAUDE.md), [wiki/home.md](wiki/home.md) 참고.
 
 ---
 
@@ -61,18 +83,7 @@ git push -u origin main
 1. GitHub 저장소의 `Settings` -> `Pages` 이동
 2. Branch를 `main`으로 선택하고 `Save` 클릭
 3. 잠시 후 상단에 생성된 주소 확인: `https://<본인아이디>.github.io/postech-doc-generator/`
-
----
-
-## 🧠 POSTECH 교원 R&D 위키 (LLM Wiki)
-
-`wiki/` 디렉터리에는 교원 실적 데이터(`sources/faculty_profiles_source.json`, 298명)로부터
-생성·종합한 마크다운 지식베이스가 있습니다. 시작은 [wiki/home.md](wiki/home.md), 구조·갱신
-규칙은 [CLAUDE.md](CLAUDE.md) 참고.
-
-```bash
-python3 scripts/build_wiki.py   # sources/*.json → wiki/faculty/*.md, index.md 등 재생성
-```
+   (도구 허브가 뜹니다 — 개별 도구는 위 표의 경로로 들어갑니다)
 
 ---
 

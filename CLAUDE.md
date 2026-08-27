@@ -1,9 +1,16 @@
 # CLAUDE.md
 
-이 저장소에는 두 개의 독립된 프로젝트가 있습니다:
+이 저장소는 POSTECH R&D전략팀의 **도구 모음**입니다. 루트 `index.html`은 도구 허브(랜딩
+페이지)이고, 실제 도구는 `tools/` 아래에 있습니다:
 
-1. **`index.html` / 루트 `README.md`** — POSTECH R&D전략팀 사업 안내 공문 생성기 (Gemini 연동 웹앱). 아래 내용과 무관합니다.
-2. **`sources/`, `wiki/`, `scripts/`** — POSTECH 교원 R&D 위키 ("LLM Wiki"). 이 문서는 **이 위키의 스키마**입니다.
+1. **`tools/doc-generator.html`** — 사업 안내 공문 생성기 (Gemini 연동 웹앱). 아래 내용과
+   무관한 독립 기능입니다.
+2. **`sources/`, `wiki/`, `scripts/`, `tools/faculty-search.html`** — POSTECH 교원 R&D
+   위키("LLM Wiki")와 그 검색 웹앱. 이 문서는 **이 위키의 스키마**입니다.
+
+`tools/faculty-search-data.json`은 `scripts/build_wiki.py`가 `wiki/`와 함께 생성하는
+검색용 경량 데이터입니다 (교원 검색 웹앱이 이 파일을 fetch로 읽음) — 개념적으로는 위키
+쪽 파이프라인 산출물입니다.
 
 이 파일이 있는 한, Claude Code로 이 저장소에서 위키 관련 작업을 할 때는 아래 규칙을 따르세요.
 
@@ -37,6 +44,11 @@ scripts/                        ← 3) 파이프라인
   crawl_homepages.py               홈페이지+서브페이지 크롤링 → sources/homepage_crawl.json
   summarize_homepages.py           크롤링 원문을 Gemini API로 요약 → homepage_crawl.json 의 summary 필드
 
+tools/                           ← 위키 데이터를 쓰는 정적 웹앱 (GitHub Pages 배포)
+  faculty-search.html             교원 검색 웹앱 (직접 작성, build_wiki.py가 건드리지 않음)
+  faculty-search-data.json        [기계 생성] build_wiki.py가 함께 만드는 검색용 경량 데이터
+  doc-generator.html              사업 안내 공문 생성기 — 이 위키와 무관한 별도 도구
+
 .github/workflows/refresh-wiki.yml  매월 1일 위 세 스크립트를 순서대로 실행해 main에 자동 커밋
 ```
 
@@ -49,7 +61,8 @@ scripts/                        ← 3) 파이프라인
 
 ## 페이지 두 종류 — 소유권이 다름
 
-**[기계 생성] `wiki/faculty/*.md`, `index.md`, `faculty-index.md`, `research-areas.md`**
+**[기계 생성] `wiki/faculty/*.md`, `index.md`, `faculty-index.md`, `research-areas.md`,
+`national-strategic-tech.md`, `tools/faculty-search-data.json`**
 `scripts/build_wiki.py` 가 소유합니다. **직접 손으로 고치지 마세요.** 원본(`sources/`)이
 바뀌면 스크립트를 다시 실행하세요 (`python3 scripts/build_wiki.py`) — 몇 번을 실행해도
 같은 결과가 나와야 합니다(idempotent). 정확도가 중요한 추출 데이터라 LLM이 임의로 요약·재구성하지

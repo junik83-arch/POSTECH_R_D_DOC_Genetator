@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>교원 R&D 검색 · POSTECH R&D전략팀</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&family=Noto+Serif+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#16202e;
+    --line:#d5dbe2;
+    --panel-bg:#eef1f4;
+    --card-bg:#ffffff;
+    --field-bg:#ffffff;
+    --seal:#a3122e;
+    --ai-blue:#1a73e8;
+    --ai-bg:#e8f0fe;
+    --ai-border:#b6d4fe;
+    --text:#1c242e;
+    --muted:#6b7683;
+    --radius:10px;
+    --sans:"Noto Sans KR", system-ui, -apple-system, sans-serif;
+    --serif:"Noto Serif KR", serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:var(--sans);
+    color:var(--text);
+    background:var(--panel-bg);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:var(--ai-blue); }
+
+  header.appbar{
+    background:var(--ink);
+    color:#fff;
+    padding:14px 22px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+    border-bottom:3px solid var(--seal);
+  }
+  .appbar .mark{
+    font-family:var(--serif);
+    font-weight:600;
+    letter-spacing:.18em;
+    font-size:.85rem;
+    color:#cdd6e2;
+  }
+  .appbar h1{
+    font-size:1.1rem;
+    font-weight:700;
+    margin:0;
+  }
+  .appbar .back{
+    margin-left:auto;
+    color:#cdd6e2;
+    text-decoration:none;
+    font-size:.85rem;
+  }
+  .appbar .back:hover{ color:#fff; }
+
+  main{
+    max-width:960px;
+    margin:0 auto;
+    padding:28px 22px 64px;
+  }
+
+  .search-panel{
+    background:var(--card-bg);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:18px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-bottom:20px;
+  }
+  .search-row{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  input[type="search"]{
+    flex:2 1 260px;
+    padding:10px 12px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    background:var(--field-bg);
+    font-family:inherit;
+    font-size:.95rem;
+  }
+  select{
+    flex:1 1 160px;
+    padding:10px 12px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    background:var(--field-bg);
+    font-family:inherit;
+    font-size:.9rem;
+    color:var(--text);
+  }
+  input:focus, select:focus{
+    outline:2px solid var(--ai-blue);
+    outline-offset:1px;
+  }
+  .meta-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:.85rem;
+    color:var(--muted);
+  }
+  button.reset{
+    border:none;
+    background:none;
+    color:var(--ai-blue);
+    font-size:.85rem;
+    cursor:pointer;
+    padding:0;
+  }
+  button.reset:hover{ text-decoration:underline; }
+
+  #status{
+    color:var(--muted);
+    padding:24px 4px;
+  }
+
+  .results{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+
+  .person-card{
+    background:var(--card-bg);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px 18px;
+  }
+  .person-head{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .person-head h3{
+    margin:0;
+    font-size:1.05rem;
+  }
+  .person-head .dept{
+    font-size:.85rem;
+    color:var(--muted);
+  }
+  .person-interests{
+    margin:8px 0;
+    font-size:.9rem;
+    color:var(--text);
+  }
+  .tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin:8px 0 4px;
+  }
+  .tag{
+    font-size:.72rem;
+    font-weight:600;
+    padding:2px 9px;
+    border-radius:999px;
+    background:var(--ai-bg);
+    color:var(--ai-blue);
+    border:1px solid var(--ai-border);
+  }
+  .person-links{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    font-size:.82rem;
+    margin-top:8px;
+  }
+  .perf-inline{
+    font-size:.78rem;
+    color:var(--muted);
+    margin-top:6px;
+  }
+
+  mark{
+    background:#fff3b0;
+    color:inherit;
+    border-radius:2px;
+    padding:0 1px;
+  }
+</style>
+</head>
+<body>
+
+<header class="appbar">
+  <span class="mark">POSTECH</span>
+  <h1>교원 R&D 검색</h1>
+  <a class="back" href="../index.html">← 도구 모음으로</a>
+</header>
+
+<main>
+  <div class="search-panel">
+    <div class="search-row">
+      <input type="search" id="q" placeholder="이름, 연구분야, 키워드로 검색 (예: 양자, 이차전지, quantum, 김철수)" autocomplete="off" />
+      <select id="deptFilter">
+        <option value="">전체 학과</option>
+      </select>
+      <select id="techFilter">
+        <option value="">전체 국가전략기술</option>
+      </select>
+    </div>
+    <div class="meta-row">
+      <span id="resultCount"></span>
+      <button class="reset" id="resetBtn" type="button">필터 초기화</button>
+    </div>
+  </div>
+
+  <div id="status">불러오는 중…</div>
+  <div class="results" id="results"></div>
+</main>
+
+<script>
+(function(){
+  var GITHUB_BLOB_BASE = "https://github.com/junik83-arch/POSTECH_R_D_DOC_Genetator/blob/main/";
+
+  var state = { data: [], q: "", dept: "", tech: "" };
+
+  var els = {
+    q: document.getElementById("q"),
+    dept: document.getElementById("deptFilter"),
+    tech: document.getElementById("techFilter"),
+    status: document.getElementById("status"),
+    results: document.getElementById("results"),
+    count: document.getElementById("resultCount"),
+    reset: document.getElementById("resetBtn"),
+  };
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];
+    });
+  }
+
+  function highlight(text, query){
+    var safe = escapeHtml(text);
+    if(!query) return safe;
+    try {
+      var re = new RegExp("(" + query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "gi");
+      return safe.replace(re, "<mark>$1</mark>");
+    } catch(e){
+      return safe;
+    }
+  }
+
+  function perfTotal(perf){
+    var sum = 0;
+    for(var k in perf){ sum += (perf[k] || 0); }
+    return sum;
+  }
+
+  function matches(person, q, dept, tech){
+    if(dept && person.dept !== dept) return false;
+    if(tech && person.nationalTech.indexOf(tech) === -1) return false;
+    if(q){
+      // 관심분야 원문은 대부분 영어라 "양자"처럼 한글 단어로 검색해도 매칭이 안 될 수
+      // 있어, 국가전략기술 태그(정확한 한글 표준 명칭)도 검색 대상에 포함시킨다.
+      var haystack = (
+        person.name + " " + person.dept + " " + person.interests + " " + person.nationalTech.join(" ")
+      ).toLowerCase();
+      if(haystack.indexOf(q.toLowerCase()) === -1) return false;
+    }
+    return true;
+  }
+
+  function personCard(p, q){
+    var wikiUrl = GITHUB_BLOB_BASE + encodeURI(p.wikiPath);
+    var tagsHtml = p.nationalTech.map(function(t){
+      return '<span class="tag">' + escapeHtml(t) + '</span>';
+    }).join("");
+    var links = [];
+    links.push('<a href="' + wikiUrl + '" target="_blank" rel="noreferrer">위키 페이지 →</a>');
+    if(p.homepage){
+      links.push('<a href="' + escapeHtml(p.homepage) + '" target="_blank" rel="noreferrer">홈페이지 →</a>');
+    }
+    if(p.email){
+      links.push('<a href="mailto:' + escapeHtml(p.email) + '">' + escapeHtml(p.email) + '</a>');
+    }
+
+    return (
+      '<div class="person-card">' +
+        '<div class="person-head">' +
+          '<h3>' + highlight(p.name, q) + '</h3>' +
+          '<span class="dept">' + highlight(p.dept, q) + '</span>' +
+        '</div>' +
+        (p.interests ? '<div class="person-interests">' + highlight(p.interests, q) + '</div>' : '') +
+        (tagsHtml ? '<div class="tags">' + tagsHtml + '</div>' : '') +
+        '<div class="person-links">' + links.join(" · ") + '</div>' +
+        '<div class="perf-inline">실적 합계 ' + perfTotal(p.perf) + '건 (주도논문 ' + (p.perf["주도논문"]||0) + ', 특허 ' + (p.perf["특허"]||0) + ', 과제 ' + (p.perf["과제"]||0) + ')</div>' +
+      '</div>'
+    );
+  }
+
+  function render(){
+    var q = state.q.trim();
+    var filtered = state.data.filter(function(p){ return matches(p, q, state.dept, state.tech); });
+
+    els.count.textContent = filtered.length + "명 / 전체 " + state.data.length + "명";
+
+    if(filtered.length === 0){
+      els.results.innerHTML = "";
+      els.status.style.display = "";
+      els.status.textContent = "검색 결과가 없습니다. 다른 키워드나 필터를 시도해보세요.";
+      return;
+    }
+    els.status.style.display = "none";
+    els.results.innerHTML = filtered.map(function(p){ return personCard(p, q); }).join("");
+  }
+
+  function populateFilters(data){
+    var depts = Array.from(new Set(data.map(function(p){ return p.dept; }))).sort(function(a,b){ return a.localeCompare(b, "ko"); });
+    depts.forEach(function(d){
+      var opt = document.createElement("option");
+      opt.value = d; opt.textContent = d;
+      els.dept.appendChild(opt);
+    });
+
+    var techs = Array.from(new Set(data.reduce(function(acc, p){ return acc.concat(p.nationalTech); }, [])));
+    // 국가전략기술 표준 순서 유지 (build_wiki.py의 NATIONAL_TECH_CATEGORIES 와 동일 순서)
+    var order = ["반도체·디스플레이","이차전지","첨단 모빌리티","차세대 원자력","첨단 바이오","우주항공·해양","수소","사이버보안","인공지능","차세대 통신","첨단로봇·제조","양자"];
+    order.filter(function(t){ return techs.indexOf(t) !== -1; }).forEach(function(t){
+      var opt = document.createElement("option");
+      opt.value = t; opt.textContent = t;
+      els.tech.appendChild(opt);
+    });
+  }
+
+  els.q.addEventListener("input", function(){ state.q = els.q.value; render(); });
+  els.dept.addEventListener("change", function(){ state.dept = els.dept.value; render(); });
+  els.tech.addEventListener("change", function(){ state.tech = els.tech.value; render(); });
+  els.reset.addEventListener("click", function(){
+    state.q = ""; state.dept = ""; state.tech = "";
+    els.q.value = ""; els.dept.value = ""; els.tech.value = "";
+    render();
+  });
+
+  fetch("faculty-search-data.json")
+    .then(function(res){
+      if(!res.ok) throw new Error("HTTP " + res.status);
+      return res.json();
+    })
+    .then(function(data){
+      state.data = data;
+      populateFilters(data);
+      render();
+    })
+    .catch(function(err){
+      els.status.textContent = "데이터를 불러오지 못했습니다 (" + err.message + "). 잠시 후 다시 시도해주세요.";
+    });
+})();
+</script>
+
+</body>
+</html>
