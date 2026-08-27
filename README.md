@@ -62,6 +62,12 @@ git push -u origin main
 2. Branch를 `main`으로 선택하고 `Save` 클릭
 3. 잠시 후 상단에 생성된 주소 확인: `https://<본인아이디>.github.io/postech-doc-generator/`
 
+> ⚠️ 저장소 루트의 `.nojekyll` 파일을 지우지 마세요. GitHub Pages는 기본적으로 Jekyll로
+> 사이트를 빌드하는데, `wiki/**/*.md`처럼 YAML 프런트매터(`---`)로 시작하는 마크다운 파일을
+> Jekyll이 "페이지"로 인식해 다른 경로로 변환해버려 `wiki/domain/*.moc.md`, `wiki/faculty/*.md`
+> 같은 링크가 전부 404가 납니다. `.nojekyll`은 Jekyll 처리를 끄고 모든 파일을 있는 그대로
+> 정적 서빙하게 만들어 이 문제를 막습니다.
+
 ---
 
 ## 🧠 POSTECH 교원 R&D 위키 (LLM Wiki)
