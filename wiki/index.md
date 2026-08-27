@@ -34,6 +34,7 @@ updated: 2026-08-27
 ## 기타
 - [home.md](home.md) — 큐레이션된 진입점
 - [연구분야 키워드 인덱스](research-areas.md)
+- [국가전략기술 인덱스](national-strategic-tech.md)
 - [전체 교원 가나다순 목록](faculty-index.md)
 - [log.md](log.md) — 변경 이력
 - [open-questions.md](open-questions.md) — 모순·미해결 이슈

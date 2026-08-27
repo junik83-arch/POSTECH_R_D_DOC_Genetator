@@ -38,6 +38,53 @@ BRACKET_LINE_RE = re.compile(r"^\[([^\]]+)\]\s*(.*)$")
 # text_public 파싱 결과에서는 건너뛰는 라벨
 SKIP_LABELS = {"성명", "연구관심분야"}
 
+# 정부 "12대 국가전략기술" 공식 분류 (원본 text_public의 "국가전략기술" 필드가
+# 이 분류를 참조하는 자유 서술형 텍스트라, 표준 명칭으로 정규화해 인덱스를 만든다)
+NATIONAL_TECH_CATEGORIES = [
+    "반도체·디스플레이", "이차전지", "첨단 모빌리티", "차세대 원자력", "첨단 바이오",
+    "우주항공·해양", "수소", "사이버보안", "인공지능", "차세대 통신",
+    "첨단로봇·제조", "양자",
+]
+NATIONAL_TECH_FIELD_RE = re.compile(r"국가전략기술:\s*(.*)")
+
+
+def _norm_tech_key(s: str) -> str:
+    return re.sub(r"[\s·/]", "", s)
+
+
+_TECH_KEY_TO_CANON = {_norm_tech_key(c): c for c in NATIONAL_TECH_CATEGORIES}
+
+
+def parse_national_tech(text_public: str) -> list[str]:
+    """text_public의 '국가전략기술' 필드에서 12대 국가전략기술 카테고리를 추출한다.
+    자유 서술형(번호 매김·괄호 세부사항·쉼표 나열이 뒤섞여 있음) 텍스트라 완벽하지
+    않을 수 있다 — 매칭 안 되는 항목은 조용히 버리지 않고 open-questions.md 에서
+    다룬다. 원본에 없는 카테고리를 지어내지 않고, 표준 12개 명칭에 매칭되는 것만 뽑는다."""
+    m = NATIONAL_TECH_FIELD_RE.search(text_public or "")
+    if not m:
+        return []
+    raw = m.group(1).strip()
+    if not raw or raw in {"기재X", "게재X"} or raw.startswith("12대 국가전략기술"):
+        return []
+    raw = re.sub(r"^\s*\d+\.\s*", "", raw)  # 맨 앞 "1. " 제거
+    parts = re.split(r"\d+\.\s*|,\s*(?![^(]*\))", raw)  # 괄호 안 쉼표는 보존
+    found: list[str] = []
+    for part in parts:
+        part = part.strip().strip(",")
+        if not part:
+            continue
+        head = part.split("(")[0].strip()
+        key = _norm_tech_key(head)
+        canon = _TECH_KEY_TO_CANON.get(key)
+        if not canon:
+            for k, c in _TECH_KEY_TO_CANON.items():
+                if len(k) >= 2 and (k in key or key in k):
+                    canon = c
+                    break
+        if canon and canon not in found:
+            found.append(canon)
+    return found
+
 
 def slugify_dept(name: str) -> str:
     return (name or "미분류").strip()
@@ -253,6 +300,7 @@ def render_index(records: list[dict], by_dept: dict[str, list[dict]]) -> str:
     lines.append("## 기타")
     lines.append("- [home.md](home.md) — 큐레이션된 진입점")
     lines.append("- [연구분야 키워드 인덱스](research-areas.md)")
+    lines.append("- [국가전략기술 인덱스](national-strategic-tech.md)")
     lines.append("- [전체 교원 가나다순 목록](faculty-index.md)")
     lines.append("- [log.md](log.md) — 변경 이력")
     lines.append("- [open-questions.md](open-questions.md) — 모순·미해결 이슈")
@@ -298,6 +346,49 @@ def render_research_areas(records: list[dict]) -> str:
     return "\n".join(lines)
 
 
+def render_national_tech(records: list[dict]) -> str:
+    """정부 12대 국가전략기술 분류별 교원 인덱스. 원본 `text_public`의 '국가전략기술'
+    필드(자유 서술형)를 표준 12개 명칭으로 정규화해 집계한다 — RFP/공모사업의 기술
+    분야와 매칭되는 교원을 찾을 때 쓴다."""
+    tech_to_faculty: defaultdict[str, list[dict]] = defaultdict(list)
+    unmatched_n = 0
+    tagged_n = 0
+    for r in records:
+        tags = parse_national_tech(r.get("text_public", ""))
+        if tags:
+            tagged_n += 1
+        for t in tags:
+            tech_to_faculty[t].append(r)
+
+    lines = ["# 국가전략기술 인덱스", ""]
+    lines.append(
+        "정부 12대 국가전략기술 분류를 기준으로 정리한 교원 인덱스입니다. 원본 `text_public`의 "
+        "'국가전략기술' 필드(자유 서술형)를 표준 명칭으로 정규화해 집계했습니다 — RFP·공모사업의 "
+        "기술 분야에 맞는 교원을 빠르게 찾는 용도입니다."
+    )
+    lines.append("")
+    lines.append(f"- 원본 데이터에 국가전략기술 태그가 있는 교원: **{tagged_n}명** / 298명")
+    lines.append("")
+    for cat in NATIONAL_TECH_CATEGORIES:
+        members = tech_to_faculty.get(cat, [])
+        lines.append(f"## {cat} ({len(members)}명)")
+        if members:
+            for r in sorted(members, key=lambda r: r["성명"]):
+                dept = r.get("학과", "").strip() or "미분류"
+                lines.append(f"- {faculty_link_from(r, 'faculty/')} ({dept})")
+        else:
+            lines.append("_해당 분야로 태그된 교원 없음_")
+        lines.append("")
+    lines.append(
+        "_원문이 자유 서술형이라 매칭이 완벽하지 않을 수 있습니다 — 한계는 "
+        "[open-questions.md](open-questions.md) 참고._"
+    )
+    lines.append("")
+    lines.append("[← 전체 인덱스로](index.md)")
+    lines.append("")
+    return "\n".join(lines)
+
+
 def main() -> None:
     if not SOURCE_FILE.exists():
         raise SystemExit(f"원본 파일이 없습니다: {SOURCE_FILE}")
@@ -323,10 +414,11 @@ def main() -> None:
     (WIKI_DIR / "index.md").write_text(render_index(records, by_dept), encoding="utf-8")
     (WIKI_DIR / "faculty-index.md").write_text(render_faculty_flat_index(records), encoding="utf-8")
     (WIKI_DIR / "research-areas.md").write_text(render_research_areas(records), encoding="utf-8")
+    (WIKI_DIR / "national-strategic-tech.md").write_text(render_national_tech(records), encoding="utf-8")
 
     print(f"생성 완료: 교원 {len(records)}명, 학과 {len(by_dept)}개")
     print(f"  wiki/faculty/      {len(records)} 개 파일 (결정론적 생성)")
-    print("  wiki/index.md, wiki/faculty-index.md, wiki/research-areas.md")
+    print("  wiki/index.md, wiki/faculty-index.md, wiki/research-areas.md, wiki/national-strategic-tech.md")
     print(
         "  wiki/home.md, wiki/domain/*.moc.md, wiki/log.md, wiki/open-questions.md 는 "
         "이 스크립트가 건드리지 않습니다 (LLM이 직접 쓰고 유지하는 큐레이션 레이어 — CLAUDE.md 참고)"

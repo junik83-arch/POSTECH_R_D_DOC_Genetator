@@ -20,3 +20,9 @@ POSTECH R&D 실적 데이터베이스(교원 298명, `faculty_profiles.json`)를
 
 ## [2026-08-27] lint | 아키텍처 재구성 — sources/wiki/schema 3계층 + LLM 큐레이션 MOC
 사용자가 Karpathy의 LLM Wiki 패턴 원문과 CLAUDE.md 스타일 가이드를 제공하며, (1) `data/` → `sources/` 로 개명해 "불변 원본" 레이어를 명확히 하고 (2) 학과 페이지를 스크립트의 기계적 나열이 아니라 LLM이 직접 원문을 읽고 종합하는 `wiki/domain/*.moc.md` 로 전환할 것을 요청. 16개 학과 전체를 읽고 연구 클러스터를 식별해 MOC 작성, `wiki/home.md`(전체 진입점, 학과 간 공통 흐름 종합), `wiki/log.md`, `wiki/open-questions.md`, 루트 `CLAUDE.md`(스키마) 신설. 교원 개별 페이지(`wiki/faculty/*.md`)는 정확도가 중요한 추출 데이터이므로 기존처럼 결정론적 생성 유지.
+
+## [2026-08-27] lint | 교원 개별 페이지 가독성 개선
+`wiki/faculty/*.md`가 최대 39KB까지 늘어나 스캔하기 어렵다는 피드백. ￭/`; ` 로 나열된 필드를 불릿 리스트로 렌더링하고, 홈페이지 크롤링 원문·서브페이지(최대 8개)를 `<details>` 접이식 블록으로 감싸 기본은 접어두도록 `build_wiki.py` 수정.
+
+## [2026-08-27] ingest | 국가전략기술 인덱스 신설
+원본 `text_public`의 `국가전략기술` 필드(정부 12대 국가전략기술 분류를 참조하는 자유 서술형 텍스트)를 발견 — 298명 중 195명이 태그를 갖고 있었으나 지금까지 위키에 반영되지 않았음. 번호매김·괄호 세부사항이 뒤섞인 원문을 표준 12개 명칭으로 정규화하는 파서(`parse_national_tech()`)를 `build_wiki.py`에 추가해 `wiki/national-strategic-tech.md` 생성 — RFP·공모사업 기술 분야와 매칭되는 교원을 바로 찾을 수 있도록 함 (루트 `index.html` RFP 공문 생성기와의 연계 지점이 될 수 있음).
