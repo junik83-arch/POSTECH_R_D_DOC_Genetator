@@ -3,12 +3,12 @@
 """
 build_wiki.py — POSTECH 교원 LLM Wiki 생성기
 
-data/faculty_profiles_source.json (원본, 필수)
-data/homepage_crawl.json          (홈페이지 크롤링 결과, 선택 — scripts/crawl_homepages.py 로 생성)
+sources/faculty_profiles_source.json (원본, 필수)
+sources/homepage_crawl.json          (홈페이지 크롤링 결과, 선택 — scripts/crawl_homepages.py 로 생성)
 
 위 두 소스만 읽어서 wiki/ 아래 마크다운 파일들을 결정론적으로 (재실행해도 동일한 결과가
 나오도록) 생성합니다. wiki/**/*.md 는 직접 손으로 수정하지 마세요 — 원본을 고치고 다시
-이 스크립트를 실행하세요. 자세한 설계 원칙은 wiki/SCHEMA.md 참고.
+이 스크립트를 실행하세요. 자세한 설계 원칙은 CLAUDE.md 참고.
 
 사용법:
     python3 scripts/build_wiki.py
@@ -22,7 +22,7 @@ from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DATA_DIR = ROOT / "data"
+DATA_DIR = ROOT / "sources"
 WIKI_DIR = ROOT / "wiki"
 SOURCE_FILE = DATA_DIR / "faculty_profiles_source.json"
 CRAWL_FILE = DATA_DIR / "homepage_crawl.json"
@@ -48,7 +48,7 @@ def slugify_dept(name: str) -> str:
 
 
 def dept_link(dept: str) -> str:
-    return f"[{dept}](../departments/{slugify_dept(dept)}.md)"
+    return f"[{dept}](../domain/{slugify_dept(dept)}.moc.md)"
 
 
 def faculty_filename(rec: dict) -> str:
@@ -85,6 +85,38 @@ def parse_text_public(text: str) -> "OrderedDict[str, str]":
     return sections
 
 
+def split_list_items(text: str) -> list[str] | None:
+    """￭ 또는 반복되는 '; ' 로 나열된 텍스트를 항목 리스트로 쪼갠다. 나열형이 아니면
+    (구분자가 2개 미만이면) None을 돌려줘 원문 그대로 쓰게 한다. 순수 표시 형식만
+    바꾸는 것이라 원본 내용은 그대로 유지된다 (No Hallucination 원칙 준수)."""
+    if not text:
+        return None
+    if "￭" in text:
+        parts = [p.strip() for p in text.split("￭") if p.strip()]
+        if len(parts) >= 2:
+            return parts
+    if text.count("; ") >= 2:
+        parts = [p.strip() for p in text.split("; ") if p.strip()]
+        if len(parts) >= 2:
+            return parts
+    return None
+
+
+def render_list_or_text(text: str) -> str:
+    """나열형 필드는 불릿 리스트로, 아니면 원문 그대로 렌더링 — 긴 한 덩어리 문단이
+    되는 것을 막아 가독성을 높인다."""
+    items = split_list_items(text)
+    if items:
+        return "\n".join(f"- {item}" for item in items)
+    return text
+
+
+def render_details(summary: str, body: str) -> list[str]:
+    """접이식 블록. 크롤링한 홈페이지 원문처럼 길고 스캔하기 어려운 텍스트를
+    기본은 접어두고, 필요하면 펼쳐볼 수 있게 한다."""
+    return ["<details>", f"<summary>{summary}</summary>", "", body, "", "</details>"]
+
+
 def truncate(text: str, limit: int) -> str:
     s = (text or "").strip()
     return s if len(s) <= limit else s[: limit - 1].rstrip() + "…"
@@ -97,8 +129,10 @@ def perf_total(perf: dict) -> int:
 def build_researchers_json(records: list[dict]) -> dict:
     """대시보드(dashboard/index.html)가 fetch로 읽는 경량 JSON 인덱스를 만든다.
 
-    wiki/faculty/*.md 와 같은 원본(data/faculty_profiles_source.json)에서 결정론적으로
-    파생되는 2계층(위키) 산출물이다 — 손으로 고치지 말고 이 스크립트를 다시 실행할 것.
+    wiki/faculty/*.md 와 같은 원본(sources/faculty_profiles_source.json)에서 결정론적으로
+    파생되는 산출물이다 — 손으로 고치지 말고 이 스크립트를 다시 실행할 것. wiki/faculty/*.md
+    와 마찬가지로 나열형 필드는 render_list_or_text로 불릿 리스트화해 대시보드 상세 모달의
+    가독성을 맞춘다 (CLAUDE.md 참고).
     """
     by_dept: "OrderedDict[str, int]" = OrderedDict()
     researchers = []
@@ -106,7 +140,7 @@ def build_researchers_json(records: list[dict]) -> dict:
         dept = (r.get("학과") or "").strip() or "미분류"
         by_dept[dept] = by_dept.get(dept, 0) + 1
 
-        interests = (r.get("관심분야") or "").replace("￭", " · ").strip()
+        interests_raw = (r.get("관심분야") or "").strip()
         parsed = parse_text_public(r.get("text_public", ""))
         keywords = parsed.get("연구키워드", "")
         highlight = (
@@ -116,7 +150,9 @@ def build_researchers_json(records: list[dict]) -> dict:
         )
         perf = r.get("실적건수", {}) or {}
         sections = OrderedDict(
-            (label, content) for label, content in parsed.items() if label not in SKIP_LABELS
+            (label, render_list_or_text(content))
+            for label, content in parsed.items()
+            if label not in SKIP_LABELS
         )
 
         researchers.append(
@@ -126,15 +162,16 @@ def build_researchers_json(records: list[dict]) -> dict:
                 "department": dept,
                 "email": r.get("이메일", ""),
                 "homepage": r.get("홈페이지", ""),
-                "interests": interests,
+                "interests": render_list_or_text(interests_raw),
                 "perf": perf,
                 "perf_total": perf_total(perf),
                 "sections": sections,
                 "wiki_path": f"faculty/{faculty_filename(r)}",
                 # AI 자연어 추천이 외부 API로 전송하는 압축 프로필 — 원본 필드를 그대로
-                # 잘라낸 것일 뿐 창작하지 않는다 (원본 무결성 원칙, SCHEMA.md 참고)
+                # 잘라낸 것일 뿐 창작하지 않는다 (원본 무결성 원칙, CLAUDE.md 참고).
+                # 불릿 마커 없이 " · " 로 이어붙인 압축 버전을 써서 토큰을 아낀다.
                 "ai_summary": {
-                    "interests": truncate(interests, AI_SUMMARY_LIMITS["interests"]),
+                    "interests": truncate(interests_raw.replace("￭", " · "), AI_SUMMARY_LIMITS["interests"]),
                     "keywords": truncate(keywords, AI_SUMMARY_LIMITS["keywords"]),
                     "highlight": truncate(highlight, AI_SUMMARY_LIMITS["highlight"]),
                 },
@@ -188,7 +225,7 @@ def render_faculty_page(rec: dict, crawl: dict) -> str:
         lines.append("- 홈페이지: _등록된 홈페이지 없음_")
     lines.append("")
     lines.append("## 연구관심분야")
-    lines.append(interests)
+    lines.append(render_list_or_text(interests))
     lines.append("")
     lines.append("## 실적 요약")
     lines.append(render_perf_table(perf))
@@ -197,7 +234,7 @@ def render_faculty_page(rec: dict, crawl: dict) -> str:
         if label in SKIP_LABELS:
             continue
         lines.append(f"## {label}")
-        lines.append(content)
+        lines.append(render_list_or_text(content))
         lines.append("")
 
     lines.append("## 홈페이지 추가 정보")
@@ -210,19 +247,27 @@ def render_faculty_page(rec: dict, crawl: dict) -> str:
     elif crawled and crawled.get("text"):
         lines.append(f"> 크롤링 시각: {crawled.get('fetched_at', '알 수 없음')} · 출처: <{homepage}>")
         lines.append("")
-        lines.append(crawled["text"].strip())
+        main_text = crawled["text"].strip()
+        if len(main_text) > 300:
+            lines.extend(render_details("홈페이지 원문 보기", main_text))
+        else:
+            lines.append(main_text)
         lines.append("")
 
         subpages = {u: s for u, s in (crawled.get("subpages") or {}).items() if s.get("text")}
         if subpages:
-            lines.append("### 홈페이지 내 세부 페이지")
+            lines.append(f"### 홈페이지 내 세부 페이지 ({len(subpages)}개)")
             lines.append("")
             for sub_url, sub in subpages.items():
                 sub_title = sub.get("title") or sub_url
                 lines.append(f"#### {sub_title}")
                 lines.append(f"> 출처: <{sub_url}>")
                 lines.append("")
-                lines.append(sub["text"].strip())
+                sub_text = sub["text"].strip()
+                if len(sub_text) > 300:
+                    lines.extend(render_details("내용 보기", sub_text))
+                else:
+                    lines.append(sub_text)
                 lines.append("")
     elif not homepage:
         lines.append("_등록된 홈페이지가 없어 크롤링 대상이 아닙니다._")
@@ -237,7 +282,7 @@ def render_faculty_page(rec: dict, crawl: dict) -> str:
     else:
         lines.append(
             "_아직 크롤링되지 않았습니다. `scripts/crawl_homepages.py` 를 인터넷 접근이 "
-            "가능한 환경에서 실행해 `data/homepage_crawl.json` 을 만든 뒤 "
+            "가능한 환경에서 실행해 `sources/homepage_crawl.json` 을 만든 뒤 "
             "`scripts/build_wiki.py` 를 다시 실행하면 이 섹션이 채워집니다._"
         )
     lines.append("")
@@ -250,65 +295,40 @@ def render_faculty_page(rec: dict, crawl: dict) -> str:
     return "\n".join(lines)
 
 
-def render_department_page(dept: str, members: list[dict]) -> str:
-    members_sorted = sorted(members, key=lambda r: r["성명"])
-    total_perf = Counter()
-    for r in members:
-        for k, v in (r.get("실적건수") or {}).items():
-            total_perf[k] += v
-
-    lines = []
-    lines.append("---")
-    lines.append(f"department: {dept}")
-    lines.append(f"faculty_count: {len(members)}")
-    lines.append(f"updated: {BUILD_DATE}")
-    lines.append("---")
-    lines.append("")
-    lines.append(f"# {dept}")
-    lines.append("")
-    lines.append(f"- 소속 교원 수: **{len(members)}명**")
-    lines.append("")
-    lines.append("## 학과 전체 실적 합계")
-    lines.append(render_perf_table(dict(total_perf)))
-    lines.append("## 교원 목록")
-    for r in members_sorted:
-        interests = (r.get("관심분야") or "").replace("￭", "").strip()
-        interests_short = interests[:80] + ("…" if len(interests) > 80 else "")
-        lines.append(f"- {faculty_link_from(r)} — {interests_short}")
-    lines.append("")
-    lines.append("[← 전체 인덱스로](../index.md)")
-    lines.append("")
-    return "\n".join(lines)
-
-
 def render_index(records: list[dict], by_dept: dict[str, list[dict]]) -> str:
+    """색인(index.md) — 기계가 유지하는 평면 카탈로그. 도메인을 어떻게 읽어야 하는지는
+    큐레이션된 wiki/home.md 와 wiki/domain/*.moc.md 쪽을 참고 (이 파일들은 스크립트가
+    아니라 LLM이 직접 쓰고 유지한다 — CLAUDE.md 참고)."""
     lines = []
     lines.append("---")
-    lines.append("title: POSTECH 교원 R&D 위키")
+    lines.append("title: POSTECH 교원 R&D 위키 색인")
     lines.append(f"faculty_count: {len(records)}")
     lines.append(f"updated: {BUILD_DATE}")
     lines.append("---")
     lines.append("")
-    lines.append("# POSTECH 교원 R&D 위키")
+    lines.append("# 색인")
     lines.append("")
     lines.append(
-        "POSTECH R&D 실적 데이터베이스를 원본(source)으로 삼아 생성한 교원 지식베이스입니다. "
-        "구조와 갱신 규칙은 [SCHEMA.md](SCHEMA.md) 를 참고하세요."
+        "이 파일은 `scripts/build_wiki.py` 가 매번 다시 생성하는 **평면 카탈로그**입니다. "
+        "큐레이션된 진입점은 [home.md](home.md), 구조·갱신 규칙은 [CLAUDE.md](../CLAUDE.md) 를 보세요."
     )
     lines.append("")
     lines.append(f"- 전체 교원: **{len(records)}명**")
     lines.append(f"- 학과 수: **{len(by_dept)}개**")
     lines.append(f"- 최종 생성일: {BUILD_DATE}")
     lines.append("")
-    lines.append("## 학과별 인덱스")
+    lines.append("## 학과별 교원 목록")
     lines.append("")
     for dept in sorted(by_dept.keys()):
         members = by_dept[dept]
-        lines.append(f"- [{dept}](departments/{slugify_dept(dept)}.md) ({len(members)}명)")
+        lines.append(f"- {dept} ({len(members)}명) — MOC: [domain/{slugify_dept(dept)}.moc.md](domain/{slugify_dept(dept)}.moc.md)")
     lines.append("")
     lines.append("## 기타")
+    lines.append("- [home.md](home.md) — 큐레이션된 진입점")
     lines.append("- [연구분야 키워드 인덱스](research-areas.md)")
     lines.append("- [전체 교원 가나다순 목록](faculty-index.md)")
+    lines.append("- [log.md](log.md) — 변경 이력")
+    lines.append("- [open-questions.md](open-questions.md) — 모순·미해결 이슈")
     lines.append("")
     return "\n".join(lines)
 
@@ -367,17 +387,11 @@ def main() -> None:
         by_dept[dept].append(r)
 
     faculty_dir = WIKI_DIR / "faculty"
-    dept_dir = WIKI_DIR / "departments"
     faculty_dir.mkdir(parents=True, exist_ok=True)
-    dept_dir.mkdir(parents=True, exist_ok=True)
 
     for r in records:
         page = render_faculty_page(r, crawl)
         (faculty_dir / faculty_filename(r)).write_text(page, encoding="utf-8")
-
-    for dept, members in by_dept.items():
-        page = render_department_page(dept, members)
-        (dept_dir / f"{slugify_dept(dept)}.md").write_text(page, encoding="utf-8")
 
     (WIKI_DIR / "index.md").write_text(render_index(records, by_dept), encoding="utf-8")
     (WIKI_DIR / "faculty-index.md").write_text(render_faculty_flat_index(records), encoding="utf-8")
@@ -390,13 +404,16 @@ def main() -> None:
     )
 
     print(f"생성 완료: 교원 {len(records)}명, 학과 {len(by_dept)}개")
-    print(f"  wiki/faculty/      {len(records)} 개 파일")
-    print(f"  wiki/departments/  {len(by_dept)} 개 파일")
+    print(f"  wiki/faculty/      {len(records)} 개 파일 (결정론적 생성)")
     print("  wiki/index.md, wiki/faculty-index.md, wiki/research-areas.md")
     print("  wiki/researchers.json  (dashboard/index.html 이 읽는 경량 인덱스)")
+    print(
+        "  wiki/home.md, wiki/domain/*.moc.md, wiki/log.md, wiki/open-questions.md 는 "
+        "이 스크립트가 건드리지 않습니다 (LLM이 직접 쓰고 유지하는 큐레이션 레이어 — CLAUDE.md 참고)"
+    )
     if not crawl:
         print(
-            "참고: data/homepage_crawl.json 이 없어 '홈페이지 추가 정보' 섹션은 "
+            "참고: sources/homepage_crawl.json 이 없어 '홈페이지 추가 정보' 섹션은 "
             "플레이스홀더로 채워졌습니다. scripts/crawl_homepages.py 참고."
         )
 

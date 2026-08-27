@@ -1,22 +1,25 @@
 # POSTECH 교원 R&D 위키 (LLM Wiki)
 
-POSTECH R&D 실적 데이터베이스(`data/faculty_profiles_source.json`, 교원 298명)를 원본으로
-삼아 자동 생성한 마크다운 지식베이스입니다. 설계는 Karpathy의
-["LLM Wiki" 패턴](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)을
-따릅니다 — 원본 자료는 그대로 두고, 구조화된 위키 페이지를 별도로 유지·누적하며, 새 자료
-(예: 홈페이지 크롤링 결과)가 들어오면 기존 페이지를 다시 생성해 병합합니다.
+POSTECH 교원 298명의 R&D 실적 데이터와 홈페이지 크롤링 원문을 원본으로 삼아 LLM이 직접
+읽고 종합해 유지하는 지식베이스입니다. **먼저 [home.md](home.md)를 여세요** — 학과별 MOC와
+학과를 가로지르는 연구 흐름 종합이 거기 있습니다.
+
+구조·갱신 규칙(스키마)은 저장소 루트의 [CLAUDE.md](../CLAUDE.md)에 있습니다.
 
 ## 둘러보기
 
-- **[index.md](index.md)** — 전체 진입점 (학과별 인덱스)
+- **[home.md](home.md)** — 큐레이션된 진입점 (여기서 시작하세요)
+- **[index.md](index.md)** — 전체 교원·학과 평면 카탈로그 (기계 생성)
 - **[faculty-index.md](faculty-index.md)** — 교원 298명 가나다순 전체 목록
 - **[research-areas.md](research-areas.md)** — 연구분야 키워드로 교원 찾기
-- **[departments/](departments/)** — 학과별 페이지 (16개)
-- **[faculty/](faculty/)** — 교원별 페이지 (298개, 파일명 = `개인번호-성명.md`)
+- **[domain/](domain/)** — 학과별 MOC, 16개 (LLM이 직접 종합)
+- **[faculty/](faculty/)** — 교원별 페이지, 298개 (파일명 = `개인번호-성명.md`, 결정론적 생성)
 - **[researchers.json](researchers.json)** — 위 내용을 브라우저에서 바로 쓸 수 있도록 압축한
   JSON 인덱스. 사람이 읽는 문서가 아니라 **[../dashboard/index.html](../dashboard/index.html)
   연구자 대시보드**가 fetch로 읽는 기계용 산출물입니다 (AI 자연어 검색에 보내는
   `ai_summary` 압축 프로필 포함).
+- **[log.md](log.md)** — 이 위키가 어떻게 만들어져 왔는지
+- **[open-questions.md](open-questions.md)** — 데이터 모순·미해결 이슈
 
 GitHub에서 그대로 브라우징해도 되고, Obsidian 등 로컬 마크다운 뷰어로 `wiki/` 폴더를
 열면 `[텍스트](경로)` 링크가 그래프/백링크로 연결됩니다. 표/카드 형태로 훑어보고 싶다면
@@ -29,41 +32,23 @@ GitHub에서 그대로 브라우징해도 되고, Obsidian 등 로컬 마크다�
 python3 scripts/build_wiki.py
 ```
 
-`wiki/faculty/*.md`, `wiki/departments/*.md` 등은 이 명령으로 **자동 생성되는 파일**입니다.
-직접 고치지 말고, 원본(`data/faculty_profiles_source.json`)이 바뀌면 다시 실행하세요.
-생성 규칙과 원칙은 [SCHEMA.md](SCHEMA.md)에 정리되어 있습니다.
+`wiki/faculty/*.md`, `index.md`, `faculty-index.md`, `research-areas.md`, `researchers.json`
+은 이 명령으로 **자동 생성**됩니다 (직접 고치지 마세요 — 원본이 바뀌면 다시 실행). 반면 `home.md`,
+`domain/*.moc.md`, `log.md`, `open-questions.md` 는 **이 스크립트가 건드리지 않는** LLM
+큐레이션 페이지입니다 — 직접 읽고 고치세요. 두 종류를 구분하는 이유와 원칙은
+[CLAUDE.md](../CLAUDE.md)에 있습니다.
 
-## 교원 홈페이지 정보 (크롤링 완료 + 서브페이지 확장)
+## 교원 홈페이지 정보 크롤링
 
 이 저장소를 다루는 Claude Code 원격 환경은 `postech.ac.kr` 등 외부 도메인에 접근할 수 없어
-(네트워크 egress 차단) 직접 크롤링하지 못합니다. 대신 로컬 환경에서 `scripts/crawl_homepages.py`
-를 실행해 만든 `data/homepage_crawl.json` 을 받아 반영했습니다.
-
-- 홈페이지 첫 화면: 대상 URL 280개(중복 제거) 중 **262개 성공** (93.6%). 나머지 18개는
-  사이트 자체 문제(끊긴 링크·서버 다운·봇 차단·자바스크립트 렌더링 등)로 실패 — 각 교원
-  페이지의 "홈페이지 추가 정보" 섹션에 실패 사유가 함께 표시됩니다.
-- **홈페이지 내부 탭(연구/논문/CV 등)도 자동으로 함께 크롤링**합니다. 첫 화면 안의
-  내부 링크 중 관련 키워드가 있는 것 위주로 교원 1명당 최대 8개까지 가져와 "홈페이지 내
-  세부 페이지" 소제목으로 덧붙입니다 (정확도 높은 실제 연구/실적 정보 확보 목적).
-  **구성원 명단·뉴스/공지 링크는 제외**합니다.
-- **여러 교원이 정확히 같은 URL을 쓰는 학과/그룹 공통 포털(7개 URL, 24명)은 아예
-  크롤링하지 않습니다** — 예: `hss.postech.ac.kr`(8명 공유), `math.postech.ac.kr`(5명
-  공유) 등. 교수 개인 정보가 아니라 학과 전체 안내 페이지이기 때문입니다.
-
-다시 크롤링하거나 실패한 항목만 재시도하려면:
+(네트워크 egress 차단 — WebFetch 도구도 동일) 직접 크롤링하지 못합니다. 로컬 환경에서:
 
 ```bash
 pip install -r scripts/requirements.txt
-python3 scripts/crawl_homepages.py            # 기본: 안 끝난 항목(홈페이지+서브페이지)만 시도
+python3 scripts/crawl_homepages.py            # 기본: 안 끝난 항목만 시도
 python3 scripts/crawl_homepages.py --force    # 전부 다시 시도
-python3 scripts/crawl_homepages.py --max-subpages 12  # 서브페이지 개수 조절 (기본 8)
 python3 scripts/build_wiki.py                 # 위키에 반영
 ```
 
-## 알려진 데이터 이슈
-
-- 동명이인 4쌍(이승우, 김영진, 김정훈, 이상민)이 있어 이름이 아닌 **개인번호**가 진짜
-  식별자입니다 (파일명이 `개인번호-성명.md`인 이유).
-- 박진수(물리학과) 1명은 원본에 홈페이지 URL이 없습니다.
-- `관심분야` 등은 자유 서술형 텍스트라 `research-areas.md`의 키워드 집계가 완벽히
-  정규화되어 있지는 않습니다 (참고용 인덱스).
+현재 상태: 개인 홈페이지 273개 중 255개 성공(93.4%), 서브페이지 1,213개, 학과 공통 포털
+7개(24명)는 의도적으로 제외. 자세한 내용은 [open-questions.md](open-questions.md) 참고.

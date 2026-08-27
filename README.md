@@ -64,15 +64,14 @@ git push -u origin main
 
 ---
 
----
-
 ## 🧠 POSTECH 교원 R&D 위키 (LLM Wiki)
 
-`wiki/` 디렉터리에는 교원 실적 데이터(`data/faculty_profiles_source.json`, 298명)로부터
-생성한 마크다운 지식베이스가 있습니다. 자세한 내용은 [wiki/README.md](wiki/README.md) 참고.
+`wiki/` 디렉터리에는 교원 실적 데이터(`sources/faculty_profiles_source.json`, 298명)로부터
+생성·종합한 마크다운 지식베이스가 있습니다. 시작은 [wiki/home.md](wiki/home.md), 구조·갱신
+규칙은 [CLAUDE.md](CLAUDE.md) 참고.
 
 ```bash
-python3 scripts/build_wiki.py   # data/*.json → wiki/**/*.md + wiki/researchers.json 재생성
+python3 scripts/build_wiki.py   # sources/*.json → wiki/faculty/*.md, index.md, wiki/researchers.json 등 재생성
 ```
 
 ---
@@ -107,8 +106,11 @@ Key를 입력하면 브라우저 LocalStorage에만 저장되어 즉시 사용�
 `callChatApi()` 함수만 수정하면 됩니다.
 
 > ⚠️ 이 대시보드는 순수 정적 페이지에서 브라우저가 직접 `genai.postech.ac.kr`로 요청을
-> 보냅니다. 게이트웨이가 브라우저 간 요청(CORS)을 막아 두었다면 사내망 안에서 열거나,
-> 별도의 경량 프록시를 앞에 두어야 할 수 있습니다.
+> 보내는데, 이 게이트웨이는 브라우저 간 요청(CORS)을 막아 두고 있어 그대로는
+> `Failed to fetch`가 납니다. [dashboard/cors-proxy/](dashboard/cors-proxy/)에 CORS
+> 헤더를 붙여 중계하는 프록시(Cloudflare Worker / val.town 버전)와 배포 방법이
+> 준비되어 있으니, 대시보드 **POSTECH AI API 설정**의 엔드포인트를 그 프록시 주소로
+> 바꿔서 쓰세요.
 
 ```bash
 # 로컬에서 열어보기 (fetch가 file:// 를 막는 브라우저가 있으므로 정적 서버 권장)
