@@ -625,23 +625,29 @@
     <button type="button" class="modal-close-x" id="closeApiBtn">✕</button>
     <h2><span>🔑</span> POSTECH AI API 설정</h2>
     <p>
-      이 대시보드의 자연어 추천 기능은 <b>OpenAI Chat Completions 호환 형식</b>
-      (<code>POST {base URL}/chat/completions</code>, <code>Authorization: Bearer &lt;key&gt;</code>)을
-      기본으로 가정합니다. 사용 중인 POSTECH AI API 게이트웨이의 Base URL·키·모델명을 입력하세요.
+      <a href="https://github.com/posicube-services/llm-agent-api" target="_blank" rel="noreferrer" class="api-link">posicube-services/llm-agent-api</a>
+      의 <b>a1~a3 단일 호출 API</b> 규격을 사용합니다 — 엔드포인트에
+      <code>{"message": "...", "stream": false}</code>를 POST하면
+      <code>{"message": "..."}</code>로 응답이 옵니다. 헤더는 <code>x-api-key</code>가 필수이며,
+      Claude/Gemini는 <code>Authorization</code> 헤더에도 같은 키를 함께 보냅니다.
       키는 브라우저(LocalStorage)에만 저장되며 이 페이지 외 다른 곳으로 전송되지 않습니다.
     </p>
     <div class="field">
-      <label>Base URL</label>
-      <input type="text" id="apiBaseUrl" placeholder="예: https://api.postech.ac.kr/v1" />
-      <div class="hint">끝에 <code>/chat/completions</code>는 붙이지 마세요 (자동으로 붙습니다).</div>
+      <label>사용할 모델</label>
+      <select id="apiProviderSelect">
+        <option value="claude">Claude (a3)</option>
+        <option value="gpt">GPT (a1)</option>
+        <option value="gemini">Gemini (a2)</option>
+      </select>
+      <div class="hint">엔드포인트 URL 기본값을 자동으로 채워줍니다. 필요하면 아래에서 직접 수정하세요.</div>
     </div>
     <div class="field">
-      <label>API Key</label>
+      <label>엔드포인트 URL</label>
+      <input type="text" id="apiEndpointInput" placeholder="예: https://genai.postech.ac.kr/agent/api/a3/claude" />
+    </div>
+    <div class="field">
+      <label>API Key (x-api-key)</label>
       <input type="text" id="apiKeyInput" placeholder="발급받은 API 키" />
-    </div>
-    <div class="field">
-      <label>모델명</label>
-      <input type="text" id="apiModelInput" placeholder="예: gpt-4o-mini (게이트웨이가 지원하는 모델명)" />
     </div>
     <div class="modal-actions">
       <button type="button" class="btn ghost" id="closeApiModalBtn">취소</button>
@@ -665,6 +671,14 @@
     sortMode: "perf"
   };
   var byId = {};
+
+  // posicube-services/llm-agent-api 의 a1~a3 단일 호출 API 기본 엔드포인트
+  // (https://github.com/posicube-services/llm-agent-api/blob/main/a1_a3_README.md)
+  var DEFAULT_ENDPOINTS = {
+    gpt: "https://genai.postech.ac.kr/agent/api/a1/gpt",
+    gemini: "https://genai.postech.ac.kr/agent/api/a2/gemini",
+    claude: "https://genai.postech.ac.kr/agent/api/a3/claude"
+  };
 
   var EXAMPLES = [
     "LG생활건강의 사업 포트폴리오(화장품·생활용품·음료)에 맞는 연구를 하는 연구자",
@@ -693,12 +707,13 @@
   function getAiConfig(){
     try{
       var raw = JSON.parse(localStorage.getItem(CONFIG_KEY) || "{}");
+      var provider = DEFAULT_ENDPOINTS[raw.provider] ? raw.provider : "claude";
       return {
-        baseUrl: (raw.baseUrl || "").trim().replace(/\/+$/, ""),
-        apiKey: (raw.apiKey || "").trim(),
-        model: (raw.model || "").trim()
+        provider: provider,
+        endpoint: (raw.endpoint || "").trim(),
+        apiKey: (raw.apiKey || "").trim()
       };
-    }catch(e){ return {baseUrl:"", apiKey:"", model:""}; }
+    }catch(e){ return {provider:"claude", endpoint:"", apiKey:""}; }
   }
   function setAiConfig(cfg){
     localStorage.setItem(CONFIG_KEY, JSON.stringify(cfg));
@@ -708,9 +723,9 @@
     var cfg = getAiConfig();
     var btn = $("apiKeyModalBtn");
     var txt = $("apiKeyBtnText");
-    if(cfg.baseUrl && cfg.apiKey){
+    if(cfg.endpoint && cfg.apiKey){
       btn.classList.add("configured");
-      txt.textContent = "API 설정됨 (" + (cfg.model || "모델 미지정") + ")";
+      txt.textContent = "API 설정됨 (" + cfg.provider + ")";
     } else {
       btn.classList.remove("configured");
       txt.textContent = "POSTECH AI API 설정";
@@ -718,24 +733,33 @@
   }
 
   var apiModal = $("apiModal");
+  $("apiProviderSelect").addEventListener("change", function(e){
+    // 모델을 바꾸면 엔드포인트가 비어있거나 이전 기본값이었을 때만 자동으로 채워준다
+    // (사용자가 직접 커스텀 엔드포인트를 입력해둔 경우는 덮어쓰지 않음)
+    var known = Object.keys(DEFAULT_ENDPOINTS).map(function(k){ return DEFAULT_ENDPOINTS[k]; });
+    var cur = $("apiEndpointInput").value.trim();
+    if(!cur || known.indexOf(cur) !== -1){
+      $("apiEndpointInput").value = DEFAULT_ENDPOINTS[e.target.value] || "";
+    }
+  });
   $("apiKeyModalBtn").addEventListener("click", function(){
     var cfg = getAiConfig();
-    $("apiBaseUrl").value = cfg.baseUrl;
+    $("apiProviderSelect").value = cfg.provider;
+    $("apiEndpointInput").value = cfg.endpoint || DEFAULT_ENDPOINTS[cfg.provider];
     $("apiKeyInput").value = cfg.apiKey;
-    $("apiModelInput").value = cfg.model;
     apiModal.classList.add("show");
   });
   $("closeApiBtn").addEventListener("click", function(){ apiModal.classList.remove("show"); });
   $("closeApiModalBtn").addEventListener("click", function(){ apiModal.classList.remove("show"); });
   $("saveApiBtn").addEventListener("click", function(){
-    var baseUrl = $("apiBaseUrl").value.trim();
+    var provider = $("apiProviderSelect").value;
+    var endpoint = $("apiEndpointInput").value.trim();
     var apiKey = $("apiKeyInput").value.trim();
-    var model = $("apiModelInput").value.trim();
-    if(!baseUrl || !apiKey){
-      alert("Base URL과 API Key를 모두 입력해주세요.");
+    if(!endpoint || !apiKey){
+      alert("엔드포인트 URL과 API Key를 모두 입력해주세요.");
       return;
     }
-    setAiConfig({baseUrl: baseUrl, apiKey: apiKey, model: model});
+    setAiConfig({provider: provider, endpoint: endpoint, apiKey: apiKey});
     apiModal.classList.remove("show");
     showToast("API 설정이 저장되었습니다.");
   });
@@ -917,35 +941,39 @@
     return JSON.parse(cleaned);
   }
 
-  async function callChatApi(messages, temperature){
+  // system 지시문 + user 내용을 한 개의 message 문자열로 합친다
+  // (a1~a3 API는 role 구분이 없는 단일 "message" 필드만 받는다)
+  function buildMessage(system, user){
+    return system + "\n\n---\n\n" + user;
+  }
+
+  // posicube-services/llm-agent-api a1~a3 규격: POST {endpoint}
+  //   요청 {"message": "...", "stream": false} / 응답 {"message": "..."}
+  //   헤더: x-api-key 필수, Claude/Gemini는 Authorization에도 같은 키를 함께 전달
+  async function callChatApi(message){
     var cfg = getAiConfig();
-    if(!cfg.baseUrl || !cfg.apiKey){
+    if(!cfg.endpoint || !cfg.apiKey){
       var err = new Error("MISSING_CONFIG");
       err.code = "MISSING_CONFIG";
       throw err;
     }
-    var res = await fetch(cfg.baseUrl + "/chat/completions", {
+    var headers = { "Content-Type": "application/json", "x-api-key": cfg.apiKey };
+    if(cfg.provider === "claude" || cfg.provider === "gemini"){
+      headers["Authorization"] = cfg.apiKey;
+    }
+    var res = await fetch(cfg.endpoint, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + cfg.apiKey
-      },
-      body: JSON.stringify({
-        model: cfg.model || "gpt-4o-mini",
-        temperature: (temperature == null ? 0.2 : temperature),
-        messages: messages
-      })
+      headers: headers,
+      body: JSON.stringify({ message: message, stream: false })
     });
+    var data = null;
+    try{ data = await res.json(); }catch(e){}
     if(!res.ok){
       var msg = "HTTP " + res.status;
-      try{
-        var errJson = await res.json();
-        msg = (errJson.error && errJson.error.message) || JSON.stringify(errJson);
-      }catch(e){}
+      if(data && data.message) msg = data.message + (data.code ? " (" + data.code + ")" : "");
       throw new Error(msg);
     }
-    var data = await res.json();
-    var content = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+    var content = data && data.message;
     if(!content) throw new Error("모델로부터 빈 응답을 받았습니다.");
     return content;
   }
@@ -953,18 +981,16 @@
   // 1단계: 자연어 질의를 POSTECH 연구분야 키워드/학과로 확장
   async function expandQuery(query){
     var deptNames = state.departments.map(function(d){ return d.name; });
-    var messages = [
-      { role: "system", content:
-        "당신은 산업/기업의 사업 분야를 대학 연구분야 키워드로 매핑하는 전문가입니다. " +
-        "반드시 순수 JSON 객체만 출력하세요 (마크다운 백틱 금지)." },
-      { role: "user", content:
-        "질의: \"" + query + "\"\n\n" +
-        "이 질의와 관련성이 높은 기술/연구 키워드를 8~15개, 그리고 아래 학과 목록 중 관련 가능성이 " +
-        "높은 학과를 골라 다음 JSON 형식으로만 응답하세요.\n" +
-        "학과 목록: " + JSON.stringify(deptNames) + "\n" +
-        "형식: {\"keywords\": [\"...\"], \"departments\": [\"...\"]}" }
-    ];
-    var content = await callChatApi(messages, 0.2);
+    var message = buildMessage(
+      "당신은 산업/기업의 사업 분야를 대학 연구분야 키워드로 매핑하는 전문가입니다. " +
+      "반드시 순수 JSON 객체만 출력하세요 (마크다운 백틱 금지).",
+      "질의: \"" + query + "\"\n\n" +
+      "이 질의와 관련성이 높은 기술/연구 키워드를 8~15개, 그리고 아래 학과 목록 중 관련 가능성이 " +
+      "높은 학과를 골라 다음 JSON 형식으로만 응답하세요.\n" +
+      "학과 목록: " + JSON.stringify(deptNames) + "\n" +
+      "형식: {\"keywords\": [\"...\"], \"departments\": [\"...\"]}"
+    );
+    var content = await callChatApi(message);
     var parsed = parseJsonFromModel(content);
     return {
       keywords: Array.isArray(parsed.keywords) ? parsed.keywords : [],
@@ -1018,19 +1044,17 @@
         perf_total: r.perf_total
       };
     });
-    var messages = [
-      { role: "system", content:
-        "당신은 POSTECH 연구처의 연구자-과제 매칭 어시스턴트입니다. 아래 후보 연구자 목록(JSON)에서 " +
-        "사용자 질의에 가장 적합한 연구자를 관련도 순으로 최대 8명 골라 다음 JSON 배열 형식으로만 " +
-        "응답하세요 (마크다운 백틱 금지): " +
-        "[{\"id\":\"...\", \"score\": 0-100, \"reason\": \"...\"}]. " +
-        "reason은 반드시 제공된 후보 데이터에 실제로 나타난 내용(interests/keywords/highlight)에 " +
-        "근거해서만 한국어 1~2문장으로 작성하고, 데이터에 없는 내용은 지어내지 마세요. " +
-        "적합한 연구자가 없으면 빈 배열 []을 반환하세요." },
-      { role: "user", content:
-        "사용자 질의: \"" + query + "\"\n\n후보 연구자 목록(JSON):\n" + JSON.stringify(compact) }
-    ];
-    var content = await callChatApi(messages, 0.2);
+    var message = buildMessage(
+      "당신은 POSTECH 연구처의 연구자-과제 매칭 어시스턴트입니다. 아래 후보 연구자 목록(JSON)에서 " +
+      "사용자 질의에 가장 적합한 연구자를 관련도 순으로 최대 8명 골라 다음 JSON 배열 형식으로만 " +
+      "응답하세요 (마크다운 백틱 금지): " +
+      "[{\"id\":\"...\", \"score\": 0-100, \"reason\": \"...\"}]. " +
+      "reason은 반드시 제공된 후보 데이터에 실제로 나타난 내용(interests/keywords/highlight)에 " +
+      "근거해서만 한국어 1~2문장으로 작성하고, 데이터에 없는 내용은 지어내지 마세요. " +
+      "적합한 연구자가 없으면 빈 배열 []을 반환하세요.",
+      "사용자 질의: \"" + query + "\"\n\n후보 연구자 목록(JSON):\n" + JSON.stringify(compact)
+    );
+    var content = await callChatApi(message);
     var parsed = parseJsonFromModel(content);
     return Array.isArray(parsed) ? parsed : [];
   }
@@ -1068,9 +1092,9 @@
       return;
     }
     var cfg = getAiConfig();
-    if(!cfg.baseUrl || !cfg.apiKey){
+    if(!cfg.endpoint || !cfg.apiKey){
       apiModal.classList.add("show");
-      setAiStatus("error", "❌ 먼저 POSTECH AI API 설정(Base URL / API Key)을 입력해주세요.");
+      setAiStatus("error", "❌ 먼저 POSTECH AI API 설정(엔드포인트 / API Key)을 입력해주세요.");
       return;
     }
     if(!state.all.length){

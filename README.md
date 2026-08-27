@@ -92,11 +92,23 @@ python3 scripts/build_wiki.py   # data/*.json → wiki/**/*.md + wiki/researcher
   보내 관련도 순 추천 + 근거를 받아오는 2단계 파이프라인으로 동작합니다. 추천 이유는
   원본 위키 데이터에 실제로 있는 내용에만 근거하도록 프롬프트에서 강제합니다(No Hallucination).
 
-**AI API 연동 방식**: 기본값은 OpenAI Chat Completions 호환 규격
-(`POST {Base URL}/chat/completions`, `Authorization: Bearer <key>`)을 가정합니다.
-대시보드 우측 상단 **POSTECH AI API 설정** 버튼에서 Base URL·API Key·모델명을 입력하면
-브라우저 LocalStorage에만 저장되어 즉시 사용할 수 있습니다. 실제 POSTECH AI API 게이트웨이의
-요청/응답 규격이 다르다면 `dashboard/index.html`의 `callChatApi()` 함수만 수정하면 됩니다.
+**AI API 연동 방식**: [posicube-services/llm-agent-api](https://github.com/posicube-services/llm-agent-api)의
+**a1~a3 단일 호출 API** 규격을 사용합니다.
+
+- 엔드포인트: `POST https://genai.postech.ac.kr/agent/api/a{1|2|3}/{gpt|gemini|claude}`
+- 요청: `{"message": "...", "stream": false}` / 응답: `{"message": "..."}`
+- 헤더: `x-api-key: <API 키>` 필수, Claude·Gemini는 `Authorization: <API 키>`도 함께 전송
+  (Bearer 접두어 없음 — GPT는 `x-api-key`만 사용)
+
+대시보드 우측 상단 **POSTECH AI API 설정** 버튼에서 모델(GPT/Gemini/Claude)·엔드포인트·API
+Key를 입력하면 브라우저 LocalStorage에만 저장되어 즉시 사용할 수 있습니다. 모델을 고르면
+엔드포인트 기본값이 자동으로 채워지며, 다른 `agent_alias`를 쓰는 배포라면 엔드포인트를 직접
+수정하면 됩니다. 실제 게이트웨이 규격이 이와 다르다면 `dashboard/index.html`의
+`callChatApi()` 함수만 수정하면 됩니다.
+
+> ⚠️ 이 대시보드는 순수 정적 페이지에서 브라우저가 직접 `genai.postech.ac.kr`로 요청을
+> 보냅니다. 게이트웨이가 브라우저 간 요청(CORS)을 막아 두었다면 사내망 안에서 열거나,
+> 별도의 경량 프록시를 앞에 두어야 할 수 있습니다.
 
 ```bash
 # 로컬에서 열어보기 (fetch가 file:// 를 막는 브라우저가 있으므로 정적 서버 권장)
