@@ -44,7 +44,7 @@ Arithmetic Transfer for inner forms of GL2n (2025; Forum of Mathematics, Sigma)
 Arithmetic Transfer for inner forms of GL2n (2025; Forum of Mathematics, Sigma)
 
 ## 홈페이지 추가 정보
-> 크롤링 시각: 2026-08-27T00:09:28+00:00 · 출처: <http://qirui.li>
+> 크롤링 시각: 2026-08-27T00:58:57+00:00 · 출처: <http://qirui.li>
 
 Document
 
