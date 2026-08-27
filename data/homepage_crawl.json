@@ -3,7 +3,7 @@
     "title": "",
     "text": "",
     "status": 200,
-    "fetched_at": "2026-08-27T00:09:23+00:00"
+    "fetched_at": "2026-08-27T00:29:08+00:00"
   },
   "http://blog.naver.com/pkh120/": {
     "title": "POSTECH 박상준 교수의 인/문학 이야기 : 네이버 블로그",
@@ -16,7 +16,7 @@
     "text": "",
     "status": null,
     "error": "404 Client Error:  for url: https://yook.postech.ac.kr/yookjs/index.do",
-    "fetched_at": "2026-08-27T00:09:25+00:00"
+    "fetched_at": "2026-08-27T00:29:10+00:00"
   },
   "https://sites.google.com/view/jinhojung/home": {
     "title": "Jinho Jung",
@@ -73,11 +73,10 @@
     "fetched_at": "2026-08-27T00:09:39+00:00"
   },
   "https://sites.google.com/site/donghyunlee295/​": {
-    "title": "",
-    "text": "",
-    "status": null,
-    "error": "404 Client Error: Not Found for url: https://sites.google.com/site/donghyunlee295/%E2%80%8B",
-    "fetched_at": "2026-08-27T00:09:41+00:00"
+    "title": "DONGHYUN LEE",
+    "text": "DONGHYUN LEE\nSearch this site\nEmbedded Files\nSkip to main content\nSkip to navigation\nDonghyun Lee\nAssociate professor (2023 ~)\nDepartment of Mathematics\n, Postech, Korea.\nContact details\nAddress:\nDonghyun Lee\nDepartment of Mathematics\n77 Cheongam-ro, Nam-gu,  Pohang-si, Gyeongsangbuk-do, Korea, 37673\nOffice:\n211, Math building\nEmail:\ndonglee@postech.ac.kr\nCV\npdf\nResearch Interests\nApplied PDE, Fluid mechanics, Kinetic theory\nPublication & Preprint\nA Physics-Informed, Global-in-Time Neural Particle Method for the Spatially Homogeneous Landau Equation (\nM. Kim,  S. Son, Y. Kim, and D. Lee)\n(202\n6\n) preprint,\narXiv\nGlobal Solutions in $L^p_{v} L^\\infty_{x}$ for the Boltzmann Equation in Bounded Domains (\nD. Deng, J. Kim and D. Lee)\n(2025) preprint,\narXiv\nOptimal C^1/2 regularity of the Boltzmann equation in non-convex domains\n(\nG. An and D. Lee)\nAnn. PDE, Vol 12 (2026)\nlink\n,\narXiv\nOn the large amplitude solution of the Boltzmann equation with large external potential and boundary effects\n(\nJ. Kim and D. Lee)\nJ. Stat. Phys., Vol 192, No 77, (2025)\nlink\n,\narXiv\nIll-posedness of the Boltzmann-BGK model in the exponential class\n(\nD. Lee, S. Park and S. Yun) Arch. Rational Mech. Anal.\n, Vol 250, No 57, (2026)\nlink\n,\narXiv\nQuantitative pointwise estimates of the Cooling process for inelastic Boltzmann equation (\nG. An, J. Jang and D. Lee)\nJ. Stat. Phys., Vol 192, No\n112\n, (2025)\nlink\n,\narXiv\n[Proceedings]\nH\\\"older regularity of the Boltzmann equation\nin some non-convex domains\n(C. Kim and D. Lee)\nAIP Conf. Proc.\n2996, 040007 (2024)\nlink\nThe Mixed Convex-Concave effect on the regularity of a Boltzmann solution\n(\nG. An and D. Lee)\nSIAM J. Math. Anal., Vol 5\n7\n,\nIssue\n.\n1\n, (202\n5\n)\nlink\n,\narXiv\nDynamical billiard and a long-time behavior of the Boltzmann equation in general 3D toroidal domains\n(\nG. Ko, C. Kim and  D. Lee)\nTunis. J. Math.\n, Vol 7, No 2,\npp. 229-338 (2025)\nlink\n,\narXiv\nLarge amplitude problem of BGK model : Relaxation to quadratic nonlinearity\n(\nG. Bae, G. Ko,  D. Lee and S. Yun)\nSIAM J. Math. Anal. Vol\n58, Issue 2,\n(2026),\nlink\n,\narXiv\nHigh-velocity tails of the inelastic and the multi-species mixture Boltzmann equations (\nG. An and D. Lee)\nSIAM J. Math. Anal., Vol 55, No. 5, pp. 4297-4336\n(2023)\nlink\n,\narXiv\nOn  C^2 solution of the free transport equation in a disk (\nG. Ko and  D. Lee)\nKinet. Relat. Models., Vol 16, No. 3, pp 311-372 (2023),\nlink\n,\narXiv\nH\\\"older regularity of the Boltzmann equation past an obstacle\n(\nC. Kim and D. Lee)\nComm. Pure Appl. Math,\nVol 77, Issue4\n,\npp\n2331-2386 (2024),\nlink\n,\narXiv\nThe large amplitude solution of the Boltzmann equation with soft potential (\nG. Ko, D. Lee and G. Park)\nJ. Differ. Equ\n,\nVol 307 (2022)\n, pp. 297-347\nlink\n,\narXiv\nThe Boltzmann equation with large-amplitude initial data and specular reflection boundary condition\n(\nR. Duan, G. Ko and D. Lee)\nJ. Stat. Phys.\n, Vol 190, No. 189 (2023)\nlink\n,\narXiv\nGlobal strong solutions of the Vlasov-Poisson-Boltzmann system in bounded domains\n(\nY. Cao, C. Kim and D. Lee)\nArch. Rational Mech. Anal., 233(3), pp. 1027-1130 (2019)\nlink\n,\narXiv\nDecay of the Boltzmann equation with the specular boundary condition in non-convex cylindrical domains\n(\nC. Kim and D. Lee)\nArch. Rational Mech. Anal., 230(1), pp. 49-123 (2018)\nlink\n,\narXiv\nThe Boltzmann equation with specular boundary condition in convex domains\n(\nC. Kim and D. Lee)\nComm. Pure Appl. Math., 71 (2018), pp.411-504.\nlink\n,\narXiv\nUniform estimate of viscous free-boundary magnetohydrodynamics with zero vacuum magnetic field (\nD. Lee)\nSIAM J. Math. Anal., 49-4 (2017), pp. 2710-2789.\nlink\n,\narXiv\nInitial value problem for the free boundary magnetohydrodynamics with zero magnetic boundary condition (\nD. Lee)\nComm. Math. Sci., Vol 16, No. 3, pp 589-615 (2018).\nlink\n,\narXiv\nUniform Regularity for Free boundary Navier-Stokes Equations with Surface tension (\nT. Elgindi and D. Lee)\nJ. Hyperbol. Differ. Eq., Vol. 15, No. 01, pp. 37-118 (2018).\nlink\n,\narXiv\nLink\nDepartment of Mathematics, POSTEC",
+    "status": 200,
+    "fetched_at": "2026-08-27T00:29:12+00:00"
   },
   "https://sites.google.com/view/jangjinw": {
     "title": "Jin Woo Jang",
@@ -98,11 +97,10 @@
     "fetched_at": "2026-08-27T00:09:47+00:00"
   },
   "http://gt.postech.ac.kr/~jccha/": {
-    "title": "",
-    "text": "",
-    "status": null,
-    "error": "HTTPSConnectionPool(host='gt.postech.ac.kr', port=443): Max retries exceeded with url: /~jccha/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1082)')))",
-    "fetched_at": "2026-08-27T00:09:48+00:00"
+    "title": "Jae Choon Cha :: 차재춘",
+    "text": "Jae Choon Cha :: 차재춘\n☰\nHome\nTeaching\nPublications\nConferences\nTalks\nHonors\nJae Choon Cha\n차 재 춘\nProfessor of Mathematics\nDirector of the Center for Research in Topology\nPOSTECH\njccha@postech.ac.kr\n차 재 춘\n수학과 교수 · 무은재석좌교수\nPOSTECH\njccha@postech.ac.kr\nhttp://gt.postech.ac.kr/~jccha/\nTeaching\nSpring 2026\nMath 422 Introduction to Geometric Topology\n» View more\nResearch: Geometric Topology\nTopology of manifolds, knots and links\nRelated algebra, homotopy theory, quantitative topology, and L\n2\n-invariants\nConferences Organized\nOrganizer,\nSamsung Global Research Symposium “Current Challenges in Topology”\n, May 21-23, 2026, Milan, Italy.\nProgram Committee and Local Organizing Committee,\nThe 21st East Asian Conference on Geometric Topology\n, February 2-5, 2026, Ewha Womans University, Seoul, Korea.\nOrganizer,\nMemorial Conference of Late Professor Kwun, Kyung Whan\n, March 28, 2025, Pohang, Korea.\nProgram Committee,\nThe 20th East Asian Conference on Geometric Topology\n, February 4-7, 2025, University of Tokyo, Japan.\nProgram Committee,\nThe 19th East Asian Conference on Geometric Topology\n, February 19-22, 2024, RIMS, Kyoto University, Japan.\nProgram Committee, The 18th East Asian Conference on Geometric Topology, February 6-9, 2023, online conference hosted by Soochow University.\nOrganizer,\n2022 Fall PK\n2\nTopology Workshop\n, November 1-4, 2022, Busan, Korea.\n» View more\nSelected Publications\nLight bulb smoothing for topological surfaces in 4-manifolds (with Byeorhi Kim)\nJournal of the European Mathematical Society (JEMS)\n, published online first.\n•\nDOI: 10.4171/jems/1731\n•\nPreprint arXiv:2303.12857\nTransfinite Milnor invariants for 3-manifolds (with Kent E. Orr)\nJournal of the European Mathematical Society (JEMS)\n26 (2024), no. 8, 2971–3046.\n•\nDOI:\n10.4171/jems/1328\n•\nPreprint arxiv:2002.03208\nA topological approach to Cheeger-Gromov universal bounds for von Neumann ρ-invariants\nCommunications on Pure and Applied Mathematics\n69 (2016), no. 6, 1154–1209.\n•\nDOI:\n10.1002/cpa.21597\n•\nPreprint arXiv:1405.1805\nCasson towers and slice links (with Mark Powell)\nInventiones Mathematicae\n205 (2016), no.2, 413–457.\n•\nDOI:\n10.1007/s00222-015-0639-z\n•\nPreprint arXiv:1411.1621\n$L^2$-signatures, homology localization, and amenable groups (with Kent E. Orr)\nCommunications on Pure and Applied Mathematics\n65 (2012), no. 6, 790–832.\n•\nDOI:\n10.1002/cpa.21393\n•\nPreprint arXiv:0910.3700\nLink concordance, homology cobordism, and Hirzebruch-type defects from iterated $p$-covers\nJournal of the European Mathematical Society (JEMS)\n12 (2010), no. 3, 555–610.\n•\nDOI:\n10.4171/jems/209\n•\nPreprint arXiv:0705.0088\nThe structure of the rational concordance group of knots\nMemoirs of the American Mathematical Society\n189 (2007), no. 885, x+95pp.\n•\nDOI:\n10.1090/memo/0885\n•\nPreprint arXiv:math/0609408\n» List of all publications\nProgramming, design, photography, and \"figure eight latte art\" by\nJae Choon Cha\n.\nPowered by\nWordPress\n.",
+    "status": 200,
+    "fetched_at": "2026-08-27T00:29:13+00:00"
   },
   "https://sites.google.com/view/choiminseok": {
     "title": "Minseok Choi",
@@ -235,7 +233,7 @@
     "text": "",
     "status": null,
     "error": "404 Client Error:  for url: https://qit.postech.ac.kr/qit/index.do",
-    "fetched_at": "2026-08-27T00:10:26+00:00"
+    "fetched_at": "2026-08-27T00:29:14+00:00"
   },
   "http://jblab.postech.ac.kr/": {
     "title": "단일 분자 생물 물리 연구실",
@@ -316,11 +314,10 @@
     "fetched_at": "2026-08-27T00:10:54+00:00"
   },
   "﻿ https://parklab.postech.ac.kr/​": {
-    "title": "",
-    "text": "",
-    "status": null,
-    "error": "No connection adapters were found for '\\ufeff\\xa0https://parklab.postech.ac.kr/\\u200b'",
-    "fetched_at": "2026-08-27T00:10:55+00:00"
+    "title": "Park Research Group — KAIST",
+    "text": "Park Research Group — KAIST\n0\nKorea Advanced Institute of Science and Technology\nINORGANIC MATERIALS CHEMISTRY\nGROUP NEWS\nJul 10, 2026\n“Geometry-Dependent Linker Spin States and Real-Space Band Topology in Two-Dimensional Conductive Metal–Organic Frameworks”\nis now out in\nACS Materials Letters\n! Congratulations, Geunchan!\nJul 07, 2026\n“Sequential Zn\n2+\n-H+ storage in a 2D conductive metal-organic framework for advanced aqueous zinc-ion battery” has been published in\nChem\n! Geunchan, Gyuwon, and Kangmin, Congratulations!\nJun 26, 2026\nGeonu Lee joins our group! Welcome!\nApr 08, 2026\n“Homoconjugation-Enabled Kagome Bands in a Layer-Decoupled Two-Dimensional Conductive Triptycene-Based Metal–Organic Framework” is out in\nJACS\n! Congratulations, Geunchan, Sangwon, and Jaekyung!\nMar 13, 2026\nFIMCL moves to KAIST!\nFeb 11, 2026\nJaekyung wins the encouragement prize at the Samsung Humantech Paper Awards! Congratulations!\nMar 31, 2026\nDec 16, 2025\nYuri Jeong joins our group! Welcome!\n“Chiral reticular frameworks as emerging spin filters” is now published in\nTrends in Chemistry\n. Good work, Seong-Hyeon!\nDec 02, 2025\n“Tunable collinear-to-canted antiferromagnetic transition in Co(II)-based MOFs through structural control of linker length” has been published in\nInorganic Chemistry Frontiers.\nCongratulations, Gyuwon!\nSep 01, 2025\nNew graduate student Surin Kim joins the group! Welcome!\nAug 13, 2025\n“Tuning the Electrical Properties through Metal-Ion-Mediated Assembly in Au25 Nanocluster-Based Frameworks” is out in\nJACS\n! Nice work, Dr. Sinhyeop Kim and Dr. Kyoung Chul Park!\nAug 08, 2025\n“Metal–Organic Framework/Au Core/Shell Nanocubes for Spatially Aligned Molecular Analysis and Molecular-Fingerprint Sensing with Surface-Enhanced Raman Scattering” was published in\nJACS\n! Congratulations, Munjeong!\nMay 27, 2025\nSinhyeop successfully defends his doctor’s thesis and becomes the very first PhD graduate from out group!\nMay 21, 2025\nSoomin successfully defends her master’s thesis and becomes the nineth master’s graduate from our group!\nMay 20, 2025\nGood news, everyone! “Synthesis of Au13Cu4 Nanoclusters with Isomeric Mercaptobenzoic Acid Ligands” is now published in\nNano Letters\n! Munjeong and Sinhyeop, congratulations!\nApr 29, 2025\nHyebeen, Geunchan, Jaekyoung’s paper, “Uninterrupted π-d Conjugated Three-Dimensional Conductive Metal–Organic Framework” has been published in\nACS Materials Letters!\nGreat work!\nMar 24, 2025\nCongratulations to Sinhyeop and Minseok! \"Synergistic Effects of Co–N4 and Ni–N4 Sites in 2D Conductive Metal–Organic Framework Electrocatalysts for Enhanced Oxygen Reduction Reaction Performance\" is now published in\nACS Catalysis!\nMar 18, 2025\nJiwon wins the Best TA award from the General Chemistry course! Great job, Jiwon!\nFeb 17, 2025\nNew graduate students Kangmin, Minseo, Sang-won, Seong-Hyeon, Seungyeon, and Su-Yong join the group! Welcome!\nFeb 07, 2025\nCongratulations, Yeji Lee, Hyerin Woo, and Soomin Hwang! “Zwitterionic polymer intertwined metal-organic framework-based quasi-solid-state electrolyte for long cycle life dual-ion batteries” is now published in\nChem\n!\nDec 19, 2024\nGyuwon successfully defends her master’s thesis and becomes the eighth master’s graduate from our group!\nNov 28, 2024\nSinhyeop and Gyuwon win the Oustanding Paper Award! Congrats!\nNov 14, 2024\nJaemin wins the Best TA award in General Chemistry course! Great job, Jaemin!\nOct 24, 2024\nGyuwon wins the poster award at 2024 PSBT program workshop! Congrats!\nOct 22, 2024\nGreat news! Our new paper on molecular-level pore tuning in 2D conductive MOF for advanced supercapacitor performance is now published in\nJACS\n! Congrats to Gyuwon Lee and Geunchan Park!\nOct 10, 2024\nExcited to share Sinhyeop Kim’s paper on photophysical properties of atomically precise gold nanocluster-based coordination frameworks is now published in\nACS Nano\n!\nSep 24, 2024\nGeunchan and Jaekyung win the Oustanding Paper Award! Congrats!\nJul 29, 2024\nCongratulations to Hyebeen Jeong, Geunc",
+    "status": 200,
+    "fetched_at": "2026-08-27T00:29:16+00:00"
   },
   "https://www.spark.postech.ac.kr": {
     "title": "Spark Lab. - POSTECH",
@@ -333,7 +330,7 @@
     "text": "",
     "status": null,
     "error": "HTTPSConnectionPool(host='small.postech.ac.kr', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1082)')))",
-    "fetched_at": "2026-08-27T00:10:59+00:00"
+    "fetched_at": "2026-08-27T00:29:17+00:00"
   },
   "http://scimms.postech.ac.kr": {
     "title": "Molecular Cluster Structural Chemistry Laboratory (Seo Research Group)",
@@ -438,11 +435,10 @@
     "fetched_at": "2026-08-27T00:11:24+00:00"
   },
   "sungchulkim.org": {
-    "title": "",
-    "text": "",
-    "status": null,
-    "error": "Invalid URL 'sungchulkim.org': No scheme supplied. Perhaps you meant https://sungchulkim.org?",
-    "fetched_at": "2026-08-27T00:11:25+00:00"
+    "title": "The Lab: Virus and Molecular Genome Engineering – POSTECH",
+    "text": "The Lab: Virus and Molecular Genome Engineering – POSTECH\n컨텐츠로 건너뛰기\nThe Lab of Viruses and Molecular Genome Engineering is focusing on seeking creative and outstanding individuals for research and studying on innovative CRISPR-related technologies and the molecular mechanisms of virus-host interactions. Our lab aims to elucidate the biological functions of new types of CRISPR-Cas systems with potential applications in genome engineering, focusing particularly on RNA-associated CRISPR systems and molecular memory formation and applications related to CRISPR adaptation. Additionally, we are investigating the mechanisms of genome replication and transcription, as well as immune interactions of acute and chronic infectious viruses. We conduct groundbreaking and challenging researches using single-molecule biophysics and various molecular cell biology, biochemistry, and bioinformatics methodologies, eventually contributing research fields of genetic technologies and human healthcare.\nContact Us!\n바이러스 및 분자유전공학 연구실에서 함께 연구하실 분을 모집합니다.\n자세한 사항은 Contact 페이지 (\nLink\n) 을 참고해주세요.\nThe Laboratory of Virus and Molecular Genome Engineering is recruiting graduate students / researchers to join our research group.\nPlease check Contact Page (Link) for detail.\nCRISPR-Cas Biology\nCRISPR adaptation\nRNA-related CRISPR systems\nNovel CRISPR technologies\nHost-Virus Interaction\nHuman RNA viruses\nHuman DNA viruses\nHuman immune regulation\nProkaryotic immunity\nSingle-molecule Biophysics\nSingle-molecule FRET\nSingle-molecule TIRF microscopy\nSuper-resolution imaging\nAdvanced imaging technique\nPepSEEK\nCLICK-PAINT\nPeptide-PAINT\n“The good thing about science is that it’s true whether or not you believe in it.”\nSungchul Kim, PhD\nPrincipal investigator\n생명공학연구센터\n댓글 로드중...\n댓글 달기...\n이메일 (필수)\n이름 (필수)\n웹사이트\n구독\n구독함\nThe Lab: Virus and Molecular Genome Engineering\n가입하기\n이미 WordPress.com 계정을 가지고 계신가요?\n바로 로그인하세요.\nThe Lab: Virus and Molecular Genome Engineering\n구독\n구독함\n가입\n로그인\n단축 링크 복사\n이 콘텐츠 신고하기\n리더에서 글 보기\n구독 관리\n이 표시줄 접기",
+    "status": 200,
+    "fetched_at": "2026-08-27T00:29:19+00:00"
   },
   "https://yjkim001011.wixsite.com/website": {
     "title": "Home | MTS LAB",
@@ -487,11 +483,10 @@
     "fetched_at": "2026-08-27T00:11:36+00:00"
   },
   "mbl.postech.ac.kr": {
-    "title": "",
-    "text": "",
-    "status": null,
-    "error": "Invalid URL 'mbl.postech.ac.kr': No scheme supplied. Perhaps you meant https://mbl.postech.ac.kr?",
-    "fetched_at": "2026-08-27T00:11:37+00:00"
+    "title": "Lab of Membrane and Organelle Biology (ENG)",
+    "text": "Lab of Membrane and Organelle Biology (ENG)\nLab of Membrane & Organelle Biology 에서 대학원생, 연구원을 모집합니다.\nDo not show again today\nClose\nLab of\nMembrane & Organelle Biology\nLab of\nMembrane & Organelle Biology\nHot Issue\nMembrane and organelle biology\n%\nmore\nContact Us\nPOSTECH Biotech Center room 104\nTel : 054-279-2325\nseungpark@postech.ac.kr\nNotice & News\nNews\nVictor Hsu 교수님 방문\nNews\n삼성미래기술육성사업 선정\nNews\n서경배과학재단 신진과학자 선정\nNotice\n[학회] EMBL symposium 참석_Cellular mechanisms driven by phase separation\nNews\nLab hiking\nJoin Our\nResearch\nTeam!\nGallery\n검색",
+    "status": 200,
+    "fetched_at": "2026-08-27T00:29:20+00:00"
   },
   "https://sites.google.com/site/baeklabpostech/": {
     "title": "Neurogenetics Laboratory",
@@ -500,11 +495,10 @@
     "fetched_at": "2026-08-27T00:11:39+00:00"
   },
   "https://life.postech.ac.kr/": {
-    "title": "",
-    "text": "",
-    "status": null,
-    "error": "HTTPSConnectionPool(host='life.postech.ac.kr', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1082)')))",
-    "fetched_at": "2026-08-27T00:11:40+00:00"
+    "title": "포항공과대학교 생명과학과",
+    "text": "포항공과대학교 생명과학과\n본문 바로가기\nmain-visual\nBeyond Future\nBeyond Thinking\nBeyond Future\nBeyond Thinking\nBeyond Future\nBeyond Thinking\nBeyond Future\nBeyond Thinking\nrecent_news\nRecent News\nPostech Life Sciences\n수상실적\n2026. 08. 13.\n(사)한국식물생명공학회 툴젠기술상\n최규하 교수\n리서치 하이라이트\n2026. 08. 05.\nLymphatic Drainage of Cerebrospinal Fluid Using Lymph Node Seeker 64Cu-Labeled Gram-Negative Bacterial Extracellular Vesicles With Positron Emission Tomography (PET)\nYong Song Gho\n언론보도\n2026. 07. 28.\n[임신혁 교수] 자가면역질환 잡는 ‘면역 브레이크’ 작동 원리 규명\n임신혁 교수\n수상실적\n2026. 07. 27.\n2026년 박사우수장학금(이공계) 장학생\n권순규\n리서치 하이라이트\n2026. 07. 13.\nIL-6-induced C/EBPα drives follicular regulatory T cell differentiation to regulate humoral immunity in mice\nSin-Hyeog Im\nmain_notice\nNotice\n2026-2학기 B-IRC CGT 정기세미나\n26.08.26\n2026-2학기 바이오산업소개 (LIFE 622H)\n26.08.26\n생명과학과 대학원 온라인 입학 설명회(2026.8.19(수), 16시)\n26.07.08\n2026학년도 하계연구참여프로그램(SURF) 합격자 발표\n26.05.18\nSL BIOFUTURE START-UP CHALLENGE 2026\n26.04.15\nmain_seminar\nSeminar\n제53회 포항혁신살롱 Seminar\n2026.8.13(Thur.) 16:30\nPBC #179\n[BK] Building wood through environmental perception: Decoding hidden states of cambial stem cells\n2026.08.06.(Thu.) 16:00\nPBC Auditorium\n[BK] T Cell Receptors: From Mechanistic Insights to Therapeutic Applications\n2026.07.31.(Fri.) 9:30\nPBC Auditorium\n제52회 포항혁신살롱 Seminar\n2026.7.16(Thur.) 16:30\nPBC #179\nresearch_field\nResearch field\nAll\n구조생물학\n면역학\n분자의과학\n신경과학\n식물생명과학",
+    "status": 200,
+    "fetched_at": "2026-08-27T00:29:22+00:00"
   },
   "https://sites.google.com/view/woongjae-yoo-website": {
     "title": "Yoo Lab at POSTECH",
@@ -513,11 +507,10 @@
     "fetched_at": "2026-08-27T00:11:42+00:00"
   },
   "on-lab.postech.ac.kr": {
-    "title": "",
-    "text": "",
-    "status": null,
-    "error": "Invalid URL 'on-lab.postech.ac.kr': No scheme supplied. Perhaps you meant https://on-lab.postech.ac.kr?",
-    "fetched_at": "2026-08-27T00:11:43+00:00"
+    "title": "Lab of Organelle Network, POSTECH",
+    "text": "Lab of Organelle Network, POSTECH\n본문 바로가기\nmain-visual\nLab. of\nOrganelle\nNetwork\nRecent Publications\nHong CB, Lim C, Oh JH, Lee JB, Jeong EE, Yoo JY, Kim WK and Jeon JH \"Inferring spatially varying bending stiffness of biopolymers with deep-learning approach.\" Mach. Learn.: Sci. Technol\nJo, Areum, et al. \"Membrane-tethered SCOTIN condensates elicit an endoplasmic reticulum stress response by sequestering luminal BiP.\" Cell Reports 44.2 (2025).\nKim, Nari, et al. \"Interplay between membranes and biomolecular condensates in the regulation of membrane-associated cellular processes.\" Experimental & Molecular Medicine (2024): 1-8.\ncontact us\nContact Us\nPohang University of Science and Technology (POSTECH) Chungam-ro 77, Nam-Gu\nPohang, 37673, Korea\nTel : 82-54-279-2346\nFax : 82-54-279-2199\nE-mail : jyoo@postech.ac.kr",
+    "status": 200,
+    "fetched_at": "2026-08-27T00:29:23+00:00"
   },
   "http://cancermetabolism.postech.ac.kr/": {
     "title": "Tumor Microenvironment and Metabolism Lab",
@@ -554,7 +547,7 @@
     "text": "",
     "status": null,
     "error": "HTTPConnectionPool(host='esc.postech.ac.kr', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPConnection(host='esc.postech.ac.kr', port=80): Failed to resolve 'esc.postech.ac.kr' ([Errno 11001] getaddrinfo failed)\"))",
-    "fetched_at": "2026-08-27T00:11:52+00:00"
+    "fetched_at": "2026-08-27T00:29:24+00:00"
   },
   "https://yunje8.wixsite.com/sbclab": {
     "title": "Publications | Structural Biology Of Cancer Lab",
@@ -627,7 +620,7 @@
     "text": "",
     "status": null,
     "error": "404 Client Error: Not Found for url: https://jhklab.weebly.com/",
-    "fetched_at": "2026-08-27T00:12:07+00:00"
+    "fetched_at": "2026-08-27T00:29:25+00:00"
   },
   "https://ssohlab.weebly.com/": {
     "title": "Home",
@@ -711,8 +704,8 @@
     "title": "",
     "text": "",
     "status": null,
-    "error": "HTTPConnectionPool(host='www.sidp.kr', port=80): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPConnection(host='www.sidp.kr', port=80) at 0x18c2976a580>, 'Connection to www.sidp.kr timed out. (connect timeout=15.0)'))",
-    "fetched_at": "2026-08-27T00:12:44+00:00"
+    "error": "HTTPConnectionPool(host='www.sidp.kr', port=80): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPConnection(host='www.sidp.kr', port=80) at 0x1fe5d8a10f0>, 'Connection to www.sidp.kr timed out. (connect timeout=15.0)'))",
+    "fetched_at": "2026-08-27T00:29:41+00:00"
   },
   "https://me.postech.ac.kr/": {
     "title": "포항공과대학교 기계공학과",
@@ -760,7 +753,7 @@
     "title": "",
     "text": "",
     "status": 200,
-    "fetched_at": "2026-08-27T00:13:01+00:00"
+    "fetched_at": "2026-08-27T00:29:43+00:00"
   },
   "https://sites.google.com/view/mechanicslab": {
     "title": "Continuum Mechanics Lab",
@@ -779,13 +772,13 @@
     "text": "",
     "status": null,
     "error": "HTTPSConnectionPool(host='vatrans.postech.ac.kr', port=443): Max retries exceeded with url: / (Caused by NewConnectionError(\"HTTPSConnection(host='vatrans.postech.ac.kr', port=443): Failed to establish a new connection: [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다\"))",
-    "fetched_at": "2026-08-27T00:13:09+00:00"
+    "fetched_at": "2026-08-27T00:29:46+00:00"
   },
   "http://mbme.postech.ac.kr/": {
     "title": "",
     "text": "",
     "status": 200,
-    "fetched_at": "2026-08-27T00:13:10+00:00"
+    "fetched_at": "2026-08-27T00:29:47+00:00"
   },
   "https://nets.postech.ac.kr/": {
     "title": "에너지 및 지속가능성 지향 나노과학 연구실",
@@ -816,7 +809,7 @@
     "text": "",
     "status": null,
     "error": "404 Client Error:  for url: https://fpe.postech.ac.kr/postech/",
-    "fetched_at": "2026-08-27T00:13:18+00:00"
+    "fetched_at": "2026-08-27T00:29:48+00:00"
   },
   "http://bbrc.postech.ac.kr/": {
     "title": "미래유체 및 유동제어 연구실",
@@ -834,7 +827,7 @@
     "title": "",
     "text": "",
     "status": 200,
-    "fetched_at": "2026-08-27T00:13:23+00:00"
+    "fetched_at": "2026-08-27T00:29:49+00:00"
   },
   "http://www.btmpostech.com/": {
     "title": "Home | BTM POSTECH",
@@ -859,7 +852,7 @@
     "text": "",
     "status": null,
     "error": "HTTPConnectionPool(host='seedpostech.ac.kr', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPConnection(host='seedpostech.ac.kr', port=80): Failed to resolve 'seedpostech.ac.kr' ([Errno 11001] getaddrinfo failed)\"))",
-    "fetched_at": "2026-08-27T00:13:31+00:00"
+    "fetched_at": "2026-08-27T00:29:50+00:00"
   },
   "http://www.lstlab.org/": {
     "title": "Stochastic Systems Lab.",
@@ -883,7 +876,7 @@
     "title": "",
     "text": "",
     "status": 200,
-    "fetched_at": "2026-08-27T00:13:37+00:00"
+    "fetched_at": "2026-08-27T00:29:51+00:00"
   },
   "https://sites.google.com/view/sangwoomo": {
     "title": "Sangwoo Mo",
@@ -1124,7 +1117,7 @@
     "text": "",
     "status": null,
     "error": "500 Server Error: URL Rewrite Module Error. for url: http://cisl.postech.ac.kr/cisl/jcho/",
-    "fetched_at": "2026-08-27T00:14:51+00:00"
+    "fetched_at": "2026-08-27T00:29:53+00:00"
   },
   "https://sites.google.com/view/apes-postech/home": {
     "title": "Home",
@@ -1203,7 +1196,7 @@
     "text": "",
     "status": null,
     "error": "403 Client Error: Forbidden for url: http://pl.postech.ac.kr/",
-    "fetched_at": "2026-08-27T00:15:13+00:00"
+    "fetched_at": "2026-08-27T00:29:54+00:00"
   },
   "https://sites.google.com/view/eh-p/home": {
     "title": "ECo Lab @ POSTECH!",
@@ -1314,18 +1307,16 @@
     "fetched_at": "2026-08-27T00:15:42+00:00"
   },
   "www.postech.ac.kr/~choism/": {
-    "title": "",
-    "text": "",
-    "status": null,
-    "error": "Invalid URL 'www.postech.ac.kr/~choism/': No scheme supplied. Perhaps you meant https://www.postech.ac.kr/~choism/?",
-    "fetched_at": "2026-08-27T00:15:43+00:00"
+    "title": "Seungmoon Choi",
+    "text": "Seungmoon Choi\nSearch this site\nEmbedded Files\nSkip to main content\nSkip to navigation\nWelcome!\nMy name is Seungmoon Choi.\nI am a professor and head of\nComputer Science and Engineering\nat\nPOSTECH (Pohang University of Science and Technology)\nin Republic of Korea.\nThis website introduces my work, in terms of research and education I have done in my career. I am generally interested in developing easy, effective, and novel methods and technologies for interaction between human users and systems of interest, such as computers, robots, cars, and electronic devices, with a focus on physical interactions. As such, my research and background are cross-disciplinary, spanning haptics, human-computer interaction (HCI), virtual reality (VR), robotics, and perception.\nAt present, I run a research laboratory,\nPOSTECH Interaction Laboratory (POINT)\n, and lead an IT Research Center,\nHuman Cognition-Intelligence Augmentation Research Center (hCIA)\n.\nA full list of my scientific publications is available at\nGoogle Scholar\n.\nFull information about me is available in my\nCV\n.\nContact Information\nOffice: Engineering Building 4, Room 125, POSTECH\nPhone: +82-54-279-2384\nE-mail:\nchoism@postech.ac.kr\nCurrent Positions\nProfessor and Head,\nDepartment of Computer Science and Engineering\n,\nPohang University of Science and Technology (POSTECH)\nProfessor,\nDepartment of Convergence IT Engineering\n(Joint Appointment), POSTECH\nDirector,\nHuman Cognition-Intelligence Augmentation Research Center (ITRC)\nDirector,\nPOSTECH Interaction Laboratory\nEducation\n1998.09 - 2003.12, Ph.D, Electrical and Computer Engineering, Purdue University\n1995.03 - 1997.02, M.S., Control and Instrumentation Engineering (Currently Electrical and Computer Engineering), Seoul National University\n1991.03 - 1995.02, B.S., Control and Instrumentation Engineering (Currently Electrical and Computer Engineering), Seoul National University\nPositions and Services (Selected)\n2025: General Co-chair,\nIEEE World Haptics Conference\n2025 - 2026:\nAI-ICT Specialized Committee\n, Presidential Advisory Council on Science and Technology, Korea\n2025.1 - Present: Member,\nManagement Committee, IEEE Transactions on Haptics\n2024.3 - Present:\nHead, Department of Computer Science and Engineering, POSTECH\n2023.1 - 2024.12: Founding President,\nKorea Haptics Society\n2020.1 – 2024.12: Associate Editor-in-Chief,\nIEEE Transactions on Haptics\n2019: Organizer,\nThe 7th Aslla Symposium – Emerging Topics in Haptics\n2017.09 – 2019.08: Vice President, Office of Academic Information Affairs, POSTECH\n2014\n,\n2016\n: General co-chair, IEEE Haptics Symposium\n2005.07 - Present: Professor, POSTECH\nAwards (Selected)\n2023: POSTECHian Award – Education, POSTECH\n2023:\nBest Paper Award, IEEE Transactions on Haptics, Perceived Intensity Model of Dual-Frequency Superimposed Vibration: Pythagorean Sum\n2023: Honorable Mention, ACM CHI Conference on Human Factors in Computing Systems (CHI),\nVisuo-haptic Crossmodal Shape Perception Model for Shape-Changing Handheld Controllers Bridged by Inertial Tensor\n2011:\nEarly Career Award, IEEE Technical Committee on Haptics\n2009: Best Student Paper Award, IEEE World Haptics Conference, System Improvements in Mobile Haptic Interface\nGoogle Sites\nReport abuse\nPage details\nPage updated\nGoogle Sites\nReport abuse",
+    "status": 200,
+    "fetched_at": "2026-08-27T00:29:56+00:00"
   },
   "dslab.postech.ac.kr/": {
-    "title": "",
-    "text": "",
-    "status": null,
-    "error": "Invalid URL 'dslab.postech.ac.kr/': No scheme supplied. Perhaps you meant https://dslab.postech.ac.kr/?",
-    "fetched_at": "2026-08-27T00:15:44+00:00"
+    "title": "Data Systems Lab - Home",
+    "text": "Data Systems Lab - Home\nToggle navigation\nData Systems Lab @ POSTECH\nHome\nNews\nTeam\nResearch\nPublications\nInternship\nWelcome to the Data Systems Lab (Big Data Lab)\nWelcome to the Data Systems Lab (Big Data Lab) at the POSTECH. Our data systems lab focuses on\nSTAR\n(namely,\nSystems, Theory, and ARtificial intelligence\n) supported by major grants such as Star Lab. We have been endeavoring to solve challenging and real problems in computer/data science.\nBuilding Architects Through Systems.\nWe train our students to become system architects—not just coders—by having them design and build large-scale data infrastructure from the ground up. In an age where AI can generate code and pass test suites, the ability to make principled architectural decisions that generalize beyond any test remains an irreplaceably human skill, and it is the core of what we cultivate.\n[Big News]\nOur lab has been awarded over $6 million USD for the Global AI Frontier Lab between Korea and NYU. I am the director of this international program, which includes 8 additional professors from KAIST and Sungkyunkwan University. Many of our students will be dispatched to NYU each year to collaborate with world-leading researchers.\nWe work at the intersection of data systems and natural language processing (NLP), with a team spanning systems researchers, AI scientists and AI engineers.\n● Enterprise Super Agents & Multi-Modal RAG\nWe build Enterprise Super Agents—autonomous, data-centric systems powered by Knowledge Graphs and advanced Multi-Modal RAG. Our architecture seamlessly integrates text, tabular, and visual intelligence to move beyond simple search into complex reasoning.\n• Short Term: Deployment of high-velocity, high-trust RAG stacks and advanced analytic engines that deliver verifiable, multi-modal insights in real-time.\n• Long Term: A cost-efficient, data-centric platform designed for scale, evolving toward AGI-level reasoning and agentic autonomy across the enterprise ecosystem.\n● AI Database & Semantic Predicates\nWe design and implement AI-native databases that treat semantic predicates, vector search, and knowledge-graph reasoning as first-class query operators across text, tabular, time-series, image, and log data, while addressing ambiguity, reliability, and cost-modeling challenges.\nShort term: robust semantic filtering and multi-modal query processing with clear performance guarantees and explainable behavior.\nLong term: a self-optimizing, AI-native data platform where learned operators, RAG, and agents are deeply integrated into storage, indexing, and query processing on the path toward AGI-level data systems.\n● Next-Gen LLM Inference & Reasoning Optimization\nWe are launching a new research thrust dedicated to LLM inference optimization in the Reasoning Era. As AI shifts from simple text generation to complex, multi-step reasoning, we focus on breaking the computational bottlenecks of high-latency and resource-heavy agentic workflows.\n● Embodied AI & Robot Manipulation\nWe are advancing Robot Foundation Models toward adaptive, human-inspired intelligence. In the short term, we focus on personalizing mobile manipulation, developing predictive world models for closed-loop planning, and solving critical VLA gaps like long-horizon drift and contact precision. In the long term, we aim to build a General Robot Brain—a system combining VLAs, agentic planning, and semantic memory to enable reliable, long-horizon reasoning and failure recovery in any unstructured real-world environment.\n● Natural Language Interfaces to Data\nWe’re building conversational database interfaces, letting users query and reason over data using natural language—marrying robust data-system backends with cutting-edge NLP.\n● Self-Optimizing Data Systems\nOur systems auto-adapt to workload and data distribution, delivering top performance without manual tuning, via AI-driven optimization and continuous feedback.\nPoster\nAbout\nNews\nAugust 21, 2026\nOne paper is accepted to EMNLP 2026.\nJuly 10,",
+    "status": 200,
+    "fetched_at": "2026-08-27T00:29:57+00:00"
   },
   "https://www.his-lab.org/": {
     "title": "Home",
@@ -1542,7 +1533,7 @@
     "text": "",
     "status": null,
     "error": "404 Client Error:  for url: https://pixellab.postech.ac.kr/home",
-    "fetched_at": "2026-08-27T00:16:39+00:00"
+    "fetched_at": "2026-08-27T00:29:58+00:00"
   },
   "http://hydroclimatology.postech.ac.kr": {
     "title": "HCR Research Group",
@@ -1597,7 +1588,7 @@
     "text": "",
     "status": null,
     "error": "403 Client Error: Forbidden for url: http://zeolites.postech.ac.kr/",
-    "fetched_at": "2026-08-27T00:16:54+00:00"
+    "fetched_at": "2026-08-27T00:29:59+00:00"
   },
   "http://lbem.postech.ac.kr/": {
     "title": "친환경 생체모사 재료 연구실",
@@ -1678,11 +1669,10 @@
     "fetched_at": "2026-08-27T00:17:29+00:00"
   },
   "http://csp.postech.ac.kr/": {
-    "title": "",
-    "text": "",
-    "status": null,
-    "error": "HTTPConnectionPool(host='csp.postech.ac.kr', port=80): Read timed out. (read timeout=15.0)",
-    "fetched_at": "2026-08-27T00:17:45+00:00"
+    "title": "POSTECH GIFT CSP",
+    "text": "POSTECH GIFT CSP\nHOME\nSITEMAP\nCONTACT US\nIntroduction\nWelcome\nContact us\nResearch Area\nProfessor\nJung Wook Cho\nMember\nResearcher\nAlumni\nPublication\nPublication\nConference Proceeding\nPatent\nBoard\nNotice\nGallery\nHOME\nCONTACT US\nIntroduction\nWelcome\nContact us\nResearch Area\nProfessor\nJung Wook Cho\nMember\nResearcher\nAlumni\nPublication\nPublication\nConference Proceeding\nPatent\nBoard\nNotice\nGallery\nControlling\nSolidification Process\nSolidification, the very moment material begins to breath,\nAnd initiation that makes a great difference\nAbout Lab.\nControlling\nSolidification Process\nSolidification, the very moment material begins to breath,\nAnd initiation that makes a great difference\nAbout Lab.\nControlling\nSolidification Process\nSolidification, the very moment material begins to breath,\nAnd initiation that makes a great difference\nAbout Lab.\nControlling\nSolidification Process\nSolidification, the very moment material begins to breath,\nAnd initiation that makes a great difference\nAbout Lab.\nResearch area\nQuality improvement of cast materials\nLiquid steel with satisfactory cleanliness eventually need to be cast. A number of metallurgical phenomena occurs…\nMORE\nResearch area\nControlling solidification structure\nThe demands for AHSS such as TWIP (Twin Induced Plasticity) steel have gradually increased because of their ability…\nMORE\nResearch area\nThermo-Physical properties of mold fluxes\nControlling the heat transfer and providing lubrication in a casting mold is most essential to produce the sound cast…\nMORE\nResearch area\nInnovative casting process\nThough the continuous casting process has been leading the production of industrial steel production since 1970s, there also has been considerable needs to develop further casting technologies. We will pursue the alternative and innovative advanced Near-Net…\nMORE\nNotice\nmore\nCSP Guichu…\n2026-06-18\nCSP 석사과정 전…\n2025-11-06\nCSP 박사과정 김…\n2025-09-30\nCSP 박사과정 김…\n2025-09-30\nCSP\nPublication\nGallery\nMember\nPrivacy Policy\nRefuse Collect E-mail\nSiteMap\nPOSTECH\nPOSTECH GIFT\nPOSTECH DANE\nFAMILY SITE\nPOSTECH GIFT CSP 77 Cheongam-Ro, Nam-Gu, Pohang, Gyoungbuk\nCopyright ⓒ 2016 POSTECH GIFT CSP. All Rights Reserved.",
+    "status": 200,
+    "fetched_at": "2026-08-27T00:30:00+00:00"
   },
   "http://nedl.postech.ac.kr/": {
     "title": "포항공대 조창신교수님 연구실",
