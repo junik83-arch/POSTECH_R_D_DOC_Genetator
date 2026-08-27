@@ -171,7 +171,10 @@ def build_researchers_json(records: list[dict]) -> dict:
                 # 잘라낸 것일 뿐 창작하지 않는다 (원본 무결성 원칙, CLAUDE.md 참고).
                 # 불릿 마커 없이 " · " 로 이어붙인 압축 버전을 써서 토큰을 아낀다.
                 "ai_summary": {
-                    "interests": truncate(interests_raw.replace("￭", " · "), AI_SUMMARY_LIMITS["interests"]),
+                    "interests": truncate(
+                        re.sub(r"\s+", " ", interests_raw.replace("￭", " · ")).strip(" ·"),
+                        AI_SUMMARY_LIMITS["interests"],
+                    ),
                     "keywords": truncate(keywords, AI_SUMMARY_LIMITS["keywords"]),
                     "highlight": truncate(highlight, AI_SUMMARY_LIMITS["highlight"]),
                 },

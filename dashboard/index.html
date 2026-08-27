@@ -557,7 +557,7 @@
   <span class="mark">포항공과대학교</span>
   <h1>연구자 대시보드 <span class="ai-tag">LLM Wiki 기반</span></h1>
   <div class="nav">
-    <a href="../wiki/index.md">📖 위키 원문</a>
+    <a href="../wiki/home.md">📖 위키 홈</a>
     <a href="../index.html">📄 공문 생성기</a>
     <button type="button" class="api-btn" id="apiKeyModalBtn">
       <span>🔑</span> <span id="apiKeyBtnText">POSTECH AI API 설정</span>
@@ -914,9 +914,11 @@
     var homepageHtml = r.homepage
       ? '<a href="' + esc(r.homepage) + '" target="_blank" rel="noreferrer">' + esc(r.homepage) + '</a>'
       : '<span style="color:var(--muted)">등록된 홈페이지 없음</span>';
+    var mocPath = "../wiki/domain/" + encodeURIComponent(r.department) + ".moc.md";
     $("detailBody").innerHTML =
       '<h2>' + esc(r.name) + ' <span style="font-size:.8rem;font-weight:500;color:var(--muted)">(' + esc(r.department) + ')</span></h2>' +
-      '<p class="modal-sub">' + esc(r.email || "이메일 미기재") + ' · ' + homepageHtml + '</p>' +
+      '<p class="modal-sub">' + esc(r.email || "이메일 미기재") + ' · ' + homepageHtml +
+      ' · <a href="' + mocPath + '" target="_blank" rel="noreferrer">🧭 ' + esc(r.department) + ' 연구 클러스터 종합(MOC) 보기</a></p>' +
       '<div class="detail-section"><h4>연구관심분야</h4><div class="content">' + esc(r.interests || "미기재") + '</div></div>' +
       '<div class="detail-perf">' + perfBadges + '</div>' +
       sectionsHtml +
