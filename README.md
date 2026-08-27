@@ -72,7 +72,36 @@ git push -u origin main
 생성한 마크다운 지식베이스가 있습니다. 자세한 내용은 [wiki/README.md](wiki/README.md) 참고.
 
 ```bash
-python3 scripts/build_wiki.py   # data/*.json → wiki/**/*.md 재생성
+python3 scripts/build_wiki.py   # data/*.json → wiki/**/*.md + wiki/researchers.json 재생성
+```
+
+---
+
+## 🧑‍🔬 연구자 대시보드 (LLM Wiki 기반, AI 자연어 추천)
+
+`dashboard/index.html` — 위 LLM Wiki를 브라우저에서 바로 탐색할 수 있는 대시보드입니다.
+`python3 scripts/build_wiki.py` 실행 시 함께 생성되는 `wiki/researchers.json`을 fetch로
+읽어와 동작하며(별도 서버·빌드 불필요), 다음 기능을 제공합니다.
+
+- **현황 통계**: 전체 교원 수, 학과 수, 학과별 인원 분포, 실적(논문·특허·과제 등) 합계
+- **디렉터리 탐색**: 이름/학과/연구관심분야/키워드 검색, 학과 필터, 정렬, 카드 클릭 시
+  실적·연구키워드·대표연구 등을 담은 상세 프로필 모달
+- **🤖 자연어 연구자 추천**: "LG생활건강의 사업 포트폴리오에 맞는 연구를 하는 연구자"처럼
+  자연어로 질의하면 **POSTECH AI API**로 (1) 질의를 연구분야 키워드/학과로 확장 →
+  (2) 브라우저에서 로컬로 후보를 1차 압축 → (3) 압축된 후보 프로필과 원 질의를 다시 AI에
+  보내 관련도 순 추천 + 근거를 받아오는 2단계 파이프라인으로 동작합니다. 추천 이유는
+  원본 위키 데이터에 실제로 있는 내용에만 근거하도록 프롬프트에서 강제합니다(No Hallucination).
+
+**AI API 연동 방식**: 기본값은 OpenAI Chat Completions 호환 규격
+(`POST {Base URL}/chat/completions`, `Authorization: Bearer <key>`)을 가정합니다.
+대시보드 우측 상단 **POSTECH AI API 설정** 버튼에서 Base URL·API Key·모델명을 입력하면
+브라우저 LocalStorage에만 저장되어 즉시 사용할 수 있습니다. 실제 POSTECH AI API 게이트웨이의
+요청/응답 규격이 다르다면 `dashboard/index.html`의 `callChatApi()` 함수만 수정하면 됩니다.
+
+```bash
+# 로컬에서 열어보기 (fetch가 file:// 를 막는 브라우저가 있으므로 정적 서버 권장)
+python3 -m http.server 8000
+# 이후 http://localhost:8000/dashboard/ 접속
 ```
 
 ---

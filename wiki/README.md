@@ -13,9 +13,15 @@ POSTECH R&D 실적 데이터베이스(`data/faculty_profiles_source.json`, 교�
 - **[research-areas.md](research-areas.md)** — 연구분야 키워드로 교원 찾기
 - **[departments/](departments/)** — 학과별 페이지 (16개)
 - **[faculty/](faculty/)** — 교원별 페이지 (298개, 파일명 = `개인번호-성명.md`)
+- **[researchers.json](researchers.json)** — 위 내용을 브라우저에서 바로 쓸 수 있도록 압축한
+  JSON 인덱스. 사람이 읽는 문서가 아니라 **[../dashboard/index.html](../dashboard/index.html)
+  연구자 대시보드**가 fetch로 읽는 기계용 산출물입니다 (AI 자연어 검색에 보내는
+  `ai_summary` 압축 프로필 포함).
 
 GitHub에서 그대로 브라우징해도 되고, Obsidian 등 로컬 마크다운 뷰어로 `wiki/` 폴더를
-열면 `[텍스트](경로)` 링크가 그래프/백링크로 연결됩니다.
+열면 `[텍스트](경로)` 링크가 그래프/백링크로 연결됩니다. 표/카드 형태로 훑어보고 싶다면
+`dashboard/index.html`을 여세요 — 학과별 통계, 필터·검색, "LG생활건강 사업 포트폴리오에
+맞는 연구자" 같은 자연어 질의로 POSTECH AI API를 통해 연구자를 추천받는 기능을 제공합니다.
 
 ## 위키를 다시 만들려면
 

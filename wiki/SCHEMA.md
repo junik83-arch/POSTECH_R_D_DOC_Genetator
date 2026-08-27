@@ -17,9 +17,13 @@ wiki/                          ← 2) 위키 (누적된 지식) — 아래 스�
   research-areas.md               연구분야 키워드 빈도 인덱스 (브라우징용)
   departments/<학과>.md           학과별 교원 목록 + 학과 통계
   faculty/<개인번호>-<성명>.md    교원 1인당 1페이지
+  researchers.json                위 내용을 브라우저용으로 압축한 JSON (dashboard/ 가 fetch로 읽음)
+
+dashboard/                     ← 2) 위키를 소비하는 뷰어 (사람이 손으로 고치는 애플리케이션)
+  index.html                      연구자 대시보드: 통계·필터·검색 + POSTECH AI API 자연어 추천
 
 scripts/                       ← 3) 파이프라인 (위키를 재생성하는 도구)
-  build_wiki.py                   data/*.json → wiki/**/*.md (결정론적, 재실행 가능)
+  build_wiki.py                   data/*.json → wiki/**/*.md + wiki/researchers.json (결정론적, 재실행 가능)
   crawl_homepages.py              (로컬 전용) 교원 홈페이지를 크롤링해 homepage_crawl.json 생성
 ```
 

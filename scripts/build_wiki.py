@@ -38,6 +38,10 @@ BRACKET_LINE_RE = re.compile(r"^\[([^\]]+)\]\s*(.*)$")
 # text_public 파싱 결과에서는 건너뛰는 라벨
 SKIP_LABELS = {"성명", "연구관심분야"}
 
+# wiki/researchers.json 의 ai_summary 필드(대시보드 자연어 검색이 AI API로 보내는
+# 압축 프로필)에 쓰이는 글자수 제한 — 토큰/전송량을 억제하기 위한 값
+AI_SUMMARY_LIMITS = {"interests": 220, "keywords": 160, "highlight": 200}
+
 
 def slugify_dept(name: str) -> str:
     return (name or "미분류").strip()
@@ -79,6 +83,70 @@ def parse_text_public(text: str) -> "OrderedDict[str, str]":
         if current is not None:
             sections[current] += " " + line.strip()
     return sections
+
+
+def truncate(text: str, limit: int) -> str:
+    s = (text or "").strip()
+    return s if len(s) <= limit else s[: limit - 1].rstrip() + "…"
+
+
+def perf_total(perf: dict) -> int:
+    return sum((v or 0) for v in (perf or {}).values())
+
+
+def build_researchers_json(records: list[dict]) -> dict:
+    """대시보드(dashboard/index.html)가 fetch로 읽는 경량 JSON 인덱스를 만든다.
+
+    wiki/faculty/*.md 와 같은 원본(data/faculty_profiles_source.json)에서 결정론적으로
+    파생되는 2계층(위키) 산출물이다 — 손으로 고치지 말고 이 스크립트를 다시 실행할 것.
+    """
+    by_dept: "OrderedDict[str, int]" = OrderedDict()
+    researchers = []
+    for r in sorted(records, key=lambda r: r["성명"]):
+        dept = (r.get("학과") or "").strip() or "미분류"
+        by_dept[dept] = by_dept.get(dept, 0) + 1
+
+        interests = (r.get("관심분야") or "").replace("￭", " · ").strip()
+        parsed = parse_text_public(r.get("text_public", ""))
+        keywords = parsed.get("연구키워드", "")
+        highlight = (
+            parsed.get("대표연구·최근 주도논문(제1/교신)")
+            or parsed.get("주요성과")
+            or ""
+        )
+        perf = r.get("실적건수", {}) or {}
+        sections = OrderedDict(
+            (label, content) for label, content in parsed.items() if label not in SKIP_LABELS
+        )
+
+        researchers.append(
+            {
+                "id": r["개인번호"],
+                "name": r["성명"],
+                "department": dept,
+                "email": r.get("이메일", ""),
+                "homepage": r.get("홈페이지", ""),
+                "interests": interests,
+                "perf": perf,
+                "perf_total": perf_total(perf),
+                "sections": sections,
+                "wiki_path": f"faculty/{faculty_filename(r)}",
+                # AI 자연어 추천이 외부 API로 전송하는 압축 프로필 — 원본 필드를 그대로
+                # 잘라낸 것일 뿐 창작하지 않는다 (원본 무결성 원칙, SCHEMA.md 참고)
+                "ai_summary": {
+                    "interests": truncate(interests, AI_SUMMARY_LIMITS["interests"]),
+                    "keywords": truncate(keywords, AI_SUMMARY_LIMITS["keywords"]),
+                    "highlight": truncate(highlight, AI_SUMMARY_LIMITS["highlight"]),
+                },
+            }
+        )
+
+    return {
+        "generated": BUILD_DATE,
+        "count": len(researchers),
+        "departments": [{"name": k, "count": v} for k, v in by_dept.items()],
+        "researchers": researchers,
+    }
 
 
 def render_perf_table(perf: dict) -> str:
@@ -315,10 +383,17 @@ def main() -> None:
     (WIKI_DIR / "faculty-index.md").write_text(render_faculty_flat_index(records), encoding="utf-8")
     (WIKI_DIR / "research-areas.md").write_text(render_research_areas(records), encoding="utf-8")
 
+    researchers_json = build_researchers_json(records)
+    (WIKI_DIR / "researchers.json").write_text(
+        json.dumps(researchers_json, ensure_ascii=False, separators=(",", ":")),
+        encoding="utf-8",
+    )
+
     print(f"생성 완료: 교원 {len(records)}명, 학과 {len(by_dept)}개")
     print(f"  wiki/faculty/      {len(records)} 개 파일")
     print(f"  wiki/departments/  {len(by_dept)} 개 파일")
     print("  wiki/index.md, wiki/faculty-index.md, wiki/research-areas.md")
+    print("  wiki/researchers.json  (dashboard/index.html 이 읽는 경량 인덱스)")
     if not crawl:
         print(
             "참고: data/homepage_crawl.json 이 없어 '홈페이지 추가 정보' 섹션은 "
