@@ -632,6 +632,11 @@
       Claude/Gemini는 <code>Authorization</code> 헤더에도 같은 키를 함께 보냅니다.
       키는 브라우저(LocalStorage)에만 저장되며 이 페이지 외 다른 곳으로 전송되지 않습니다.
     </p>
+    <p style="background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:7px;padding:8px 10px;font-size:.76rem;">
+      ⚠️ <b>"Failed to fetch" 오류가 나면</b> 대부분 CORS 차단입니다 (이 API는 서버용으로 만들어져
+      브라우저 직접 호출을 막아둘 수 있음). <code>dashboard/cors-proxy/README.md</code>의 프록시를
+      세우고 엔드포인트를 프록시 주소로 바꿔보세요.
+    </p>
     <div class="field">
       <label>사용할 모델</label>
       <select id="apiProviderSelect">
@@ -1126,8 +1131,12 @@
       var msg = err && err.message ? err.message : String(err);
       if(err && err.code === "MISSING_CONFIG"){
         msg = "POSTECH AI API 설정이 필요합니다.";
+      } else if(msg === "Failed to fetch" || msg === "Load failed"){
+        msg = "엔드포인트에 연결하지 못했습니다. 대부분 브라우저-서버 간 CORS 차단이 원인입니다 " +
+          "— <code>dashboard/cors-proxy/README.md</code> 안내대로 프록시를 세우거나, POSTECH " +
+          "사내망/VPN 안에서 열려 있는지 확인해보세요.";
       }
-      setAiStatus("error", "❌ 오류: " + esc(msg));
+      setAiStatus("error", "❌ 오류: " + (msg.indexOf("<code>") !== -1 ? msg : esc(msg)));
     }finally{
       runAiBtn.disabled = false;
     }
