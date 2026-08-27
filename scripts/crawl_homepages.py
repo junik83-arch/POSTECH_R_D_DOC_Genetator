@@ -23,6 +23,7 @@ crawl_homepages.py — 교원 홈페이지 크롤러 (로컬 전용)
     python3 scripts/crawl_homepages.py --limit 10      # 앞 10개만 (테스트용)
     python3 scripts/crawl_homepages.py --delay 2.0     # 요청 간 대기시간(초), 기본 1.0
     python3 scripts/crawl_homepages.py --force         # 이미 성공한 URL도 전부 다시 시도
+    python3 scripts/crawl_homepages.py --insecure       # SSL 인증서 오류 나는 서버도 시도 (주의)
 """
 from __future__ import annotations
 
@@ -32,6 +33,7 @@ import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import urljoin
 
 try:
     import requests
@@ -61,6 +63,17 @@ def extract_text(html: str) -> tuple[str, str]:
     lines = [ln for ln in lines if ln]
     joined = "\n".join(lines)
     return title, joined[:MAX_CHARS]
+
+
+def first_frame_src(html: str, base_url: str) -> str | None:
+    """옛날 대학 부서 홈페이지는 <frameset>으로 실제 내용을 다른 페이지에 넣어두는
+    경우가 많다. <body>가 비어 있어 extract_text가 빈 텍스트를 돌려줄 때, 첫 번째
+    <frame>이 가리키는 실제 내용 페이지 URL을 찾아준다 (없으면 None)."""
+    soup = BeautifulSoup(html, "html.parser")
+    frame = soup.find("frame") or soup.find("iframe")
+    if frame and frame.get("src"):
+        return urljoin(base_url, frame["src"])
+    return None
 
 
 ZERO_WIDTH_CHARS = "﻿​‌‍\xa0"
@@ -103,10 +116,20 @@ def main() -> None:
         action="store_true",
         help="이미 성공적으로 크롤링된 URL도 다시 시도 (기본값: 실패했던 URL만 재시도)",
     )
+    ap.add_argument(
+        "--insecure",
+        action="store_true",
+        help="SSL 인증서 검증을 건너뜀 (postech.ac.kr 일부 서브도메인의 인증서 오류 우회용, 주의해서 사용)",
+    )
     args = ap.parse_args()
 
     if not SOURCE_FILE.exists():
         raise SystemExit(f"원본 파일이 없습니다: {SOURCE_FILE}")
+
+    if args.insecure:
+        import urllib3
+
+        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
     urls = load_urls()
     if args.limit:
@@ -123,9 +146,25 @@ def main() -> None:
             continue
         print(f"[{i}/{len(urls)}] {url}")
         try:
-            resp = requests.get(normalize_url(url), headers=HEADERS, timeout=args.timeout)
+            fetch_url = normalize_url(url)
+            resp = requests.get(
+                fetch_url, headers=HEADERS, timeout=args.timeout, verify=not args.insecure
+            )
             resp.raise_for_status()
             title, text = extract_text(resp.text)
+
+            # <frameset> 기반 옛날 홈페이지 대응: 본문이 비어 있으면 첫 프레임을 한 번 더 따라간다
+            if not text:
+                frame_url = first_frame_src(resp.text, fetch_url)
+                if frame_url:
+                    frame_resp = requests.get(
+                        frame_url, headers=HEADERS, timeout=args.timeout, verify=not args.insecure
+                    )
+                    frame_resp.raise_for_status()
+                    frame_title, frame_text = extract_text(frame_resp.text)
+                    title = title or frame_title
+                    text = frame_text
+
             result[url] = {
                 "title": title,
                 "text": text,
