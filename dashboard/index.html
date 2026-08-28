@@ -157,6 +157,26 @@
     margin-top:2px;
   }
 
+  .bars-tabs{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin-bottom:8px;
+    flex-wrap:wrap;
+  }
+  .bars-tab{
+    font-size:.78rem;
+    font-weight:600;
+    background:var(--field-bg);
+    border:1px solid var(--line);
+    color:var(--ink-2);
+    border-radius:20px;
+    padding:5px 13px;
+    cursor:pointer;
+  }
+  .bars-tab.active{ background:var(--ink); border-color:var(--ink); color:#fff; }
+  .bars-tab-hint{ font-size:.74rem; color:var(--muted); margin-left:4px; }
+
   .dept-bars{
     background:var(--field-bg);
     border:1px solid var(--line);
@@ -336,7 +356,15 @@
     border-radius:20px;
     padding:5px 12px;
     cursor:pointer;
+    white-space:nowrap;
   }
+  .filter-bar-actions{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  #pickModeBtn{ color:var(--ai-blue); border-color:var(--ai-blue); }
+  #pickModeBtn.active{ background:var(--ai-blue); color:#fff; }
   .result-count{
     font-size:.76rem;
     color:var(--muted);
@@ -362,6 +390,10 @@
     border-color:var(--ai-blue);
     box-shadow:0 4px 14px rgba(26,115,232,.12);
     transform:translateY(-1px);
+  }
+  .rcard.picked, .ai-result-card.picked{
+    border-color:var(--ai-blue);
+    box-shadow:0 0 0 2px var(--ai-bg);
   }
   .rcard .rc-head{
     display:flex;
@@ -601,7 +633,8 @@
   }
 
   /* ── 연구자 선택 체크박스 ── */
-  .pick-cb{ width:auto; cursor:pointer; margin:0; flex:0 0 auto; }
+  .pick-cb{ width:auto; cursor:pointer; margin:0; flex:0 0 auto; display:none; }
+  body.pick-mode .pick-cb{ display:inline-block; }
 
   /* ── 선택한 연구자(팀) 바 ── */
   body.has-team-bar main{ padding-bottom:100px; }
@@ -650,6 +683,7 @@
     .btn-ai-run{ width:100%; justify-content:center; height:44px; }
     .filter-bar{ flex-direction:column; align-items:stretch; }
     .filter-bar select, .filter-bar .clear-btn, .filter-bar input[type=text]{ width:100%; min-width:0; }
+    .filter-bar-actions{ flex-direction:column; width:100%; }
     .researcher-grid{ grid-template-columns:1fr; }
     .dept-row{ flex-wrap:wrap; }
     .dept-row .dname{ flex:1 1 100%; }
@@ -679,13 +713,17 @@
 <main>
 
   <section id="stats">
-    <div class="section-title">📊 전체 현황 <span class="sub" id="statsSub">불러오는 중…</span></div>
-    <div class="stat-grid" id="statGrid"></div>
-    <div class="dept-bars" id="deptBars"><div class="loading-note">불러오는 중…</div></div>
-    <div class="section-title" style="margin-top:16px;">
-      🧭 국가전략기술 커버리지 <span class="sub">클릭하면 아래 디렉터리에 필터링됩니다</span>
+    <div class="section-title">
+      📊 전체 현황 <span class="sub" id="statsSub">불러오는 중…</span>
     </div>
-    <div class="dept-bars" id="techBars"><div class="loading-note">불러오는 중…</div></div>
+    <div class="stat-grid" id="statGrid"></div>
+    <div class="bars-tabs" id="barsTabs">
+      <button type="button" class="bars-tab active" data-tab="dept">🏛️ 학과별</button>
+      <button type="button" class="bars-tab" data-tab="tech">🧭 전략기술별</button>
+      <span class="bars-tab-hint">클릭하면 아래 디렉터리에 필터링됩니다</span>
+    </div>
+    <div class="dept-bars" id="deptBars"><div class="loading-note">불러오는 중…</div></div>
+    <div class="dept-bars" id="techBars" style="display:none"><div class="loading-note">불러오는 중…</div></div>
   </section>
 
   <section id="ai-search">
@@ -716,8 +754,11 @@
         <option value="name">이름순(가나다)</option>
         <option value="dept">학과순</option>
       </select>
-      <button type="button" class="clear-btn" id="clearFilterBtn">필터 초기화</button>
-      <button type="button" class="clear-btn" id="exportFilteredBtn">⬇️ 필터 결과 CSV</button>
+      <span class="filter-bar-actions">
+        <button type="button" class="clear-btn" id="pickModeBtn">☑️ 팀 구성</button>
+        <button type="button" class="clear-btn" id="clearFilterBtn">필터 초기화</button>
+        <button type="button" class="clear-btn" id="exportFilteredBtn">⬇️ CSV</button>
+      </span>
     </div>
     <div class="active-filters" id="activeFilters"></div>
     <div class="result-count" id="resultCount"></div>
@@ -847,7 +888,10 @@
   // ── 연구자 선택("팀 구성 후보") ──
   function syncPickCheckboxes(){
     Array.prototype.forEach.call(document.querySelectorAll(".pick-cb"), function(cb){
-      cb.checked = !!state.team[cb.getAttribute("data-id")];
+      var picked = !!state.team[cb.getAttribute("data-id")];
+      cb.checked = picked;
+      var card = cb.closest(".rcard, .ai-result-card");
+      if(card) card.classList.toggle("picked", picked);
     });
   }
   function toggleTeam(id, checked){
@@ -881,6 +925,8 @@
     Array.prototype.forEach.call(container.querySelectorAll(".pick-cb"), function(cb){
       cb.addEventListener("click", function(e){ e.stopPropagation(); });
       cb.addEventListener("change", function(){ toggleTeam(cb.getAttribute("data-id"), cb.checked); });
+      var card = cb.closest(".rcard, .ai-result-card");
+      if(card) card.classList.toggle("picked", !!state.team[cb.getAttribute("data-id")]);
     });
   }
   $("tbClearBtn").addEventListener("click", function(){
@@ -909,6 +955,26 @@
     if(!list.length) return;
     downloadCsv(list, "연구자_필터결과_" + todayStr() + ".csv");
     showToast("CSV로 내보냈습니다.");
+  });
+
+  // 체크박스는 기본적으로 숨겨두고("팀 구성" 모드일 때만 노출) 카드 목록을 깔끔하게 유지
+  var pickModeBtn = $("pickModeBtn");
+  pickModeBtn.addEventListener("click", function(){
+    var on = document.body.classList.toggle("pick-mode");
+    pickModeBtn.classList.toggle("active", on);
+    pickModeBtn.textContent = on ? "✓ 팀 구성 중" : "☑️ 팀 구성";
+  });
+
+  // 학과별/전략기술별 막대 탭 — 항상 하나만 펼쳐서 통계 섹션이 길어지는 것을 방지
+  Array.prototype.forEach.call($("barsTabs").querySelectorAll(".bars-tab"), function(btn){
+    btn.addEventListener("click", function(){
+      Array.prototype.forEach.call($("barsTabs").querySelectorAll(".bars-tab"), function(b){
+        b.classList.toggle("active", b === btn);
+      });
+      var tab = btn.getAttribute("data-tab");
+      $("deptBars").style.display = tab === "dept" ? "" : "none";
+      $("techBars").style.display = tab === "tech" ? "" : "none";
+    });
   });
 
   // posicube-services/llm-agent-api 의 a1~a3 단일 호출 API 엔드포인트를, 브라우저 CORS
