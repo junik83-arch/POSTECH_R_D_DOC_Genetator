@@ -132,6 +132,31 @@ def parse_text_public(text: str) -> "OrderedDict[str, str]":
     return sections
 
 
+def _split_outside_parens(text: str, sep: str) -> list[str]:
+    """`sep`로 나누되, 괄호(중첩 포함) 안에 있는 occurrence는 구분자로 보지 않는다.
+    논문 인용이 "제목 (연도; 저널명 (도시))"처럼 괄호 안에도 같은 구분자를 쓰는
+    경우가 있어, 괄호 깊이를 세면서 깊이 0일 때의 occurrence만 실제 구분자로
+    인정한다."""
+    parts = []
+    depth = 0
+    start = i = 0
+    n = len(text)
+    while i < n:
+        ch = text[i]
+        if ch == "(":
+            depth += 1
+        elif ch == ")":
+            depth = max(0, depth - 1)
+        elif depth == 0 and text.startswith(sep, i):
+            parts.append(text[start:i])
+            i += len(sep)
+            start = i
+            continue
+        i += 1
+    parts.append(text[start:])
+    return parts
+
+
 def split_list_items(text: str) -> list[str] | None:
     """￭ 또는 반복되는 '; ' 로 나열된 텍스트를 항목 리스트로 쪼갠다. 나열형이 아니면
     (구분자가 2개 미만이면) None을 돌려줘 원문 그대로 쓰게 한다. 순수 표시 형식만
@@ -142,10 +167,9 @@ def split_list_items(text: str) -> list[str] | None:
         parts = [p.strip() for p in text.split("￭") if p.strip()]
         if len(parts) >= 2:
             return parts
-    if text.count("; ") >= 2:
-        parts = [p.strip() for p in text.split("; ") if p.strip()]
-        if len(parts) >= 2:
-            return parts
+    parts = [p.strip() for p in _split_outside_parens(text, "; ") if p.strip()]
+    if len(parts) >= 2:
+        return parts
     return None
 
 
