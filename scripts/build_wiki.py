@@ -215,6 +215,12 @@ def render_faculty_page(rec: dict, crawl: dict) -> str:
 
     parsed = parse_text_public(rec.get("text_public", ""))
 
+    # 홈페이지 크롤링 + AI 요약은 페이지 아래쪽 "홈페이지 추가 정보"에서도 쓰므로 여기서
+    # 한 번만 조회해 둔다 — 뒤 내용(실적·논문 목록 등)이 방대해 훑기 어려우니, 요약이
+    # 있으면 페이지 상단(연구관심분야보다 앞)에도 미리 보여준다.
+    crawled = crawl.get(homepage) if homepage else None
+    homepage_summary = (crawled.get("summary") or "").strip() if crawled and crawled.get("text") else ""
+
     lines = []
     lines.append("---")
     lines.append(f"id: {rec['개인번호']}")
@@ -235,6 +241,13 @@ def render_faculty_page(rec: dict, crawl: dict) -> str:
     else:
         lines.append("- 홈페이지: _등록된 홈페이지 없음_")
     lines.append("")
+    if homepage_summary:
+        lines.append("> [!TIP]")
+        lines.append("> **AI 요약** _(Gemini가 홈페이지를 읽고 요약 · 자세한 내용은 아래 실적·논문 목록 참고)_")
+        lines.append(">")
+        for summary_line in homepage_summary.split("\n"):
+            lines.append(f"> {summary_line}")
+        lines.append("")
     lines.append("## 연구관심분야")
     lines.append(render_list_or_text(interests))
     lines.append("")
@@ -249,7 +262,6 @@ def render_faculty_page(rec: dict, crawl: dict) -> str:
         lines.append("")
 
     lines.append("## 홈페이지 추가 정보")
-    crawled = crawl.get(homepage) if homepage else None
     if crawled and crawled.get("skipped") == "shared_portal":
         lines.append(
             f"_이 URL은 다른 교원과 함께 쓰는 학과/그룹 공통 포털로 판단되어 "
@@ -259,11 +271,11 @@ def render_faculty_page(rec: dict, crawl: dict) -> str:
         lines.append(f"> 크롤링 시각: {crawled.get('fetched_at', '알 수 없음')} · 출처: <{homepage}>")
         lines.append("")
 
-        summary = (crawled.get("summary") or "").strip()
-        if summary:
-            lines.append(f"**AI 생성 요약** _(Gemini 자동 요약 · {crawled.get('summary_generated_at', '')} · 원문은 아래에서 확인 가능)_")
-            lines.append("")
-            lines.append(summary)
+        if homepage_summary:
+            lines.append(
+                f"_AI 요약은 이 페이지 맨 위에서 볼 수 있습니다 "
+                f"(Gemini 자동 요약 · {crawled.get('summary_generated_at', '')}). 원문은 아래에서 확인 가능합니다._"
+            )
             lines.append("")
 
         main_text = crawled["text"].strip()
