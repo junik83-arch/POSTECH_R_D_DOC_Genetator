@@ -446,7 +446,7 @@ def render_national_tech(records: list[dict]) -> str:
     return "\n".join(lines)
 
 
-def build_researchers_json(records: list[dict]) -> dict:
+def build_researchers_json(records: list[dict], crawl: dict) -> dict:
     """대시보드(dashboard/index.html)가 fetch로 읽는 경량 JSON 인덱스를 만든다.
 
     wiki/faculty/*.md 와 같은 원본(sources/faculty_profiles_source.json)에서 결정론적으로
@@ -459,6 +459,12 @@ def build_researchers_json(records: list[dict]) -> dict:
     for r in sorted(records, key=lambda r: r["성명"]):
         dept = (r.get("학과") or "").strip() or "미분류"
         by_dept[dept] = by_dept.get(dept, 0) + 1
+
+        homepage = r.get("홈페이지", "") or ""
+        crawled = crawl.get(homepage) if homepage else None
+        # 홈페이지 크롤링을 Gemini가 요약한 것 — wiki/faculty/*.md 상단 AI 요약과 같은
+        # 필드(원본 그대로, 대시보드용으로 별도로 자르거나 손대지 않음).
+        homepage_summary = (crawled.get("summary") or "").strip() if crawled and crawled.get("text") else ""
 
         interests_raw = (r.get("관심분야") or "").strip()
         parsed = parse_text_public(r.get("text_public", ""))
@@ -481,7 +487,8 @@ def build_researchers_json(records: list[dict]) -> dict:
                 "name": r["성명"],
                 "department": dept,
                 "email": r.get("이메일", ""),
-                "homepage": r.get("홈페이지", ""),
+                "homepage": homepage,
+                "homepage_summary": homepage_summary,
                 "interests": render_list_or_text(interests_raw),
                 "perf": perf,
                 "perf_total": perf_total(perf),
@@ -536,7 +543,7 @@ def main() -> None:
     (WIKI_DIR / "research-areas.md").write_text(render_research_areas(records), encoding="utf-8")
     (WIKI_DIR / "national-strategic-tech.md").write_text(render_national_tech(records), encoding="utf-8")
 
-    researchers_json = build_researchers_json(records)
+    researchers_json = build_researchers_json(records, crawl)
     (WIKI_DIR / "researchers.json").write_text(
         json.dumps(researchers_json, ensure_ascii=False, separators=(",", ":")),
         encoding="utf-8",
