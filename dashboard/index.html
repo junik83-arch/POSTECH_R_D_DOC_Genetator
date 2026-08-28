@@ -494,6 +494,29 @@
   }
   .modal-inner{ position:relative; }
 
+  .ai-summary-box{
+    background:var(--ai-bg);
+    border:1px solid var(--ai-border);
+    border-left:4px solid var(--ai-blue);
+    border-radius:8px;
+    padding:12px 14px;
+    margin:0 0 16px;
+  }
+  .ai-summary-box .label{
+    font-size:.72rem;
+    font-weight:700;
+    color:var(--ai-blue);
+    text-transform:uppercase;
+    letter-spacing:.02em;
+    margin:0 0 6px;
+  }
+  .ai-summary-box p{
+    font-size:.84rem;
+    color:var(--ink-2);
+    line-height:1.65;
+    margin:0;
+  }
+
   .detail-perf{
     display:flex;
     flex-wrap:wrap;
@@ -915,10 +938,14 @@
       ? '<a href="' + esc(r.homepage) + '" target="_blank" rel="noreferrer">' + esc(r.homepage) + '</a>'
       : '<span style="color:var(--muted)">등록된 홈페이지 없음</span>';
     var mocPath = "../wiki/domain/" + encodeURIComponent(r.department) + ".moc.md";
+    var summaryHtml = r.homepage_summary
+      ? '<div class="ai-summary-box"><div class="label">🤖 AI 요약 (홈페이지 기반)</div><p>' + esc(r.homepage_summary) + '</p></div>'
+      : "";
     $("detailBody").innerHTML =
       '<h2>' + esc(r.name) + ' <span style="font-size:.8rem;font-weight:500;color:var(--muted)">(' + esc(r.department) + ')</span></h2>' +
       '<p class="modal-sub">' + esc(r.email || "이메일 미기재") + ' · ' + homepageHtml +
       ' · <a href="' + mocPath + '" target="_blank" rel="noreferrer">🧭 ' + esc(r.department) + ' 연구 클러스터 종합(MOC) 보기</a></p>' +
+      summaryHtml +
       '<div class="detail-section"><h4>연구관심분야</h4><div class="content">' + esc(r.interests || "미기재") + '</div></div>' +
       '<div class="detail-perf">' + perfBadges + '</div>' +
       sectionsHtml +
