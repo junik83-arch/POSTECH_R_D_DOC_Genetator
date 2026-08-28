@@ -572,6 +572,94 @@
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
   .loading-note{ font-size:.82rem; color:var(--muted); padding:20px; text-align:center; }
+
+  /* ── 국가전략기술 커버리지(막대 + 학과 breakdown) ── */
+  #techBars .dept-breakdown{
+    font-size:.68rem;
+    color:var(--muted);
+    margin:0 0 8px 132px;
+  }
+  #techBars .dname{ flex:0 0 132px; }
+
+  /* ── 적용된 필터 칩 ── */
+  .active-filters{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px; }
+  .active-filters:empty{ display:none; }
+  .afilter-chip{
+    font-size:.74rem;
+    background:var(--ai-bg);
+    color:var(--ai-blue);
+    border:1px solid var(--ai-border);
+    border-radius:20px;
+    padding:3px 6px 3px 11px;
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+  }
+  .afilter-chip button{
+    background:none; border:none; color:inherit; cursor:pointer;
+    font-size:.82rem; line-height:1; padding:0 2px;
+  }
+
+  /* ── 연구자 선택 체크박스 ── */
+  .pick-cb{ width:auto; cursor:pointer; margin:0; flex:0 0 auto; }
+
+  /* ── 선택한 연구자(팀) 바 ── */
+  body.has-team-bar main{ padding-bottom:100px; }
+  .team-bar{
+    display:none;
+    position:fixed; left:0; right:0; bottom:0;
+    background:var(--ink); color:#fff;
+    padding:10px 20px;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+    z-index:50;
+    box-shadow:0 -4px 14px rgba(0,0,0,.18);
+  }
+  .team-bar.show{ display:flex; }
+  .team-bar .tb-count{ font-weight:700; font-size:.86rem; white-space:nowrap; }
+  .team-bar .tb-chips{
+    display:flex; flex-wrap:wrap; gap:6px; flex:1;
+    max-height:60px; overflow-y:auto;
+  }
+  .team-bar .tb-chip{
+    font-size:.74rem;
+    background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:20px;
+    padding:3px 6px 3px 10px;
+    display:inline-flex; align-items:center; gap:6px;
+    white-space:nowrap;
+  }
+  .team-bar .tb-chip button{ background:none; border:none; color:#fff; cursor:pointer; opacity:.8; }
+  .team-bar .tb-actions{ display:flex; gap:8px; flex-wrap:wrap; }
+
+  /* ── 반응형 ── */
+  @media (max-width: 860px){
+    main{ padding:18px 14px 70px; }
+    .stat-grid{ grid-template-columns:repeat(auto-fit, minmax(96px, 1fr)); }
+    .researcher-grid{ grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); }
+    #techBars .dname{ flex-basis:104px; }
+    #techBars .dept-breakdown{ margin-left:104px; }
+  }
+  @media (max-width: 600px){
+    header.appbar{ padding:12px 14px; }
+    .appbar h1{ font-size:1rem; }
+    .appbar .nav{ width:100%; margin-left:0; }
+    .ai-search-row{ flex-direction:column; }
+    .btn-ai-run{ width:100%; justify-content:center; height:44px; }
+    .filter-bar{ flex-direction:column; align-items:stretch; }
+    .filter-bar select, .filter-bar .clear-btn, .filter-bar input[type=text]{ width:100%; min-width:0; }
+    .researcher-grid{ grid-template-columns:1fr; }
+    .dept-row{ flex-wrap:wrap; }
+    .dept-row .dname{ flex:1 1 100%; }
+    .dept-row .bar-wrap{ flex:1 1 auto; }
+    #techBars .dept-breakdown{ margin-left:0; }
+    .modal{ padding:18px 16px; }
+    .modal.wide{ max-width:100%; }
+    .team-bar{ flex-direction:column; align-items:stretch; padding:10px 14px; }
+    body.has-team-bar main{ padding-bottom:150px; }
+  }
 </style>
 </head>
 <body>
@@ -594,6 +682,10 @@
     <div class="section-title">📊 전체 현황 <span class="sub" id="statsSub">불러오는 중…</span></div>
     <div class="stat-grid" id="statGrid"></div>
     <div class="dept-bars" id="deptBars"><div class="loading-note">불러오는 중…</div></div>
+    <div class="section-title" style="margin-top:16px;">
+      🧭 국가전략기술 커버리지 <span class="sub">클릭하면 아래 디렉터리에 필터링됩니다</span>
+    </div>
+    <div class="dept-bars" id="techBars"><div class="loading-note">불러오는 중…</div></div>
   </section>
 
   <section id="ai-search">
@@ -625,7 +717,9 @@
         <option value="dept">학과순</option>
       </select>
       <button type="button" class="clear-btn" id="clearFilterBtn">필터 초기화</button>
+      <button type="button" class="clear-btn" id="exportFilteredBtn">⬇️ 필터 결과 CSV</button>
     </div>
+    <div class="active-filters" id="activeFilters"></div>
     <div class="result-count" id="resultCount"></div>
     <div class="researcher-grid" id="researcherGrid"><div class="loading-note">wiki/researchers.json 불러오는 중…</div></div>
   </section>
@@ -633,6 +727,17 @@
 </main>
 
 <div class="toast" id="toast">저장되었습니다</div>
+
+<!-- ── 선택한 연구자(팀 구성 후보) 바 ── -->
+<div class="team-bar" id="teamBar">
+  <span class="tb-count" id="tbCount">0명 선택</span>
+  <div class="tb-chips" id="tbChips"></div>
+  <div class="tb-actions">
+    <button type="button" class="btn ghost small" id="tbCopyBtn">📋 표로 복사</button>
+    <button type="button" class="btn small" id="tbExportBtn">⬇️ CSV 내보내기</button>
+    <button type="button" class="btn ghost small" id="tbClearBtn">전체 해제</button>
+  </div>
+</div>
 
 <!-- ── 연구자 상세 모달 ── -->
 <div class="modal-overlay" id="detailModal">
@@ -694,11 +799,117 @@
   var state = {
     all: [],
     departments: [],
+    techCategories: [],
     deptFilter: null,   // null = 전체, 아니면 department 이름 문자열
+    techFilter: null,   // null = 전체, 아니면 국가전략기술 분야명 문자열
     textQuery: "",
-    sortMode: "perf"
+    sortMode: "perf",
+    team: {}            // 선택한 연구자(팀 구성 후보) id → true
   };
   var byId = {};
+
+  function todayStr(){
+    var d = new Date();
+    function pad(n){ return String(n).length < 2 ? "0" + n : String(n); }
+    return d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate());
+  }
+
+  function csvCell(v){
+    v = v == null ? "" : String(v);
+    if(/[",\n]/.test(v)) v = '"' + v.replace(/"/g, '""') + '"';
+    return v;
+  }
+  function researcherRow(r){
+    return [r.name, r.department, r.email || "", r.homepage || "",
+      (r.interests || "").replace(/\n/g, " "),
+      (r.national_tech || []).join(", "), perfTotal(r)];
+  }
+  var CSV_HEADERS = ["이름", "학과", "이메일", "홈페이지", "연구관심분야", "국가전략기술", "실적합계"];
+  function toCsv(list){
+    var lines = [CSV_HEADERS.map(csvCell).join(",")]
+      .concat(list.map(function(r){ return researcherRow(r).map(csvCell).join(","); }));
+    return "﻿" + lines.join("\r\n"); // BOM: 엑셀에서 한글 깨짐 방지
+  }
+  function toTsv(list){
+    return [CSV_HEADERS.join("\t")]
+      .concat(list.map(function(r){ return researcherRow(r).join("\t"); }))
+      .join("\n");
+  }
+  function downloadCsv(list, filename){
+    var blob = new Blob([toCsv(list)], {type: "text/csv;charset=utf-8;"});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  // ── 연구자 선택("팀 구성 후보") ──
+  function syncPickCheckboxes(){
+    Array.prototype.forEach.call(document.querySelectorAll(".pick-cb"), function(cb){
+      cb.checked = !!state.team[cb.getAttribute("data-id")];
+    });
+  }
+  function toggleTeam(id, checked){
+    if(checked) state.team[id] = true; else delete state.team[id];
+    syncPickCheckboxes();
+    renderTeamBar();
+  }
+  function renderTeamBar(){
+    var ids = Object.keys(state.team);
+    document.body.classList.toggle("has-team-bar", ids.length > 0);
+    var bar = $("teamBar");
+    if(!ids.length){ bar.classList.remove("show"); return; }
+    bar.classList.add("show");
+    $("tbCount").textContent = ids.length + "명 선택";
+    $("tbChips").innerHTML = ids.map(function(id){
+      var r = byId[id];
+      return r ? '<span class="tb-chip">' + esc(r.name) + '<button type="button" data-id="' + esc(id) + '">✕</button></span>' : "";
+    }).join("");
+    Array.prototype.forEach.call($("tbChips").querySelectorAll("button"), function(btn){
+      btn.addEventListener("click", function(){
+        delete state.team[btn.getAttribute("data-id")];
+        syncPickCheckboxes();
+        renderTeamBar();
+      });
+    });
+  }
+  function pickCbHtml(id){
+    return '<input type="checkbox" class="pick-cb" data-id="' + esc(id) + '"' + (state.team[id] ? " checked" : "") + ' title="팀 후보로 담기" />';
+  }
+  function bindPickCheckboxes(container){
+    Array.prototype.forEach.call(container.querySelectorAll(".pick-cb"), function(cb){
+      cb.addEventListener("click", function(e){ e.stopPropagation(); });
+      cb.addEventListener("change", function(){ toggleTeam(cb.getAttribute("data-id"), cb.checked); });
+    });
+  }
+  $("tbClearBtn").addEventListener("click", function(){
+    state.team = {};
+    syncPickCheckboxes();
+    renderTeamBar();
+  });
+  $("tbExportBtn").addEventListener("click", function(){
+    var list = Object.keys(state.team).map(function(id){ return byId[id]; }).filter(Boolean);
+    if(!list.length) return;
+    downloadCsv(list, "선택한_연구자_" + todayStr() + ".csv");
+    showToast("CSV로 내보냈습니다.");
+  });
+  $("tbCopyBtn").addEventListener("click", async function(){
+    var list = Object.keys(state.team).map(function(id){ return byId[id]; }).filter(Boolean);
+    if(!list.length) return;
+    try{
+      await navigator.clipboard.writeText(toTsv(list));
+      showToast("표 형식으로 복사했습니다 (엑셀/한글에 붙여넣기 가능).");
+    }catch(e){
+      showToast("복사에 실패했습니다 — 브라우저 클립보드 권한을 확인해주세요.");
+    }
+  });
+  $("exportFilteredBtn").addEventListener("click", function(){
+    var list = getFilteredResearchers();
+    if(!list.length) return;
+    downloadCsv(list, "연구자_필터결과_" + todayStr() + ".csv");
+    showToast("CSV로 내보냈습니다.");
+  });
 
   // posicube-services/llm-agent-api 의 a1~a3 단일 호출 API 엔드포인트를, 브라우저 CORS
   // 차단을 우회하기 위해 배포해 둔 Cloudflare Worker 프록시(dashboard/cors-proxy/worker.js,
@@ -802,10 +1013,12 @@
   }).then(function(data){
     state.all = data.researchers || [];
     state.departments = data.departments || [];
+    state.techCategories = data.tech_categories || [];
     state.all.forEach(function(r){ byId[r.id] = r; });
     $("statsSub").textContent = "생성일 " + (data.generated || "-") + " · 원본: POSTECH R&D 실적 데이터베이스";
     renderStats(data);
     renderDeptBars();
+    renderTechBars();
     renderDirectory();
   }).catch(function(err){
     console.error(err);
@@ -855,6 +1068,44 @@
     });
   }
 
+  // 국가전략기술 12대 분야별 커버리지 — 학과 막대와 같은 패턴(클릭 시 필터)에,
+  // 분야별 상위 학과 breakdown을 덧붙인다 (전체 학과×분야 교차표 대신 단순화한 형태)
+  function renderTechBars(){
+    var counts = {}, deptCounts = {};
+    state.techCategories.forEach(function(t){ counts[t] = 0; deptCounts[t] = {}; });
+    state.all.forEach(function(r){
+      (r.national_tech || []).forEach(function(t){
+        if(!(t in counts)) return;
+        counts[t] += 1;
+        deptCounts[t][r.department] = (deptCounts[t][r.department] || 0) + 1;
+      });
+    });
+    var maxCount = state.techCategories.reduce(function(m, t){ return Math.max(m, counts[t]); }, 1);
+    $("techBars").innerHTML = state.techCategories.map(function(t){
+      var pct = Math.round((counts[t] / maxCount) * 100);
+      var active = state.techFilter === t ? " active" : "";
+      var topDepts = Object.keys(deptCounts[t])
+        .sort(function(a, b){ return deptCounts[t][b] - deptCounts[t][a]; })
+        .slice(0, 3)
+        .map(function(d){ return d + " " + deptCounts[t][d]; })
+        .join(" · ");
+      return '<div class="dept-row' + active + '" data-tech="' + esc(t) + '">' +
+          '<div class="dname">' + esc(t) + '</div>' +
+          '<div class="bar-wrap"><div class="bar" style="width:' + pct + '%"></div></div>' +
+          '<div class="dcount">' + counts[t] + '명</div>' +
+        '</div>' +
+        '<div class="dept-breakdown">' + (topDepts ? esc(topDepts) : "해당 교원 없음") + '</div>';
+    }).join("");
+    Array.prototype.forEach.call($("techBars").querySelectorAll(".dept-row"), function(el){
+      el.addEventListener("click", function(){
+        var t = el.getAttribute("data-tech");
+        state.techFilter = (state.techFilter === t) ? null : t;
+        renderTechBars();
+        renderDirectory();
+      });
+    });
+  }
+
   // ── 디렉터리 필터/정렬/렌더 ──
   $("searchInput").addEventListener("input", function(e){
     state.textQuery = e.target.value.trim().toLowerCase();
@@ -866,9 +1117,11 @@
   });
   $("clearFilterBtn").addEventListener("click", function(){
     state.deptFilter = null;
+    state.techFilter = null;
     state.textQuery = "";
     $("searchInput").value = "";
     renderDeptBars();
+    renderTechBars();
     renderDirectory();
   });
 
@@ -879,9 +1132,31 @@
     return blob.indexOf(q) !== -1;
   }
 
+  function renderActiveFilters(){
+    var chips = [];
+    if(state.deptFilter) chips.push({label: "학과: " + state.deptFilter, key: "dept"});
+    if(state.techFilter) chips.push({label: "전략기술: " + state.techFilter, key: "tech"});
+    if(state.textQuery) chips.push({label: "검색어: “" + state.textQuery + "”", key: "text"});
+    $("activeFilters").innerHTML = chips.map(function(c){
+      return '<span class="afilter-chip">' + esc(c.label) + '<button type="button" data-clear="' + c.key + '">✕</button></span>';
+    }).join("");
+    Array.prototype.forEach.call($("activeFilters").querySelectorAll("button"), function(btn){
+      btn.addEventListener("click", function(){
+        var key = btn.getAttribute("data-clear");
+        if(key === "dept") state.deptFilter = null;
+        if(key === "tech") state.techFilter = null;
+        if(key === "text"){ state.textQuery = ""; $("searchInput").value = ""; }
+        renderDeptBars();
+        renderTechBars();
+        renderDirectory();
+      });
+    });
+  }
+
   function getFilteredResearchers(){
     var list = state.all.filter(function(r){
       if(state.deptFilter && r.department !== state.deptFilter) return false;
+      if(state.techFilter && (r.national_tech || []).indexOf(state.techFilter) === -1) return false;
       return matchesQuery(r, state.textQuery);
     });
     if(state.sortMode === "perf"){
@@ -897,6 +1172,7 @@
   }
 
   function renderDirectory(){
+    renderActiveFilters();
     var list = getFilteredResearchers();
     $("resultCount").textContent = list.length + "명 표시 중 (전체 " + state.all.length + "명)";
     if(list.length === 0){
@@ -904,9 +1180,14 @@
       return;
     }
     $("researcherGrid").innerHTML = list.map(researcherCardHtml).join("");
-    Array.prototype.forEach.call($("researcherGrid").querySelectorAll(".rcard"), function(el){
-      el.addEventListener("click", function(){ openDetail(el.getAttribute("data-id")); });
+    var grid = $("researcherGrid");
+    Array.prototype.forEach.call(grid.querySelectorAll(".rcard"), function(el){
+      el.addEventListener("click", function(e){
+        if(e.target.classList.contains("pick-cb")) return;
+        openDetail(el.getAttribute("data-id"));
+      });
     });
+    bindPickCheckboxes(grid);
   }
 
   function researcherCardHtml(r){
@@ -916,7 +1197,7 @@
       .map(function(k){ return '<span>' + esc(k) + ' ' + r.perf[k] + '</span>'; })
       .join("");
     return '<div class="rcard" data-id="' + esc(r.id) + '">' +
-      '<div class="rc-head"><span class="rc-name">' + esc(r.name) + '</span><span class="rc-dept">' + esc(r.department) + '</span></div>' +
+      '<div class="rc-head">' + pickCbHtml(r.id) + '<span class="rc-name">' + esc(r.name) + '</span><span class="rc-dept">' + esc(r.department) + '</span></div>' +
       '<div class="rc-email">' + esc(r.email || "이메일 미기재") + '</div>' +
       '<div class="rc-interests">' + esc(r.interests || "연구관심분야 미기재") + '</div>' +
       '<div class="rc-stats">' + statBadges + '</div>' +
@@ -1108,7 +1389,7 @@
       return '<div class="ai-result-card">' +
         '<div class="rank">' + (idx + 1) + '</div>' +
         '<div class="body">' +
-          '<div class="rr-head"><span class="rr-name">' + esc(r.name) + '</span>' +
+          '<div class="rr-head">' + pickCbHtml(r.id) + '<span class="rr-name">' + esc(r.name) + '</span>' +
           '<span class="rr-dept">' + esc(r.department) + '</span>' +
           '<span class="rr-score">적합도 ' + esc(item.score != null ? item.score : "-") + '</span></div>' +
           '<div class="rr-reason">' + esc(item.reason || "") + '</div>' +
@@ -1119,6 +1400,7 @@
     Array.prototype.forEach.call(el.querySelectorAll("button[data-id]"), function(btn){
       btn.addEventListener("click", function(){ openDetail(btn.getAttribute("data-id")); });
     });
+    bindPickCheckboxes(el);
   }
 
   var runAiBtn = $("runAiBtn");
