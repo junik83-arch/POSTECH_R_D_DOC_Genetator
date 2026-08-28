@@ -50,7 +50,11 @@ Arithmetic Transfer for inner forms of GL2n (2025; Forum of Mathematics, Sigma)
 Arithmetic Transfer for inner forms of GL2n (2025; Forum of Mathematics, Sigma)
 
 ## 홈페이지 추가 정보
-> 크롤링 시각: 2026-08-27T00:58:57+00:00 · 출처: <http://qirui.li>
+> 크롤링 시각: 2026-08-28T08:46:23+00:00 · 출처: <http://qirui.li>
+
+**AI 생성 요약** _(Gemini 자동 요약 · 2026-08-28T09:37:57+00:00 · 원문은 아래에서 확인 가능)_
+
+홈페이지 원문에서 본인 관련 정보를 명확히 찾지 못했습니다.
 
 Document
 
