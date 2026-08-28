@@ -262,6 +262,25 @@ Playwright로 탭 전환(학과↔전략기술 단독 표시), 팀 구성 토글
   유지.
 - 재빌드 확인: `python3 scripts/build_wiki.py` 반복 실행 결과 동일(idempotent), 홈페이지
   필드 버그가 있던 9명 페이지에 기존 AI 요약이 정상적으로 나타나는 것과, 폴백 대상 42명 목록이
-  기대와 일치하는 것을 확인. Gemini 호출 자체는 이 세션의 네트워크 정책상 실행 불가 —
-  `sources/faculty_fallback_summary.json`은 다음 정기 갱신(또는 수동 `workflow_dispatch`)
-  때 GitHub Actions 러너에서 처음 생성됨.
+  기대와 일치하는 것을 확인.
+
+## [2026-08-28] ingest | 폴백 요약 42명분을 Claude가 이번 한 번 직접 작성
+
+위 항목에서 "Gemini 호출이 이 세션에서 불가해 다음 정기 갱신 때 생성된다"고 남겨둔 것을,
+사용자가 "이번만 네가 직접 42명 자료를 읽고 요약해서 넣어줄 수 있냐"고 요청해 그렇게 처리함.
+
+- `build_input_text()`가 만드는 것과 동일한 입력(관심분야·실적건수·text_public 전체 섹션)을
+  42명 전원에 대해 뽑아 직접 읽고, `summarize_faculty_fallback.py`의 프롬프트 규칙(사실
+  기반, 2~3문장, 평문)을 그대로 따라 한 명씩 요약문을 작성 → `source_hash`(각자의
+  `build_input_text()` 해시)와 함께 `sources/faculty_fallback_summary.json`에 저장.
+  `model` 필드에 "Gemini 파이프라인이 아니라 이 세션이 수동으로 작성"임을 명시(추적성 확보).
+- `build_wiki.py`의 폴백 요약 라벨 문구에서 "Gemini가 작성"이라는 특정 모델명을 빼고 "AI가
+  작성"으로 일반화 — 이번처럼 Gemini 호출 없이 채워진 경우에도 문구가 사실과 어긋나지 않도록.
+- 42명 전원의 위키 페이지(`wiki/faculty/*.md`)에 "AI 요약 (위키 데이터 기반)" 박스가 정상
+  표시되는 것, 홈페이지 요약이 있는 나머지 256명과 겹치지 않는 것을 스크립트로 확인.
+- 부수 발견: 박성우(20678, 컴퓨터공학과)의 `text_public` "학회발표" 필드에 연구분야와 무관한
+  해조류/미생물 학회명이 섞여 있음을 발견 — 원본 실적 데이터베이스 자체의 귀속 오류로 추정,
+  요약에는 반영하지 않고 `open-questions.md`에 기록.
+- 주의: 이 42건은 `source_hash`가 이미 채워져 있어, 이후 `summarize_faculty_fallback.py`를
+  정식 실행해도(GEMINI_API_KEY 있어도) 원본이 안 바뀐 한 **재요약을 건너뛰고 이 수동 요약이
+  그대로 유지**됨 — Gemini가 생성한 것으로 교체하려면 `--force` 필요.

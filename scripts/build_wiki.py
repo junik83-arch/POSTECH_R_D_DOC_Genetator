@@ -277,7 +277,7 @@ def render_faculty_page(rec: dict, crawl: dict, fallback: dict) -> str:
         lines.append("> [!NOTE]")
         lines.append(
             "> **AI 요약 (위키 데이터 기반)** _(홈페이지 크롤링 정보가 없어, 이 위키에 기록된 "
-            "연구관심분야·실적·논문 정보를 바탕으로 Gemini가 작성 · 자세한 내용은 아래 실적·논문 목록 참고)_"
+            "연구관심분야·실적·논문 정보를 바탕으로 AI가 작성 · 자세한 내용은 아래 실적·논문 목록 참고)_"
         )
         lines.append(">")
         for summary_line in fallback_summary.split("\n"):
