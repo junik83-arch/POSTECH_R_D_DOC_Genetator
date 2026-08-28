@@ -26,6 +26,7 @@ DATA_DIR = ROOT / "sources"
 WIKI_DIR = ROOT / "wiki"
 SOURCE_FILE = DATA_DIR / "faculty_profiles_source.json"
 CRAWL_FILE = DATA_DIR / "homepage_crawl.json"
+FALLBACK_FILE = DATA_DIR / "faculty_fallback_summary.json"
 
 BUILD_DATE = date.today().isoformat()
 
@@ -205,7 +206,27 @@ def render_perf_table(perf: dict) -> str:
     return header + rows
 
 
-def render_faculty_page(rec: dict, crawl: dict) -> str:
+def normalize_records(records: list[dict]) -> None:
+    """레코드를 제자리에서 정규화한다 (원본 JSON 파일은 건드리지 않음 — sources/ 는
+    불변). 다른 스크립트(summarize_faculty_fallback.py 등)도 build_wiki.py 와 같은
+    레코드 상태를 보도록 이 함수를 공유한다."""
+    for r in records:
+        r["학과"] = (r.get("학과") or "").strip() or "미분류"
+        # 홈페이지 URL 끝에 개행이 섞인 원본 데이터가 있어(예: 염한웅 등 9명) crawl 딕셔너리
+        # 조회("crawl.get(homepage)")가 어긋나 AI 요약이 있는데도 안 뜨는 문제가 있었다 —
+        # 순수 공백 정규화라 원본 내용은 그대로 유지된다 (No Hallucination 원칙 준수).
+        r["홈페이지"] = (r.get("홈페이지") or "").strip()
+
+
+def get_homepage_summary(rec: dict, crawl: dict) -> str:
+    """홈페이지 크롤링 원문을 Gemini가 요약한 필드. 크롤링 원문 자체가 없으면
+    (홈페이지 미등록·학과 공통 포털 제외·크롤링 실패) 빈 문자열."""
+    homepage = rec.get("홈페이지", "") or ""
+    crawled = crawl.get(homepage) if homepage else None
+    return (crawled.get("summary") or "").strip() if crawled and crawled.get("text") else ""
+
+
+def render_faculty_page(rec: dict, crawl: dict, fallback: dict) -> str:
     name = rec["성명"]
     dept = rec.get("학과", "").strip() or "미분류"
     email = rec.get("이메일", "") or "_기재 없음_"
@@ -219,7 +240,11 @@ def render_faculty_page(rec: dict, crawl: dict) -> str:
     # 한 번만 조회해 둔다 — 뒤 내용(실적·논문 목록 등)이 방대해 훑기 어려우니, 요약이
     # 있으면 페이지 상단(연구관심분야보다 앞)에도 미리 보여준다.
     crawled = crawl.get(homepage) if homepage else None
-    homepage_summary = (crawled.get("summary") or "").strip() if crawled and crawled.get("text") else ""
+    homepage_summary = get_homepage_summary(rec, crawl)
+    # 홈페이지 요약이 없는 경우(미등록·공통 포털 제외·크롤링 실패)에만 위키 자체 필드
+    # (관심분야·실적·논문 등) 기반 폴백 요약을 쓴다 — scripts/summarize_faculty_fallback.py 참고.
+    fallback_entry = fallback.get(str(rec["개인번호"])) if not homepage_summary else None
+    fallback_summary = (fallback_entry.get("summary") or "").strip() if fallback_entry else ""
 
     lines = []
     lines.append("---")
@@ -246,6 +271,16 @@ def render_faculty_page(rec: dict, crawl: dict) -> str:
         lines.append("> **AI 요약** _(Gemini가 홈페이지를 읽고 요약 · 자세한 내용은 아래 실적·논문 목록 참고)_")
         lines.append(">")
         for summary_line in homepage_summary.split("\n"):
+            lines.append(f"> {summary_line}")
+        lines.append("")
+    elif fallback_summary:
+        lines.append("> [!NOTE]")
+        lines.append(
+            "> **AI 요약 (위키 데이터 기반)** _(홈페이지 크롤링 정보가 없어, 이 위키에 기록된 "
+            "연구관심분야·실적·논문 정보를 바탕으로 AI가 작성 · 자세한 내용은 아래 실적·논문 목록 참고)_"
+        )
+        lines.append(">")
+        for summary_line in fallback_summary.split("\n"):
             lines.append(f"> {summary_line}")
         lines.append("")
     lines.append("## 연구관심분야")
@@ -446,7 +481,7 @@ def render_national_tech(records: list[dict]) -> str:
     return "\n".join(lines)
 
 
-def build_researchers_json(records: list[dict], crawl: dict) -> dict:
+def build_researchers_json(records: list[dict], crawl: dict, fallback: dict) -> dict:
     """대시보드(dashboard/index.html)가 fetch로 읽는 경량 JSON 인덱스를 만든다.
 
     wiki/faculty/*.md 와 같은 원본(sources/faculty_profiles_source.json)에서 결정론적으로
@@ -461,10 +496,13 @@ def build_researchers_json(records: list[dict], crawl: dict) -> dict:
         by_dept[dept] = by_dept.get(dept, 0) + 1
 
         homepage = r.get("홈페이지", "") or ""
-        crawled = crawl.get(homepage) if homepage else None
         # 홈페이지 크롤링을 Gemini가 요약한 것 — wiki/faculty/*.md 상단 AI 요약과 같은
         # 필드(원본 그대로, 대시보드용으로 별도로 자르거나 손대지 않음).
-        homepage_summary = (crawled.get("summary") or "").strip() if crawled and crawled.get("text") else ""
+        homepage_summary = get_homepage_summary(r, crawl)
+        # 홈페이지 요약이 없을 때만 쓰는 위키 데이터 기반 폴백 요약 — wiki/faculty/*.md 와
+        # 같은 우선순위(홈페이지 요약이 있으면 폴백은 안 씀).
+        fallback_entry = fallback.get(str(r["개인번호"])) if not homepage_summary else None
+        fallback_summary = (fallback_entry.get("summary") or "").strip() if fallback_entry else ""
 
         interests_raw = (r.get("관심분야") or "").strip()
         parsed = parse_text_public(r.get("text_public", ""))
@@ -489,6 +527,7 @@ def build_researchers_json(records: list[dict], crawl: dict) -> dict:
                 "email": r.get("이메일", ""),
                 "homepage": homepage,
                 "homepage_summary": homepage_summary,
+                "fallback_summary": fallback_summary,
                 "interests": render_list_or_text(interests_raw),
                 "perf": perf,
                 "perf_total": perf_total(perf),
@@ -530,18 +569,20 @@ def main() -> None:
     crawl = {}
     if CRAWL_FILE.exists():
         crawl = json.loads(CRAWL_FILE.read_text(encoding="utf-8"))
+    fallback = {}
+    if FALLBACK_FILE.exists():
+        fallback = json.loads(FALLBACK_FILE.read_text(encoding="utf-8"))
 
+    normalize_records(records)
     by_dept: dict[str, list[dict]] = defaultdict(list)
     for r in records:
-        dept = (r.get("학과") or "").strip() or "미분류"
-        r["학과"] = dept  # 앞뒤 공백(예: " 물리학과") 정규화
-        by_dept[dept].append(r)
+        by_dept[r["학과"]].append(r)
 
     faculty_dir = WIKI_DIR / "faculty"
     faculty_dir.mkdir(parents=True, exist_ok=True)
 
     for r in records:
-        page = render_faculty_page(r, crawl)
+        page = render_faculty_page(r, crawl, fallback)
         (faculty_dir / faculty_filename(r)).write_text(page, encoding="utf-8")
 
     (WIKI_DIR / "index.md").write_text(render_index(records, by_dept), encoding="utf-8")
@@ -549,7 +590,7 @@ def main() -> None:
     (WIKI_DIR / "research-areas.md").write_text(render_research_areas(records), encoding="utf-8")
     (WIKI_DIR / "national-strategic-tech.md").write_text(render_national_tech(records), encoding="utf-8")
 
-    researchers_json = build_researchers_json(records, crawl)
+    researchers_json = build_researchers_json(records, crawl, fallback)
     (WIKI_DIR / "researchers.json").write_text(
         json.dumps(researchers_json, ensure_ascii=False, separators=(",", ":")),
         encoding="utf-8",
@@ -567,6 +608,11 @@ def main() -> None:
         print(
             "참고: sources/homepage_crawl.json 이 없어 '홈페이지 추가 정보' 섹션은 "
             "플레이스홀더로 채워졌습니다. scripts/crawl_homepages.py 참고."
+        )
+    if not fallback:
+        print(
+            "참고: sources/faculty_fallback_summary.json 이 없어 홈페이지 요약이 없는 교원은 "
+            "AI 요약 없이 표시됩니다. scripts/summarize_faculty_fallback.py 참고."
         )
 
 

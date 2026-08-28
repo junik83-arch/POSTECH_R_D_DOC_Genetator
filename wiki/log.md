@@ -228,3 +228,96 @@ Pages 정적 서빙에서도 원본 그대로 보존). 아래쪽 섹션의 중�
 Playwright로 탭 전환(학과↔전략기술 단독 표시), 팀 구성 토글 켬/끔에 따른 체크박스 노출,
 토글을 꺼도 이미 선택한 카드의 `.picked` 테두리가 유지되는 것, 375px 폭에서 가로 스크롤
 없음까지 확인.
+
+## [2026-08-28] feature | 홈페이지 요약 없는 교원용 위키 데이터 기반 폴백 요약 추가
+
+사용자가 "홈페이지 크롤링이 안 됐거나 교원소개 페이지를 못 찾아 AI 요약이 없는 교원도, 위키에
+이미 있는 정보만으로 간단한 요약을 만들어 개별 교원 페이지에 띄울 수 있는지" 문의. 결정론적
+템플릿 조합과 Gemini 생성 두 방식을 제시했고, 사용자가 Gemini 생성 방식을 선택.
+
+- **`scripts/summarize_faculty_fallback.py` 신설**: `summarize_homepages.py`와 동일한 Gemini
+  REST 호출 패턴(동적 모델 탐색 + 폴백 후보 목록)을 재사용하되, 입력은 홈페이지 원문이 아니라
+  `build_wiki.py`의 `parse_text_public()`/`get_homepage_summary()`를 그대로 import해 얻은
+  **위키 자체 필드**(관심분야·실적건수·주요성과·대표연구 등, 이미 `wiki/faculty/*.md`에 반영된
+  값들)로 한정. 홈페이지 AI 요약이 이미 있는 교원은 대상에서 제외(`needs_fallback()` — 원문이
+  있으면 그건 홈페이지 요약이 채울 몫). 결과는 개인번호를 키로 `sources/faculty_fallback_summary.json`에
+  저장(원문 해시 기반으로 변경 없으면 재요약 스킵).
+- **`build_wiki.py`**: 홈페이지 요약이 없을 때만 폴백 요약을 조회하도록
+  `render_faculty_page()`에 로직 추가 — "AI 요약 (위키 데이터 기반)"이라는 별도 라벨(`> [!NOTE]`)로
+  홈페이지 기반 요약과 명확히 구분해 표시. 두 함수(`render_faculty_page`,
+  `build_researchers_json`)에 중복돼 있던 홈페이지 요약 조회 로직을 `get_homepage_summary()`
+  헬퍼로 통합.
+- **`.github/workflows/refresh-wiki.yml`**: `summarize_homepages.py` 다음, `build_wiki.py`
+  이전에 새 단계 추가(같은 `GEMINI_API_KEY` 조건).
+- 대시보드(`dashboard/index.html`, `researchers.json`)는 이번 변경 대상 아님 — 사용자 요청이
+  교원 위키 페이지 한정이라 범위를 거기까지만 좁힘. 필요하면 별도로 추가 요청.
+- **부수적으로 발견해 함께 고친 버그**: `faculty_profiles_source.json`의 `홈페이지` 필드
+  11명분에 개행·공백·zero-width space·BOM 등이 섞여 있어(예: 염한웅
+  `'...hanwoongyeomphysicist\n'`), `crawl.get(homepage)` 딕셔너리 조회가 어긋나 **실제로는
+  크롤링·요약이 있는데도 교원 페이지에 전혀 안 뜨던 사례가 9명** 있었음(나머지 2명은 애초에
+  크롤링 원문 자체가 없어 영향 없음). `build_wiki.py`에 `normalize_records()`를 추가해 학과
+  공백 정규화와 함께 홈페이지 필드도 `.strip()` — 순수 공백 정규화라 원본 내용은 그대로 유지됨
+  (No Hallucination 원칙 준수). 이 정규화가 없었다면 폴백 대상 판정 자체가 51명으로 잘못
+  집계됐을 것(실제 대상은 42명) — 새 스크립트도 같은 `normalize_records()`를 공유해 일관성
+  유지.
+- 재빌드 확인: `python3 scripts/build_wiki.py` 반복 실행 결과 동일(idempotent), 홈페이지
+  필드 버그가 있던 9명 페이지에 기존 AI 요약이 정상적으로 나타나는 것과, 폴백 대상 42명 목록이
+  기대와 일치하는 것을 확인.
+
+## [2026-08-28] ingest | 폴백 요약 42명분을 Claude가 이번 한 번 직접 작성
+
+위 항목에서 "Gemini 호출이 이 세션에서 불가해 다음 정기 갱신 때 생성된다"고 남겨둔 것을,
+사용자가 "이번만 네가 직접 42명 자료를 읽고 요약해서 넣어줄 수 있냐"고 요청해 그렇게 처리함.
+
+- `build_input_text()`가 만드는 것과 동일한 입력(관심분야·실적건수·text_public 전체 섹션)을
+  42명 전원에 대해 뽑아 직접 읽고, `summarize_faculty_fallback.py`의 프롬프트 규칙(사실
+  기반, 2~3문장, 평문)을 그대로 따라 한 명씩 요약문을 작성 → `source_hash`(각자의
+  `build_input_text()` 해시)와 함께 `sources/faculty_fallback_summary.json`에 저장.
+  `model` 필드에 "Gemini 파이프라인이 아니라 이 세션이 수동으로 작성"임을 명시(추적성 확보).
+- `build_wiki.py`의 폴백 요약 라벨 문구에서 "Gemini가 작성"이라는 특정 모델명을 빼고 "AI가
+  작성"으로 일반화 — 이번처럼 Gemini 호출 없이 채워진 경우에도 문구가 사실과 어긋나지 않도록.
+- 42명 전원의 위키 페이지(`wiki/faculty/*.md`)에 "AI 요약 (위키 데이터 기반)" 박스가 정상
+  표시되는 것, 홈페이지 요약이 있는 나머지 256명과 겹치지 않는 것을 스크립트로 확인.
+- 부수 발견: 박성우(20678, 컴퓨터공학과)의 `text_public` "학회발표" 필드에 연구분야와 무관한
+  해조류/미생물 학회명이 섞여 있음을 발견 — 원본 실적 데이터베이스 자체의 귀속 오류로 추정,
+  요약에는 반영하지 않고 `open-questions.md`에 기록.
+- 주의: 이 42건은 `source_hash`가 이미 채워져 있어, 이후 `summarize_faculty_fallback.py`를
+  정식 실행해도(GEMINI_API_KEY 있어도) 원본이 안 바뀐 한 **재요약을 건너뛰고 이 수동 요약이
+  그대로 유지**됨 — Gemini가 생성한 것으로 교체하려면 `--force` 필요.
+
+## [2026-08-28] lint | 폴백 요약에서 실적 개수(논문/과제 등 건수) 언급 제거
+
+사용자가 "직접 올린 공동논문 수·과제 등은 제외해달라 — 실적은 매년 업데이트되는데 숫자만
+안 바뀌면 문제"라고 지적. 위 폴백 요약 42건에 "과제 5건", "학회발표 17건"처럼 박아 넣은
+구체적 개수가, 다음 실적 데이터베이스 교체(연 1회) 후에도 재요약 전까지 그대로 남아 이미
+최신화된 "실적 요약" 표와 요약 문장이 서로 다른 숫자를 말하게 될 위험이 있었음(요약 문장은
+`source_hash`가 안 바뀌면 자동 재생성되지 않으므로).
+
+- `scripts/summarize_faculty_fallback.py`: `build_input_text()`에서 `[실적 건수]` 블록을
+  아예 제거(Gemini에게 셀 수 있는 원재료 자체를 안 줌) — 실적 개수는 교원 페이지의 "실적
+  요약" 표가 `build_wiki.py`에 의해 매번 원본에서 직접 렌더링되어 항상 최신이므로, 요약
+  문장에서 굳이 다시 언급할 필요가 없음. 시스템 프롬프트에도 "구체적인 개수는 언급하지
+  말 것" 규칙(6번)을 명시적으로 추가(입력에서 빠졌어도 모델이 논문 목록 길이 등으로 개수를
+  섣불리 추정해 말하지 않도록 하는 이중 안전장치).
+- 폴백 요약 42건 전부에서 실적 개수 언급 문장을 제거하고 재작성 — `build_input_text()`가
+  바뀌었으므로 `source_hash`도 새 입력 기준으로 재계산해 `faculty_fallback_summary.json`에
+  반영(정규식으로 남은 "N편/N건/N권" 패턴이 없는지 기계적으로 확인 후 저장).
+- `build_wiki.py` 재실행 후 idempotent 확인, 42개 페이지의 "AI 요약 (위키 데이터 기반)"
+  박스에 실적 개수 표현이 하나도 남지 않은 것을 grep으로 확인.
+
+## [2026-08-28] feature | 대시보드 상세 모달에도 폴백 요약(위키 데이터 기반) 추가
+
+사용자가 "대시보드에서도 새로고침하면 반영되나?"라고 문의 — 위 두 항목의 폴백 요약은
+`wiki/faculty/*.md`에만 반영돼 있었고 `researchers.json`/대시보드는 대상이 아니었음(홈페이지
+기반 AI 요약을 대시보드에 추가했을 때와 같은 상황). 확인 후 이번에도 추가하기로 함.
+
+- `build_researchers_json()`이 `fallback`(faculty_fallback_summary.json)을 인자로 받도록
+  하고, 홈페이지 요약이 없을 때만 `fallback_summary` 필드를 채움(교원 페이지와 같은 우선순위
+  — 둘 다 있는 경우는 없음, 42명 폴백 + 256명 홈페이지 = 298명으로 확인).
+- `dashboard/index.html`: 상세 모달에 `.ai-summary-box.fallback`(회색 톤, 기존 파란
+  `.ai-summary-box`와 시각적으로 구분되도록 `--panel-bg`/`--muted` 재사용) 추가 —
+  `homepage_summary`가 없고 `fallback_summary`가 있을 때만 "AI 요약 (위키 데이터 기반)"
+  라벨로 표시.
+- Playwright로 로컬 서버 띄워 폴백 대상(박진수, 102075)과 홈페이지 요약 대상(염한웅, 100271)
+  두 상세 모달이 각각 올바른 색상·라벨로 렌더링되는 것, JS 에러 없는 것 확인(스크린샷으로
+  사용자에게 시각 확인 전달).
