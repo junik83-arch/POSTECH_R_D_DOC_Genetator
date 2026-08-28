@@ -449,6 +449,9 @@ def build_researchers_json(records: list[dict]) -> dict:
                 "interests": render_list_or_text(interests_raw),
                 "perf": perf,
                 "perf_total": perf_total(perf),
+                # 정부 12대 국가전략기술 표준 명칭으로 정규화된 태그 — national-strategic-tech.md
+                # 와 같은 parse_national_tech() 결과를 재사용 (원본 무결성: 새로 판단하지 않음)
+                "national_tech": parse_national_tech(r.get("text_public", "")),
                 "sections": sections,
                 "wiki_path": f"faculty/{faculty_filename(r)}",
                 # AI 자연어 추천이 외부 API로 전송하는 압축 프로필 — 원본 필드를 그대로
@@ -469,6 +472,9 @@ def build_researchers_json(records: list[dict]) -> dict:
         "generated": BUILD_DATE,
         "count": len(researchers),
         "departments": [{"name": k, "count": v} for k, v in by_dept.items()],
+        # 대시보드의 국가전략기술 필터가 쓰는 표준 12개 분야 순서 — NATIONAL_TECH_CATEGORIES
+        # 를 그대로 노출해 대시보드 쪽에 하드코딩하지 않게 한다.
+        "tech_categories": NATIONAL_TECH_CATEGORIES,
         "researchers": researchers,
     }
 
