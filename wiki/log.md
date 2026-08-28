@@ -228,3 +228,40 @@ Pages 정적 서빙에서도 원본 그대로 보존). 아래쪽 섹션의 중�
 Playwright로 탭 전환(학과↔전략기술 단독 표시), 팀 구성 토글 켬/끔에 따른 체크박스 노출,
 토글을 꺼도 이미 선택한 카드의 `.picked` 테두리가 유지되는 것, 375px 폭에서 가로 스크롤
 없음까지 확인.
+
+## [2026-08-28] feature | 홈페이지 요약 없는 교원용 위키 데이터 기반 폴백 요약 추가
+
+사용자가 "홈페이지 크롤링이 안 됐거나 교원소개 페이지를 못 찾아 AI 요약이 없는 교원도, 위키에
+이미 있는 정보만으로 간단한 요약을 만들어 개별 교원 페이지에 띄울 수 있는지" 문의. 결정론적
+템플릿 조합과 Gemini 생성 두 방식을 제시했고, 사용자가 Gemini 생성 방식을 선택.
+
+- **`scripts/summarize_faculty_fallback.py` 신설**: `summarize_homepages.py`와 동일한 Gemini
+  REST 호출 패턴(동적 모델 탐색 + 폴백 후보 목록)을 재사용하되, 입력은 홈페이지 원문이 아니라
+  `build_wiki.py`의 `parse_text_public()`/`get_homepage_summary()`를 그대로 import해 얻은
+  **위키 자체 필드**(관심분야·실적건수·주요성과·대표연구 등, 이미 `wiki/faculty/*.md`에 반영된
+  값들)로 한정. 홈페이지 AI 요약이 이미 있는 교원은 대상에서 제외(`needs_fallback()` — 원문이
+  있으면 그건 홈페이지 요약이 채울 몫). 결과는 개인번호를 키로 `sources/faculty_fallback_summary.json`에
+  저장(원문 해시 기반으로 변경 없으면 재요약 스킵).
+- **`build_wiki.py`**: 홈페이지 요약이 없을 때만 폴백 요약을 조회하도록
+  `render_faculty_page()`에 로직 추가 — "AI 요약 (위키 데이터 기반)"이라는 별도 라벨(`> [!NOTE]`)로
+  홈페이지 기반 요약과 명확히 구분해 표시. 두 함수(`render_faculty_page`,
+  `build_researchers_json`)에 중복돼 있던 홈페이지 요약 조회 로직을 `get_homepage_summary()`
+  헬퍼로 통합.
+- **`.github/workflows/refresh-wiki.yml`**: `summarize_homepages.py` 다음, `build_wiki.py`
+  이전에 새 단계 추가(같은 `GEMINI_API_KEY` 조건).
+- 대시보드(`dashboard/index.html`, `researchers.json`)는 이번 변경 대상 아님 — 사용자 요청이
+  교원 위키 페이지 한정이라 범위를 거기까지만 좁힘. 필요하면 별도로 추가 요청.
+- **부수적으로 발견해 함께 고친 버그**: `faculty_profiles_source.json`의 `홈페이지` 필드
+  11명분에 개행·공백·zero-width space·BOM 등이 섞여 있어(예: 염한웅
+  `'...hanwoongyeomphysicist\n'`), `crawl.get(homepage)` 딕셔너리 조회가 어긋나 **실제로는
+  크롤링·요약이 있는데도 교원 페이지에 전혀 안 뜨던 사례가 9명** 있었음(나머지 2명은 애초에
+  크롤링 원문 자체가 없어 영향 없음). `build_wiki.py`에 `normalize_records()`를 추가해 학과
+  공백 정규화와 함께 홈페이지 필드도 `.strip()` — 순수 공백 정규화라 원본 내용은 그대로 유지됨
+  (No Hallucination 원칙 준수). 이 정규화가 없었다면 폴백 대상 판정 자체가 51명으로 잘못
+  집계됐을 것(실제 대상은 42명) — 새 스크립트도 같은 `normalize_records()`를 공유해 일관성
+  유지.
+- 재빌드 확인: `python3 scripts/build_wiki.py` 반복 실행 결과 동일(idempotent), 홈페이지
+  필드 버그가 있던 9명 페이지에 기존 AI 요약이 정상적으로 나타나는 것과, 폴백 대상 42명 목록이
+  기대와 일치하는 것을 확인. Gemini 호출 자체는 이 세션의 네트워크 정책상 실행 불가 —
+  `sources/faculty_fallback_summary.json`은 다음 정기 갱신(또는 수동 `workflow_dispatch`)
+  때 GitHub Actions 러너에서 처음 생성됨.

@@ -86,12 +86,16 @@ jobs:
         if: ${{ env.GEMINI_API_KEY != '' }}
         run: python3 scripts/summarize_homepages.py
 
+      - name: 홈페이지 요약 없는 교원 위키 데이터 기반 폴백 요약 (Gemini)
+        if: ${{ env.GEMINI_API_KEY != '' }}
+        run: python3 scripts/summarize_faculty_fallback.py
+
       - name: 위키 재생성
         run: python3 scripts/build_wiki.py
 
       - name: 변경사항 커밋 & 푸시
         run: |
-          git add sources/homepage_crawl.json wiki/
+          git add sources/homepage_crawl.json sources/faculty_fallback_summary.json wiki/
           if git diff --cached --quiet; then
             echo "변경 없음, 커밋 생략"
             exit 0

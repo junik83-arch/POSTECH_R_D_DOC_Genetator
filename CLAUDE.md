@@ -23,6 +23,7 @@
 sources/                       ← 1) 원본 자료 — 절대 수정하지 않음
   faculty_profiles_source.json    POSTECH R&D 실적 데이터베이스 (교원 298명, 연 1회 수동 업로드)
   homepage_crawl.json             교원 홈페이지 크롤링 결과 + AI 요약 (자동 생성, 연 2회 갱신)
+  faculty_fallback_summary.json   홈페이지 AI 요약이 없는 교원의 위키 데이터 기반 폴백 요약 (자동 생성, 연 2회 갱신)
 
 wiki/                           ← 2) 위키 — 두 종류의 페이지가 섞여 있음
   faculty/<개인번호>-<성명>.md    [기계 생성] 교원 1인당 1페이지 — 결정론적 추출
@@ -46,6 +47,8 @@ scripts/                        ← 3) 파이프라인
                                     researchers.json 등 (결정론적)
   crawl_homepages.py               홈페이지+서브페이지 크롤링 → sources/homepage_crawl.json
   summarize_homepages.py           크롤링 원문을 Gemini API로 요약 → homepage_crawl.json 의 summary 필드
+  summarize_faculty_fallback.py    위 요약이 없는 교원만, 위키 자체 필드(관심분야·실적·논문 등)를
+                                    Gemini API로 요약 → faculty_fallback_summary.json
 
 tools/
   doc-generator.html              사업 안내 공문 생성기 — 이 위키와 무관한 별도 도구
@@ -56,7 +59,10 @@ tools/
 `sources/homepage_crawl.json` 안의 `text`/`subpages`는 크롤링 원문 그대로지만, `summary`
 필드는 그 원문을 LLM(Gemini)이 요약한 **파생 데이터**입니다 — 편의상 같은 파일에 저장하지만
 "원본 그 자체"는 아니라는 점에 유의하세요 (교원 페이지에는 "AI 생성 요약"이라고 명시해 출처를
-구분합니다).
+구분합니다). `sources/faculty_fallback_summary.json`도 마찬가지로 파생 데이터입니다 — 다만
+입력이 홈페이지 원문이 아니라 `faculty_profiles_source.json`의 구조화 필드(관심분야·실적·
+논문 등, 이미 `wiki/faculty/*.md`에 그대로 옮겨져 있는 값들)라, 교원 페이지에는 "AI 요약
+(위키 데이터 기반)"이라고 표기해 홈페이지 기반 요약과 구분합니다.
 
 이 문서(`CLAUDE.md`)가 3번째 레이어인 **스키마**입니다.
 
@@ -136,7 +142,8 @@ LLM(Claude)이 직접 쓰고 유지합니다. **스크립트가 건드리지 않
 
 **자동 정기 갱신**: `.github/workflows/refresh-wiki.yml` 이 연 2회(3월 1일·9월 1일)
 ① 크롤러(`--force`, 전체 재크롤링) ② `summarize_homepages.py`(Gemini API로 원문 요약,
-`GEMINI_API_KEY` 시크릿이 설정된 경우에만) ③ `build_wiki.py` 순서로 실행해 결과를 `main`에
+`GEMINI_API_KEY` 시크릿이 설정된 경우에만) ③ `summarize_faculty_fallback.py`(위 요약이
+없는 교원만, 같은 시크릿 조건으로) ④ `build_wiki.py` 순서로 실행해 결과를 `main`에
 직접 커밋합니다 — GitHub Actions 러너는 일반 인터넷에 접근할 수 있어 이 작업을 이 세션 대신
 해줍니다. Actions 탭에서 수동 실행(`workflow_dispatch`)도 가능합니다. (이 워크플로가 실제로
 켜지려면 `main` 브랜치에 머지되어 있어야 합니다 — GitHub는 스케줄 트리거를 기본 브랜치의
@@ -156,6 +163,14 @@ LLM(Claude)이 직접 쓰고 유지합니다. **스크립트가 건드리지 않
   건너뜁니다(크롤링·위키 재생성은 정상 진행). 원문 안에 다른 교원 이름이 섞여 있을 때
   잘못 귀속시키지 않도록 프롬프트에 가드레일을 넣었지만, 100% 보장되진 않으니 가끔
   스팟체크하세요 (`open-questions.md` 참고).
+- **위키 데이터 기반 폴백 요약 (Gemini)**: 홈페이지가 없거나, 학과 공통 포털이라 크롤링
+  대상에서 제외됐거나, 크롤링에 실패해 위 홈페이지 AI 요약이 비는 교원(약 42명)에 한해,
+  `scripts/summarize_faculty_fallback.py` 가 홈페이지 원문 대신 `wiki/faculty/*.md`에 이미
+  반영된 자기 자신의 필드(관심분야·실적건수·주요성과·대표연구 등)만으로 2~3문장 요약을 만들어
+  `faculty_fallback_summary.json`에 저장합니다. `build_wiki.py`가 홈페이지 AI 요약이 없는
+  교원 페이지에 한해 이 요약을 "AI 요약 (위키 데이터 기반)"으로 표시합니다(둘 다 있을 수는
+  없음 — 홈페이지 요약이 우선).
 
 자세한 크롤러 옵션은 `scripts/crawl_homepages.py` 의 docstring을, 요약 옵션은
-`scripts/summarize_homepages.py` 의 docstring을 참고하세요.
+`scripts/summarize_homepages.py`·`scripts/summarize_faculty_fallback.py` 의 docstring을
+참고하세요.
