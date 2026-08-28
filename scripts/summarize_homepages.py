@@ -40,10 +40,13 @@ except ImportError:
     print("필요한 패키지가 없습니다. 먼저 실행하세요:\n  pip install -r scripts/requirements.txt", file=sys.stderr)
     sys.exit(1)
 
-ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import build_wiki  # noqa: E402 — HOMEPAGE_SUMMARY_NOT_FOUND 등 재사용
+
+ROOT = build_wiki.ROOT
 SOURCES_DIR = ROOT / "sources"
-SOURCE_FILE = SOURCES_DIR / "faculty_profiles_source.json"
-CRAWL_FILE = SOURCES_DIR / "homepage_crawl.json"
+SOURCE_FILE = build_wiki.SOURCE_FILE
+CRAWL_FILE = build_wiki.CRAWL_FILE
 
 API_BASE = "https://generativelanguage.googleapis.com/v1beta"
 # 모델 목록 조회가 실패할 때 쓰는 고정 폴백 (index.html 과 동일한 후보 사상)
@@ -55,7 +58,7 @@ SYSTEM_INSTRUCTION_TEMPLATE = """당신은 대학교 R&D전략팀을 위해 교�
 규칙:
 1. 요약 대상은 오직 "{name}" 교수 1인입니다. 원문에 다른 사람 이름(동료 교수, 학생, 공동연구자 등)이 등장하더라도, 그 사람의 성과나 소식을 "{name}" 교수의 것으로 섞어 쓰지 마세요.
 2. 원문에 명시되지 않은 사실을 지어내지 마세요.
-3. "{name}" 교수 본인에 대한 내용을 명확히 찾을 수 없으면, 다른 내용을 채우지 말고 정확히 이렇게만 답하세요: "홈페이지 원문에서 본인 관련 정보를 명확히 찾지 못했습니다."
+3. "{name}" 교수 본인에 대한 내용을 명확히 찾을 수 없으면, 다른 내용을 채우지 말고 정확히 이렇게만 답하세요: \"""" + build_wiki.HOMEPAGE_SUMMARY_NOT_FOUND + """\"
 4. 한국어로, 3~5문장, 마크다운 서식(굵게·목록·제목 등) 없이 평문으로 작성하세요.
 5. 연구 초점, 대표 성과나 프로젝트, 소속/직함처럼 사실 확인이 되는 내용 위주로 쓰세요."""
 

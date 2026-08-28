@@ -14,10 +14,10 @@ updated: 2026-08-28
 - 이메일: qiruili@postech.ac.kr
 - 홈페이지: <http://qirui.li>
 
-> [!TIP]
-> **AI 요약** _(Gemini가 홈페이지를 읽고 요약 · 자세한 내용은 아래 실적·논문 목록 참고)_
+> [!NOTE]
+> **AI 요약 (위키 데이터 기반)** _(홈페이지 크롤링 정보가 없어, 이 위키에 기록된 연구관심분야·실적·논문 정보를 바탕으로 AI가 작성 · 자세한 내용은 아래 실적·논문 목록 참고)_
 >
-> 홈페이지 원문에서 본인 관련 정보를 명확히 찾지 못했습니다.
+> Qirui Li 교수는 정수론적 기하학, Gross-Zagier 공식, 자기동형 표현, 타원곡선, p-가분군, 시무라 다양체를 연구하며, Lubin-Tate 공간 위 CM 사이클의 교차공식과 GL4의 산술적 기본 보조정리 증명 등의 논문을 발표했다.
 
 ## 연구관심분야
 - Arithmetic Geometry
@@ -56,8 +56,6 @@ Arithmetic Transfer for inner forms of GL2n (2025; Forum of Mathematics, Sigma)
 
 ## 홈페이지 추가 정보
 > 크롤링 시각: 2026-08-28T08:46:23+00:00 · 출처: <http://qirui.li>
-
-_AI 요약은 이 페이지 맨 위에서 볼 수 있습니다 (Gemini 자동 요약 · 2026-08-28T09:37:57+00:00). 원문은 아래에서 확인 가능합니다._
 
 Document
 
