@@ -21,6 +21,10 @@ jobs:
   refresh:
     runs-on: ubuntu-latest
     timeout-minutes: 90
+    env:
+      # if: 조건에서는 secrets 컨텍스트를 직접 참조할 수 없어("Unrecognized named-value:
+      # 'secrets'") job 레벨 env로 한 번 옮겨 담아 아래 스텝의 if에서 env로 참조한다.
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
     steps:
       - uses: actions/checkout@v4
 
@@ -35,9 +39,7 @@ jobs:
         run: python3 scripts/crawl_homepages.py --force --insecure --delay 1.0
 
       - name: 홈페이지 원문 AI 요약 (Gemini)
-        if: ${{ secrets.GEMINI_API_KEY != '' }}
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        if: ${{ env.GEMINI_API_KEY != '' }}
         run: python3 scripts/summarize_homepages.py
 
       - name: 위키 재생성

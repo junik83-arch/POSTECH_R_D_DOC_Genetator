@@ -91,3 +91,23 @@ Actions 설정**(예: Settings → Billing → Actions 지출 한도가 $0로 �
 open-questions.md의 "매월" 표현도 함께 갱신. (기존 참고사항대로, 스케줄 트리거가 실제로
 켜지려면 이 워크플로 파일이 `main` 브랜치에 머지돼 있어야 함 — 현재 `main`에는 이 파일이
 없어 병합 전까지는 스케줄이 동작하지 않음.)
+
+## [2026-08-28] fix | 자동 갱신 워크플로의 진짜 원인 2건 확정 + 수정
+위 항목에서 "계정/조직 설정 문제로 추정"이라 남겨뒀던 것을 사용자와 함께 실제로 좁혀서 확정함.
+
+1. **GitHub Actions 지출 한도(Budget)** — 사용자 계정의 Actions budget이 `$0` + `Stop
+   usage: Yes`로 잡혀 있어 러너 배정 전에 즉시 차단되고 있었음(추정이 맞았음). 사용자가
+   `$5`로 올려 해결.
+2. **워크플로 YAML의 실제 버그** — 1번을 해결한 뒤 API로 수동 실행(`workflow_dispatch`)을
+   걸어보니 이번엔 파싱 에러가 노출됨: `Unrecognized named-value: 'secrets'` (38번째 줄,
+   `if: ${{ secrets.GEMINI_API_KEY != '' }}`). GitHub Actions는 스텝의 `if:` 조건식 안에서
+   `secrets` 컨텍스트를 직접 참조할 수 없음 — `env` 컨텍스트만 가능. 이 버그가 사실 처음부터
+   있었고, 지출 한도 차단 때문에 여태 이 파싱 단계까지 도달하지 못해 가려져 있었던 것으로
+   보임(그래서 그동안 모든 실패 run이 한결같이 "job 0개, 로그 없음"으로 보였음).
+
+   `env: GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}`를 job 레벨로 옮기고, 요약 스텝의
+   `if:`를 `${{ env.GEMINI_API_KEY != '' }}`로 바꿔 해결. `python3 -c "import yaml; ..."`로
+   문법 재검증.
+
+`main` 머지(PR #2) 이후 첫 수동 실행에서 발견·수정한 것이라, 이 변경은 새 PR로 다시 `main`에
+반영한다.
