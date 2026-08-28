@@ -449,7 +449,17 @@
   }
   .modal-inner{ position:relative; }
 
-  /* ── AI 결과 카드의 개별 추천 이유 ── */
+  /* ── AI 결과 카드의 적합도 점수 + 개별 추천 이유 ── */
+  .score-badge{
+    margin-left:auto;
+    font-size:.74rem;
+    font-weight:700;
+    color:#137333;
+    background:#e6f4ea;
+    border:1px solid #ceead6;
+    padding:2px 9px;
+    border-radius:20px;
+  }
   .ai-reason{
     margin-top:8px;
     padding-top:8px;
@@ -548,7 +558,7 @@
 (function(){
   var GITHUB_BLOB_BASE = "https://github.com/junik83-arch/POSTECH_R_D_DOC_Genetator/blob/main/";
 
-  var state = { data: [], byId: {}, q: "", dept: "", tech: "", aiMode: false, aiResults: [], aiReasons: {} };
+  var state = { data: [], byId: {}, q: "", dept: "", tech: "", aiMode: false, aiResults: [], aiReasons: {}, aiScores: {} };
 
   var els = {
     q: document.getElementById("q"),
@@ -614,13 +624,16 @@
     }
 
     var reason = state.aiMode ? state.aiReasons[String(p.id)] : "";
+    var score = state.aiMode ? state.aiScores[String(p.id)] : null;
     var reasonHtml = reason ? '<div class="ai-reason"><b>AI 추천 이유</b> · ' + escapeHtml(reason) + '</div>' : "";
+    var scoreHtml = (score != null) ? '<span class="score-badge">적합도 ' + escapeHtml(String(score)) + '</span>' : "";
 
     return (
       '<div class="person-card">' +
         '<div class="person-head">' +
           '<h3>' + highlight(p.name, q) + '</h3>' +
           '<span class="dept">' + highlight(p.dept, q) + '</span>' +
+          scoreHtml +
         '</div>' +
         (p.interests ? '<div class="person-interests">' + highlight(p.interests, q) + '</div>' : '') +
         (tagsHtml ? '<div class="tags">' + tagsHtml + '</div>' : '') +
@@ -745,6 +758,7 @@
     state.aiMode = false;
     state.aiResults = [];
     state.aiReasons = {};
+    state.aiScores = {};
     aiEls.answer.hidden = true;
   }
 
@@ -862,27 +876,43 @@
     return ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash-latest", "gemini-1.5-flash", "gemini-pro"];
   }
 
+  // 매치당 score+reason을 다 쓰게 하면 (특히 Gemini 2.5 계열의 "thinking"까지 겹치면)
+  // 응답 생성이 매우 느려질 수 있어 — 8명·한 문장으로 좁혀서 지연을 최소화한다.
   var AI_SYSTEM_PROMPT =
     "당신은 POSTECH 교원 검색을 돕는 도우미입니다. 아래 JSON은 POSTECH 교원 목록입니다 " +
     "(id, name=성명, dept=학과, interests=연구관심분야, nationalTech=국가전략기술 태그, perf=실적건수). " +
     "사용자의 자연어 질문에 맞는 교원을 이 목록 안에서만 골라주세요. 목록에 없는 사실을 지어내지 마세요. " +
-    "다른 설명 없이 아래 JSON 스키마로만 답하세요: " +
-    '{"answer": "한두 문장 설명", "matches": [{"id": "일치하는 교원 id", "reason": "이 교원을 고른 이유(한국어 1문장, ' +
-    '반드시 목록에 실제로 있는 interests/nationalTech/perf 내용에 근거)"}]}. ' +
-    "matches는 관련도가 높은 순서로 최대 20명까지만 담고, 일치하는 사람이 없으면 빈 배열로 두세요.";
+    "다른 설명 없이 아래 JSON 스키마로만, 최대한 간결하게 답하세요: " +
+    '{"answer": "한 문장 설명", "matches": [{"id": "교원 id", "score": 0부터 100 사이 적합도 점수, ' +
+    '"reason": "고른 이유 한 문장(20자 이내, 반드시 목록에 실제로 있는 interests/nationalTech/perf 내용에 근거)"}]}. ' +
+    "matches는 적합도(score) 높은 순으로 최대 8명까지만 담고, 일치하는 사람이 없으면 빈 배열로 두세요.";
 
-  async function callGeminiJson(apiKey, models, userText){
+  // 모델 하나가 느리거나 응답이 없을 때 무한정 "찾는 중"에 멈춰있지 않도록, 모델별로
+  // REQUEST_TIMEOUT_MS 안에 안 끝나면 중단하고 다음 후보 모델로 넘어간다.
+  var REQUEST_TIMEOUT_MS = 20000;
+
+  async function callGeminiJson(apiKey, models, userText, onProgress){
     var lastError = null;
     for(var i = 0; i < models.length; i++){
       var model = models[i];
+      if(onProgress) onProgress(model, i, models.length);
       var url = "https://generativelanguage.googleapis.com/v1beta/models/" + model + ":generateContent?key=" + encodeURIComponent(apiKey);
+      var controller = new AbortController();
+      var timer = setTimeout(function(){ controller.abort(); }, REQUEST_TIMEOUT_MS);
       try {
         var res = await fetch(url, {
           method: "POST",
           headers: { "Content-Type": "application/json", "x-goog-api-key": apiKey },
+          signal: controller.signal,
           body: JSON.stringify({
             contents: [{ parts: [{ text: userText }] }],
-            generationConfig: { temperature: 0.1, responseMimeType: "application/json" }
+            generationConfig: {
+              temperature: 0.1,
+              responseMimeType: "application/json",
+              // 2.5 계열은 기본적으로 "생각"(내부 추론) 단계를 거치는데, 이 작업처럼 단순
+              // 추출·정렬에는 불필요하게 느려지기만 해서 꺼둔다(2.5 미만 모델엔 무시됨).
+              thinkingConfig: { thinkingBudget: 0 }
+            }
           })
         });
         if(res.ok){
@@ -897,7 +927,11 @@
           lastError = new Error(errData.error ? errData.error.message : ("HTTP " + res.status));
         }
       } catch(e){
-        lastError = e;
+        lastError = (e && e.name === "AbortError")
+          ? new Error(model + " 모델 응답이 " + (REQUEST_TIMEOUT_MS/1000) + "초 안에 오지 않았습니다.")
+          : e;
+      } finally {
+        clearTimeout(timer);
       }
     }
     throw lastError || new Error("AI 모델 연결에 실패했습니다.");
@@ -934,22 +968,29 @@
       var models = await fetchAvailableModels(apiKey);
       var dataset = buildAiDataset();
       var userText = AI_SYSTEM_PROMPT + "\n\n[교원 목록 JSON]\n" + JSON.stringify(dataset) + "\n\n[질문]\n" + question;
-      var result = await callGeminiJson(apiKey, models, userText);
+      var result = await callGeminiJson(apiKey, models, userText, function(model, idx, total){
+        aiEls.answer.textContent = "🔍 AI가 교원 " + state.data.length + "명 중에서 찾는 중… (" + model + ")" +
+          (idx > 0 ? " — 이전 모델이 느려서 다음 모델로 재시도 중" : "");
+      });
 
       var rawMatches = Array.isArray(result.matches) ? result.matches : [];
-      var reasons = {};
+      var reasons = {}, scores = {};
       var matchedIds = rawMatches.map(function(m){
         if(m && typeof m === "object"){
           if(m.reason) reasons[String(m.id)] = String(m.reason);
+          if(m.score != null && !isNaN(m.score)) scores[String(m.id)] = Math.round(Number(m.score));
           return String(m.id);
         }
         return String(m); // 이전 스키마({"matches": ["id", ...]})와도 호환
       });
+      // score가 있으면 높은 순으로 다시 정렬 (모델이 순서를 완벽히 안 지켜도 보정)
+      matchedIds.sort(function(a, b){ return (scores[b] || 0) - (scores[a] || 0); });
       var matchedPeople = matchedIds.map(function(id){ return state.byId[id]; }).filter(Boolean);
 
       state.aiMode = true;
       state.aiResults = matchedPeople;
       state.aiReasons = reasons;
+      state.aiScores = scores;
 
       aiEls.answer.className = "ai-answer";
       aiEls.answer.innerHTML =
