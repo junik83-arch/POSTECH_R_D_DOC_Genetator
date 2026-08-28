@@ -20,7 +20,10 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    # 크롤링(교원 280명, 서브페이지 포함)만 40~60분, Gemini 요약(255명)도 그만큼 걸릴 수
+    # 있어 넉넉히 잡는다. 90분으로는 요약 단계 중간에 강제 취소된 적이 있다(2026-08-28,
+    # 크롤링 55분 + 요약 35분 진행 중 타임아웃 — 커밋 전이라 결과가 전부 유실됨).
+    timeout-minutes: 180
     env:
       # if: 조건에서는 secrets 컨텍스트를 직접 참조할 수 없어("Unrecognized named-value:
       # 'secrets'") job 레벨 env로 한 번 옮겨 담아 아래 스텝의 if에서 env로 참조한다.
@@ -32,11 +35,28 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Git 사용자 설정
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
       - name: 의존성 설치
         run: pip install -r scripts/requirements.txt
 
       - name: 홈페이지 재크롤링 (전체 갱신)
         run: python3 scripts/crawl_homepages.py --force --insecure --delay 1.0
+
+      - name: 크롤링 결과 중간 커밋 & 푸시
+        # 크롤링이 가장 오래 걸리는 단계라, 뒤이은 요약/빌드 단계가 타임아웃 등으로
+        # 중단되더라도 여기까지의 크롤링 결과만큼은 git에 남도록 먼저 커밋해둔다.
+        run: |
+          git add sources/homepage_crawl.json
+          if git diff --cached --quiet; then
+            echo "크롤링 결과 변경 없음, 커밋 생략"
+          else
+            git commit -m "chore: 교원 홈페이지 크롤링 결과 (중간 커밋, 요약 전) ($(date -u +%Y-%m-%d))"
+            git push
+          fi
 
       - name: 홈페이지 원문 AI 요약 (Gemini)
         if: ${{ env.GEMINI_API_KEY != '' }}
@@ -47,12 +67,10 @@ jobs:
 
       - name: 변경사항 커밋 & 푸시
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add sources/homepage_crawl.json wiki/
           if git diff --cached --quiet; then
             echo "변경 없음, 커밋 생략"
             exit 0
           fi
-          git commit -m "chore: 교원 홈페이지 크롤링 정기 갱신 ($(date -u +%Y-%m-%d))"
+          git commit -m "chore: 교원 홈페이지 요약·위키 정기 갱신 ($(date -u +%Y-%m-%d))"
           git push
