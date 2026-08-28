@@ -937,10 +937,66 @@
     throw lastError || new Error("AI 모델 연결에 실패했습니다.");
   }
 
-  function buildAiDataset(){
-    return state.data.map(function(p){
+  function buildAiDataset(records){
+    return (records || state.data).map(function(p){
       return { id: p.id, name: p.name, dept: p.dept, interests: p.interests, nationalTech: p.nationalTech, perf: p.perf };
     });
+  }
+
+  // ── 3단계 AI 검색: (1) 질의를 키워드/학과로 확장 → (2) 브라우저에서 로컬로 후보
+  //    압축(API 호출 없음) → (3) 압축된 후보만 AI에 보내 최종 랭킹. 298명 전체를
+  //    매번 AI에 보내는 것보다 마지막 단계 처리량이 줄어 훨씬 빠르다. ──
+  var EXPAND_SYSTEM_PROMPT =
+    "당신은 산업/기업의 사업 분야를 대학 연구분야 키워드로 매핑하는 전문가입니다. " +
+    "반드시 순수 JSON 객체만 출력하세요.";
+
+  async function expandQuery(apiKey, models, question){
+    var deptNames = Array.from(new Set(state.data.map(function(p){ return p.dept; })));
+    var userText = EXPAND_SYSTEM_PROMPT + "\n\n" +
+      "질의: \"" + question + "\"\n\n" +
+      "이 질의와 관련성이 높은 기술/연구 키워드를 8~15개, 그리고 아래 학과 목록 중 관련 가능성이 " +
+      "높은 학과를 골라 다음 JSON 형식으로만 응답하세요.\n" +
+      "학과 목록: " + JSON.stringify(deptNames) + "\n" +
+      '형식: {"keywords": ["..."], "departments": ["..."]}';
+    var result = await callGeminiJson(apiKey, models, userText);
+    return {
+      keywords: Array.isArray(result.keywords) ? result.keywords : [],
+      departments: Array.isArray(result.departments) ? result.departments : []
+    };
+  }
+
+  function localShortlist(expansion, limit){
+    limit = limit || 50;
+    var kws = expansion.keywords.map(function(k){ return String(k).toLowerCase(); }).filter(Boolean);
+    var depts = {};
+    expansion.departments.forEach(function(d){ depts[d] = true; });
+
+    function blobOf(p){
+      return (p.interests + " " + p.nationalTech.join(" ") + " " + p.dept).toLowerCase();
+    }
+
+    var scored = state.data.map(function(p){
+      var blob = blobOf(p);
+      var score = 0;
+      kws.forEach(function(k){ if(k && blob.indexOf(k) !== -1) score += 2; });
+      if(depts[p.dept]) score += 1;
+      return { p: p, score: score };
+    });
+
+    var shortlisted = scored.filter(function(s){ return s.score > 0; })
+      .sort(function(a, b){ return b.score - a.score || perfTotal(b.p.perf) - perfTotal(a.p.perf); })
+      .slice(0, limit).map(function(s){ return s.p; });
+
+    if(shortlisted.length < 15){
+      var already = {};
+      shortlisted.forEach(function(p){ already[p.id] = true; });
+      var extra = state.data.filter(function(p){ return depts[p.dept] && !already[p.id]; });
+      shortlisted = shortlisted.concat(extra).slice(0, limit);
+    }
+    if(shortlisted.length === 0){
+      shortlisted = state.data.slice().sort(function(a, b){ return perfTotal(b.perf) - perfTotal(a.perf); }).slice(0, limit);
+    }
+    return shortlisted;
   }
 
   var aiEls = {
@@ -962,14 +1018,26 @@
     aiEls.btn.disabled = true;
     aiEls.answer.hidden = false;
     aiEls.answer.className = "ai-answer loading";
-    aiEls.answer.textContent = "🔍 AI가 교원 " + state.data.length + "명 중에서 찾는 중…";
+    aiEls.answer.textContent = "🔍 질문을 연구분야 키워드로 확장하는 중…";
 
     try {
       var models = await fetchAvailableModels(apiKey);
-      var dataset = buildAiDataset();
+
+      var expansion;
+      try {
+        expansion = await expandQuery(apiKey, models, question);
+      } catch(e){
+        console.warn("expandQuery 실패, 원 질의 단어로 대체:", e);
+        expansion = { keywords: question.split(/[\s,·/]+/).filter(function(s){ return s.length > 1; }), departments: [] };
+      }
+
+      var shortlist = localShortlist(expansion, 50);
+      aiEls.answer.textContent = "🔍 후보 " + shortlist.length + "명 중 적합한 교원을 선별하는 중…";
+
+      var dataset = buildAiDataset(shortlist);
       var userText = AI_SYSTEM_PROMPT + "\n\n[교원 목록 JSON]\n" + JSON.stringify(dataset) + "\n\n[질문]\n" + question;
       var result = await callGeminiJson(apiKey, models, userText, function(model, idx, total){
-        aiEls.answer.textContent = "🔍 AI가 교원 " + state.data.length + "명 중에서 찾는 중… (" + model + ")" +
+        aiEls.answer.textContent = "🔍 후보 " + shortlist.length + "명 중 적합한 교원을 선별하는 중… (" + model + ")" +
           (idx > 0 ? " — 이전 모델이 느려서 다음 모델로 재시도 중" : "");
       });
 
