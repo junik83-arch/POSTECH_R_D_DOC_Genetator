@@ -132,6 +132,31 @@ def parse_text_public(text: str) -> "OrderedDict[str, str]":
     return sections
 
 
+def _split_outside_parens(text: str, sep: str) -> list[str]:
+    """`sep`로 나누되, 괄호(중첩 포함) 안에 있는 occurrence는 구분자로 보지 않는다.
+    논문 인용이 "제목 (연도; 저널명 (도시))"처럼 괄호 안에도 같은 구분자를 쓰는
+    경우가 있어, 괄호 깊이를 세면서 깊이 0일 때의 occurrence만 실제 구분자로
+    인정한다."""
+    parts = []
+    depth = 0
+    start = i = 0
+    n = len(text)
+    while i < n:
+        ch = text[i]
+        if ch == "(":
+            depth += 1
+        elif ch == ")":
+            depth = max(0, depth - 1)
+        elif depth == 0 and text.startswith(sep, i):
+            parts.append(text[start:i])
+            i += len(sep)
+            start = i
+            continue
+        i += 1
+    parts.append(text[start:])
+    return parts
+
+
 def split_list_items(text: str) -> list[str] | None:
     """￭ 또는 반복되는 '; ' 로 나열된 텍스트를 항목 리스트로 쪼갠다. 나열형이 아니면
     (구분자가 2개 미만이면) None을 돌려줘 원문 그대로 쓰게 한다. 순수 표시 형식만
@@ -142,10 +167,9 @@ def split_list_items(text: str) -> list[str] | None:
         parts = [p.strip() for p in text.split("￭") if p.strip()]
         if len(parts) >= 2:
             return parts
-    if text.count("; ") >= 2:
-        parts = [p.strip() for p in text.split("; ") if p.strip()]
-        if len(parts) >= 2:
-            return parts
+    parts = [p.strip() for p in _split_outside_parens(text, "; ") if p.strip()]
+    if len(parts) >= 2:
+        return parts
     return None
 
 
@@ -191,6 +215,12 @@ def render_faculty_page(rec: dict, crawl: dict) -> str:
 
     parsed = parse_text_public(rec.get("text_public", ""))
 
+    # 홈페이지 크롤링 + AI 요약은 페이지 아래쪽 "홈페이지 추가 정보"에서도 쓰므로 여기서
+    # 한 번만 조회해 둔다 — 뒤 내용(실적·논문 목록 등)이 방대해 훑기 어려우니, 요약이
+    # 있으면 페이지 상단(연구관심분야보다 앞)에도 미리 보여준다.
+    crawled = crawl.get(homepage) if homepage else None
+    homepage_summary = (crawled.get("summary") or "").strip() if crawled and crawled.get("text") else ""
+
     lines = []
     lines.append("---")
     lines.append(f"id: {rec['개인번호']}")
@@ -211,6 +241,13 @@ def render_faculty_page(rec: dict, crawl: dict) -> str:
     else:
         lines.append("- 홈페이지: _등록된 홈페이지 없음_")
     lines.append("")
+    if homepage_summary:
+        lines.append("> [!TIP]")
+        lines.append("> **AI 요약** _(Gemini가 홈페이지를 읽고 요약 · 자세한 내용은 아래 실적·논문 목록 참고)_")
+        lines.append(">")
+        for summary_line in homepage_summary.split("\n"):
+            lines.append(f"> {summary_line}")
+        lines.append("")
     lines.append("## 연구관심분야")
     lines.append(render_list_or_text(interests))
     lines.append("")
@@ -225,7 +262,6 @@ def render_faculty_page(rec: dict, crawl: dict) -> str:
         lines.append("")
 
     lines.append("## 홈페이지 추가 정보")
-    crawled = crawl.get(homepage) if homepage else None
     if crawled and crawled.get("skipped") == "shared_portal":
         lines.append(
             f"_이 URL은 다른 교원과 함께 쓰는 학과/그룹 공통 포털로 판단되어 "
@@ -235,11 +271,11 @@ def render_faculty_page(rec: dict, crawl: dict) -> str:
         lines.append(f"> 크롤링 시각: {crawled.get('fetched_at', '알 수 없음')} · 출처: <{homepage}>")
         lines.append("")
 
-        summary = (crawled.get("summary") or "").strip()
-        if summary:
-            lines.append(f"**AI 생성 요약** _(Gemini 자동 요약 · {crawled.get('summary_generated_at', '')} · 원문은 아래에서 확인 가능)_")
-            lines.append("")
-            lines.append(summary)
+        if homepage_summary:
+            lines.append(
+                f"_AI 요약은 이 페이지 맨 위에서 볼 수 있습니다 "
+                f"(Gemini 자동 요약 · {crawled.get('summary_generated_at', '')}). 원문은 아래에서 확인 가능합니다._"
+            )
             lines.append("")
 
         main_text = crawled["text"].strip()
@@ -410,7 +446,7 @@ def render_national_tech(records: list[dict]) -> str:
     return "\n".join(lines)
 
 
-def build_researchers_json(records: list[dict]) -> dict:
+def build_researchers_json(records: list[dict], crawl: dict) -> dict:
     """대시보드(dashboard/index.html)가 fetch로 읽는 경량 JSON 인덱스를 만든다.
 
     wiki/faculty/*.md 와 같은 원본(sources/faculty_profiles_source.json)에서 결정론적으로
@@ -423,6 +459,12 @@ def build_researchers_json(records: list[dict]) -> dict:
     for r in sorted(records, key=lambda r: r["성명"]):
         dept = (r.get("학과") or "").strip() or "미분류"
         by_dept[dept] = by_dept.get(dept, 0) + 1
+
+        homepage = r.get("홈페이지", "") or ""
+        crawled = crawl.get(homepage) if homepage else None
+        # 홈페이지 크롤링을 Gemini가 요약한 것 — wiki/faculty/*.md 상단 AI 요약과 같은
+        # 필드(원본 그대로, 대시보드용으로 별도로 자르거나 손대지 않음).
+        homepage_summary = (crawled.get("summary") or "").strip() if crawled and crawled.get("text") else ""
 
         interests_raw = (r.get("관심분야") or "").strip()
         parsed = parse_text_public(r.get("text_public", ""))
@@ -445,7 +487,8 @@ def build_researchers_json(records: list[dict]) -> dict:
                 "name": r["성명"],
                 "department": dept,
                 "email": r.get("이메일", ""),
-                "homepage": r.get("홈페이지", ""),
+                "homepage": homepage,
+                "homepage_summary": homepage_summary,
                 "interests": render_list_or_text(interests_raw),
                 "perf": perf,
                 "perf_total": perf_total(perf),
@@ -506,7 +549,7 @@ def main() -> None:
     (WIKI_DIR / "research-areas.md").write_text(render_research_areas(records), encoding="utf-8")
     (WIKI_DIR / "national-strategic-tech.md").write_text(render_national_tech(records), encoding="utf-8")
 
-    researchers_json = build_researchers_json(records)
+    researchers_json = build_researchers_json(records, crawl)
     (WIKI_DIR / "researchers.json").write_text(
         json.dumps(researchers_json, ensure_ascii=False, separators=(",", ":")),
         encoding="utf-8",
