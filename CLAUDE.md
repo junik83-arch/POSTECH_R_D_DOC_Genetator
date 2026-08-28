@@ -22,7 +22,7 @@
 ```
 sources/                       ← 1) 원본 자료 — 절대 수정하지 않음
   faculty_profiles_source.json    POSTECH R&D 실적 데이터베이스 (교원 298명, 연 1회 수동 업로드)
-  homepage_crawl.json             교원 홈페이지 크롤링 결과 + AI 요약 (자동 생성, 매월 갱신)
+  homepage_crawl.json             교원 홈페이지 크롤링 결과 + AI 요약 (자동 생성, 연 2회 갱신)
 
 wiki/                           ← 2) 위키 — 두 종류의 페이지가 섞여 있음
   faculty/<개인번호>-<성명>.md    [기계 생성] 교원 1인당 1페이지 — 결정론적 추출
@@ -50,7 +50,7 @@ scripts/                        ← 3) 파이프라인
 tools/
   doc-generator.html              사업 안내 공문 생성기 — 이 위키와 무관한 별도 도구
 
-.github/workflows/refresh-wiki.yml  매월 1일 위 세 스크립트를 순서대로 실행해 main에 자동 커밋
+.github/workflows/refresh-wiki.yml  연 2회(3월 1일·9월 1일) 위 세 스크립트를 순서대로 실행해 main에 자동 커밋
 ```
 
 `sources/homepage_crawl.json` 안의 `text`/`subpages`는 크롤링 원문 그대로지만, `summary`
@@ -96,7 +96,7 @@ LLM(Claude)이 직접 쓰고 유지합니다. **스크립트가 건드리지 않
 - `faculty_profiles_source.json`(실적 데이터베이스)은 **연 1회 사람이 새 파일을 받아 수동으로
   교체**합니다 — 자동화 대상이 아닙니다.
 - `homepage_crawl.json`(홈페이지 크롤링 + AI 요약)은 `.github/workflows/refresh-wiki.yml`
-  이 매월 자동으로 갱신합니다.
+  이 연 2회(3월 1일·9월 1일) 자동으로 갱신합니다.
 
 어느 쪽이든 새 원본이 들어오면 1) `sources/` 에 반영하고 2) `python3 scripts/build_wiki.py`
 로 기계 생성 페이지를 갱신한 뒤 3) 영향받는 `domain/*.moc.md` 를 다시 읽고 클러스터·통계가
@@ -134,13 +134,14 @@ LLM(Claude)이 직접 쓰고 유지합니다. **스크립트가 건드리지 않
 `scripts/crawl_homepages.py` 를 **인터넷 접근이 가능한 환경**에서 실행해
 `sources/homepage_crawl.json` 을 만든 뒤, `scripts/build_wiki.py` 로 위키에 반영합니다.
 
-**자동 정기 갱신**: `.github/workflows/refresh-wiki.yml` 이 매월 1일 ① 크롤러(`--force`,
-전체 재크롤링) ② `summarize_homepages.py`(Gemini API로 원문 요약, `GEMINI_API_KEY` 시크릿이
-설정된 경우에만) ③ `build_wiki.py` 순서로 실행해 결과를 `main`에 직접 커밋합니다 — GitHub
-Actions 러너는 일반 인터넷에 접근할 수 있어 이 작업을 이 세션 대신 해줍니다. Actions 탭에서
-수동 실행(`workflow_dispatch`)도 가능합니다. (이 워크플로가 실제로 켜지려면 `main` 브랜치에
-머지되어 있어야 합니다 — GitHub는 스케줄 트리거를 기본 브랜치의 워크플로 파일 기준으로만
-실행합니다.) 로컬에서 급하게 한 번 더 돌리고 싶을 때는 아래처럼 수동으로 실행해도 됩니다.
+**자동 정기 갱신**: `.github/workflows/refresh-wiki.yml` 이 연 2회(3월 1일·9월 1일)
+① 크롤러(`--force`, 전체 재크롤링) ② `summarize_homepages.py`(Gemini API로 원문 요약,
+`GEMINI_API_KEY` 시크릿이 설정된 경우에만) ③ `build_wiki.py` 순서로 실행해 결과를 `main`에
+직접 커밋합니다 — GitHub Actions 러너는 일반 인터넷에 접근할 수 있어 이 작업을 이 세션 대신
+해줍니다. Actions 탭에서 수동 실행(`workflow_dispatch`)도 가능합니다. (이 워크플로가 실제로
+켜지려면 `main` 브랜치에 머지되어 있어야 합니다 — GitHub는 스케줄 트리거를 기본 브랜치의
+워크플로 파일 기준으로만 실행합니다.) 로컬에서 급하게 한 번 더 돌리고 싶을 때는 아래처럼
+수동으로 실행해도 됩니다.
 
 - **서브페이지(탭) 크롤링**: 홈페이지 첫 화면 안의 같은 사이트 내부 링크 중 연구/논문/CV
   등 키워드로 우선순위를 매겨 교원 1명당 기본 8개까지 함께 가져옵니다. 구성원 명단·뉴스/공지

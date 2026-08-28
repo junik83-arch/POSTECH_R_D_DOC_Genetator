@@ -74,3 +74,20 @@ POSTECH R&D 실적 데이터베이스(교원 298명, `faculty_profiles.json`)를
 - 루트 `index.html`(도구 허브) 카드 링크를 `dashboard/index.html`로 변경
 - 위 "AI 자연어 검색(교원 검색기)의 한계" open-question은 그 대상 도구(`tools/faculty-search.html`)가
   삭제되어 더 이상 유효하지 않아 open-questions.md 에서 제거
+
+## [2026-08-28] lint | 자동 갱신 워크플로 실패 원인 확인 + 주기를 매월 → 연 2회로 변경
+`.github/workflows/refresh-wiki.yml`의 모든 실행(run 1~9)이 `conclusion: failure`였던 원인을
+GitHub Actions API로 조사. `get_job_logs`/`list_workflow_jobs` 결과 모든 실패 run이 **job이
+0개, 로그 없음, billable 시간 0**으로 — 워크플로 YAML 자체는 유효(`state: active`)하고
+`scripts/crawl_homepages.py`·`build_wiki.py` 등 실제 스텝은 시작조차 하지 못한 채 러너 배정
+전에 즉시 실패한 것으로 확인됨. 이는 저장소 코드의 버그가 아니라 **계정/조직 수준의 GitHub
+Actions 설정**(예: Settings → Billing → Actions 지출 한도가 $0로 막혀 있거나, 해당 저장소에
+대한 Actions 사용 자체가 아직 승인/활성화되지 않은 경우)이 원인일 가능성이 매우 높음 —
+저장소 Settings → Actions 및 조직/개인 Billing 설정에서 Actions 지출 한도·사용 승인 여부를
+확인 필요 (이 세션은 계정 결제 설정에 접근 권한이 없어 직접 해소는 불가).
+
+별도로, 사용자 요청에 따라 크롤링·요약·위키 재생성 주기를 매월 1일 → **연 2회(3월 1일·9월
+1일)** 로 변경 (`cron: "0 3 1 * *"` → `"0 3 1 3,9 *"`). CLAUDE.md·wiki/README.md·
+open-questions.md의 "매월" 표현도 함께 갱신. (기존 참고사항대로, 스케줄 트리거가 실제로
+켜지려면 이 워크플로 파일이 `main` 브랜치에 머지돼 있어야 함 — 현재 `main`에는 이 파일이
+없어 병합 전까지는 스케줄이 동작하지 않음.)

@@ -43,7 +43,7 @@ python3 scripts/build_wiki.py
 
 ## 교원 홈페이지 정보 크롤링 + AI 요약
 
-**매월 1일 자동으로 갱신됩니다** — `.github/workflows/refresh-wiki.yml` 이 GitHub Actions
+**연 2회(3월 1일·9월 1일) 자동으로 갱신됩니다** — `.github/workflows/refresh-wiki.yml` 이 GitHub Actions
 러너(인터넷 접근 가능)에서 ① 크롤러 전체 재실행 ② Gemini API로 원문 요약(`GEMINI_API_KEY`
 시크릿 필요) ③ 위키 재생성을 순서대로 하고 결과를 `main`에 직접 커밋합니다. Actions 탭에서
 수동 실행도 가능합니다.
