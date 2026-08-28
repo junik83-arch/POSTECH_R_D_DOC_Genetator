@@ -132,6 +132,32 @@ def parse_text_public(text: str) -> "OrderedDict[str, str]":
     return sections
 
 
+def split_on_top_level(text: str, sep: str) -> list[str]:
+    """`sep` 기준으로 나누되, 괄호/대괄호 안에 있는 `sep`는 무시한다(중첩 깊이 추적).
+    논문 목록 등에서 항목 하나가 '제목 (연도; 저널명)'처럼 구분자 자체를 괄호 안
+    부가정보 구분에도 재사용하는 경우, 괄호 밖(=항목과 항목 사이)에서만 쪼개기 위함.
+    원본에 괄호 짝이 안 맞는 경우가 드물게 있어 깊이가 음수로 내려가지 않게 방어한다."""
+    parts = []
+    depth = 0
+    buf = []
+    i, n, sep_len = 0, len(text), len(sep)
+    while i < n:
+        ch = text[i]
+        if ch in "([":
+            depth += 1
+        elif ch in ")]":
+            depth = max(0, depth - 1)
+        if depth == 0 and text.startswith(sep, i):
+            parts.append("".join(buf))
+            buf = []
+            i += sep_len
+            continue
+        buf.append(ch)
+        i += 1
+    parts.append("".join(buf))
+    return parts
+
+
 def split_list_items(text: str) -> list[str] | None:
     """￭ 또는 반복되는 '; ' 로 나열된 텍스트를 항목 리스트로 쪼갠다. 나열형이 아니면
     (구분자가 2개 미만이면) None을 돌려줘 원문 그대로 쓰게 한다. 순수 표시 형식만
@@ -142,10 +168,9 @@ def split_list_items(text: str) -> list[str] | None:
         parts = [p.strip() for p in text.split("￭") if p.strip()]
         if len(parts) >= 2:
             return parts
-    if text.count("; ") >= 2:
-        parts = [p.strip() for p in text.split("; ") if p.strip()]
-        if len(parts) >= 2:
-            return parts
+    parts = [p.strip() for p in split_on_top_level(text, "; ") if p.strip()]
+    if len(parts) >= 2:
+        return parts
     return None
 
 
