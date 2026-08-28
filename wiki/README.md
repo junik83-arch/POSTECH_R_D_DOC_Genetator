@@ -16,15 +16,17 @@ POSTECH 교원 298명의 R&D 실적 데이터와 홈페이지 크롤링 원문�
 - **[faculty/](faculty/)** — 교원별 페이지, 298개 (파일명 = `개인번호-성명.md`, 결정론적 생성)
 - **[national-strategic-tech.md](national-strategic-tech.md)** — 정부 12대 국가전략기술
   분야별 인덱스 (RFP·공모사업 매칭용)
+- **[researchers.json](researchers.json)** — 위 내용을 브라우저에서 바로 쓸 수 있도록 압축한
+  JSON 인덱스. 사람이 읽는 문서가 아니라 **[../dashboard/index.html](../dashboard/index.html)
+  연구자 대시보드**가 fetch로 읽는 기계용 산출물입니다 (AI 자연어 검색에 보내는
+  `ai_summary` 압축 프로필 포함).
 - **[log.md](log.md)** — 이 위키가 어떻게 만들어져 왔는지
 - **[open-questions.md](open-questions.md)** — 데이터 모순·미해결 이슈
 
 GitHub에서 그대로 브라우징해도 되고, Obsidian 등 로컬 마크다운 뷰어로 `wiki/` 폴더를
-열면 `[텍스트](경로)` 링크가 그래프/백링크로 연결됩니다. 표/카드 형태로 훑어보고 검색하고
-싶다면 **[../tools/faculty-search.html](../tools/faculty-search.html)** 을 여세요 — 학과별
-통계, 필터·검색, 상세 프로필, "LG생활건강 사업 포트폴리오에 맞는 연구자" 같은 자연어 질의로
-Gemini를 통해 연구자를 추천받는 기능을 제공합니다 (데이터는
-[../tools/faculty-search-data.json](../tools/faculty-search-data.json) 이 읽음).
+열면 `[텍스트](경로)` 링크가 그래프/백링크로 연결됩니다. 표/카드 형태로 훑어보고 싶다면
+`dashboard/index.html`을 여세요 — 학과별 통계, 필터·검색, "LG생활건강 사업 포트폴리오에
+맞는 연구자" 같은 자연어 질의로 POSTECH AI API를 통해 연구자를 추천받는 기능을 제공합니다.
 
 ## 위키를 다시 만들려면
 
@@ -33,7 +35,7 @@ python3 scripts/build_wiki.py
 ```
 
 `wiki/faculty/*.md`, `index.md`, `faculty-index.md`, `research-areas.md`,
-`national-strategic-tech.md`, `../tools/faculty-search-data.json` 은 이 명령으로 **자동
+`national-strategic-tech.md`, `researchers.json` 은 이 명령으로 **자동
 생성**됩니다 (직접 고치지 마세요 — 원본이 바뀌면 다시 실행). 반면 `home.md`,
 `domain/*.moc.md`, `log.md`, `open-questions.md` 는 **이 스크립트가 건드리지 않는** LLM
 큐레이션 페이지입니다 — 직접 읽고 고치세요. 두 종류를 구분하는 이유와 원칙은

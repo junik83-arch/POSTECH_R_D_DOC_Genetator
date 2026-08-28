@@ -5,12 +5,8 @@
 
 1. **`tools/doc-generator.html`** — 사업 안내 공문 생성기 (Gemini 연동 웹앱). 아래 내용과
    무관한 독립 기능입니다.
-2. **`sources/`, `wiki/`, `scripts/`, `tools/faculty-search.html`** — POSTECH 교원 R&D
-   위키("LLM Wiki")와 그 검색 웹앱. 이 문서는 **이 위키의 스키마**입니다.
-
-`tools/faculty-search-data.json`은 `scripts/build_wiki.py`가 `wiki/`와 함께 생성하는
-검색용 경량 데이터입니다 (교원 검색 웹앱이 이 파일을 fetch로 읽음) — 개념적으로는 위키
-쪽 파이프라인 산출물입니다.
+2. **`sources/`, `wiki/`, `scripts/`, `dashboard/`** — POSTECH 교원 R&D 위키("LLM Wiki")와
+   그 검색·추천 대시보드. 이 문서는 **이 위키의 스키마**입니다.
 
 이 파일이 있는 한, Claude Code로 이 저장소에서 위키 관련 작업을 할 때는 아래 규칙을 따르세요.
 
@@ -34,27 +30,24 @@ wiki/                           ← 2) 위키 — 두 종류의 페이지가 섞
   faculty-index.md                [기계 생성] 가나다순 전체 목록
   research-areas.md               [기계 생성] 연구분야 키워드 인덱스
   national-strategic-tech.md      [기계 생성] 정부 12대 국가전략기술 분야별 인덱스
+  researchers.json                [기계 생성] 위 내용을 압축한 JSON (dashboard/ 가 fetch로 읽음)
   home.md                         [LLM 큐레이션] 최상위 진입점, 학과 간 공통 흐름 종합
   domain/<학과>.moc.md            [LLM 큐레이션] 학과별 연구 클러스터 종합 (mermaid 포함)
   log.md                          [LLM 큐레이션] 시간순 append-only 변경 기록
   open-questions.md               [LLM 큐레이션] 데이터 모순·미해결 이슈
 
+dashboard/                      ← 위키를 소비하는 애플리케이션 (사람이 손으로 고치는 코드)
+  index.html                       연구자 대시보드: 통계·필터·검색 + POSTECH AI API 자연어 추천
+  cors-proxy/                      genai.postech.ac.kr 브라우저 직접 호출 시 CORS 차단을
+                                    우회하는 프록시(Cloudflare Worker / val.town)와 배포 가이드
+
 scripts/                        ← 3) 파이프라인
   build_wiki.py                    sources/*.json → wiki/faculty/*.md, index.md,
-                                    tools/faculty-search-data.json 등 (결정론적)
+                                    researchers.json 등 (결정론적)
   crawl_homepages.py               홈페이지+서브페이지 크롤링 → sources/homepage_crawl.json
   summarize_homepages.py           크롤링 원문을 Gemini API로 요약 → homepage_crawl.json 의 summary 필드
 
-tools/                           ← 위키 데이터를 쓰는 정적 웹앱 (GitHub Pages 배포)
-  faculty-search.html             연구자 검색·대시보드 웹앱 (직접 작성, build_wiki.py가 건드리지
-                                   않음). 통계·학과 필터·정렬·상세 프로필 모달을 갖춘 키워드
-                                   검색과, "AI에게 물어보기" 패널의 Gemini 자연어 추천을 제공
-                                   (사용자 자신의 API 키, doc-generator.html과 LocalStorage 키를
-                                   공유 — 브라우저에서 Gemini API를 직접 호출하므로 CORS 프록시
-                                   불필요)
-  faculty-search-data.json        [기계 생성] build_wiki.py가 함께 만드는 검색·상세보기·AI
-                                   추천용 경량 데이터 (교원별 실적·연구키워드·주요성과 등
-                                   섹션 포함)
+tools/
   doc-generator.html              사업 안내 공문 생성기 — 이 위키와 무관한 별도 도구
 
 .github/workflows/refresh-wiki.yml  매월 1일 위 세 스크립트를 순서대로 실행해 main에 자동 커밋
@@ -70,7 +63,7 @@ tools/                           ← 위키 데이터를 쓰는 정적 웹앱 (G
 ## 페이지 두 종류 — 소유권이 다름
 
 **[기계 생성] `wiki/faculty/*.md`, `index.md`, `faculty-index.md`, `research-areas.md`,
-`national-strategic-tech.md`, `tools/faculty-search-data.json`**
+`national-strategic-tech.md`, `researchers.json`**
 `scripts/build_wiki.py` 가 소유합니다. **직접 손으로 고치지 마세요.** 원본(`sources/`)이
 바뀌면 스크립트를 다시 실행하세요 (`python3 scripts/build_wiki.py`) — 몇 번을 실행해도
 같은 결과가 나와야 합니다(idempotent). 정확도가 중요한 추출 데이터라 LLM이 임의로 요약·재구성하지
@@ -120,20 +113,19 @@ LLM(Claude)이 직접 쓰고 유지합니다. **스크립트가 건드리지 않
 `open-questions.md` 에 남은 항목이 해소됐는지. 발견한 것은 `open-questions.md` 에 적고
 해소되면 지운 뒤 `log.md` 에 기록합니다.
 
-## 연구자 검색·대시보드 (tools/faculty-search.html)
+## 연구자 대시보드 (dashboard/)
 
-`tools/faculty-search-data.json` 을 fetch로 읽어 통계(전체 교원 수·학과별 분포·실적 합계),
-학과/국가전략기술 필터, 카드 클릭 시 연구키워드·주요성과·대표연구 등을 담은 상세 프로필
-모달을 제공합니다. `faculty-search-data.json` 은 다른 기계 생성 페이지와 같은 원칙(원본
-무결성, idempotent)을 따르는 파생물이므로 직접 고치지 말고 `build_wiki.py` 를 다시
-실행하세요.
+`dashboard/index.html` 은 `wiki/researchers.json` 을 fetch로 읽어 통계·필터·검색과 함께,
+자연어 질의("LG생활건강 사업 포트폴리오에 맞는 연구자")로 POSTECH AI API
+([posicube-services/llm-agent-api](https://github.com/posicube-services/llm-agent-api))를
+통해 연구자를 추천하는 기능을 제공합니다. `researchers.json` 은 다른 기계 생성 페이지와
+같은 원칙(원본 무결성, idempotent)을 따르는 파생물이므로 직접 고치지 말고
+`build_wiki.py` 를 다시 실행하세요.
 
-**🤖 AI 자연어 검색**: "AI에게 물어보기" 패널에서 "LG생활건강 사업 포트폴리오에 맞는
-연구자"처럼 자연어로 질의하면 Gemini API(사용자 자신의 키, `doc-generator.html`과
-LocalStorage를 공유)가 전체 교원 목록(JSON) 안에서만 골라 추천 이유와 함께 답합니다 —
-목록에 없는 사실은 지어내지 않도록 프롬프트에서 강제합니다(No Hallucination). Gemini는
-브라우저의 직접 호출(CORS)을 허용하므로, 예전 POSTECH AI API 연동 버전과 달리 별도
-프록시가 필요 없습니다.
+`genai.postech.ac.kr` 는 브라우저 간(CORS) 요청을 막아 두어 대시보드가 직접 호출하면
+`Failed to fetch` 가 납니다 — `dashboard/cors-proxy/` 에 준비된 프록시(Cloudflare Worker
+또는 val.town)를 배포해 대시보드 설정의 엔드포인트를 그 프록시 주소로 바꿔야 합니다
+(`dashboard/cors-proxy/README.md` 참고).
 
 ## 홈페이지 크롤링 관련 참고사항
 

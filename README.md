@@ -7,7 +7,7 @@
 | 도구 | 위치 | 설명 |
 |---|---|---|
 | 📋 사업 안내 공문 생성기 | [`tools/doc-generator.html`](tools/doc-generator.html) | Google Gemini AI 연동 · RFP/공고문을 분석해 표준 서식의 안내 공문 초안 자동 작성 |
-| 🔍 교원 R&D 검색 | [`tools/faculty-search.html`](tools/faculty-search.html) | POSTECH 교원 298명의 연구분야·실적·국가전략기술 분야 검색 ([`wiki/`](wiki/) 데이터 기반) |
+| 🔍 연구자 대시보드 | [`dashboard/index.html`](dashboard/index.html) | POSTECH 교원 298명 통계·검색 + POSTECH AI API 자연어 추천 ([`wiki/`](wiki/) 데이터 기반) |
 
 ---
 
@@ -52,25 +52,38 @@ https://<본인아이디>.github.io/postech-doc-generator/tools/doc-generator.ht
 
 ---
 
-## 🔍 교원 R&D 검색
+## 🔍 연구자 대시보드 (LLM Wiki 기반, AI 자연어 추천)
 
-이름·학과·연구분야·정부 12대 국가전략기술 분야로 POSTECH 교원 298명을 검색·필터링합니다.
-데이터는 [`tools/faculty-search-data.json`](tools/faculty-search-data.json)이며,
-`python3 scripts/build_wiki.py` 실행 시 [`wiki/`](wiki/)와 함께 자동 재생성됩니다. 위키의
-구조와 운영 방식은 [CLAUDE.md](CLAUDE.md), [wiki/home.md](wiki/home.md) 참고.
+`dashboard/index.html` — LLM Wiki를 브라우저에서 바로 탐색할 수 있는 대시보드입니다.
+`python3 scripts/build_wiki.py` 실행 시 함께 생성되는 `wiki/researchers.json`을 fetch로
+읽어와 동작하며(별도 서버·빌드 불필요), 다음 기능을 제공합니다.
 
-- **현황 통계**: 전체 교원 수, 학과 수, 실적(논문·특허·과제 등) 합계
-- **학과별 분포**: 클릭하면 바로 그 학과로 필터링되는 막대 그래프
-- **상세 프로필**: 카드의 "상세 프로필 보기"를 누르면 연구키워드·주요성과·대표연구·학회발표·
-  저서 등 전체 섹션을 모달로 확인 (각 검색 결과는 GitHub의 교원 위키 페이지로도 바로 연결됩니다)
+- **현황 통계**: 전체 교원 수, 학과 수, 학과별 인원 분포, 실적(논문·특허·과제 등) 합계
+- **디렉터리 탐색**: 이름/학과/연구관심분야/키워드 검색, 학과 필터, 정렬, 카드 클릭 시
+  실적·연구키워드·대표연구 등을 담은 상세 프로필 모달
+- **🤖 자연어 연구자 추천**: "LG생활건강의 사업 포트폴리오에 맞는 연구를 하는 연구자"처럼
+  자연어로 질의하면 **POSTECH AI API**로 (1) 질의를 연구분야 키워드/학과로 확장 →
+  (2) 브라우저에서 로컬로 후보를 1차 압축 → (3) 압축된 후보 프로필과 원 질의를 다시 AI에
+  보내 관련도 순 추천 + 근거를 받아오는 2단계 파이프라인으로 동작합니다. 추천 이유는
+  원본 위키 데이터에 실제로 있는 내용에만 근거하도록 프롬프트에서 강제합니다(No Hallucination).
 
-**🤖 AI 자연어 검색**: 기본 검색창은 단순 키워드 매칭이지만, "AI에게 자연어로 물어보기"
-패널에서는 "LG생활건강 사업 포트폴리오에 맞는 연구자"처럼 복합 조건을 문장으로 물어보면
-Gemini가 교원 298명 목록 안에서만 골라 **교원별 추천 이유**와 함께 답합니다(목록에 없는
-내용은 지어내지 않도록 프롬프트에서 강제 — No Hallucination). 공문 생성기와 **같은 Gemini
-API 키를 공유**하므로(브라우저 LocalStorage, 같은 이름의 키 사용) 한쪽에서 키를 등록하면
-다른 쪽에서도 바로 쓸 수 있고, Gemini API는 브라우저 직접 호출(CORS)을 허용해 별도 프록시도
-필요 없습니다.
+**AI API 연동 방식**: [posicube-services/llm-agent-api](https://github.com/posicube-services/llm-agent-api)의
+**a1~a3 단일 호출 API** 규격을 사용합니다.
+
+- 엔드포인트: `POST https://genai.postech.ac.kr/agent/api/a{1|2|3}/{gpt|gemini|claude}`
+- 요청: `{"message": "...", "stream": false}` / 응답: `{"message": "..."}`
+- 헤더: `x-api-key: <API 키>` 필수, Claude·Gemini는 `Authorization: <API 키>`도 함께 전송
+  (Bearer 접두어 없음 — GPT는 `x-api-key`만 사용)
+
+대시보드 우측 상단 **POSTECH AI API 설정** 버튼에서 모델(GPT/Gemini/Claude)·엔드포인트·API
+Key를 입력하면 브라우저 LocalStorage에만 저장되어 즉시 사용할 수 있습니다.
+
+> ⚠️ 이 대시보드는 순수 정적 페이지에서 브라우저가 직접 `genai.postech.ac.kr`로 요청을
+> 보내는데, 이 게이트웨이는 브라우저 간 요청(CORS)을 막아 두고 있어 그대로는
+> `Failed to fetch`가 납니다. [dashboard/cors-proxy/](dashboard/cors-proxy/)에 CORS
+> 헤더를 붙여 중계하는 프록시(Cloudflare Worker / val.town 버전)와 배포 방법이
+> 준비되어 있으니, 대시보드 **POSTECH AI API 설정**의 엔드포인트를 그 프록시 주소로
+> 바꿔서 쓰세요.
 
 ---
 

@@ -57,3 +57,20 @@ POSTECH R&D 실적 데이터베이스(교원 298명, `faculty_profiles.json`)를
 - **같은 LocalStorage 키(`postech_gemini_api_key`)를 씀** — 같은 오리진(GitHub Pages 사이트)이라 공문 생성기에서 키를 등록하면 검색기에서도 바로 쓸 수 있음
 - 프롬프트에 교원 298명의 경량 데이터(id/성명/학과/관심분야/국가전략기술/실적)를 JSON으로 통째로 전달 — "목록에 없는 사실은 지어내지 말 것" 가드레일 포함, `responseMimeType: application/json`으로 응답 형식 강제
 - jsdom으로 전체 흐름(키 없음→모달, 키 저장, AI 검색→3~4명 결과, 일반 검색 복귀, 일반 검색창 타이핑 시 AI 모드 자동 해제) 목 데이터로 검증, Playwright로 실제 렌더링도 스크린샷 확인
+
+## [2026-08-28] revert | 검색 도구를 dashboard/(POSTECH AI API)로 되돌림
+사용자가 실사용해보니 `tools/faculty-search.html`(Gemini, 단일 호출 방식)보다 이전에 있었던
+`dashboard/index.html`(POSTECH AI API, 통계·학과 분포·상세 프로필 모달을 갖춘 인터페이스 +
+문장 단위 추천 이유)이 인터페이스·추천 이유 형식 모두 더 낫다고 판단 — **위키 콘텐츠는 건드리지
+않고 검색 도구만** 되돌림.
+
+- `dashboard/index.html`, `dashboard/cors-proxy/`(Cloudflare Worker·val.town CORS 프록시)를
+  머지 직전 커밋(27ea0ee)에서 복원, `tools/faculty-search.html`·`tools/faculty-search-data.json`
+  삭제
+- `build_wiki.py`: 검색 데이터 생성 함수를 `build_search_data()`(tools/ 출력) →
+  `build_researchers_json()`(`wiki/researchers.json` 출력)으로 교체. `NATIONAL_TECH_CATEGORIES`/
+  `parse_national_tech()`/`render_national_tech()` 등 위키 생성 로직은 전부 그대로 둠 —
+  `national-strategic-tech.md`, `domain/*.moc.md`, `home.md` 등 위키 콘텐츠는 무관
+- 루트 `index.html`(도구 허브) 카드 링크를 `dashboard/index.html`로 변경
+- 위 "AI 자연어 검색(교원 검색기)의 한계" open-question은 그 대상 도구(`tools/faculty-search.html`)가
+  삭제되어 더 이상 유효하지 않아 open-questions.md 에서 제거
