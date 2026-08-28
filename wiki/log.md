@@ -20,3 +20,40 @@ POSTECH R&D 실적 데이터베이스(교원 298명, `faculty_profiles.json`)를
 
 ## [2026-08-27] lint | 아키텍처 재구성 — sources/wiki/schema 3계층 + LLM 큐레이션 MOC
 사용자가 Karpathy의 LLM Wiki 패턴 원문과 CLAUDE.md 스타일 가이드를 제공하며, (1) `data/` → `sources/` 로 개명해 "불변 원본" 레이어를 명확히 하고 (2) 학과 페이지를 스크립트의 기계적 나열이 아니라 LLM이 직접 원문을 읽고 종합하는 `wiki/domain/*.moc.md` 로 전환할 것을 요청. 16개 학과 전체를 읽고 연구 클러스터를 식별해 MOC 작성, `wiki/home.md`(전체 진입점, 학과 간 공통 흐름 종합), `wiki/log.md`, `wiki/open-questions.md`, 루트 `CLAUDE.md`(스키마) 신설. 교원 개별 페이지(`wiki/faculty/*.md`)는 정확도가 중요한 추출 데이터이므로 기존처럼 결정론적 생성 유지.
+
+## [2026-08-27] lint | 교원 개별 페이지 가독성 개선
+`wiki/faculty/*.md`가 최대 39KB까지 늘어나 스캔하기 어렵다는 피드백. ￭/`; ` 로 나열된 필드를 불릿 리스트로 렌더링하고, 홈페이지 크롤링 원문·서브페이지(최대 8개)를 `<details>` 접이식 블록으로 감싸 기본은 접어두도록 `build_wiki.py` 수정.
+
+## [2026-08-27] ingest | 홈페이지 크롤링 정기 자동화 (GitHub Actions, 매월 1일)
+사용자가 "수시로 업데이트해서 DB에 쌓을 방법"을 문의. `.github/workflows/refresh-wiki.yml` 추가 — 매월 1일 GitHub Actions 러너(이 세션과 달리 실제 인터넷 접근 가능)에서 `crawl_homepages.py --force` + `build_wiki.py` 를 실행해 main에 직접 커밋. 사용자 로컬 PC 없이도 홈페이지 정보가 계속 최신화됨. `main` 브랜치에 머지되어야 스케줄이 실제로 켜짐.
+
+## [2026-08-27] lint | 실적 데이터베이스는 연 1회 수동 업로드로 확정
+사용자가 `faculty_profiles_source.json`(실적 DB)은 매년 새 파일을 받아 수동 교체해야 한다고 확인. 자동화 대상이 아님을 CLAUDE.md에 명시.
+
+## [2026-08-27] ingest | 홈페이지 원문 AI 요약 추가 (Gemini API)
+사용자가 "크롤링한 원문을 그대로 접어두지 말고, 교원 개인에 대해 읽고 이해한 것처럼 정리해달라"고 요청. Claude API 대신 이 저장소의 index.html(RFP 공문 생성기)이 이미 쓰고 있는 Gemini API(REST, 동적 모델 탐색 + 폴백 목록)를 재사용하기로 결정 — 별도 결제 체계 없이 기존 패턴 재활용.
+
+`scripts/summarize_homepages.py` 신설: 크롤링 원문(첫 화면 + 서브페이지)을 교원 1인당 3~5문장으로 요약해 `homepage_crawl.json`의 `summary` 필드에 저장. 원문에 다른 교원 이름이 섞여 있을 때(학과 뉴스 게시판이 서브페이지로 잡힌 경우 등) 잘못 귀속되지 않도록 프롬프트에 "요약 대상 1인만" 가드레일 포함 — 완전하지는 않아 `open-questions.md`에 한계 기록. 원문 해시가 안 바뀌면 재요약을 건너뛰어 비용 절감.
+
+`.github/workflows/refresh-wiki.yml`에 요약 단계 추가 (`GEMINI_API_KEY` 시크릿이 설정된 경우에만 실행, 없으면 조용히 건너뜀). `build_wiki.py`가 "AI 생성 요약"이라는 라벨과 함께 요약을 교원 페이지 상단에 표시 (원문은 접이식 블록으로 계속 보존).
+
+## [2026-08-27] ingest | 도구 허브 신설 + 교원 검색 웹앱 신설
+사용자가 "루트가 공문 생성기인 게 애매하다, 기능들이 병렬적으로 독립적인데 첫 페이지가 그거인 게 이상하다"며 여러 도구를 한눈에 볼 수 있는 메인 페이지를 요청. 앞으로 도구가 계속 늘어날 걸 감안한 구조 변경.
+
+- 기존 `index.html`(공문 생성기)을 `tools/doc-generator.html`로 이동
+- 새 루트 `index.html` = 도구 허브(랜딩 페이지) — 카드형 메뉴로 공문 생성기/교원 검색 연결, 향후 도구 추가될 자리도 마련
+- 호환성: 팀원들이 쓰던 기존 공유 링크(`?key=...`)가 루트로 들어오면 허브가 자동으로 파라미터를 유지한 채 `tools/doc-generator.html`로 리다이렉트 — 예전 링크도 계속 동작
+- **`tools/faculty-search.html` 신설** — 이름/학과/연구분야/국가전략기술로 교원 298명을 검색·필터링하는 실제 웹앱(바닐라 JS, 별도 서버 불필요). `tools/faculty-search-data.json`(build_wiki.py가 함께 생성하는 경량 데이터, 원본 4MB+ JSON 대신 ~190KB만 fetch)을 읽어 동작. 각 결과는 GitHub 위키 페이지로 연결
+- jsdom으로 검색/필터/하이라이트 로직을 실제 데이터(298명)에 대해 테스트 — 학과 필터, 국가전략기술 필터, 자유 텍스트 검색 모두 확인. 검색어가 관심분야 원문(주로 영어)과 매칭 안 되는 경우(예: "양자"가 "Quantum"과 매칭 안 됨)를 발견해, 국가전략기술 태그(정확한 한글 표준 명칭)도 검색 대상에 포함시켜 보완
+- README.md, CLAUDE.md 를 새 구조(허브 + tools/)에 맞게 갱신
+
+## [2026-08-27] ingest | 국가전략기술 인덱스 신설
+원본 `text_public`의 `국가전략기술` 필드(정부 12대 국가전략기술 분류를 참조하는 자유 서술형 텍스트)를 발견 — 298명 중 195명이 태그를 갖고 있었으나 지금까지 위키에 반영되지 않았음. 번호매김·괄호 세부사항이 뒤섞인 원문을 표준 12개 명칭으로 정규화하는 파서(`parse_national_tech()`)를 `build_wiki.py`에 추가해 `wiki/national-strategic-tech.md` 생성 — RFP·공모사업 기술 분야와 매칭되는 교원을 바로 찾을 수 있도록 함 (루트 `index.html` RFP 공문 생성기와의 연계 지점이 될 수 있음).
+
+## [2026-08-28] ingest | 교원 검색기에 Gemini 자연어 검색 추가
+사용자가 "교원 자연어 검색도 Gemini API로 되면 편할 것 같다"고 요청. 기존 키워드 매칭 검색은 그대로 두고, "AI에게 자연어로 물어보기" 패널을 추가 — 복합 조건 질문(예: "양자컴퓨팅 연구하면서 특허가 많은 교수")을 Gemini가 처리해 일치하는 교원 id 목록을 돌려주는 방식.
+
+- `tools/doc-generator.html`과 동일한 패턴 재사용: REST 직접 호출(동적 모델 탐색 + flash 계열 우선 + 폴백 후보 목록), API 키는 브라우저 LocalStorage에 사용자 자신의 키로 저장
+- **같은 LocalStorage 키(`postech_gemini_api_key`)를 씀** — 같은 오리진(GitHub Pages 사이트)이라 공문 생성기에서 키를 등록하면 검색기에서도 바로 쓸 수 있음
+- 프롬프트에 교원 298명의 경량 데이터(id/성명/학과/관심분야/국가전략기술/실적)를 JSON으로 통째로 전달 — "목록에 없는 사실은 지어내지 말 것" 가드레일 포함, `responseMimeType: application/json`으로 응답 형식 강제
+- jsdom으로 전체 흐름(키 없음→모달, 키 저장, AI 검색→3~4명 결과, 일반 검색 복귀, 일반 검색창 타이핑 시 AI 모드 자동 해제) 목 데이터로 검증, Playwright로 실제 렌더링도 스크린샷 확인

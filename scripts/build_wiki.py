@@ -24,6 +24,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "sources"
 WIKI_DIR = ROOT / "wiki"
+TOOLS_DIR = ROOT / "tools"
 SOURCE_FILE = DATA_DIR / "faculty_profiles_source.json"
 CRAWL_FILE = DATA_DIR / "homepage_crawl.json"
 
@@ -38,9 +39,52 @@ BRACKET_LINE_RE = re.compile(r"^\[([^\]]+)\]\s*(.*)$")
 # text_public 파싱 결과에서는 건너뛰는 라벨
 SKIP_LABELS = {"성명", "연구관심분야"}
 
-# wiki/researchers.json 의 ai_summary 필드(대시보드 자연어 검색이 AI API로 보내는
-# 압축 프로필)에 쓰이는 글자수 제한 — 토큰/전송량을 억제하기 위한 값
-AI_SUMMARY_LIMITS = {"interests": 220, "keywords": 160, "highlight": 200}
+# 정부 "12대 국가전략기술" 공식 분류 (원본 text_public의 "국가전략기술" 필드가
+# 이 분류를 참조하는 자유 서술형 텍스트라, 표준 명칭으로 정규화해 인덱스를 만든다)
+NATIONAL_TECH_CATEGORIES = [
+    "반도체·디스플레이", "이차전지", "첨단 모빌리티", "차세대 원자력", "첨단 바이오",
+    "우주항공·해양", "수소", "사이버보안", "인공지능", "차세대 통신",
+    "첨단로봇·제조", "양자",
+]
+NATIONAL_TECH_FIELD_RE = re.compile(r"국가전략기술:\s*(.*)")
+
+
+def _norm_tech_key(s: str) -> str:
+    return re.sub(r"[\s·/]", "", s)
+
+
+_TECH_KEY_TO_CANON = {_norm_tech_key(c): c for c in NATIONAL_TECH_CATEGORIES}
+
+
+def parse_national_tech(text_public: str) -> list[str]:
+    """text_public의 '국가전략기술' 필드에서 12대 국가전략기술 카테고리를 추출한다.
+    자유 서술형(번호 매김·괄호 세부사항·쉼표 나열이 뒤섞여 있음) 텍스트라 완벽하지
+    않을 수 있다 — 매칭 안 되는 항목은 조용히 버리지 않고 open-questions.md 에서
+    다룬다. 원본에 없는 카테고리를 지어내지 않고, 표준 12개 명칭에 매칭되는 것만 뽑는다."""
+    m = NATIONAL_TECH_FIELD_RE.search(text_public or "")
+    if not m:
+        return []
+    raw = m.group(1).strip()
+    if not raw or raw in {"기재X", "게재X"} or raw.startswith("12대 국가전략기술"):
+        return []
+    raw = re.sub(r"^\s*\d+\.\s*", "", raw)  # 맨 앞 "1. " 제거
+    parts = re.split(r"\d+\.\s*|,\s*(?![^(]*\))", raw)  # 괄호 안 쉼표는 보존
+    found: list[str] = []
+    for part in parts:
+        part = part.strip().strip(",")
+        if not part:
+            continue
+        head = part.split("(")[0].strip()
+        key = _norm_tech_key(head)
+        canon = _TECH_KEY_TO_CANON.get(key)
+        if not canon:
+            for k, c in _TECH_KEY_TO_CANON.items():
+                if len(k) >= 2 and (k in key or key in k):
+                    canon = c
+                    break
+        if canon and canon not in found:
+            found.append(canon)
+    return found
 
 
 def slugify_dept(name: str) -> str:
@@ -117,76 +161,8 @@ def render_details(summary: str, body: str) -> list[str]:
     return ["<details>", f"<summary>{summary}</summary>", "", body, "", "</details>"]
 
 
-def truncate(text: str, limit: int) -> str:
-    s = (text or "").strip()
-    return s if len(s) <= limit else s[: limit - 1].rstrip() + "…"
-
-
 def perf_total(perf: dict) -> int:
     return sum((v or 0) for v in (perf or {}).values())
-
-
-def build_researchers_json(records: list[dict]) -> dict:
-    """대시보드(dashboard/index.html)가 fetch로 읽는 경량 JSON 인덱스를 만든다.
-
-    wiki/faculty/*.md 와 같은 원본(sources/faculty_profiles_source.json)에서 결정론적으로
-    파생되는 산출물이다 — 손으로 고치지 말고 이 스크립트를 다시 실행할 것. wiki/faculty/*.md
-    와 마찬가지로 나열형 필드는 render_list_or_text로 불릿 리스트화해 대시보드 상세 모달의
-    가독성을 맞춘다 (CLAUDE.md 참고).
-    """
-    by_dept: "OrderedDict[str, int]" = OrderedDict()
-    researchers = []
-    for r in sorted(records, key=lambda r: r["성명"]):
-        dept = (r.get("학과") or "").strip() or "미분류"
-        by_dept[dept] = by_dept.get(dept, 0) + 1
-
-        interests_raw = (r.get("관심분야") or "").strip()
-        parsed = parse_text_public(r.get("text_public", ""))
-        keywords = parsed.get("연구키워드", "")
-        highlight = (
-            parsed.get("대표연구·최근 주도논문(제1/교신)")
-            or parsed.get("주요성과")
-            or ""
-        )
-        perf = r.get("실적건수", {}) or {}
-        sections = OrderedDict(
-            (label, render_list_or_text(content))
-            for label, content in parsed.items()
-            if label not in SKIP_LABELS
-        )
-
-        researchers.append(
-            {
-                "id": r["개인번호"],
-                "name": r["성명"],
-                "department": dept,
-                "email": r.get("이메일", ""),
-                "homepage": r.get("홈페이지", ""),
-                "interests": render_list_or_text(interests_raw),
-                "perf": perf,
-                "perf_total": perf_total(perf),
-                "sections": sections,
-                "wiki_path": f"faculty/{faculty_filename(r)}",
-                # AI 자연어 추천이 외부 API로 전송하는 압축 프로필 — 원본 필드를 그대로
-                # 잘라낸 것일 뿐 창작하지 않는다 (원본 무결성 원칙, CLAUDE.md 참고).
-                # 불릿 마커 없이 " · " 로 이어붙인 압축 버전을 써서 토큰을 아낀다.
-                "ai_summary": {
-                    "interests": truncate(
-                        re.sub(r"\s+", " ", interests_raw.replace("￭", " · ")).strip(" ·"),
-                        AI_SUMMARY_LIMITS["interests"],
-                    ),
-                    "keywords": truncate(keywords, AI_SUMMARY_LIMITS["keywords"]),
-                    "highlight": truncate(highlight, AI_SUMMARY_LIMITS["highlight"]),
-                },
-            }
-        )
-
-    return {
-        "generated": BUILD_DATE,
-        "count": len(researchers),
-        "departments": [{"name": k, "count": v} for k, v in by_dept.items()],
-        "researchers": researchers,
-    }
 
 
 def render_perf_table(perf: dict) -> str:
@@ -250,6 +226,14 @@ def render_faculty_page(rec: dict, crawl: dict) -> str:
     elif crawled and crawled.get("text"):
         lines.append(f"> 크롤링 시각: {crawled.get('fetched_at', '알 수 없음')} · 출처: <{homepage}>")
         lines.append("")
+
+        summary = (crawled.get("summary") or "").strip()
+        if summary:
+            lines.append(f"**AI 생성 요약** _(Gemini 자동 요약 · {crawled.get('summary_generated_at', '')} · 원문은 아래에서 확인 가능)_")
+            lines.append("")
+            lines.append(summary)
+            lines.append("")
+
         main_text = crawled["text"].strip()
         if len(main_text) > 300:
             lines.extend(render_details("홈페이지 원문 보기", main_text))
@@ -329,6 +313,7 @@ def render_index(records: list[dict], by_dept: dict[str, list[dict]]) -> str:
     lines.append("## 기타")
     lines.append("- [home.md](home.md) — 큐레이션된 진입점")
     lines.append("- [연구분야 키워드 인덱스](research-areas.md)")
+    lines.append("- [국가전략기술 인덱스](national-strategic-tech.md)")
     lines.append("- [전체 교원 가나다순 목록](faculty-index.md)")
     lines.append("- [log.md](log.md) — 변경 이력")
     lines.append("- [open-questions.md](open-questions.md) — 모순·미해결 이슈")
@@ -374,6 +359,84 @@ def render_research_areas(records: list[dict]) -> str:
     return "\n".join(lines)
 
 
+def render_national_tech(records: list[dict]) -> str:
+    """정부 12대 국가전략기술 분류별 교원 인덱스. 원본 `text_public`의 '국가전략기술'
+    필드(자유 서술형)를 표준 12개 명칭으로 정규화해 집계한다 — RFP/공모사업의 기술
+    분야와 매칭되는 교원을 찾을 때 쓴다."""
+    tech_to_faculty: defaultdict[str, list[dict]] = defaultdict(list)
+    unmatched_n = 0
+    tagged_n = 0
+    for r in records:
+        tags = parse_national_tech(r.get("text_public", ""))
+        if tags:
+            tagged_n += 1
+        for t in tags:
+            tech_to_faculty[t].append(r)
+
+    lines = ["# 국가전략기술 인덱스", ""]
+    lines.append(
+        "정부 12대 국가전략기술 분류를 기준으로 정리한 교원 인덱스입니다. 원본 `text_public`의 "
+        "'국가전략기술' 필드(자유 서술형)를 표준 명칭으로 정규화해 집계했습니다 — RFP·공모사업의 "
+        "기술 분야에 맞는 교원을 빠르게 찾는 용도입니다."
+    )
+    lines.append("")
+    lines.append(f"- 원본 데이터에 국가전략기술 태그가 있는 교원: **{tagged_n}명** / 298명")
+    lines.append("")
+    for cat in NATIONAL_TECH_CATEGORIES:
+        members = tech_to_faculty.get(cat, [])
+        lines.append(f"## {cat} ({len(members)}명)")
+        if members:
+            for r in sorted(members, key=lambda r: r["성명"]):
+                dept = r.get("학과", "").strip() or "미분류"
+                lines.append(f"- {faculty_link_from(r, 'faculty/')} ({dept})")
+        else:
+            lines.append("_해당 분야로 태그된 교원 없음_")
+        lines.append("")
+    lines.append(
+        "_원문이 자유 서술형이라 매칭이 완벽하지 않을 수 있습니다 — 한계는 "
+        "[open-questions.md](open-questions.md) 참고._"
+    )
+    lines.append("")
+    lines.append("[← 전체 인덱스로](index.md)")
+    lines.append("")
+    return "\n".join(lines)
+
+
+def build_search_data(records: list[dict]) -> list[dict]:
+    """tools/faculty-search.html 이 fetch로 읽는 경량 검색 데이터. 원본 JSON(4MB+,
+    text_full/text_public 포함)을 그대로 브라우저에 내려보내지 않도록, 검색·표시·상세
+    프로필·AI 자연어 검색에 필요한 필드만 추려 별도 파일로 만든다. 나열형 필드는
+    render_list_or_text로 불릿 리스트화해 wiki/faculty/*.md 와 표시 형식을 맞춘다."""
+    out = []
+    for r in records:
+        interests_raw = (r.get("관심분야") or "").strip()
+        parsed = parse_text_public(r.get("text_public", ""))
+        perf = r.get("실적건수") or {}
+        sections = OrderedDict(
+            (label, render_list_or_text(content))
+            for label, content in parsed.items()
+            if label not in SKIP_LABELS
+        )
+        out.append(
+            {
+                "id": r["개인번호"],
+                "name": r["성명"],
+                "dept": r.get("학과", "").strip() or "미분류",
+                "email": r.get("이메일") or "",
+                "homepage": r.get("홈페이지") or "",
+                "interests": render_list_or_text(interests_raw),
+                "perf": perf,
+                "perfTotal": perf_total(perf),
+                "nationalTech": parse_national_tech(r.get("text_public", "")),
+                # 연구키워드·주요성과·대표연구·학회발표·저서 등 — 상세 프로필 모달용
+                "sections": sections,
+                "wikiPath": f"wiki/faculty/{faculty_filename(r)}",
+            }
+        )
+    out.sort(key=lambda x: x["name"])
+    return out
+
+
 def main() -> None:
     if not SOURCE_FILE.exists():
         raise SystemExit(f"원본 파일이 없습니다: {SOURCE_FILE}")
@@ -399,17 +462,18 @@ def main() -> None:
     (WIKI_DIR / "index.md").write_text(render_index(records, by_dept), encoding="utf-8")
     (WIKI_DIR / "faculty-index.md").write_text(render_faculty_flat_index(records), encoding="utf-8")
     (WIKI_DIR / "research-areas.md").write_text(render_research_areas(records), encoding="utf-8")
+    (WIKI_DIR / "national-strategic-tech.md").write_text(render_national_tech(records), encoding="utf-8")
 
-    researchers_json = build_researchers_json(records)
-    (WIKI_DIR / "researchers.json").write_text(
-        json.dumps(researchers_json, ensure_ascii=False, separators=(",", ":")),
-        encoding="utf-8",
+    TOOLS_DIR.mkdir(parents=True, exist_ok=True)
+    search_data = build_search_data(records)
+    (TOOLS_DIR / "faculty-search-data.json").write_text(
+        json.dumps(search_data, ensure_ascii=False, indent=2), encoding="utf-8"
     )
 
     print(f"생성 완료: 교원 {len(records)}명, 학과 {len(by_dept)}개")
     print(f"  wiki/faculty/      {len(records)} 개 파일 (결정론적 생성)")
-    print("  wiki/index.md, wiki/faculty-index.md, wiki/research-areas.md")
-    print("  wiki/researchers.json  (dashboard/index.html 이 읽는 경량 인덱스)")
+    print("  wiki/index.md, wiki/faculty-index.md, wiki/research-areas.md, wiki/national-strategic-tech.md")
+    print("  tools/faculty-search-data.json (교원 검색 웹앱용 경량 데이터)")
     print(
         "  wiki/home.md, wiki/domain/*.moc.md, wiki/log.md, wiki/open-questions.md 는 "
         "이 스크립트가 건드리지 않습니다 (LLM이 직접 쓰고 유지하는 큐레이션 레이어 — CLAUDE.md 참고)"

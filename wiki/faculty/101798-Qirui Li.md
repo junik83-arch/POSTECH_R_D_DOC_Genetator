@@ -4,7 +4,7 @@ name: Qirui Li
 department: 수학과
 email: qiruili@postech.ac.kr
 homepage: http://qirui.li
-updated: 2026-08-27
+updated: 2026-08-28
 ---
 
 # Qirui Li (수학과)
@@ -57,4 +57,4 @@ Document
 
 ## 출처
 - POSTECH R&D 실적 데이터베이스 (개인번호 101798)
-- 최종 갱신: 2026-08-27
+- 최종 갱신: 2026-08-28

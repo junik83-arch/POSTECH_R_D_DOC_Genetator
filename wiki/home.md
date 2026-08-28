@@ -68,6 +68,7 @@ mindmap
 
 - [색인 (index.md)](index.md) — 전체 교원·학과 평면 카탈로그 (기계 생성, 재실행 시 최신화)
 - [연구분야 키워드 인덱스](research-areas.md) — 키워드로 교원 찾기
+- [국가전략기술 인덱스](national-strategic-tech.md) — 정부 12대 국가전략기술 분야별 교원, RFP·공모사업 매칭용
 - [전체 교원 가나다순 목록](faculty-index.md)
 - [log.md](log.md) — 이 위키가 어떻게 만들어져 왔는지 시간순 기록
 - [open-questions.md](open-questions.md) — 데이터 모순·미해결 이슈 (린트 결과)

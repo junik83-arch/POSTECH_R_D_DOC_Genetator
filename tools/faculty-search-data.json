@@ -1,0 +1,6080 @@
+[
+  {
+    "id": "101798",
+    "name": "Qirui Li",
+    "dept": "수학과",
+    "email": "qiruili@postech.ac.kr",
+    "homepage": "http://qirui.li",
+    "interests": "· Arithmetic Geometry · Gross Zagier Formula, · Automorphic Representations, · Elliptic Curves, · p-divisible Groups, · Shimura Varieties, · Local Shtukas",
+    "perf": {
+      "주도논문": 1,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 8,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101798-Qirui Li.md"
+  },
+  {
+    "id": "101792",
+    "name": "Valentin Buciumas",
+    "dept": "수학과",
+    "email": "buciumas@postech.ac.kr",
+    "homepage": "https://buciumas.github.io/",
+    "interests": "-Representation Theory -Algebraic Combinatorics -Number Theory",
+    "perf": {
+      "주도논문": 3,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 11,
+      "학회": 9,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101792-Valentin Buciumas.md"
+  },
+  {
+    "id": "101224",
+    "name": "감종훈",
+    "dept": "환경공학부",
+    "email": "jhkam@postech.ac.kr ",
+    "homepage": "http://hydroclimatology.postech.ac.kr",
+    "interests": "· Hydroclimatology · Climate Variability and Change · Disaster Informatics · Environment AI",
+    "perf": {
+      "주도논문": 15,
+      "공동논문": 14,
+      "특허": 2,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/101224-감종훈.md"
+  },
+  {
+    "id": "102144",
+    "name": "강대식",
+    "dept": "기계공학과",
+    "email": "dskang@postech.ac.kr",
+    "homepage": "https://me.postech.ac.kr/",
+    "interests": "· Neural Engineering & Brain-Machine Interfaces (BMI) · High-Performance Micro/Nano-Sensors · Bio-inspired Robotics & Soft Robotics · Robot Learning & Reinforcement Learning · 2D Superconductivity & Quantum Materials",
+    "perf": {
+      "주도논문": 12,
+      "공동논문": 2,
+      "특허": 0,
+      "과제": 12,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단로봇·제조"
+    ],
+    "wikiPath": "wiki/faculty/102144-강대식.md"
+  },
+  {
+    "id": "101769",
+    "name": "강명훈",
+    "dept": "인문사회학부",
+    "email": "mkang@postech.ac.kr",
+    "homepage": "http://hss.postech.ac.kr/",
+    "interests": "· Formal Theory/Political Methodology · Political Institutions/Behaviors · Korean Politics · Political Economy · Environmental Politics",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 2,
+      "특허": 0,
+      "과제": 5,
+      "학회": 17,
+      "저서": 3,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101769-강명훈.md"
+  },
+  {
+    "id": "100409",
+    "name": "강병우",
+    "dept": "신소재공학과",
+    "email": "bwkang@postech.ac.kr",
+    "homepage": "http://amee.postech.ac.kr/",
+    "interests": "· Fundamental thermodynamics of materials Advanced materials for energy and environment, especially lithium-ion batteries · The beyond of lithium ion batteries such as sodium, magnesium ion batteries, all-solid-state batteries",
+    "perf": {
+      "주도논문": 6,
+      "공동논문": 5,
+      "특허": 9,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "이차전지"
+    ],
+    "wikiPath": "wiki/faculty/100409-강병우.md"
+  },
+  {
+    "id": "100958",
+    "name": "강석형",
+    "dept": "전자전기공학과",
+    "email": "shkang@postech.ac.kr",
+    "homepage": "http://soc.postech.ac.kr",
+    "interests": "· ML (machine learning)-based electirical design automation · Physical design (P&R) optimization · AI-HW design and optimization · Quantum algorithm and circuit optimization",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 5,
+      "특허": 11,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 1
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100958-강석형.md"
+  },
+  {
+    "id": "100248",
+    "name": "강윤배",
+    "dept": "친환경소재대학원",
+    "email": "ybkang@postech.ac.kr",
+    "homepage": "https://sites.google.com/site/cslgiftpostech/home",
+    "interests": "◦ Clean Steel Production for High-Value-Added Product ◦ Low C Ferrous Metallurgy: Hydrogen-based Ironmaking, Ferrous Scrap Refining ◦ Hydrogen Production: Turquoise Hydrogen ◦ Recycling of Industrial Wastes ◦ Computational Thermodynamics and Reaction Kinetics",
+    "perf": {
+      "주도논문": 17,
+      "공동논문": 10,
+      "특허": 0,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100248-강윤배.md"
+  },
+  {
+    "id": "101601",
+    "name": "강종훈",
+    "dept": "신소재공학과",
+    "email": "jkang@postech.ac.kr",
+    "homepage": "https://eqml.postech.ac.kr",
+    "interests": "· Thin film epitaxy of semiconductors & quantum materials · Functional nano-integration towards electronics and optoelectronics · 2D/3D van der Waals materials synthesis and heterostructures fabrication",
+    "perf": {
+      "주도논문": 3,
+      "공동논문": 3,
+      "특허": 0,
+      "과제": 7,
+      "학회": 11,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/101601-강종훈.md"
+  },
+  {
+    "id": "102077",
+    "name": "고성안",
+    "dept": "컴퓨터공학과",
+    "email": "sungahn@postech.ac.kr",
+    "homepage": "https://haiv.postech.ac.kr/",
+    "interests": "Generative AI Vision-Language Models Artificial General Intelligence Data Visualization Human-Computer Interaction",
+    "perf": {
+      "주도논문": 1,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 15,
+      "학회": 3,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/102077-고성안.md"
+  },
+  {
+    "id": "101443",
+    "name": "고아라",
+    "dept": "생명과학과",
+    "email": "ara.koh@postech.ac.kr",
+    "homepage": "https://arakoh.wixsite.com/arakoh",
+    "interests": "· Diabetes and cancer · Microbial metabolites in host health and disease · Individual variations in drug response based on microbiome · The role of small intestine in metabolism · The role of microbiota/metabolites in intestinal cell fate specification",
+    "perf": {
+      "주도논문": 5,
+      "공동논문": 5,
+      "특허": 0,
+      "과제": 29,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101443-고아라.md"
+  },
+  {
+    "id": "100540",
+    "name": "고영명",
+    "dept": "산업경영공학과",
+    "email": "youngko@postech.ac.kr",
+    "homepage": "http://www.lstlab.org/",
+    "interests": "· Queueing Theory and Stochastic Processes · Time Series Foundation Model and Its Applications · Graph-based personalized inference and recommendation model · Optimization under uncertainty with pre-trained models",
+    "perf": {
+      "주도논문": 7,
+      "공동논문": 5,
+      "특허": 1,
+      "과제": 30,
+      "학회": 18,
+      "저서": 1,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/100540-고영명.md"
+  },
+  {
+    "id": "20565",
+    "name": "고용송",
+    "dept": "생명과학과",
+    "email": "ysgho@postech.ac.kr",
+    "homepage": "https://catapy17.wixsite.com/lab-icn",
+    "interests": "· Study of the components of extracellular vesicles · Study of the functions of extracellular vesicles · Extracellular vesicle-based diagnostics · Extracellular vesicle-based therapeutics",
+    "perf": {
+      "주도논문": 1,
+      "공동논문": 3,
+      "특허": 1,
+      "과제": 30,
+      "학회": 12,
+      "저서": 0,
+      "기술이전": 5
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/20565-고용송.md"
+  },
+  {
+    "id": "102235",
+    "name": "고제성",
+    "dept": "기계공학과",
+    "email": "jskoh@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/jesungkoh/home",
+    "interests": "· Embodied Intelligence in Soft Robotics · Printable & Origami Inspired Robotics · Biologically Inspired Designs & Mechanisms for Robotic Applications · Micro Robots Based on the Fiber Reinforced Composite · Microfabrication & Assembly · Artificial Muscle Actuators (e.g. Shape Memory Alloy actuators)",
+    "perf": {
+      "주도논문": 10,
+      "공동논문": 4,
+      "특허": 0,
+      "과제": 13,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단로봇·제조"
+    ],
+    "wikiPath": "wiki/faculty/102235-고제성.md"
+  },
+  {
+    "id": "100959",
+    "name": "공병돈",
+    "dept": "전자전기공학과",
+    "email": "bdkong@postech.ac.kr",
+    "homepage": " https://sites.google.com/view/pel-home",
+    "interests": "· Semiconductor Physics and Device Physic · Nanoscale Device Simulation · THz and High Frequency RF Devices · Next Generation Logic Applications · Quantum Devices · Low Dimensional and Topological Materials",
+    "perf": {
+      "주도논문": 14,
+      "공동논문": 2,
+      "특허": 9,
+      "과제": 30,
+      "학회": 28,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "차세대 통신"
+    ],
+    "wikiPath": "wiki/faculty/100959-공병돈.md"
+  },
+  {
+    "id": "100926",
+    "name": "곽수하",
+    "dept": "컴퓨터공학과",
+    "email": "suha.kwak@postech.ac.kr",
+    "homepage": "https://suhakwak.github.io/",
+    "interests": "· Computer Vision · Machine Learning",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 1,
+      "특허": 11,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/100926-곽수하.md"
+  },
+  {
+    "id": "102074",
+    "name": "권도훈",
+    "dept": "화학과",
+    "email": "dhkwon@postech.ac.kr",
+    "homepage": "https://kwonlab.postech.ac.kr/",
+    "interests": "· Mechanobiology and membrane protein structural biology · Cryogenic electron microscopy of ion channels and transporters · Membrane-mimetic systems (nanodiscs, proteoliposomes) and synthetic membranes · Structure–function of ion channels; ligand and lipid modulation; structure-based drug discovery",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 10,
+      "학회": 5,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/102074-권도훈.md"
+  },
+  {
+    "id": "100934",
+    "name": "권세윤",
+    "dept": "환경공학부",
+    "email": "saeyunk@postech.ac.kr",
+    "homepage": "http://ehal.postech.ac.kr/",
+    "interests": "· Isotope biogeochemistry · Source tracing · Heavy metals · Environmental policies · Biomonitoring",
+    "perf": {
+      "주도논문": 15,
+      "공동논문": 11,
+      "특허": 0,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100934-권세윤.md"
+  },
+  {
+    "id": "20539",
+    "name": "권수옥",
+    "dept": "인문사회학부",
+    "email": "soook@postech.ac.kr",
+    "homepage": "http://hss.postech.ac.kr/",
+    "interests": "· Second language acquisition theory and practice · L1 and L2 sentence processing studies · Language and thought · Extensive reading and incidental vocabulary acquisition",
+    "perf": {
+      "주도논문": 1,
+      "공동논문": 1,
+      "특허": 0,
+      "과제": 2,
+      "학회": 10,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/20539-권수옥.md"
+  },
+  {
+    "id": "102202",
+    "name": "권순호",
+    "dept": "신소재공학과",
+    "email": "skwon@postech.ac.kr",
+    "homepage": "https://skwon.postech.ac.kr",
+    "interests": "· Theory-driven design of functional materials for energy conversion and catalysis · Prediction of catalytic performance and in-situ/operando observables · Multi-scale atomistic simulation",
+    "perf": {
+      "주도논문": 12,
+      "공동논문": 4,
+      "특허": 0,
+      "과제": 6,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "수소"
+    ],
+    "wikiPath": "wiki/faculty/102202-권순호.md"
+  },
+  {
+    "id": "100745",
+    "name": "김건우",
+    "dept": "수학과",
+    "email": "kunwoo@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/kunwookim",
+    "interests": "· Probability · Stochastic analysis · Stochastic partial differential equations",
+    "perf": {
+      "주도논문": 3,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 10,
+      "학회": 7,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100745-김건우.md"
+  },
+  {
+    "id": "101434",
+    "name": "김경덕",
+    "dept": "친환경소재대학원",
+    "email": "kdkim@postech.ac.kr",
+    "homepage": "http://icmel.dsso.kr/",
+    "interests": "· Multiscale modeling of phase transformations in metals and alloys · Computational design and discovery of new materials · High-throughput discovery of new materials · Machine-learning-assisted materials discovery",
+    "perf": {
+      "주도논문": 8,
+      "공동논문": 3,
+      "특허": 0,
+      "과제": 30,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101434-김경덕.md"
+  },
+  {
+    "id": "20443",
+    "name": "김경태",
+    "dept": "전자전기공학과",
+    "email": "kkt@postech.ac.kr",
+    "homepage": "http://iras.postech.ac.kr/",
+    "interests": "· intelligent radar system and signal processing · SAR/ISAR imaging · target recognition · direction of arrival estimation · micro-Doppler analysis, · automotive radars · digital beamforming · electronic warfare · electromagnetic scattering.",
+    "perf": {
+      "주도논문": 15,
+      "공동논문": 1,
+      "특허": 14,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 1
+    },
+    "nationalTech": [
+      "우주항공·해양"
+    ],
+    "wikiPath": "wiki/faculty/20443-김경태.md"
+  },
+  {
+    "id": "100982",
+    "name": "김경환",
+    "dept": "화학과",
+    "email": "kimkyunghwan@postech.ac.kr",
+    "homepage": "http://xlcr.postech.ac.kr",
+    "interests": "· X-ray scattering, X-ray spectroscopies, X-ray photon correlation spectroscopy with X-ray free electron lasers · The structural origin of water (and ice) anomalies · Reaction mechanism of organometallic catalyst in solution · Ground-state protein dynamics",
+    "perf": {
+      "주도논문": 5,
+      "공동논문": 1,
+      "특허": 0,
+      "과제": 25,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100982-김경환.md"
+  },
+  {
+    "id": "101025",
+    "name": "김광선",
+    "dept": "컴퓨터공학과",
+    "email": "g.kim@postech.ac.kr",
+    "homepage": "https://psal.postech.ac.kr",
+    "interests": "· Computer architecture · Near-data processing · Parallel systems · Memory system · Neural Processing Units (NPUs) · Programming model and compiler · Simulation methodology · Smart NICs",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 1,
+      "특허": 4,
+      "과제": 30,
+      "학회": 11,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/101025-김광선.md"
+  },
+  {
+    "id": "101205",
+    "name": "김광순",
+    "dept": "생명과학과",
+    "email": "kskim27@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/postech-imi-lab/home",
+    "interests": "· Development of intestinal immune system · Immune-microbiota interaction · Microbiota based therapy · Inflammatory bowel diseases",
+    "perf": {
+      "주도논문": 3,
+      "공동논문": 3,
+      "특허": 1,
+      "과제": 20,
+      "학회": 3,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/101205-김광순.md"
+  },
+  {
+    "id": "101715",
+    "name": "김광인",
+    "dept": "전자전기공학과",
+    "email": "kimkin@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/mlvlab/",
+    "interests": "· Machine learning (robust & distributed learning, data-efficient learning) · Computer vision (human body & hand pose estimation, image attribute estimation)",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 1,
+      "특허": 0,
+      "과제": 30,
+      "학회": 23,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/101715-김광인.md"
+  },
+  {
+    "id": "20342",
+    "name": "김광재",
+    "dept": "산업경영공학과",
+    "email": "kjk@postech.ac.kr",
+    "homepage": "http://quality.postech.ac.kr/",
+    "interests": "· Quality Engineering/Management · Service Science, Engineering and Management · Data-Driven Approach to Value Creation",
+    "perf": {
+      "주도논문": 4,
+      "공동논문": 4,
+      "특허": 1,
+      "과제": 30,
+      "학회": 30,
+      "저서": 1,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/20342-김광재.md"
+  },
+  {
+    "id": "100476",
+    "name": "김기석",
+    "dept": "물리학과",
+    "email": "tkfkd@postech.ac.kr",
+    "homepage": "http://ph.postech.ac.kr/",
+    "interests": "· Quantum criticality and novel metallic states beyond Landau’s Fermi-liquid paradigm · Topological field theory to describe the interplay between electron correlations and topological structures · Non-perturbative field theory approach for strongly correlated electrons",
+    "perf": {
+      "주도논문": 7,
+      "공동논문": 2,
+      "특허": 0,
+      "과제": 12,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "양자"
+    ],
+    "wikiPath": "wiki/faculty/100476-김기석.md"
+  },
+  {
+    "id": "100155",
+    "name": "김기현",
+    "dept": "기계공학과",
+    "email": "kiheankim@postech.ac.kr",
+    "homepage": "https://sites.google.com/site/bmoptics5/home",
+    "interests": "· Photonic machine system and image processing · Instrumentation (hardware & software) · Novel optical microscopy techniques · Signal & image processing · Biomedical & industrial applications",
+    "perf": {
+      "주도논문": 10,
+      "공동논문": 6,
+      "특허": 6,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 3
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100155-김기현.md"
+  },
+  {
+    "id": "101199",
+    "name": "김기훈",
+    "dept": "기계공학과",
+    "email": "khk@postech.ac.kr",
+    "homepage": "http://march.postech.ac.kr",
+    "interests": "· Robotics · Bilateral Teleoperation · Mechanism Design (Robot Hands, Exoskeleton) · Bio-Medical Robots (Bionics, Rehabilitation, Surgery) · Bionic Signal Processing & Bionic Interfaces · Haptics · Kinematics & Dynamics (Screw theory, Lie-Group theory) · Advanced Control Theory (H-infinity, mu-synthesis)",
+    "perf": {
+      "주도논문": 8,
+      "공동논문": 3,
+      "특허": 9,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 4
+    },
+    "nationalTech": [
+      "첨단로봇·제조"
+    ],
+    "wikiPath": "wiki/faculty/101199-김기훈.md"
+  },
+  {
+    "id": "101232",
+    "name": "김덕영",
+    "dept": "산업경영공학과",
+    "email": "dy.kim@postech.ac.kr",
+    "homepage": "http://fi.postech.ac.kr",
+    "interests": "· Smart Factory · Industrial AI",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 1,
+      "특허": 7,
+      "과제": 30,
+      "학회": 30,
+      "저서": 1,
+      "기술이전": 1
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/101232-김덕영.md"
+  },
+  {
+    "id": "101744",
+    "name": "김도형",
+    "dept": "IT융합공학과",
+    "email": "kimd42@postech.ac.kr",
+    "homepage": "https://bmi.postech.ac.kr",
+    "interests": "· Systems Neuroscience · In Vivo Neural Recording · Invasive Brain-Machine Interface (BMI) · Neurological and Psychiatric Disease",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 1,
+      "특허": 0,
+      "과제": 17,
+      "학회": 2,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/101744-김도형.md"
+  },
+  {
+    "id": "100302",
+    "name": "김동성",
+    "dept": "기계공학과",
+    "email": "smkds@postech.ac.kr",
+    "homepage": "https://mib.postech.ac.kr/",
+    "interests": "· Nano- and micro- manufacturing processes for polymers and hydrogels · Advanced manufactring techniques for biomaterial processing · Multi-scale and bio-inspired structural design for developing functional materials · Applied mechanics in the fabrication of biomaterials",
+    "perf": {
+      "주도논문": 15,
+      "공동논문": 2,
+      "특허": 9,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 2
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/100302-김동성.md"
+  },
+  {
+    "id": "20422",
+    "name": "김동식",
+    "dept": "기계공학과",
+    "email": "dskim87@postech.ac.kr",
+    "homepage": "http://lpmht.postech.ac.kr/",
+    "interests": "· Laser materials processing · Laser-based additive manufacturing · Thermal systems and sensors · Microscale heat transfer",
+    "perf": {
+      "주도논문": 8,
+      "공동논문": 3,
+      "특허": 1,
+      "과제": 13,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/20422-김동식.md"
+  },
+  {
+    "id": "101219",
+    "name": "김동우",
+    "dept": "컴퓨터공학과",
+    "email": "dongwookim@postech.ac.kr",
+    "homepage": "https://ml.postech.ac.kr/",
+    "interests": "· Machine Learning · Deep Learning",
+    "perf": {
+      "주도논문": 1,
+      "공동논문": 2,
+      "특허": 1,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/101219-김동우.md"
+  },
+  {
+    "id": "100865",
+    "name": "김민성",
+    "dept": "생명과학과",
+    "email": "cggs@postech.ac.kr",
+    "homepage": "http://mskimlab.postech.ac.kr/",
+    "interests": "· 3-Dimensional structure study of Protein complex · Molecular interaction between biological macromolecules · DNA-related enzyme mechanism",
+    "perf": {
+      "주도논문": 3,
+      "공동논문": 2,
+      "특허": 0,
+      "과제": 24,
+      "학회": 3,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100865-김민성.md"
+  },
+  {
+    "id": "100803",
+    "name": "김범준",
+    "dept": "물리학과",
+    "email": "bjkim6@postech.ac.kr",
+    "homepage": "https://sssg.postech.ac.kr/",
+    "interests": "· Spectrosopies on strongly correlated and spin-orbit coupled electron systems · X-ray/neutron/Raman scattering & angle-resolved photoemission spectroscopy. · Materials design and discovery/Single crystal growth",
+    "perf": {
+      "주도논문": 4,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 11,
+      "학회": 20,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100803-김범준.md"
+  },
+  {
+    "id": "100449",
+    "name": "김병섭",
+    "dept": "전자전기공학과",
+    "email": "byungsub@postech.ac.kr",
+    "homepage": "http://bevillab.postech.ac.kr",
+    "interests": "· Analog Layout Generation · Analog Circuit Optimization · Analog/mixed-signal circuit design · High-speed link design & Generation · ADC design & Generation",
+    "perf": {
+      "주도논문": 6,
+      "공동논문": 2,
+      "특허": 5,
+      "과제": 30,
+      "학회": 15,
+      "저서": 0,
+      "기술이전": 2
+    },
+    "nationalTech": [
+      "반도체·디스플레이",
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/100449-김병섭.md"
+  },
+  {
+    "id": "20606",
+    "name": "김병인",
+    "dept": "산업경영공학과",
+    "email": "bkim@postech.ac.kr",
+    "homepage": "http://logistics.postech.ac.kr/",
+    "interests": "· Optimization · Logistics · Vehicle Routing Problems · Healthcare Optimization · Smart Intersection (Traffic Signal Optimization) · Automated Material Handling Systems · Simulation · Reinforcement Learning",
+    "perf": {
+      "주도논문": 10,
+      "공동논문": 2,
+      "특허": 4,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 1
+    },
+    "nationalTech": [
+      "첨단 모빌리티",
+      "반도체·디스플레이",
+      "이차전지"
+    ],
+    "wikiPath": "wiki/faculty/20606-김병인.md"
+  },
+  {
+    "id": "20229",
+    "name": "김상우",
+    "dept": "전자전기공학과",
+    "email": "swkim@postech.ac.kr",
+    "homepage": "http://icsl.postech.ac.kr/",
+    "interests": "· Optimal Control · Steel Making Process Automation · Adaptive Signal Processing · Image Processing · Fault Diagnosis · Battery Management System",
+    "perf": {
+      "주도논문": 18,
+      "공동논문": 0,
+      "특허": 9,
+      "과제": 30,
+      "학회": 26,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "이차전지",
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/20229-김상우.md"
+  },
+  {
+    "id": "20611",
+    "name": "김상욱",
+    "dept": "생명과학과",
+    "email": "sukim@postech.ac.kr",
+    "homepage": "http://sbi.postech.ac.kr/",
+    "interests": "· Computational biology, bioinformatics, medical informatics · Bio and medical big data analysis · Development of prediction methods for protein structure and protein-protein interaction",
+    "perf": {
+      "주도논문": 7,
+      "공동논문": 3,
+      "특허": 3,
+      "과제": 30,
+      "학회": 9,
+      "저서": 0,
+      "기술이전": 1
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/20611-김상욱.md"
+  },
+  {
+    "id": "101366",
+    "name": "김석",
+    "dept": "기계공학과",
+    "email": "seok.kim@postech.ac.kr",
+    "homepage": "https://3mns.postech.ac.kr/",
+    "interests": "· Smart surfaces with controllable surface adhesion, wetting, and others · Trasnfer printing-based micromanufacturing · Heterogeneous Integration for Semiconductor and Display Technology · MEMS/NEMS",
+    "perf": {
+      "주도논문": 8,
+      "공동논문": 2,
+      "특허": 4,
+      "과제": 30,
+      "학회": 30,
+      "저서": 2,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/101366-김석.md"
+  },
+  {
+    "id": "20634",
+    "name": "김성지",
+    "dept": "화학과",
+    "email": "sungjee@postech.ac.kr",
+    "homepage": "http://www.nanotrio.com/",
+    "interests": "· Optical properties of quantum dots · Quantum dot based optoelectronic devices. · Biomedical imaging applications using quantum dots · Surface plasmon and biomedical applications of metal nanoparticles",
+    "perf": {
+      "주도논문": 11,
+      "공동논문": 8,
+      "특허": 2,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/20634-김성지.md"
+  },
+  {
+    "id": "101953",
+    "name": "김성철",
+    "dept": "생명과학과",
+    "email": "sungchulkim@postech.ac.kr",
+    "homepage": "sungchulkim.org",
+    "interests": "· Molecular mechanism of CRISPR-Cas systems · Development of novel CRISPR tools · Single-molecule biophysics · Host-virus ineractions",
+    "perf": {
+      "주도논문": 1,
+      "공동논문": 1,
+      "특허": 0,
+      "과제": 20,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/101953-김성철.md"
+  },
+  {
+    "id": "101223",
+    "name": "김세영",
+    "dept": "전자전기공학과",
+    "email": "kimseyoung@postech.ac.kr ",
+    "homepage": "https://ace.postech.ac.kr",
+    "interests": "· AI & Neuromorphic devices and applications · Next-generation computing devices · Low-power, high-efficiency AI hardware implementation · Brain-inspired computing and applications",
+    "perf": {
+      "주도논문": 15,
+      "공동논문": 2,
+      "특허": 16,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/101223-김세영.md"
+  },
+  {
+    "id": "101858",
+    "name": "김슬배",
+    "dept": "컴퓨터공학과",
+    "email": "seulbae@postech.ac.kr",
+    "homepage": "https://compsec.postech.ac.kr",
+    "interests": "· Cyber-Physical Systems · Software and Systems Security",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 12,
+      "학회": 4,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "사이버보안"
+    ],
+    "wikiPath": "wiki/faculty/101858-김슬배.md"
+  },
+  {
+    "id": "100923",
+    "name": "김연수",
+    "dept": "신소재공학과",
+    "email": "ysookim@postech.ac.kr",
+    "homepage": "http://hydrogel.postech.ac.kr/",
+    "interests": "· Mimicking biological phenomena such as self-sustained cyclic systems, mechanically durable structures, and hierarchical structures · Synthetic methods for homogeneous structure · Technical methods for anisotropic structure · Combination of functional polymers with inorganic materials for multi- functional materials · Design of new types of functional polymers/gels showing dynamic sol-gel transition in response to environmental changes",
+    "perf": {
+      "주도논문": 8,
+      "공동논문": 5,
+      "특허": 1,
+      "과제": 30,
+      "학회": 3,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "이차전지"
+    ],
+    "wikiPath": "wiki/faculty/100923-김연수.md"
+  },
+  {
+    "id": "101153",
+    "name": "김영기",
+    "dept": "화학공학과",
+    "email": "ykkim@postech.ac.kr",
+    "homepage": "http://ssm.postech.ac.kr",
+    "interests": "· Smart Material · Molecular/Colloidal Self-Assembly · Drug Release System · Bio- & Chemical-Sensor",
+    "perf": {
+      "주도논문": 9,
+      "공동논문": 6,
+      "특허": 18,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101153-김영기.md"
+  },
+  {
+    "id": "101046",
+    "name": "김영진",
+    "dept": "생명과학과",
+    "email": "yjkim01@postech.ac.kr",
+    "homepage": "https://yjkim001011.wixsite.com/website",
+    "interests": "· Molecular mechanism of membrane transporter · Structural Biology",
+    "perf": {
+      "주도논문": 1,
+      "공동논문": 2,
+      "특허": 0,
+      "과제": 11,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101046-김영진.md"
+  },
+  {
+    "id": "100779",
+    "name": "김영진",
+    "dept": "전자전기공학과",
+    "email": "powersys@postech.ac.kr",
+    "homepage": "https://powersys.postech.ac.kr/",
+    "interests": "· Smart commercial buildings · Self-healing microgrids, · Distributed renewable energy · Co-optimization of power systems and communication networks",
+    "perf": {
+      "주도논문": 20,
+      "공동논문": 4,
+      "특허": 16,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 1
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100779-김영진.md"
+  },
+  {
+    "id": "101602",
+    "name": "김용준",
+    "dept": "전자전기공학과",
+    "email": "yongjune@postech.ac.kr",
+    "homepage": "https://iil.postech.ac.kr/",
+    "interests": "· Semantic-aware and task-oriented communications · Coding and information theory · Distributed inference and learning · Privacy-preserving AI/ML · Coding and resource optimization for storage and memory",
+    "perf": {
+      "주도논문": 5,
+      "공동논문": 3,
+      "특허": 1,
+      "과제": 30,
+      "학회": 14,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "차세대 통신"
+    ],
+    "wikiPath": "wiki/faculty/101602-김용준.md"
+  },
+  {
+    "id": "101047",
+    "name": "김용태",
+    "dept": "신소재공학과",
+    "email": "yongtae@postech.ac.kr",
+    "homepage": "http://lemp.postech.ac.kr",
+    "interests": "· Electrocatalysis for energy conversion like fuel cell, electrolysis cell, metal-air battery, and CO2 conversion · Cathode material of lithium ion batteries and their recycling · Electrochemical corrosion and anti-corrosion for ferrous and non-ferrous metals · Synchrotron analysis on electronic and fine structure of electrocatalysts",
+    "perf": {
+      "주도논문": 14,
+      "공동논문": 12,
+      "특허": 25,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101047-김용태.md"
+  },
+  {
+    "id": "100864",
+    "name": "김욱성",
+    "dept": "전자전기공학과",
+    "email": "wsungkim@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/kimwooksung/",
+    "interests": "· Future display technologies - Reflective displays & micro displays - Directional displays (holographic displays) · Phase/amplitude array technologies - Optical/RF array applications - Ultrasound/audible applications · Problem solving for display industry - Collaboration tasks with industry · Modeling of displays/arrayed devices - Polarization-sensitive EM modeling - Nano-optics & its display applications · Liquid Crystal Antenna Technologies - Beam-steering anteanns for RF and microwave applications. - Liquid crystal arrays for wireless communication systems · Power systems for high voltage applications - High step-up DC/DC converters - High voltage MIMO systems - Precise contorl for eletroactive polymer · Immersive user experience - Virtual acceleration sense - Virtual motion - Cybersickness",
+    "perf": {
+      "주도논문": 13,
+      "공동논문": 3,
+      "특허": 5,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 1
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/100864-김욱성.md"
+  },
+  {
+    "id": "100770",
+    "name": "김원배",
+    "dept": "화학공학과",
+    "email": "kimwb@postech.ac.kr",
+    "homepage": "http://aecl.postech.ac.kr/ ",
+    "interests": "· Advanced energy and catalysis technology · Batteries and energy strorage materials · Fuel cells and electrochemical processes for energy · Nanomaterials synthesis and characterization",
+    "perf": {
+      "주도논문": 37,
+      "공동논문": 2,
+      "특허": 6,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "이차전지"
+    ],
+    "wikiPath": "wiki/faculty/100770-김원배.md"
+  },
+  {
+    "id": "100053",
+    "name": "김원종",
+    "dept": "화학과",
+    "email": "wjkim@postech.ac.kr",
+    "homepage": "http://bmpl.postech.ac.kr/",
+    "interests": "· Biopolymer Chemistry · Smart Drug/Gene Delivery System · Nanobiomaterials based Theranostics · Multifunctional Nanoassembly · Nanoparticle based Immunotherapy · Biopolymer-Mediated Gene Analysis · Nitric Oxide Delivery · DNA Nanomedicine",
+    "perf": {
+      "주도논문": 22,
+      "공동논문": 6,
+      "특허": 9,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 1
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/100053-김원종.md"
+  },
+  {
+    "id": "101359",
+    "name": "김원화",
+    "dept": "컴퓨터공학과",
+    "email": "wonhwa@postech.ac.kr",
+    "homepage": "http://mip.postech.ac.kr",
+    "interests": "· Medical Imaging · Machine Learning · Computer Vision",
+    "perf": {
+      "주도논문": 1,
+      "공동논문": 4,
+      "특허": 1,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101359-김원화.md"
+  },
+  {
+    "id": "20567",
+    "name": "김윤호",
+    "dept": "물리학과",
+    "email": "yoonho@postech.ac.kr",
+    "homepage": "http://qopt.postech.ac.kr/",
+    "interests": "· Atom-Photon Coherent Interaction · Photonic Quantum Information Processing · Quantum Communication · Quantum Optics · Quantum Nonlinear Optics · Quantum Photonics",
+    "perf": {
+      "주도논문": 5,
+      "공동논문": 0,
+      "특허": 2,
+      "과제": 30,
+      "학회": 8,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "양자"
+    ],
+    "wikiPath": "wiki/faculty/20567-김윤호.md"
+  },
+  {
+    "id": "20610",
+    "name": "김정훈",
+    "dept": "생명과학과",
+    "email": "joungkim@postech.ac.kr",
+    "homepage": "http://joungkim-lab.com",
+    "interests": "· Molecular mechanisms of synaptic plasticity · Cellular underpinnings for addictive behaviors · Regulation of neural circuits underlying emotional memory",
+    "perf": {
+      "주도논문": 3,
+      "공동논문": 3,
+      "특허": 0,
+      "과제": 23,
+      "학회": 22,
+      "저서": 0,
+      "기술이전": 1
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/20610-김정훈.md"
+  },
+  {
+    "id": "101134",
+    "name": "김정훈",
+    "dept": "전자전기공학과",
+    "email": "junghoonkim@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/postechctrl",
+    "interests": "· Mathematical control theory · Control applications · Robotics",
+    "perf": {
+      "주도논문": 16,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단로봇·제조"
+    ],
+    "wikiPath": "wiki/faculty/101134-김정훈.md"
+  },
+  {
+    "id": "101505",
+    "name": "김종경",
+    "dept": "생명과학과",
+    "email": "blkimjk@postech.ac.kr",
+    "homepage": "https://cb.postech.ac.kr",
+    "interests": "· Dissecting cellular heterogeneity and plasticity in physiology and disease · Single-cell multiomics · Bioinformatics and Machine learning",
+    "perf": {
+      "주도논문": 11,
+      "공동논문": 13,
+      "특허": 0,
+      "과제": 30,
+      "학회": 2,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/101505-김종경.md"
+  },
+  {
+    "id": "100219",
+    "name": "김종규",
+    "dept": "신소재공학과",
+    "email": "kimjk@postech.ac.kr",
+    "homepage": "http://npol.postech.ac.kr/",
+    "interests": "· Semiconductor light emitters: from visible to deep ultraviolet light-emitting diodes (LEDs) · Growth of 2-dimensional materials and their optoelectronics applications · 3-dimensional nano-structured thin film materials and their energy/environmental applications",
+    "perf": {
+      "주도논문": 11,
+      "공동논문": 8,
+      "특허": 4,
+      "과제": 30,
+      "학회": 30,
+      "저서": 1,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/100219-김종규.md"
+  },
+  {
+    "id": "100971",
+    "name": "김종민",
+    "dept": "생명과학과",
+    "email": "minijong@postech.ac.kr",
+    "homepage": "http://jkimlab.postech.ac.kr/",
+    "interests": "· Synthetic biological circuits · Construction of complex gene regulatory circuits · Development of molecular probes for precision medicine",
+    "perf": {
+      "주도논문": 12,
+      "공동논문": 2,
+      "특허": 1,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/100971-김종민.md"
+  },
+  {
+    "id": "101560",
+    "name": "김종신",
+    "dept": "IT융합공학과",
+    "email": "jskim81@postech.ac.kr",
+    "homepage": "http://neuroimm.postech.ac.kr",
+    "interests": "· Neuroimmunology · Vascular Biology · CNS Barriers and Fluids · Ophthalmology and Eye Diseases",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 1,
+      "특허": 0,
+      "과제": 30,
+      "학회": 14,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/101560-김종신.md"
+  },
+  {
+    "id": "100817",
+    "name": "김종환",
+    "dept": "신소재공학과",
+    "email": "jonghwankim@postech.ac.kr",
+    "homepage": "https://jhklab.weebly.com/",
+    "interests": "· Optical characterization of novel materials for electronics and photonics · Ultrafast science and technology for nanomaterials",
+    "perf": {
+      "주도논문": 10,
+      "공동논문": 5,
+      "특허": 0,
+      "과제": 30,
+      "학회": 29,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이",
+      "첨단 바이오",
+      "양자"
+    ],
+    "wikiPath": "wiki/faculty/100817-김종환.md"
+  },
+  {
+    "id": "101790",
+    "name": "김종흠",
+    "dept": "생명과학과",
+    "email": "jonghumkim@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/jonghum-kim-website",
+    "interests": "· Plant-microbe interactions · Plant immunity",
+    "perf": {
+      "주도논문": 3,
+      "공동논문": 4,
+      "특허": 0,
+      "과제": 18,
+      "학회": 12,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/101790-김종흠.md"
+  },
+  {
+    "id": "100158",
+    "name": "김준성",
+    "dept": "물리학과",
+    "email": "js.kim@postech.ac.kr",
+    "homepage": "http://amex.postech.ac.kr/",
+    "interests": "· Exotic superconductivity and magnetism in low dimensional quantum matters and their heterostructures. · Synthesis and single crystal growth of noble complex materials showing unusual quantum phenomena · Electrical/thermal transport properties of condensed matters under extreme conditions",
+    "perf": {
+      "주도논문": 9,
+      "공동논문": 11,
+      "특허": 0,
+      "과제": 30,
+      "학회": 16,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "양자"
+    ],
+    "wikiPath": "wiki/faculty/100158-김준성.md"
+  },
+  {
+    "id": "20620",
+    "name": "김준원",
+    "dept": "기계공학과",
+    "email": "joonwon@postech.ac.kr",
+    "homepage": "http://mnt.postech.ac.kr/",
+    "interests": "· MEMS/NEMS · Selective surface modification in various applications · Microfluidic Bio/Medical devices · Design and fabrication of micro-sensors and actuators",
+    "perf": {
+      "주도논문": 5,
+      "공동논문": 0,
+      "특허": 4,
+      "과제": 21,
+      "학회": 10,
+      "저서": 0,
+      "기술이전": 2
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/20620-김준원.md"
+  },
+  {
+    "id": "100582",
+    "name": "김지훈",
+    "dept": "물리학과",
+    "email": "jeehoon@postech.ac.kr",
+    "homepage": "https://mfm.postech.ac.kr/",
+    "interests": "· Magnetic properties of unconventional superconductors · Magnetic force microscopy in unconventional magnetism · Topological superconductors · Superconducting nanowire signlephoton detector",
+    "perf": {
+      "주도논문": 21,
+      "공동논문": 13,
+      "특허": 0,
+      "과제": 23,
+      "학회": 13,
+      "저서": 0,
+      "기술이전": 2
+    },
+    "nationalTech": [
+      "양자"
+    ],
+    "wikiPath": "wiki/faculty/100582-김지훈.md"
+  },
+  {
+    "id": "101468",
+    "name": "김진수",
+    "dept": "수학과",
+    "email": "jinsukim@postech.ac.kr",
+    "homepage": "https://mathjinsukim.com/",
+    "interests": "· Probability · Stochastic reaction networks · Mathematical Biology",
+    "perf": {
+      "주도논문": 5,
+      "공동논문": 1,
+      "특허": 0,
+      "과제": 27,
+      "학회": 15,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101468-김진수.md"
+  },
+  {
+    "id": "101836",
+    "name": "김진태",
+    "dept": "기계공학과",
+    "email": "jimmy516@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/mechanicslab",
+    "interests": "· Fluid Integrated Electronics · Unmanned Aerial Vehicles · Programmable Materials · Haptic Interfaces · Computer Vision · Soft Electronics",
+    "perf": {
+      "주도논문": 12,
+      "공동논문": 6,
+      "특허": 0,
+      "과제": 30,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 모빌리티",
+      "첨단 바이오",
+      "우주항공·해양",
+      "첨단로봇·제조"
+    ],
+    "wikiPath": "wiki/faculty/101836-김진태.md"
+  },
+  {
+    "id": "100416",
+    "name": "김진희",
+    "dept": "인문사회학부",
+    "email": "jinheekim@postech.ac.kr",
+    "homepage": "http://hss.postech.ac.kr/",
+    "interests": "· Social and psychological processing of media · Appeal of entertainment media · Cross-cultural approaches in mediated communication · Intergroup relations and social identity",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 10,
+      "학회": 9,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100416-김진희.md"
+  },
+  {
+    "id": "100816",
+    "name": "김철주",
+    "dept": "화학공학과",
+    "email": "kimcj@postech.ac.kr",
+    "homepage": "http://www.cjkimlab.postech.ac.kr/",
+    "interests": "· Properties of Two Dimensional Materials · Two Dimensional Electronics and Opto-electronics · Growth of Two Dimensional Materials · Defect Engineering in Nanomaterials",
+    "perf": {
+      "주도논문": 7,
+      "공동논문": 7,
+      "특허": 1,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/100816-김철주.md"
+  },
+  {
+    "id": "100543",
+    "name": "김철홍",
+    "dept": "IT융합공학과",
+    "email": "chulhong@postech.ac.kr",
+    "homepage": "http://www.boa-lab.com",
+    "interests": "· Multimodal imaging: Photoacoustic/Ultrasound/Optical/AFM/RF/Magnetic · High performance computing/processing in CPU/GPU/DSP, and Artificial Intelligence in Healthcare · Digital Healthcare · Medical Device Commercialization · Clinical translational research",
+    "perf": {
+      "주도논문": 40,
+      "공동논문": 17,
+      "특허": 16,
+      "과제": 30,
+      "학회": 30,
+      "저서": 1,
+      "기술이전": 6
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/100543-김철홍.md"
+  },
+  {
+    "id": "101011",
+    "name": "김태경",
+    "dept": "생명과학과",
+    "email": "tkkim@postech.ac.kr",
+    "homepage": "http://www.nepilab.com/",
+    "interests": "· Epigenetics of brain function · Non-coding variants in brain disorder · Development of new genetic tools for circuit mapping",
+    "perf": {
+      "주도논문": 4,
+      "공동논문": 6,
+      "특허": 0,
+      "과제": 30,
+      "학회": 19,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/101011-김태경.md"
+  },
+  {
+    "id": "100583",
+    "name": "김태환",
+    "dept": "물리학과",
+    "email": "taehwan@postech.ac.kr",
+    "homepage": "https://stmt.postech.ac.kr",
+    "interests": "· Scanning tunneling microscopy/spectroscopy · 2D van der Waals materials · Strongly correlated electronic system",
+    "perf": {
+      "주도논문": 4,
+      "공동논문": 4,
+      "특허": 0,
+      "과제": 21,
+      "학회": 20,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100583-김태환.md"
+  },
+  {
+    "id": "101598",
+    "name": "김현우",
+    "dept": "화학과",
+    "email": "khw7373@postech.ac.kr",
+    "homepage": "https://lexontkfu.wixsite.com/scnspostech",
+    "interests": "· Generation of Exotic Radical Species for Unconventional Catalysis · Synergistic Hybrid Catalysis for Next Generation Organic Synthesis · Electrochemical Organic Synthesis · Design of new catalytic transformation by merging electricity and transition-metal catalyst platform",
+    "perf": {
+      "주도논문": 11,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 26,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/101598-김현우.md"
+  },
+  {
+    "id": "100130",
+    "name": "김형섭",
+    "dept": "친환경소재대학원",
+    "email": "hskim@postech.ac.kr",
+    "homepage": "https://snmpl.postech.ac.kr/",
+    "interests": "· Multi-scale modeling of mechanical behavior and processing for structured nano metals · Severe plastic deformation processing for ultrafine grained materials · Nanocrystalline structural metals · High Entropy Alloys · Architectured Materials s · Metal 3D Printing (Additive manufacturing)",
+    "perf": {
+      "주도논문": 40,
+      "공동논문": 20,
+      "특허": 11,
+      "과제": 30,
+      "학회": 19,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "차세대 원자력"
+    ],
+    "wikiPath": "wiki/faculty/100130-김형섭.md"
+  },
+  {
+    "id": "100775",
+    "name": "김형함",
+    "dept": "IT융합공학과",
+    "email": "davidkim@postech.ac.kr",
+    "homepage": "http://ultrasound.postech.ac.kr",
+    "interests": "· High frequency (15 MHz – 100 MHz) ultrasound transducers and imaging systems · Cell mechanics with high frequency (30 MHz – 1 GHz) ultrasound · Neuromodulation with focused ultrasound · Multimodal integrated neurocommunication device",
+    "perf": {
+      "주도논문": 7,
+      "공동논문": 2,
+      "특허": 15,
+      "과제": 30,
+      "학회": 15,
+      "저서": 0,
+      "기술이전": 1
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100775-김형함.md"
+  },
+  {
+    "id": "102053",
+    "name": "김형훈",
+    "dept": "컴퓨터공학과",
+    "email": "h.kim@postech.ac.kr",
+    "homepage": "https://hyounghk.github.io/",
+    "interests": "· Natural Langauge Processing · Multimodal Learning · Embodied AI",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 13,
+      "학회": 17,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/102053-김형훈.md"
+  },
+  {
+    "id": "101580",
+    "name": "김희재",
+    "dept": "물리학과",
+    "email": "heejaekim@postech.ac.kr",
+    "homepage": "https://ph.postech.ac.kr/",
+    "interests": "* Ultrafast dynamics and optical control of strongly correlated systems * Mode-resolved electron phonon interactions * Photocurrent and quantum geometry * Development of novel spectroscopies: Ultrafast optical & THz spectroscopy, Multidimensional spectroscopy",
+    "perf": {
+      "주도논문": 3,
+      "공동논문": 2,
+      "특허": 0,
+      "과제": 27,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "양자"
+    ],
+    "wikiPath": "wiki/faculty/101580-김희재.md"
+  },
+  {
+    "id": "100924",
+    "name": "김희철",
+    "dept": "물리학과",
+    "email": "heecheol@postech.ac.kr",
+    "homepage": "https://string.postech.ac.kr/",
+    "interests": "· Quantum Field Theory, String Theory",
+    "perf": {
+      "주도논문": 10,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 18,
+      "학회": 7,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "양자"
+    ],
+    "wikiPath": "wiki/faculty/100924-김희철.md"
+  },
+  {
+    "id": "101599",
+    "name": "나동엽",
+    "dept": "전자전기공학과",
+    "email": "dyna22@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/acem-postech/home",
+    "interests": "· Computational Electromagnetics · High Energy Plasma System M&S · Quantum Electrodyanmics M&S",
+    "perf": {
+      "주도논문": 7,
+      "공동논문": 9,
+      "특허": 1,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "양자"
+    ],
+    "wikiPath": "wiki/faculty/101599-나동엽.md"
+  },
+  {
+    "id": "101032",
+    "name": "노용영",
+    "dept": "화학공학과",
+    "email": "yynoh@postech.ac.kr",
+    "homepage": "http://sema.postech.ac.kr/",
+    "interests": "· Semiconductor materials and processes · Metal halide perovskite transistors and memory · Materials and Processes for oxide electronics · Chalcogenide and 2D transistors and memory · Materials for Wearable devices and Flexible Display",
+    "perf": {
+      "주도논문": 40,
+      "공동논문": 9,
+      "특허": 22,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/101032-노용영.md"
+  },
+  {
+    "id": "100644",
+    "name": "노준석",
+    "dept": "기계공학과",
+    "email": "jsrho@postech.ac.kr",
+    "homepage": "http://photonics.postech.ac.kr/",
+    "interests": "· Metamaterials and Plasmonics · Scalable/3D nanofabrication and nanomamufacturing · Photonics for AI and AI for photonics · Next-generation display technology · Planar and flat future photonic components",
+    "perf": {
+      "주도논문": 40,
+      "공동논문": 18,
+      "특허": 37,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 3
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100644-노준석.md"
+  },
+  {
+    "id": "100643",
+    "name": "류순민",
+    "dept": "화학과",
+    "email": "sunryu@postech.ac.kr",
+    "homepage": "http://sunryu.postech.ac.kr/",
+    "interests": "· Exciton dynamics in 2D molecular crystals · Photophysics and photochemistry of low-dimensional materials · Optical characterization of 2D materials · Time-resolved absorption and emission spectroscopy · Second-harmonic generation spectroscopy and interferometry · Stimulated-Raman spectroscopy and microscopy",
+    "perf": {
+      "주도논문": 3,
+      "공동논문": 8,
+      "특허": 1,
+      "과제": 25,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/100643-류순민.md"
+  },
+  {
+    "id": "101859",
+    "name": "류일우",
+    "dept": "컴퓨터공학과",
+    "email": "ilwoolyu@postech.ac.kr",
+    "homepage": "https://mip.postech.ac.kr/",
+    "interests": "· Medical Imaging (Neuroimaging) · Computer Vision · Computer Graphics",
+    "perf": {
+      "주도논문": 3,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 24,
+      "학회": 11,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/101859-류일우.md"
+  },
+  {
+    "id": "102140",
+    "name": "모상우",
+    "dept": "산업경영공학과",
+    "email": "sangwoo.mo@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/sangwoomo",
+    "interests": "· Multimodal foundation models · Scalable priors for vision and language · Robust and reliable AI",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 9,
+      "학회": 1,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/102140-모상우.md"
+  },
+  {
+    "id": "20356",
+    "name": "문원규",
+    "dept": "기계공학과",
+    "email": "wkmoon@postech.ac.kr",
+    "homepage": "https://vatrans.postech.ac.kr/ ",
+    "interests": "· Transducers for/of Acoustics and Vibrations · Modeling and Analysis of Electro-mechanical Transducers · Transducers for Nano/Bio Applications · Vibration and Noise Control",
+    "perf": {
+      "주도논문": 6,
+      "공동논문": 1,
+      "특허": 2,
+      "과제": 21,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 1
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/20356-문원규.md"
+  },
+  {
+    "id": "100544",
+    "name": "민승기",
+    "dept": "환경공학부",
+    "email": "skmin@postech.ac.kr",
+    "homepage": "http://climatechange.postech.ac.kr/",
+    "interests": "· Human influence on climate · Weather and climate extremes · Climate change projection and uncertainty · Statistical climatology",
+    "perf": {
+      "주도논문": 22,
+      "공동논문": 20,
+      "특허": 3,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/100544-민승기.md"
+  },
+  {
+    "id": "101540",
+    "name": "박경덕",
+    "dept": "물리학과",
+    "email": "parklab@postech.ac.kr",
+    "homepage": "https://nearfield.postech.ac.kr/",
+    "interests": "Atomic, molecular, optical physics (optical instrumentation, nano-optics, single-molecule spectroscopy) Condensed matter physics (characterizations of quantum materials, strong light-matter interactions) Quantum information science (sensing, metrology, single-photon source)",
+    "perf": {
+      "주도논문": 17,
+      "공동논문": 6,
+      "특허": 8,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이",
+      "양자"
+    ],
+    "wikiPath": "wiki/faculty/101540-박경덕.md"
+  },
+  {
+    "id": "101433",
+    "name": "박규영",
+    "dept": "친환경소재대학원",
+    "email": "kypark0922@postech.ac.kr",
+    "homepage": "http://emrl.postech.ac.kr/",
+    "interests": "· Energy storage materials/Li- and Na-ion batteries · Material and battery system processing · Material analysis - synchrotron based, Calculation",
+    "perf": {
+      "주도논문": 14,
+      "공동논문": 11,
+      "특허": 1,
+      "과제": 30,
+      "학회": 9,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "이차전지"
+    ],
+    "wikiPath": "wiki/faculty/101433-박규영.md"
+  },
+  {
+    "id": "100159",
+    "name": "박문정",
+    "dept": "화학과",
+    "email": "moonpark@postech.ac.kr",
+    "homepage": "http://parkgroup.postech.ac.kr/",
+    "interests": "· Nanostructured polymer electrolytes for fuel cell & rechargeable lithium battery · Block copolymer self-assembly · Ice-assisted synthesis of conducting polymers · Soft actuators and soft robotics",
+    "perf": {
+      "주도논문": 9,
+      "공동논문": 2,
+      "특허": 5,
+      "과제": 27,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "이차전지"
+    ],
+    "wikiPath": "wiki/faculty/100159-박문정.md"
+  },
+  {
+    "id": "20329",
+    "name": "박부견",
+    "dept": "전자전기공학과",
+    "email": "ppg@postech.ac.kr",
+    "homepage": "http://spac.postech.ac.kr/",
+    "interests": "· Robust, LPV, RHC Control Theories · Robust Fuzzy and Soft-Computing Software · Fast Algorithms for Signal Processing · Protocol Stack and Wireless Area Network Applications · Robust Control for Multi-agent Systems · Explainable Artificial Intelligence",
+    "perf": {
+      "주도논문": 26,
+      "공동논문": 7,
+      "특허": 1,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/20329-박부견.md"
+  },
+  {
+    "id": "20673",
+    "name": "박상기",
+    "dept": "생명과학과",
+    "email": "skpark@postech.ac.kr",
+    "homepage": "https://mnpsy.postech.ac.kr/",
+    "interests": "· Molecular mechanisms underlying dopamine-related psychiatric disorders · Neurochemical basis of mood disorders and drug addiction · Molecular modeling of schizophrenia",
+    "perf": {
+      "주도논문": 1,
+      "공동논문": 4,
+      "특허": 1,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/20673-박상기.md"
+  },
+  {
+    "id": "101770",
+    "name": "박상돈",
+    "dept": "컴퓨터공학과",
+    "email": "sangdon@postech.ac.kr",
+    "homepage": "https://sangdon.github.io/",
+    "interests": "· Machine Learning · Trustworthy Machine Learning · AI Safety · Computer Security",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 26,
+      "학회": 17,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/101770-박상돈.md"
+  },
+  {
+    "id": "20540",
+    "name": "박상준",
+    "dept": "인문사회학부",
+    "email": "literae@postech.ac.kr",
+    "homepage": "http://blog.naver.com/pkh120/",
+    "interests": "· Modern Korean Literature",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 8,
+      "학회": 1,
+      "저서": 1,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/20540-박상준.md"
+  },
+  {
+    "id": "101228",
+    "name": "박선아",
+    "dept": "화학과",
+    "email": "sarahpark@postech.ac.kr",
+    "homepage": "﻿ https://parklab.postech.ac.kr/​ ",
+    "interests": "· Synthesis and characterization of electron- or ion-conductive MOFs · Energy storage materials · Electrocatalysts · Development of solid-state materials based on molecular cluster",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101228-박선아.md"
+  },
+  {
+    "id": "100730",
+    "name": "박성민",
+    "dept": "IT융합공학과",
+    "email": "sungminpark@postech.ac.kr",
+    "homepage": "http://www.ims-postech.com",
+    "interests": "· Implantable and wearable medical sensor · Chronic disease management system · Implantable and wearable bioelectronic medicine · Fully automated drug delivery system · Digital healthcare and therapeutic system",
+    "perf": {
+      "주도논문": 24,
+      "공동논문": 6,
+      "특허": 13,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 1
+    },
+    "nationalTech": [
+      "첨단 바이오",
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/100730-박성민.md"
+  },
+  {
+    "id": "20678",
+    "name": "박성우",
+    "dept": "컴퓨터공학과",
+    "email": "gla@postech.ac.kr",
+    "homepage": "http://pl.postech.ac.kr/",
+    "interests": "· Parallel programming · Deductive software verification · Type theory · Logic in computer science",
+    "perf": {
+      "주도논문": 1,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 0,
+      "학회": 4,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/20678-박성우.md"
+  },
+  {
+    "id": "100977",
+    "name": "박수진",
+    "dept": "화학과",
+    "email": "soojin.park@postech.ac.kr",
+    "homepage": "https://www.spark.postech.ac.kr",
+    "interests": "· All solid-state batteries · Li metal and anode-free batteries · Dual-ion batteries · Li metal batteries · Li-/Na-ion batteries · Design of polymeric binder and separator membrane · Aqueous Li/Zn batteries",
+    "perf": {
+      "주도논문": 40,
+      "공동논문": 1,
+      "특허": 25,
+      "과제": 30,
+      "학회": 2,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "이차전지"
+    ],
+    "wikiPath": "wiki/faculty/100977-박수진.md"
+  },
+  {
+    "id": "101143",
+    "name": "박승열",
+    "dept": "생명과학과",
+    "email": "seungpark@postech.ac.kr",
+    "homepage": "mbl.postech.ac.kr",
+    "interests": "· Membrane dynamics and trafficking · Organelle network · Glycosylation",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 0,
+      "특허": 3,
+      "과제": 26,
+      "학회": 12,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101143-박승열.md"
+  },
+  {
+    "id": "101304",
+    "name": "박은혁",
+    "dept": "컴퓨터공학과",
+    "email": "eh.park@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/eh-p/home",
+    "interests": "· Deep Learning Optimization · HW/SW Co-design · AutoML for optimization",
+    "perf": {
+      "주도논문": 1,
+      "공동논문": 2,
+      "특허": 3,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 1
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/101304-박은혁.md"
+  },
+  {
+    "id": "20453",
+    "name": "박재모",
+    "dept": "물리학과",
+    "email": "jaemo@postech.ac.kr",
+    "homepage": "https://string.postech.ac.kr/ ",
+    "interests": "· Nonperturbative aspects of string and M-theory · Supersymmetric quantum field theory · Physics of black holes · Chern-Simons matter theory and 3-d superconformal field theory",
+    "perf": {
+      "주도논문": 1,
+      "공동논문": 1,
+      "특허": 0,
+      "과제": 30,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/20453-박재모.md"
+  },
+  {
+    "id": "20514",
+    "name": "박재석",
+    "dept": "수학과",
+    "email": "jaesuk@postech.ac.kr",
+    "homepage": "http://math.postech.ac.kr/",
+    "interests": "· Mathematical Foundation of Quantum Field Theory · Homotopy Theory · Symplectic Gemetry",
+    "perf": {
+      "주도논문": 1,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 2,
+      "학회": 2,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/20514-박재석.md"
+  },
+  {
+    "id": "100072",
+    "name": "박재성",
+    "dept": "기계공학과",
+    "email": "jpark@postech.ac.kr",
+    "homepage": "http://mbme.postech.ac.kr/",
+    "interests": "· Micro/Nano devices for biomedical engineering application · Microelectromechanical Systems Design and Fabrication Process · Bioartificial Liver and Tissue Engineering · Biosensors/Nanostructure Interaction · Micro/Macro-Scale Bioreactor and Bio-mechanical Systems",
+    "perf": {
+      "주도논문": 5,
+      "공동논문": 2,
+      "특허": 6,
+      "과제": 9,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100072-박재성.md"
+  },
+  {
+    "id": "20380",
+    "name": "박재훈",
+    "dept": "물리학과",
+    "email": "jhp@postech.ac.kr",
+    "homepage": "http://ph.postech.ac.kr/",
+    "interests": "· Electronic Structure and Magnetic Properties of Solids · Strongly correlated Materials · Multifunctional Magnetic Oxides · Magnetic Thin Film and Multilayer Systems Heterostructural Oxides",
+    "perf": {
+      "주도논문": 5,
+      "공동논문": 12,
+      "특허": 4,
+      "과제": 19,
+      "학회": 20,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "양자"
+    ],
+    "wikiPath": "wiki/faculty/20380-박재훈.md"
+  },
+  {
+    "id": "100893",
+    "name": "박주홍",
+    "dept": "IT융합공학과",
+    "email": "juhpark@postech.ac.kr",
+    "homepage": "http://www.postechms.com",
+    "interests": "· IoT, Smart Cities · Healthcare Architecture · Robotic Fabrication, 3D Printing · Machine Learning, Computer Vision · Food - Technology · Semiconductor Sensor · Robotic Manufacturing, Smart Factory",
+    "perf": {
+      "주도논문": 15,
+      "공동논문": 6,
+      "특허": 3,
+      "과제": 30,
+      "학회": 13,
+      "저서": 0,
+      "기술이전": 1
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100893-박주홍.md"
+  },
+  {
+    "id": "101600",
+    "name": "박지성",
+    "dept": "컴퓨터공학과",
+    "email": "jisung.park@postech.ac.kr",
+    "homepage": "http://caos.postech.ac.kr",
+    "interests": "· Computer Architecture · Operating Systems · System Software · System Security · Memory & Storage Systems",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 2,
+      "특허": 0,
+      "과제": 30,
+      "학회": 15,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/101600-박지성.md"
+  },
+  {
+    "id": "101229",
+    "name": "박지우",
+    "dept": "물리학과",
+    "email": "jeewoopark@postech.ac.kr",
+    "homepage": "http://ultracold.postech.ac.kr",
+    "interests": "· Ultracold atomic and molecular gases · Many-body quantum simulation · Quantum computing with ultracold atoms and molecules",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 30,
+      "학회": 5,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "양자"
+    ],
+    "wikiPath": "wiki/faculty/101229-박지우.md"
+  },
+  {
+    "id": "20530",
+    "name": "박지훈",
+    "dept": "수학과",
+    "email": "wlog@postech.ac.kr",
+    "homepage": "http://math.postech.ac.kr/",
+    "interests": "· Birational Geometry · Complex Geometry",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 0,
+      "학회": 19,
+      "저서": 1,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/20530-박지훈.md"
+  },
+  {
+    "id": "102075",
+    "name": "박진수",
+    "dept": "물리학과",
+    "email": "js.park@postech.ac.kr",
+    "homepage": "",
+    "interests": "· First-principles calculation · Many-body perturbation theory · Electron-phonon interaction · Electron transport · Magnetization dynamics",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 4,
+      "특허": 0,
+      "과제": 7,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이",
+      "양자"
+    ],
+    "wikiPath": "wiki/faculty/102075-박진수.md"
+  },
+  {
+    "id": "20136",
+    "name": "박찬익",
+    "dept": "컴퓨터공학과",
+    "email": "cipark@postech.ac.kr",
+    "homepage": "http://sslab.postech.ac.kr/",
+    "interests": "· Blockchain Core Technologies · Trusted computing, system virtualization · Storage Systems, Internet of Things",
+    "perf": {
+      "주도논문": 1,
+      "공동논문": 0,
+      "특허": 23,
+      "과제": 25,
+      "학회": 25,
+      "저서": 0,
+      "기술이전": 3
+    },
+    "nationalTech": [
+      "사이버보안"
+    ],
+    "wikiPath": "wiki/faculty/20136-박찬익.md"
+  },
+  {
+    "id": "101029",
+    "name": "박형규",
+    "dept": "기계공학과",
+    "email": "parkhg@postech.ac.kr",
+    "homepage": "https://nets.postech.ac.kr/",
+    "interests": "· Frontier research of Low-Dimensional FLUIDICS: transport phenomena under extreme molecular confinement · IONTRONICS based on 2D Angstrofluidics towards Neuromorphic Computing Hardware · Carbon nanotubes, graphene, 2D nanomaterial: synthesis, membrane composite design, and engineering applications · Energy Technology by exploitation of nanoarchitecture · Nanomaterial-based membrane material science for sustainable industrialization · Surface Enhanced Raman Spectroscopy (SERS) and plasmonic metamaterials for chemical sensing and energy harvesting · Application of Artificial Intelligence (AI) to big SERS-data analysis towards artificial olfaction or gustation",
+    "perf": {
+      "주도논문": 4,
+      "공동논문": 4,
+      "특허": 2,
+      "과제": 23,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101029-박형규.md"
+  },
+  {
+    "id": "100729",
+    "name": "배경민",
+    "dept": "컴퓨터공학과",
+    "email": "kmbae@postech.ac.kr",
+    "homepage": "https://sv.postech.ac.kr/",
+    "interests": "· Software Verification · Formal Methods · Safe and trustworthy AI · Computational Logic",
+    "perf": {
+      "주도논문": 5,
+      "공동논문": 2,
+      "특허": 0,
+      "과제": 18,
+      "학회": 28,
+      "저서": 2,
+      "기술이전": 1
+    },
+    "nationalTech": [
+      "사이버보안"
+    ],
+    "wikiPath": "wiki/faculty/100729-배경민.md"
+  },
+  {
+    "id": "101177",
+    "name": "배영",
+    "dept": "인문사회학부",
+    "email": "youngbae@postech.ac.kr",
+    "homepage": "http://hss.postech.ac.kr/",
+    "interests": "· Information Sociology · Social Network Anaysis · Social Statistics · Social Capital Theory",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 1,
+      "특허": 0,
+      "과제": 30,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101177-배영.md"
+  },
+  {
+    "id": "100820",
+    "name": "백록현",
+    "dept": "전자전기공학과",
+    "email": "rh.baek@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/team-postech-ac-kr/",
+    "interests": "· Multi-gate device design and 3DIC: FinFET, Gate-All-Around Nanosheet FET, Vertical FET, Complementary FET), TSV · Neural Network based 3D NAND FLASH development · Technology benchmark of nano device: characterization, PPA analysis, TCAD, EDA · Co-integration process development of emerging and CMOS devices",
+    "perf": {
+      "주도논문": 27,
+      "공동논문": 6,
+      "특허": 11,
+      "과제": 30,
+      "학회": 30,
+      "저서": 2,
+      "기술이전": 1
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/100820-백록현.md"
+  },
+  {
+    "id": "100818",
+    "name": "백승태",
+    "dept": "생명과학과",
+    "email": "sbaek@postech.ac.kr",
+    "homepage": "https://sites.google.com/site/baeklabpostech/",
+    "interests": "· Cellular and molecular genetics of pediatric epileptic syndromes · Development of novel treatment strategy of epilepsy using stem cell/animal models · Neurodevelopment and mechanisms of neurogenetic disorders",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 3,
+      "특허": 0,
+      "과제": 19,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100818-백승태.md"
+  },
+  {
+    "id": "101504",
+    "name": "백승환",
+    "dept": "컴퓨터공학과",
+    "email": "shwbaek@postech.ac.kr",
+    "homepage": "http://cg.postech.ac.kr/",
+    "interests": "· Computer graphics and vision · Computational imaging and display",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 6,
+      "특허": 1,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/101504-백승환.md"
+  },
+  {
+    "id": "100612",
+    "name": "백창기",
+    "dept": "IT융합공학과",
+    "email": "baekck@postech.ac.kr",
+    "homepage": "http://idea.postech.ac.kr",
+    "interests": "· Theoretical modeling and 3D quantum simulation of nanoscale devices · Advanced device design and fabrication including novel GHz and low power memory and Neuromorphic devices · Thermoelectric devices, photovoltaic devices and IoT sensors",
+    "perf": {
+      "주도논문": 5,
+      "공동논문": 4,
+      "특허": 7,
+      "과제": 21,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/100612-백창기.md"
+  },
+  {
+    "id": "102149",
+    "name": "서대하",
+    "dept": "화학과",
+    "email": "daehaseo@postech.ac.kr",
+    "homepage": "https://small.postech.ac.kr/",
+    "interests": "· Single-molecule biophysics of receptor signaling and protein interactions · Nanoparticle synthesis and functional design for catalysis and therapeutics · Visualization and control of chemical reactions at the single-molecule level Nanomedicine and targeted drug delivery using nanoparticles and exosomes",
+    "perf": {
+      "주도논문": 3,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 12,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/102149-서대하.md"
+  },
+  {
+    "id": "100228",
+    "name": "서동우",
+    "dept": "친환경소재대학원",
+    "email": "dongwoo1@postech.ac.kr",
+    "homepage": "http://cml.postech.ac.kr/",
+    "interests": "· Physical metallurgy of ferrous alloys · Modeling and experimental analysis of phase transformation · Alloy design for high performance steels · Degradation of steels under non-friendly environment",
+    "perf": {
+      "주도논문": 8,
+      "공동논문": 12,
+      "특허": 0,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 모빌리티"
+    ],
+    "wikiPath": "wiki/faculty/100228-서동우.md"
+  },
+  {
+    "id": "20362",
+    "name": "서영주",
+    "dept": "컴퓨터공학과",
+    "email": "yjsuh@postech.ac.kr",
+    "homepage": "http://aiot.postech.ac.kr/",
+    "interests": "· Internet of Things · Indoor Positioning System (IPS) · Activity Recognition Using Machine Learning · Voice AI",
+    "perf": {
+      "주도논문": 11,
+      "공동논문": 2,
+      "특허": 18,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 1
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/20362-서영주.md"
+  },
+  {
+    "id": "100973",
+    "name": "서종철",
+    "dept": "화학과",
+    "email": "jongcheol.seo@postech.ac.kr",
+    "homepage": "http://scimms.postech.ac.kr",
+    "interests": "· Ion mobility mass spectrometry · Structural study of atomic and molecular clusters · Gas-phase molecular ion chemistry · Analytical instrumentation · Micro/Nanodroplet chemistry",
+    "perf": {
+      "주도논문": 8,
+      "공동논문": 9,
+      "특허": 0,
+      "과제": 24,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100973-서종철.md"
+  },
+  {
+    "id": "101714",
+    "name": "서준호",
+    "dept": "물리학과",
+    "email": "junhosuh@postech.ac.kr",
+    "homepage": "https://hql.postech.ac.kr/",
+    "interests": "· Mechanical quantum oscillators and their applications · Superconducting quantum circuits · Hybrid quantum systems",
+    "perf": {
+      "주도논문": 3,
+      "공동논문": 5,
+      "특허": 0,
+      "과제": 30,
+      "학회": 18,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "양자"
+    ],
+    "wikiPath": "wiki/faculty/101714-서준호.md"
+  },
+  {
+    "id": "101439",
+    "name": "서지현",
+    "dept": "인문사회학부",
+    "email": "jihyunsuh@postech.ac.kr",
+    "homepage": "http://hss.postech.ac.kr/",
+    "interests": "· Cogitive Psychology / Cognitive Neuroscience · Visual Attention / Cognitive Control · Age-Related Cognitive Changes",
+    "perf": {
+      "주도논문": 1,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 11,
+      "학회": 3,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101439-서지현.md"
+  },
+  {
+    "id": "20164",
+    "name": "성영철",
+    "dept": "생명과학과",
+    "email": "ycsung@postech.ac.kr",
+    "homepage": "https://life.postech.ac.kr/",
+    "interests": "· Development of novel vaccines & immunotherapeutics to treat hard-to-cure disease caused by emerging pathogens and cancer",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 2,
+      "특허": 1,
+      "과제": 0,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/20164-성영철.md"
+  },
+  {
+    "id": "101296",
+    "name": "손민주",
+    "dept": "물리학과",
+    "email": "mjshon@postech.ac.kr",
+    "homepage": "http://shonlab.postech.ac.kr/",
+    "interests": "• Nanoscale techniques for single-molecule imaging and manipulation • Mechanics of biomolecular complexes • Mechanobiology of neurotransmission",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 1,
+      "특허": 1,
+      "과제": 30,
+      "학회": 12,
+      "저서": 4,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/101296-손민주.md"
+  },
+  {
+    "id": "100744",
+    "name": "손영환",
+    "dept": "수학과",
+    "email": "yhson@postech.ac.kr",
+    "homepage": "https://sites.google.com/site/yhson1719",
+    "interests": "· Ergodic theory",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 12,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100744-손영환.md"
+  },
+  {
+    "id": "101794",
+    "name": "손재성",
+    "dept": "화학공학과",
+    "email": "sonjs@postech.ac.kr",
+    "homepage": "https://sonjs.postech.ac.kr/",
+    "interests": "· Synthesis of colloidal inorganic nanoparticles and complexes · 3D printing of inorganic materials for energy and electronic applications · Micro 3D printing/patterning for semiconductor devices · Solution-processed semiconductor thin films",
+    "perf": {
+      "주도논문": 15,
+      "공동논문": 5,
+      "특허": 4,
+      "과제": 30,
+      "학회": 21,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/101794-손재성.md"
+  },
+  {
+    "id": "102147",
+    "name": "손진희",
+    "dept": "컴퓨터공학과",
+    "email": "jeany@postech.ac.kr",
+    "homepage": "https://jeanyson.github.io/",
+    "interests": "· Computer Vision · Machine Learning",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 1,
+      "특허": 0,
+      "과제": 14,
+      "학회": 3,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/102147-손진희.md"
+  },
+  {
+    "id": "100727",
+    "name": "송민석",
+    "dept": "산업경영공학과",
+    "email": "mssong@postech.ac.kr",
+    "homepage": "http://aim.postech.ac.kr/",
+    "interests": "· Decision Support Systems · Process & Data Science · AI and LLM Applications",
+    "perf": {
+      "주도논문": 5,
+      "공동논문": 2,
+      "특허": 8,
+      "과제": 30,
+      "학회": 30,
+      "저서": 1,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/100727-송민석.md"
+  },
+  {
+    "id": "101698",
+    "name": "송우철",
+    "dept": "환경공학부",
+    "email": "woochulsong@postech.ac.kr",
+    "homepage": "http://membrane.postech.ac.kr/",
+    "interests": "· Membrane Separations · Desalination · Porous Materials Synthesis · Water treatment · Biomimetic membranes · Gas separations and purification",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 3,
+      "특허": 0,
+      "과제": 20,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101698-송우철.md"
+  },
+  {
+    "id": "101603",
+    "name": "송재용",
+    "dept": "반도체공학과",
+    "email": "songjae3@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/hintlab",
+    "interests": "· Heterogeneous Integration Technology of Semiconductot Devices · Eelctrochemistry for Nanotechnology Applications · Thermoelectric Materials · Electronic Packaging",
+    "perf": {
+      "주도논문": 7,
+      "공동논문": 3,
+      "특허": 1,
+      "과제": 30,
+      "학회": 18,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/101603-송재용.md"
+  },
+  {
+    "id": "100678",
+    "name": "송창용",
+    "dept": "물리학과",
+    "email": "cysong@postech.ac.kr",
+    "homepage": "https://sites.google.com/site/femtoxv4",
+    "interests": "· Femtosecond x-ray diffraction and imaging · Ultrafast irreversible phase changes · Noninvasive 3D imaging at nanoscale",
+    "perf": {
+      "주도논문": 7,
+      "공동논문": 4,
+      "특허": 0,
+      "과제": 25,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100678-송창용.md"
+  },
+  {
+    "id": "100740",
+    "name": "송호진",
+    "dept": "전자전기공학과",
+    "email": "hojin.song@postech.ac.kr",
+    "homepage": "http://mad.postech.ac.kr/",
+    "interests": "· RF/Analog circuit design · Millimeter and terahertz-wave system · Terabit wireless communications/connectivity · Computing in RF/analog · Cryo-CMOS for quantum computer",
+    "perf": {
+      "주도논문": 5,
+      "공동논문": 1,
+      "특허": 8,
+      "과제": 30,
+      "학회": 30,
+      "저서": 2,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "차세대 통신"
+    ],
+    "wikiPath": "wiki/faculty/100740-송호진.md"
+  },
+  {
+    "id": "20608",
+    "name": "송황준",
+    "dept": "컴퓨터공학과",
+    "email": "hwangjun@postech.ac.kr",
+    "homepage": "http://mcnl.postech.ac.kr/",
+    "interests": "· Immersive 360 VR (Vitual Reality) video / AR (Augemnted Reality) streaming · 3D rendering and streaming for interactive online game · Server & Network-assisted video streaming systems (HAS / DASH, MMT, SAND) · AL-FEC · Blockchain-customized 5G network · SDN / NFV · 5G and beyond network · Multupath transport protocol · LTE/WiMAX / P2P Network / Ad hoc & Sensor Network / Cloud Network",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 0,
+      "특허": 14,
+      "과제": 23,
+      "학회": 6,
+      "저서": 0,
+      "기술이전": 6
+    },
+    "nationalTech": [
+      "차세대 통신"
+    ],
+    "wikiPath": "wiki/faculty/20608-송황준.md"
+  },
+  {
+    "id": "101954",
+    "name": "신동일",
+    "dept": "기계공학과",
+    "email": "dongilshin@postech.ac.kr",
+    "homepage": "https://datasolid.postech.ac.kr",
+    "interests": "· Building a co-design simulation model integrating multiple scales from materials to structures · Multi-modal/multi-fidelity design for materials and structures with extreme characteristics · Personalized design and design automation",
+    "perf": {
+      "주도논문": 4,
+      "공동논문": 2,
+      "특허": 0,
+      "과제": 12,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 모빌리티",
+      "우주항공·해양",
+      "인공지능",
+      "첨단로봇·제조",
+      "양자"
+    ],
+    "wikiPath": "wiki/faculty/101954-신동일.md"
+  },
+  {
+    "id": "101955",
+    "name": "신민석",
+    "dept": "산업경영공학과",
+    "email": "minseokshin@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/minseokshin",
+    "interests": "· Big data analysis · Financial econometrics · High-dimensional statistics · Risk management · High-frequency finance",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 8,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101955-신민석.md"
+  },
+  {
+    "id": "101561",
+    "name": "신선영",
+    "dept": "수학과",
+    "email": "sunyoungshin@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/sunyoungshin/",
+    "interests": "· Statistical learning · Statistical genomics",
+    "perf": {
+      "주도논문": 3,
+      "공동논문": 3,
+      "특허": 0,
+      "과제": 20,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101561-신선영.md"
+  },
+  {
+    "id": "101768",
+    "name": "신세운",
+    "dept": "전자전기공학과",
+    "email": "seuns@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/pictuslab/",
+    "interests": "· Analog integrated circuit design · Power management ICs · Energy harvesting · Wireless power transfer · Power Electronics",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 0,
+      "특허": 1,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/101768-신세운.md"
+  },
+  {
+    "id": "102150",
+    "name": "신원동",
+    "dept": "기계공학과",
+    "email": "wdshin@postech.ac.kr",
+    "homepage": "https://birdlab.postech.ac.kr/",
+    "interests": "· Bio-inspired robots and mechanisms · Multi-environment robots · Unmanned aerial vehicles · Elastic actuation",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 8,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단로봇·제조"
+    ],
+    "wikiPath": "wiki/faculty/102150-신원동.md"
+  },
+  {
+    "id": "102076",
+    "name": "신훈철",
+    "dept": "인문사회학부",
+    "email": "hooncshin@postech.ac.kr",
+    "homepage": "http://hss.postech.ac.kr/",
+    "interests": "· Dynamics of coupled natural and human systems · Environmental policy · Human-made infrastructrue sustainability · Risk governance",
+    "perf": {
+      "주도논문": 1,
+      "공동논문": 3,
+      "특허": 0,
+      "과제": 3,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/102076-신훈철.md"
+  },
+  {
+    "id": "100702",
+    "name": "신희득",
+    "dept": "물리학과",
+    "email": "heedeukshin@postech.ac.kr",
+    "homepage": "https://qnp.postech.ac.kr/",
+    "interests": "· Quantum Photonic Integrated Circuits · Quantum Key Distribution · On-chip Quantum Simulation · Quantum Frequency Translation · On-chip Brillouins scattering",
+    "perf": {
+      "주도논문": 10,
+      "공동논문": 1,
+      "특허": 1,
+      "과제": 30,
+      "학회": 16,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "양자"
+    ],
+    "wikiPath": "wiki/faculty/100702-신희득.md"
+  },
+  {
+    "id": "20628",
+    "name": "심재윤",
+    "dept": "전자전기공학과",
+    "email": "jysim@postech.ac.kr",
+    "homepage": "https://pics.postech.ac.kr/",
+    "interests": "· Frequency generation · Low-power sensor interface circuits · Integrated systems for quantum computing · Hardware for AI computing",
+    "perf": {
+      "주도논문": 12,
+      "공동논문": 5,
+      "특허": 12,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/20628-심재윤.md"
+  },
+  {
+    "id": "100157",
+    "name": "심지훈",
+    "dept": "화학과",
+    "email": "jhshim@postech.ac.kr",
+    "homepage": "http://dmft.postech.ac.kr/",
+    "interests": "· Computational chemistry & Solid state chemistry · Computational design of functional materials using Density Functional Theory (DFT) · Development of computational method combining DFT and many body interaction",
+    "perf": {
+      "주도논문": 9,
+      "공동논문": 15,
+      "특허": 2,
+      "과제": 30,
+      "학회": 13,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "양자"
+    ],
+    "wikiPath": "wiki/faculty/100157-심지훈.md"
+  },
+  {
+    "id": "101635",
+    "name": "안용주",
+    "dept": "IT융합공학과",
+    "email": "ahnyj@postech.ac.kr",
+    "homepage": "http://mst-lab.postech.ac.kr ",
+    "interests": "· The trained innate immunity in metabolic disease · Stroke and atherosclerosis · Translational medical research",
+    "perf": {
+      "주도논문": 5,
+      "공동논문": 4,
+      "특허": 0,
+      "과제": 30,
+      "학회": 21,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101635-안용주.md"
+  },
+  {
+    "id": "101701",
+    "name": "안지환",
+    "dept": "기계공학과",
+    "email": "jihwanan@postech.ac.kr",
+    "homepage": "http://enterlab.postech.ac.kr",
+    "interests": "· Convergence of novel energy and semiconductor technologies · Interface/surface engineering of next-generation energy conversion and storage systems · Next-generation atomic layer manufacturing processes and equipment (deposition/etching/patterning, plasma/light-enhanced, big-data driven) · Atomic layer manufacturing processes for energy and electronic applications",
+    "perf": {
+      "주도논문": 16,
+      "공동논문": 7,
+      "특허": 0,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "수소"
+    ],
+    "wikiPath": "wiki/faculty/101701-안지환.md"
+  },
+  {
+    "id": "102151",
+    "name": "안혜민",
+    "dept": "전자전기공학과",
+    "email": "hmahn@postech.ac.kr",
+    "homepage": "https://ahrilab.postech.ac.kr",
+    "interests": "· AI based Human-Robot Interaction · Robot Learning · Vision Language Action Models · Motion Generation",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 2,
+      "특허": 0,
+      "과제": 12,
+      "학회": 1,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단로봇·제조"
+    ],
+    "wikiPath": "wiki/faculty/102151-안혜민.md"
+  },
+  {
+    "id": "100051",
+    "name": "안희갑",
+    "dept": "컴퓨터공학과",
+    "email": "heekap@postech.ac.kr",
+    "homepage": "http://algo.postech.ac.kr",
+    "interests": "· Computational and Discrete Geometry · Algorithms · Data Structures · Theory of Computation",
+    "perf": {
+      "주도논문": 7,
+      "공동논문": 3,
+      "특허": 7,
+      "과제": 30,
+      "학회": 24,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100051-안희갑.md"
+  },
+  {
+    "id": "20376",
+    "name": "양경철",
+    "dept": "전자전기공학과",
+    "email": "kcyang@postech.ac.kr",
+    "homepage": "http://csdl-lab.postech.ac.kr/",
+    "interests": "· Error-control techniques for digital communications · Wireless communication systems · Signal design for CDMA/OFDM/OFDMA systems",
+    "perf": {
+      "주도논문": 1,
+      "공동논문": 0,
+      "특허": 40,
+      "과제": 16,
+      "학회": 5,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "차세대 통신"
+    ],
+    "wikiPath": "wiki/faculty/20376-양경철.md"
+  },
+  {
+    "id": "100855",
+    "name": "엄우용",
+    "dept": "환경공학부",
+    "email": "wooyongum@postech.ac.kr",
+    "homepage": "https://nel.postech.ac.kr/",
+    "interests": "· Radioactive waste management · Environmental contaminants removal · Soil and groundwater remediation · Radioactive waste disposal and immobilization",
+    "perf": {
+      "주도논문": 9,
+      "공동논문": 7,
+      "특허": 11,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "차세대 원자력"
+    ],
+    "wikiPath": "wiki/faculty/100855-엄우용.md"
+  },
+  {
+    "id": "100271",
+    "name": "염한웅",
+    "dept": "물리학과",
+    "email": "yeom@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/hanwoongyeomphysicist\n",
+    "interests": "· Electronic property of nano or atomic scale structures on solid surfaces and 2D materials · Topological excitations in 1D and 2D materials · Angle-resolved photoelectron spectroscopy · Scanning tunneling microscopy and spectroscopy",
+    "perf": {
+      "주도논문": 17,
+      "공동논문": 6,
+      "특허": 0,
+      "과제": 6,
+      "학회": 3,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/100271-염한웅.md"
+  },
+  {
+    "id": "101697",
+    "name": "염화성",
+    "dept": "친환경소재대학원",
+    "email": "hyeom@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/sen-lab/home",
+    "interests": "· Nuclear fuel, control rod assembly, and structural materials for SMR · Development of transportation/storage canisters for spent nuclear fuel · Surface coating technologies for nuclear energy applications · Materials for hydrogen and ammonia systems",
+    "perf": {
+      "주도논문": 4,
+      "공동논문": 13,
+      "특허": 0,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "차세대 원자력"
+    ],
+    "wikiPath": "wiki/faculty/101697-염화성.md"
+  },
+  {
+    "id": "101752",
+    "name": "오명철",
+    "dept": "반도체공학과",
+    "email": "myungchul@postech.ac.kr",
+    "homepage": "https://molab.postech.ac.kr/",
+    "interests": "· Van der Waals Heterostructure Quantum Materials · 2D Semimetal/Semiconducting Devices · Nanoscale Scanning Probe Microscopy · 2D Material based Quantum Sensing",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 3,
+      "특허": 0,
+      "과제": 21,
+      "학회": 4,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이",
+      "양자"
+    ],
+    "wikiPath": "wiki/faculty/101752-오명철.md"
+  },
+  {
+    "id": "100764",
+    "name": "오승수",
+    "dept": "신소재공학과",
+    "email": "seungsoo@postech.ac.kr",
+    "homepage": "https://ssohlab.weebly.com/",
+    "interests": "· Darwinian evolution of novel biomaterials · Generation and applications of molecular recognition elements (aptamers), molecular catalysts (ribozymes/DNAzymes) and molecular machines (riboswitches/structure-switching aptamers) · Synthesis and applications of multi-functional biopolymers: on-demand catalysts, mechanochemical materials, target-selective membranes · Synthetic biomaterials for diagnostic, imaging and therapeutic applications · Molecular transducers for synthetic biology · Origins of life",
+    "perf": {
+      "주도논문": 9,
+      "공동논문": 5,
+      "특허": 10,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 3
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100764-오승수.md"
+  },
+  {
+    "id": "100288",
+    "name": "오용근",
+    "dept": "수학과",
+    "email": "yongoh1@postech.ac.kr",
+    "homepage": "http://cgp.ibs.re.kr/~yongoh/",
+    "interests": "· Symplectic geometry · Hamiltonian dynamics and symplectic topology · Gromov-Witten-Floer theory and homological mirror symmetry",
+    "perf": {
+      "주도논문": 12,
+      "공동논문": 1,
+      "특허": 0,
+      "과제": 6,
+      "학회": 10,
+      "저서": 1,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100288-오용근.md"
+  },
+  {
+    "id": "101146",
+    "name": "오은진",
+    "dept": "컴퓨터공학과",
+    "email": "eunjin.oh@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/discrete-algorithms-lab/",
+    "interests": "· Computational and Discrete Geometry · Algorithms · Data Structures · Theory of Computation",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 19,
+      "학회": 19,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101146-오은진.md"
+  },
+  {
+    "id": "101165",
+    "name": "옥정슬",
+    "dept": "컴퓨터공학과",
+    "email": "jungseul@postech.ac.kr",
+    "homepage": "https://ml-postech.github.io/",
+    "interests": "· Machine Learning · Reinforcement Learning · Neural Network Analysis · Computational Social Science",
+    "perf": {
+      "주도논문": 1,
+      "공동논문": 1,
+      "특허": 1,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/101165-옥정슬.md"
+  },
+  {
+    "id": "20410",
+    "name": "용기중",
+    "dept": "화학공학과",
+    "email": "kyong@postech.ac.kr",
+    "homepage": "http://schema.postech.ac.kr/",
+    "interests": "· Green Ammonia Cycling · Surface chemistry of electronic and energy materials : biomimetics of natural leaf · Atomic Layer Deposition, Next generation memory devices, Surface wettability control · Artificial photosynthesis, Hydrogen energy production, Nanowire energy devices, Thin film solar cell (CIGS, perovskite)",
+    "perf": {
+      "주도논문": 20,
+      "공동논문": 2,
+      "특허": 9,
+      "과제": 30,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/20410-용기중.md"
+  },
+  {
+    "id": "100475",
+    "name": "우정아",
+    "dept": "인문사회학부",
+    "email": "woojungah@postech.ac.kr",
+    "homepage": "http://hss.postech.ac.kr/",
+    "interests": "· Modern and Contemporary Art of Korea and the US · Memory, Perception, and Representation · Trauma and Anxiety in Art · Community Art and Identity Politics",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 8,
+      "학회": 15,
+      "저서": 4,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100475-우정아.md"
+  },
+  {
+    "id": "100446",
+    "name": "유동현",
+    "dept": "기계공학과",
+    "email": "dhyou@postech.ac.kr",
+    "homepage": " http://fpe.postech.ac.kr/postech/",
+    "interests": "· Computational flow physics and engineering · Artificial Intelligence for fluid mechanics · Data-driven multi-physics engineering · Gas turbine and steam turbine engines · Renewable and sustainable energy systems",
+    "perf": {
+      "주도논문": 18,
+      "공동논문": 1,
+      "특허": 2,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/100446-유동현.md"
+  },
+  {
+    "id": "100269",
+    "name": "유선철",
+    "dept": "IT융합공학과",
+    "email": "sncyu@postech.ac.kr",
+    "homepage": "http://hero.postech.ac.kr",
+    "interests": "· Field Robotics, Nuclear Power Plant Robot, AUV · Sensing system in extreme environment · Multi-agent system, biomimetic robot",
+    "perf": {
+      "주도논문": 6,
+      "공동논문": 1,
+      "특허": 13,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 3
+    },
+    "nationalTech": [
+      "첨단로봇·제조"
+    ],
+    "wikiPath": "wiki/faculty/100269-유선철.md"
+  },
+  {
+    "id": "101696",
+    "name": "유웅재",
+    "dept": "생명과학과",
+    "email": "wjyoo@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/woongjae-yoo-website ",
+    "interests": "· Host-Microbe Interaction · Microbiome and Human Diseases · Microbial metabolism in the host gut · High-fat diet-induced obesity and metabolic diseases · Pathogenic bacterial virulence mechanisms in the host",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 16,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/101696-유웅재.md"
+  },
+  {
+    "id": "20564",
+    "name": "유주연",
+    "dept": "생명과학과",
+    "email": "jyoo@postech.ac.kr",
+    "homepage": "on-lab.postech.ac.kr",
+    "interests": "· Host defense against intracellular infection · Organelle network · Liquid-liquid phase separation · Vesicle trafficking",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 1,
+      "특허": 2,
+      "과제": 30,
+      "학회": 25,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/20564-유주연.md"
+  },
+  {
+    "id": "102152",
+    "name": "유창현",
+    "dept": "IT융합공학과",
+    "email": "ryuch@postech.ac.kr",
+    "homepage": "https://np.postech.ac.kr",
+    "interests": "· Neurobiology of sexual functions · Neuromodulators regulating innate behaviors · Neuro-immune interactions · Brain-body interactions",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 1,
+      "특허": 0,
+      "과제": 8,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/102152-유창현.md"
+  },
+  {
+    "id": "100090",
+    "name": "유환조",
+    "dept": "컴퓨터공학과",
+    "email": "hwanjoyu@postech.ac.kr",
+    "homepage": "http://di.postech.ac.kr",
+    "interests": "· Big Data · Artificial Intelligence · Natural Language Processing · Machine Learning",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 1,
+      "특허": 7,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 1
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/100090-유환조.md"
+  },
+  {
+    "id": "20493",
+    "name": "유희천",
+    "dept": "산업경영공학과",
+    "email": "hcyou@postech.ac.kr",
+    "homepage": "http://edt.postech.ac.kr/",
+    "interests": "· Ergonomic Product Design Technology · Innovative Product Development · Digital Human Scan-Based Product Design · Wearable Robot & Cobot · Multimodal AI · XR-Based Usability Testing · Digital Twin for Human-in-the-Loop Optimization",
+    "perf": {
+      "주도논문": 5,
+      "공동논문": 6,
+      "특허": 2,
+      "과제": 30,
+      "학회": 1,
+      "저서": 0,
+      "기술이전": 1
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/20493-유희천.md"
+  },
+  {
+    "id": "102052",
+    "name": "육장수",
+    "dept": "인문사회학부",
+    "email": "yookjs@postech.ac.kr",
+    "homepage": "https://yook.postech.ac.kr",
+    "interests": "· Exercise physiology and biochemisty · Exercise science based on neuroscience · Role of exercise in gerontology · Sports nutrition in brain funciton",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 9,
+      "학회": 6,
+      "저서": 1,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/102052-육장수.md"
+  },
+  {
+    "id": "100518",
+    "name": "윤건수",
+    "dept": "물리학과",
+    "email": "gunsu@postech.ac.kr",
+    "homepage": "https://sites.google.com/site/p4postech/",
+    "interests": "· Fusion and space plasma physics · Strongly-coupled plasma under extreme pressure · Plasma chemistry · Plasma source technologies and applications",
+    "perf": {
+      "주도논문": 12,
+      "공동논문": 11,
+      "특허": 4,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "차세대 원자력",
+      "반도체·디스플레이",
+      "수소"
+    ],
+    "wikiPath": "wiki/faculty/100518-윤건수.md"
+  },
+  {
+    "id": "100771",
+    "name": "윤용주",
+    "dept": "화학공학과",
+    "email": "yjyun@postech.ac.kr",
+    "homepage": "http://andl.postech.ac.kr/",
+    "interests": "· Heterogeneous Catalysis · Nanostructured Materials · Surface Science",
+    "perf": {
+      "주도논문": 14,
+      "공동논문": 13,
+      "특허": 3,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100771-윤용주.md"
+  },
+  {
+    "id": "101432",
+    "name": "윤창원",
+    "dept": "화학공학과",
+    "email": "cwyoon@postech.ac.kr",
+    "homepage": "https://aches.postech.ac.kr",
+    "interests": "· Chemical Hydrogen Storage / Hydrogen Production · Thermochemical and Electrochemical Catalysis, Reaction Mechanism · CO2 Conversion to Fuels(e-Fuels, etc)",
+    "perf": {
+      "주도논문": 6,
+      "공동논문": 6,
+      "특허": 0,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "수소"
+    ],
+    "wikiPath": "wiki/faculty/101432-윤창원.md"
+  },
+  {
+    "id": "100769",
+    "name": "이강복",
+    "dept": "산업경영공학과",
+    "email": "kblee@postech.ac.kr",
+    "homepage": "https://www.msolab.org/",
+    "interests": "· Scheduling · Supply Chain Management · Production Planning · Combinatorial Optimization",
+    "perf": {
+      "주도논문": 5,
+      "공동논문": 1,
+      "특허": 2,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100769-이강복.md"
+  },
+  {
+    "id": "101754",
+    "name": "이경석",
+    "dept": "수학과",
+    "email": "kyoungseog@postech.ac.kr",
+    "homepage": "http://math.postech.ac.kr/",
+    "interests": "· Algebraic geometry and related fields",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 1,
+      "특허": 0,
+      "과제": 12,
+      "학회": 15,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101754-이경석.md"
+  },
+  {
+    "id": "20220",
+    "name": "이근배",
+    "dept": "컴퓨터공학과",
+    "email": "gblee@postech.ac.kr",
+    "homepage": "http://nlp.postech.ac.kr/home/",
+    "interests": "· Speech and Natural Language Processing · Spoken Dialog Systems · Computer Assisted Language Learning · Text-mining and Information Retrieval",
+    "perf": {
+      "주도논문": 1,
+      "공동논문": 2,
+      "특허": 27,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/20220-이근배.md"
+  },
+  {
+    "id": "101365",
+    "name": "이기라",
+    "dept": "화학공학과",
+    "email": "yigira@postech.ac.kr",
+    "homepage": "http://yigira.com",
+    "interests": "· Colloidal Self-Assembly · Nanoparticles for Bioadhesives · Solid Electrolytes for Lithium-ion Battery · Battery Recycling · Colloids for Marine Carbon Dioxide Removal",
+    "perf": {
+      "주도논문": 19,
+      "공동논문": 7,
+      "특허": 9,
+      "과제": 30,
+      "학회": 2,
+      "저서": 0,
+      "기술이전": 1
+    },
+    "nationalTech": [
+      "이차전지"
+    ],
+    "wikiPath": "wiki/faculty/101365-이기라.md"
+  },
+  {
+    "id": "20449",
+    "name": "이기택",
+    "dept": "환경공학부",
+    "email": "ktl@postech.ac.kr",
+    "homepage": "http://climate.postech.ac.kr/",
+    "interests": "· Oceanic carbon sequestration · Ocean acidification · Global carbon & nitrogen cycles · Biogenic sulfur aerosols in Arctic",
+    "perf": {
+      "주도논문": 6,
+      "공동논문": 10,
+      "특허": 1,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/20449-이기택.md"
+  },
+  {
+    "id": "100870",
+    "name": "이길호",
+    "dept": "물리학과",
+    "email": "lghman@postech.ac.kr",
+    "homepage": "http://ghleelab.postech.ac.kr/",
+    "interests": "· Quantum Transport in nanoscale hybrid devices at low temperature · Topological superconductivity in quantum Hall system · Relativistic Dirac Fermionic optics in graphene · Topological phase of matters in hybrid nanodevices",
+    "perf": {
+      "주도논문": 11,
+      "공동논문": 4,
+      "특허": 6,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 1
+    },
+    "nationalTech": [
+      "양자"
+    ],
+    "wikiPath": "wiki/faculty/100870-이길호.md"
+  },
+  {
+    "id": "102092",
+    "name": "이남윤",
+    "dept": "전자전기공학과",
+    "email": "nylee@postech.ac.kr",
+    "homepage": "https://comx.postech.ac.kr/",
+    "interests": "· Wireless communications · Satellite networks · MIMO communications · Channel coding",
+    "perf": {
+      "주도논문": 15,
+      "공동논문": 12,
+      "특허": 11,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "차세대 통신"
+    ],
+    "wikiPath": "wiki/faculty/102092-이남윤.md"
+  },
+  {
+    "id": "101506",
+    "name": "이남훈",
+    "dept": "컴퓨터공학과",
+    "email": "namhoonlee@postech.ac.kr",
+    "homepage": "https://ml.postech.ac.kr/",
+    "interests": "· Machine Learning · Optimization · Deep Learning",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 30,
+      "학회": 29,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/101506-이남훈.md"
+  },
+  {
+    "id": "100981",
+    "name": "이대수",
+    "dept": "물리학과",
+    "email": "dlee1@postech.ac.kr",
+    "homepage": "https://sites.google.com/site/dleepostech/",
+    "interests": "· Complex oxide heterostructures · Strongly correlated materials · Dielectric/ferroelectric materials · Metal-insulator transitions",
+    "perf": {
+      "주도논문": 4,
+      "공동논문": 1,
+      "특허": 5,
+      "과제": 25,
+      "학회": 18,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/100981-이대수.md"
+  },
+  {
+    "id": "100972",
+    "name": "이동현",
+    "dept": "수학과",
+    "email": "donglee@postech.ac.kr",
+    "homepage": "https://sites.google.com/site/donghyunlee295/​",
+    "interests": "· Applied PDE, Fluid mechanics, Kinetic theory",
+    "perf": {
+      "주도논문": 6,
+      "공동논문": 1,
+      "특허": 0,
+      "과제": 20,
+      "학회": 2,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100972-이동현.md"
+  },
+  {
+    "id": "100844",
+    "name": "이동화",
+    "dept": "신소재공학과",
+    "email": "donghwa96@postech.ac.kr",
+    "homepage": "http://cnmd.postech.ac.kr/",
+    "interests": "· Thermodynamics and Kinetics at semiconductor interface · CO2 sequestration and conversion · Charge transfer at heterojunction interface · Defect characteristics in bulk semiconductor · Dynamical behavior of liquid · Magnetic noise in superconducting qubit · Ferroelectricity in trigonal materials · Simulations of Molecular beam Deposition",
+    "perf": {
+      "주도논문": 19,
+      "공동논문": 15,
+      "특허": 7,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100844-이동화.md"
+  },
+  {
+    "id": "101259",
+    "name": "이문주",
+    "dept": "전자전기공학과",
+    "email": "moolee@postech.ac.kr ",
+    "homepage": "https://sites.google.com/view/postechquantum/home",
+    "interests": "· Ion trap · Quantum computing · Quantum networks · Cavity QED",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 2,
+      "특허": 5,
+      "과제": 30,
+      "학회": 7,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "양자"
+    ],
+    "wikiPath": "wiki/faculty/101259-이문주.md"
+  },
+  {
+    "id": "101753",
+    "name": "이민식",
+    "dept": "생명과학과",
+    "email": "minsiklee@postech.ac.kr",
+    "homepage": "http://cancermetabolism.postech.ac.kr/",
+    "interests": "· Deciphering metabolic composition in tumor microenvironment · Cancer metabolism and behavior · Metabolic competition/cooperation between cancer cells and other cell types · Systemic metabolism and cancer behavior",
+    "perf": {
+      "주도논문": 1,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 24,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/101753-이민식.md"
+  },
+  {
+    "id": "101936",
+    "name": "이민아",
+    "dept": "친환경소재대학원",
+    "email": "malee@postech.ac.kr",
+    "homepage": "https://sec.postech.ac.kr/",
+    "interests": "· Advanced electrolytes & interphases · Sustainable battery materials & systems · Battery safety · Battery recycling",
+    "perf": {
+      "주도논문": 5,
+      "공동논문": 6,
+      "특허": 0,
+      "과제": 30,
+      "학회": 11,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "이차전지"
+    ],
+    "wikiPath": "wiki/faculty/101936-이민아.md"
+  },
+  {
+    "id": "20480",
+    "name": "이병주",
+    "dept": "신소재공학과",
+    "email": "calphad@postech.ac.kr",
+    "homepage": "http://cmse.postech.ac.kr/",
+    "interests": "· Atomistic Simulation using Semi-Empirical Interatomic Potentials · Thermodynamic Calculations in Multicomponent Systems based on the CALPHAD method · Computational Materials and Process Design · Machine-Learning based Materials and Process Design",
+    "perf": {
+      "주도논문": 16,
+      "공동논문": 20,
+      "특허": 2,
+      "과제": 30,
+      "학회": 26,
+      "저서": 0,
+      "기술이전": 3
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/20480-이병주.md"
+  },
+  {
+    "id": "101352",
+    "name": "이병훈",
+    "dept": "전자전기공학과",
+    "email": "bhlee1@postech.ac.kr",
+    "homepage": "http://eesl.postech.ac.kr/",
+    "interests": "· Extreme low power computing: novel devices and architectures that can drastically reduce the power consumption in the information processing systems and sensors · 2D material based photo detectors and memory devices derived from the novel material based device research",
+    "perf": {
+      "주도논문": 15,
+      "공동논문": 5,
+      "특허": 11,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이",
+      "우주항공·해양"
+    ],
+    "wikiPath": "wiki/faculty/101352-이병훈.md"
+  },
+  {
+    "id": "101831",
+    "name": "이상민",
+    "dept": "화학공학과",
+    "email": "sminlee@postech.ac.kr",
+    "homepage": "https://pdl.postech.ac.kr/",
+    "interests": "· Protein Design · Molecular and structure biology · Computational material science",
+    "perf": {
+      "주도논문": 5,
+      "공동논문": 2,
+      "특허": 0,
+      "과제": 30,
+      "학회": 1,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/101831-이상민.md"
+  },
+  {
+    "id": "101930",
+    "name": "이상민",
+    "dept": "친환경소재대학원",
+    "email": "sangma@postech.ac.kr",
+    "homepage": "http://nesp.postech.ac.kr/",
+    "interests": "· Next generation anode materials (Fast charging, High energy Si, Li metal anode) · Inorganic solid electrolyte for all solid battery · Post LIB for ESS (Na, Zn ion-) · Battery design and processing",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 2,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "이차전지"
+    ],
+    "wikiPath": "wiki/faculty/101930-이상민.md"
+  },
+  {
+    "id": "20037",
+    "name": "이상준",
+    "dept": "기계공학과",
+    "email": "sjlee@postech.ac.kr",
+    "homepage": "http://bbrc.postech.ac.kr/",
+    "interests": "· Development of biomimetic drag reduction and PM removal technologies · Development of advanced seawater desalination and Li recovery technologies. · Diagnosis of biofluid flow phenomena and development of creative biomimetic technologies · Development of AI-based advanced flow visualization and bio-imaging techniques",
+    "perf": {
+      "주도논문": 39,
+      "공동논문": 2,
+      "특허": 9,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 3
+    },
+    "nationalTech": [
+      "우주항공·해양"
+    ],
+    "wikiPath": "wiki/faculty/20037-이상준.md"
+  },
+  {
+    "id": "101796",
+    "name": "이선규",
+    "dept": "반도체공학과",
+    "email": "leesk@postech.ac.kr",
+    "homepage": "http://ics-lab.postech.ac.kr/",
+    "interests": "· On-chip/off-chip link circuits · Memory interface circuits · Clock generation circuits · Data converter circuits",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 24,
+      "학회": 5,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/101796-이선규.md"
+  },
+  {
+    "id": "102093",
+    "name": "이성진",
+    "dept": "컴퓨터공학과",
+    "email": "sungjin.lee@postech.ac.kr",
+    "homepage": "https://www.caos.postech.ac.kr/",
+    "interests": "· Computer Systems · Operating Systems · Storage/Memory Systems · AI Systems",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 2,
+      "특허": 0,
+      "과제": 27,
+      "학회": 6,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/102093-이성진.md"
+  },
+  {
+    "id": "20206",
+    "name": "이승구",
+    "dept": "전자전기공학과",
+    "email": "slee@postech.ac.kr",
+    "homepage": "http://esa.postech.ac.kr/",
+    "interests": "· Hardware Efficient Implementation of Neural Networks · Parallel Computing · Fault-Tolerant Computing",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 11,
+      "학회": 6,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/20206-이승구.md"
+  },
+  {
+    "id": "20333",
+    "name": "이승용",
+    "dept": "컴퓨터공학과",
+    "email": "leesy@postech.ac.kr",
+    "homepage": "http://cg.postech.ac.kr/",
+    "interests": "· Computer Graphics · Computational photography · 3D scene reconstruction · 3D avatars",
+    "perf": {
+      "주도논문": 4,
+      "공동논문": 1,
+      "특허": 16,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/20333-이승용.md"
+  },
+  {
+    "id": "102127",
+    "name": "이승우",
+    "dept": "물리학과",
+    "email": "swleego@postech.ac.kr",
+    "homepage": "https://qit.postech.ac.kr/",
+    "interests": "· Quantum Information Theory · Quantum Computing, · Quantum Communication · Quantum Algorithm · Fundamentals of Quantum Theory",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 13,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "양자"
+    ],
+    "wikiPath": "wiki/faculty/102127-이승우.md"
+  },
+  {
+    "id": "100455",
+    "name": "이승우",
+    "dept": "생명과학과",
+    "email": "sw_lee@postech.ac.kr",
+    "homepage": "http://ci.postech.ac.kr/",
+    "interests": "· Understanding roles of immune cells at the tumor microenvironment and development of cancer immunotherapy · Interplay between mucosal epithelial cells and immune systems in health and disease · Immune regulation of hematopoietic stem and progenitor cells",
+    "perf": {
+      "주도논문": 7,
+      "공동논문": 2,
+      "특허": 1,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/100455-이승우.md"
+  },
+  {
+    "id": "101031",
+    "name": "이안나",
+    "dept": "기계공학과",
+    "email": "annalee@postech.ac.kr",
+    "homepage": "http://xml-postech.com",
+    "interests": "· Mechanical instability of thin plates and shells · Soft sensors and actuators · Space propulsion",
+    "perf": {
+      "주도논문": 17,
+      "공동논문": 13,
+      "특허": 6,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "우주항공·해양"
+    ],
+    "wikiPath": "wiki/faculty/101031-이안나.md"
+  },
+  {
+    "id": "20633",
+    "name": "이영호",
+    "dept": "화학과",
+    "email": "yhrhee@postech.ac.kr",
+    "homepage": "http://yhr.postech.ac.kr/",
+    "interests": "· Developing new transition metal-catalyzed reactions · Developing new catalytic asymmetric reactions · Total synthesis of bioactive natural products",
+    "perf": {
+      "주도논문": 5,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 22,
+      "학회": 20,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/20633-이영호.md"
+  },
+  {
+    "id": "102028",
+    "name": "이원열",
+    "dept": "컴퓨터공학과",
+    "email": "wonyeol.lee@postech.ac.kr",
+    "homepage": "http://wonyeol.github.io/",
+    "interests": "· Continuous Computations · Programming Languages · Machine Learning",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 1,
+      "특허": 0,
+      "과제": 9,
+      "학회": 5,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/102028-이원열.md"
+  },
+  {
+    "id": "100410",
+    "name": "이윤태",
+    "dept": "생명과학과",
+    "email": "yoontael@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/postechleelab",
+    "interests": "· Immune cell development · Autoimmune diseases · Cancer biology",
+    "perf": {
+      "주도논문": 10,
+      "공동논문": 1,
+      "특허": 1,
+      "과제": 30,
+      "학회": 5,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/100410-이윤태.md"
+  },
+  {
+    "id": "100493",
+    "name": "이을범",
+    "dept": "친환경소재대학원",
+    "email": "dreblee@postech.ac.kr",
+    "homepage": "https://pmc.postech.ac.kr/",
+    "interests": "· Project Management; Engineering Management · Oil and Gas, Energy · Engineering Procurement Construction",
+    "perf": {
+      "주도논문": 6,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 18,
+      "학회": 16,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/100493-이을범.md"
+  },
+  {
+    "id": "100412",
+    "name": "이인수",
+    "dept": "화학과",
+    "email": "insulee97@postech.ac.kr",
+    "homepage": "http://nccr.postech.ac.kr/",
+    "interests": "· Synthesis and modification of metal and metal oxide nanocrystals · Fabrication of nanoparticles for the biomedical, catalytic, and energy application · Synthesis and application of 2-D nanostructured materials",
+    "perf": {
+      "주도논문": 10,
+      "공동논문": 0,
+      "특허": 7,
+      "과제": 23,
+      "학회": 18,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "수소"
+    ],
+    "wikiPath": "wiki/faculty/100412-이인수.md"
+  },
+  {
+    "id": "100537",
+    "name": "이장식",
+    "dept": "신소재공학과",
+    "email": "jangsik@postech.ac.kr",
+    "homepage": "http://neml.postech.ac.kr/",
+    "interests": "· Emerging nanoscale memory devices · Functional nanoelectronic materials and devices · Flexible/organic nanoelectronic devices · Bioinspired materials and devices · Neuromorphic devices · Artificial synapses · Ferroelectric materials and devices · Organic inorganic hybrid perovskite materials and devices",
+    "perf": {
+      "주도논문": 10,
+      "공동논문": 2,
+      "특허": 9,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/100537-이장식.md"
+  },
+  {
+    "id": "101549",
+    "name": "이재호",
+    "dept": "전자전기공학과",
+    "email": "jaeho.lee@postech.ac.kr",
+    "homepage": "https://effl.postech.ac.kr",
+    "interests": "· Efficient AI · Machine Learning · Deep Learning Theory · Systems for Machine Learning",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 2,
+      "특허": 0,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/101549-이재호.md"
+  },
+  {
+    "id": "100128",
+    "name": "이정수",
+    "dept": "전자전기공학과",
+    "email": "ljs6951@postech.ac.kr",
+    "homepage": "http://ndp.postech.ac.kr/",
+    "interests": "· Fabrication and Characterization of nanoscale devices · Noise and reliability of nanodevices · Nanomaterials and nanostructures for biosensor applications",
+    "perf": {
+      "주도논문": 10,
+      "공동논문": 2,
+      "특허": 3,
+      "과제": 30,
+      "학회": 29,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/100128-이정수.md"
+  },
+  {
+    "id": "100873",
+    "name": "이정욱",
+    "dept": "화학공학과",
+    "email": "jeongwook@postech.ac.kr",
+    "homepage": "http://sbl.postech.ac.kr/",
+    "interests": "· Genetic circuit design and construction · Engineering probiotics as living medicine · Antimicrobial molecule screening and production · Combinatorial production of therapeutic molecules · Programmable and rapid molecular diagnostics",
+    "perf": {
+      "주도논문": 13,
+      "공동논문": 5,
+      "특허": 8,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/100873-이정욱.md"
+  },
+  {
+    "id": "100010",
+    "name": "이종봉",
+    "dept": "물리학과",
+    "email": "jblee@postech.ac.kr",
+    "homepage": "http://jblab.postech.ac.kr/",
+    "interests": "· Cell-to-cell communication · Protein-nucleic acids interaction · Single- molecule imaging in cells",
+    "perf": {
+      "주도논문": 5,
+      "공동논문": 4,
+      "특허": 0,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/100010-이종봉.md"
+  },
+  {
+    "id": "101367",
+    "name": "이준구",
+    "dept": "화학공학과",
+    "email": "jgoolee@postech.ac.kr",
+    "homepage": "https://chb.postech.ac.kr/",
+    "interests": "· Cell-free polymer synthesis · Non-canonical building blocks · Single-molecule chemistry · Next-generation sequencing",
+    "perf": {
+      "주도논문": 7,
+      "공동논문": 2,
+      "특허": 0,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/101367-이준구.md"
+  },
+  {
+    "id": "101467",
+    "name": "이준민",
+    "dept": "신소재공학과",
+    "email": "junmin@postech.ac.kr",
+    "homepage": "https://sbmd.postech.ac.kr/",
+    "interests": "· Smart biomaterials design for tissue engineering and regenerative medicine · Understanding of biomaterial-cell interface · Development of organs-on-a-chip platform for personalized medicine · Biosensors for monitoring of cell fate decisions",
+    "perf": {
+      "주도논문": 12,
+      "공동논문": 9,
+      "특허": 0,
+      "과제": 30,
+      "학회": 9,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/101467-이준민.md"
+  },
+  {
+    "id": "101045",
+    "name": "이지오",
+    "dept": "생명과학과",
+    "email": "jieoh@postech.ac.kr",
+    "homepage": "https://asel.postech.ac.kr/",
+    "interests": "· Structural Biology, x-ray crystallography, cryo-EM · Antibody Engineering · Protein Design",
+    "perf": {
+      "주도논문": 4,
+      "공동논문": 3,
+      "특허": 0,
+      "과제": 30,
+      "학회": 1,
+      "저서": 0,
+      "기술이전": 2
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/101045-이지오.md"
+  },
+  {
+    "id": "101892",
+    "name": "이지원",
+    "dept": "반도체공학과",
+    "email": "jiwonlee@postech.ac.kr",
+    "homepage": "https://pixellab.postech.ac.kr/home",
+    "interests": "· CMOS Image Sensor (CIS) · Pixel devices · LiDAR · Infrared image sensor",
+    "perf": {
+      "주도논문": 7,
+      "공동논문": 2,
+      "특허": 0,
+      "과제": 30,
+      "학회": 2,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/101892-이지원.md"
+  },
+  {
+    "id": "100739",
+    "name": "이충형",
+    "dept": "인문사회학부",
+    "email": "chung@postech.ac.kr",
+    "homepage": "http://hss.postech.ac.kr/",
+    "interests": "· Philosophy of Science · Metaphysics · Philosophical Logic · Decision Theory · Bioethics",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 1,
+      "학회": 4,
+      "저서": 1,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100739-이충형.md"
+  },
+  {
+    "id": "20502",
+    "name": "이현우",
+    "dept": "물리학과",
+    "email": "hwl@postech.ac.kr",
+    "homepage": "https://sites.google.com/site/hwllab/",
+    "interests": "· Electron orbital dynamics in solids · Spin polarized transport in nanoscale systems · Nanoscale magnetization dynamics",
+    "perf": {
+      "주도논문": 18,
+      "공동논문": 11,
+      "특허": 0,
+      "과제": 24,
+      "학회": 19,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/20502-이현우.md"
+  },
+  {
+    "id": "101516",
+    "name": "이형주",
+    "dept": "환경공학부",
+    "email": "hyungjoolee@postech.ac.kr",
+    "homepage": "https://airpollution.postech.ac.kr",
+    "interests": "· Air Pollution · Satellite Remote Sensing · Air Quality Management · Environmental Health",
+    "perf": {
+      "주도논문": 6,
+      "공동논문": 3,
+      "특허": 1,
+      "과제": 12,
+      "학회": 12,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101516-이형주.md"
+  },
+  {
+    "id": "100872",
+    "name": "이효민",
+    "dept": "화학공학과",
+    "email": "hyomin@postech.ac.kr",
+    "homepage": "https://smfil.postech.ac.kr/",
+    "interests": "· Advanced optical coatings · Micropatterning · Droplet-based microfluidics · Artificial cell",
+    "perf": {
+      "주도논문": 20,
+      "공동논문": 2,
+      "특허": 8,
+      "과제": 30,
+      "학회": 21,
+      "저서": 0,
+      "기술이전": 2
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/100872-이효민.md"
+  },
+  {
+    "id": "20561",
+    "name": "임근배",
+    "dept": "기계공학과",
+    "email": "limmems@postech.ac.kr",
+    "homepage": "http://biomems.postech.ac.kr/",
+    "interests": "· Micro/Nano Fabrication · Bio Sensors · Drug Delivery System Micro/Nano fluidics · Micro/Nano filteration · Micro/Nano fluidics",
+    "perf": {
+      "주도논문": 11,
+      "공동논문": 0,
+      "특허": 10,
+      "과제": 30,
+      "학회": 20,
+      "저서": 0,
+      "기술이전": 4
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/20561-임근배.md"
+  },
+  {
+    "id": "100621",
+    "name": "임신혁",
+    "dept": "생명과학과",
+    "email": "iimsh@postech.ac.kr",
+    "homepage": "https://irt.postech.ac.kr/",
+    "interests": "· Immune regulation and tolerance at the cellular and molecular level · Role of Ets1 transcription factors in immune regulation and tolerance · Molecular mechanism of IL-10 gene regulation in immune cells · Mechanism of host-microbe interaction in health and disease · Development of microbiome therapeutics for allergy, autoimmunity, cancer and autism spectrum disorders",
+    "perf": {
+      "주도논문": 9,
+      "공동논문": 5,
+      "특허": 7,
+      "과제": 23,
+      "학회": 14,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/100621-임신혁.md"
+  },
+  {
+    "id": "100454",
+    "name": "임현석",
+    "dept": "화학과",
+    "email": "hslim@postech.ac.kr",
+    "homepage": "http://cbl.postech.ac.kr/",
+    "interests": "· Development of novel synthetic molecules that can mimic protein surface structure and function · Development of innovative technology platforms for efficient discovery of drug candidates · Drug discovery for cancer and autoimmune diseases",
+    "perf": {
+      "주도논문": 5,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 30,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 4
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/100454-임현석.md"
+  },
+  {
+    "id": "100113",
+    "name": "장봉규",
+    "dept": "산업경영공학과",
+    "email": "bonggyujang@postech.ac.kr",
+    "homepage": "http://bgjang.postech.ac.kr/",
+    "interests": "· Financial Investment · Financial Risk Management · Financial Engineering · FinTech / Machine Learning Applications in Finance",
+    "perf": {
+      "주도논문": 4,
+      "공동논문": 0,
+      "특허": 2,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100113-장봉규.md"
+  },
+  {
+    "id": "100858",
+    "name": "장영태",
+    "dept": "화학과",
+    "email": "ytchang@postech.ac.kr",
+    "homepage": "http://ytchang.postech.ac.kr/",
+    "interests": "· Fluorescent sensor and probes for physical, chemical & biological analytes · Chemical Cellomics for live cell discrimination · Chemical-Based Aging Research",
+    "perf": {
+      "주도논문": 17,
+      "공동논문": 19,
+      "특허": 3,
+      "과제": 30,
+      "학회": 30,
+      "저서": 1,
+      "기술이전": 2
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/100858-장영태.md"
+  },
+  {
+    "id": "100940",
+    "name": "장지원",
+    "dept": "생명과학과",
+    "email": "jiwonjang@postech.ac.kr",
+    "homepage": "http://esc.postech.ac.kr/",
+    "interests": "· Mechanisms of pluripotency · Human early development · Cellular senescence and aging",
+    "perf": {
+      "주도논문": 3,
+      "공동논문": 4,
+      "특허": 2,
+      "과제": 30,
+      "학회": 6,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/100940-장지원.md"
+  },
+  {
+    "id": "100846",
+    "name": "장진아",
+    "dept": "기계공학과",
+    "email": "jinahjang@postech.ac.kr",
+    "homepage": "http://www.btmpostech.com/",
+    "interests": "· Bioprinting and biofabrication technology · Multifunctional tissue-specific bioinks · Transplantable bioprinted tissues for regenerative medicine · Alternative in vitro testing platform · Biohybrid tissue-device integrated platform · Assemblable organ modules for smart organ factory",
+    "perf": {
+      "주도논문": 29,
+      "공동논문": 11,
+      "특허": 15,
+      "과제": 30,
+      "학회": 30,
+      "저서": 1,
+      "기술이전": 3
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/100846-장진아.md"
+  },
+  {
+    "id": "101446",
+    "name": "장진우",
+    "dept": "수학과",
+    "email": "jangjw@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/jangjinw",
+    "interests": "· PDE, Applied Analysis, Kinetic theory",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 29,
+      "학회": 12,
+      "저서": 1,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101446-장진우.md"
+  },
+  {
+    "id": "101944",
+    "name": "전명재",
+    "dept": "컴퓨터공학과",
+    "email": "mj.jeon@postech.ac.kr",
+    "homepage": "https://omnia.postech.ac.kr/",
+    "interests": "· Operating system · AI system · Big data system · Cloud computing",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 30,
+      "학회": 5,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101944-전명재.md"
+  },
+  {
+    "id": "100869",
+    "name": "전보광",
+    "dept": "수학과",
+    "email": "leojeon@postech.ac.kr",
+    "homepage": "http://math.postech.ac.kr/",
+    "interests": "· Hyperolic 3-manifolds",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 4,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100869-전보광.md"
+  },
+  {
+    "id": "20607",
+    "name": "전상민",
+    "dept": "화학공학과",
+    "email": "jeons@postech.ac.kr",
+    "homepage": "http://smart.postech.ac.kr/",
+    "interests": "· Energy Harvesting · Carbon Neutrality · Clean water and resources",
+    "perf": {
+      "주도논문": 16,
+      "공동논문": 2,
+      "특허": 5,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "이차전지"
+    ],
+    "wikiPath": "wiki/faculty/20607-전상민.md"
+  },
+  {
+    "id": "101231",
+    "name": "전요셉",
+    "dept": "전자전기공학과",
+    "email": "yoseb.jeon@postech.ac.kr",
+    "homepage": "https://wcml.postech.ac.kr",
+    "interests": "· Wireless communications · Machine learning / Artificial intelligence · MIMO communications · Signal processing for communications",
+    "perf": {
+      "주도논문": 22,
+      "공동논문": 4,
+      "특허": 1,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "차세대 통신"
+    ],
+    "wikiPath": "wiki/faculty/101231-전요셉.md"
+  },
+  {
+    "id": "100778",
+    "name": "전재형",
+    "dept": "물리학과",
+    "email": "jeonjh@postech.ac.kr",
+    "homepage": "http://tbio.postech.ac.kr/ ",
+    "interests": "· Cell & chromosome physics · Active systems and thermodynamics · Stochastic process & soft matter theory · Computational biophysics",
+    "perf": {
+      "주도논문": 5,
+      "공동논문": 1,
+      "특허": 0,
+      "과제": 22,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100778-전재형.md"
+  },
+  {
+    "id": "102153",
+    "name": "전준구",
+    "dept": "첨단원자력공학부",
+    "email": "jgjeon41@postech.ac.kr",
+    "homepage": "https://ninelab.postech.ac.kr/",
+    "interests": "· Nuclear reactor digital twin using scientific machine learning · Hybrid solver of computational fluid dynamics and machine learning · Flow control using reinforcement learning · Hydrogen safety evaluation · Large language model applications to nuclear engineering",
+    "perf": {
+      "주도논문": 7,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 15,
+      "학회": 3,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "차세대 원자력",
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/102153-전준구.md"
+  },
+  {
+    "id": "101297",
+    "name": "정광민",
+    "dept": "산업경영공학과",
+    "email": "kwjung@postech.ac.kr",
+    "homepage": "http://airm.postech.ac.kr/",
+    "interests": "· Risk management · Emerging risk analysis · Extreme risk modeling · Insurance economics and management",
+    "perf": {
+      "주도논문": 3,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 30,
+      "학회": 30,
+      "저서": 1,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101297-정광민.md"
+  },
+  {
+    "id": "20602",
+    "name": "정규열",
+    "dept": "화학공학과",
+    "email": "gyjung@postech.ac.kr",
+    "homepage": "https://mdsb.postech.ac.kr/",
+    "interests": "· Metabolic Engineering · Synthetic Biology · Molecular Diagnosis",
+    "perf": {
+      "주도논문": 21,
+      "공동논문": 2,
+      "특허": 16,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/20602-정규열.md"
+  },
+  {
+    "id": "101243",
+    "name": "정대성",
+    "dept": "화학공학과",
+    "email": "dchung@postech.ac.kr",
+    "homepage": "https://peml.postech.ac.kr/",
+    "interests": "· Organic Image Sensors · Molecular Switch-Embedded Electronics · Printing-based M3D · Organic Photocatalyst",
+    "perf": {
+      "주도논문": 23,
+      "공동논문": 4,
+      "특허": 9,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 1
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101243-정대성.md"
+  },
+  {
+    "id": "101869",
+    "name": "정모세",
+    "dept": "물리학과",
+    "email": "moses@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/moses-caphe",
+    "interests": "· Beam physics with intense self-fields and strong coupling · Advanced beam manipulations and diagnostics · Beam-plasma interactions and advanced accelerators · Plasma and beam physics using ion and electron traps · High-intensity accelerator R&D for future nuclear applications",
+    "perf": {
+      "주도논문": 8,
+      "공동논문": 5,
+      "특허": 0,
+      "과제": 28,
+      "학회": 4,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101869-정모세.md"
+  },
+  {
+    "id": "20402",
+    "name": "정성모",
+    "dept": "친환경소재대학원",
+    "email": "smjung@postech.ac.kr",
+    "homepage": "http://eml.postech.ac.kr/",
+    "interests": "· Alternative and environment-friendly ironmaking processes · Thermodynamic and kinetic study on ironmaking and steelmaking processes · Recycling of wastes generated in steel production plants · Development of physical and chemical analysis methods in steel production",
+    "perf": {
+      "주도논문": 8,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 30,
+      "학회": 11,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "수소"
+    ],
+    "wikiPath": "wiki/faculty/20402-정성모.md"
+  },
+  {
+    "id": "100584",
+    "name": "정성준",
+    "dept": "신소재공학과",
+    "email": "sjjung@postech.ac.kr",
+    "homepage": "http://bipp.postech.ac.kr",
+    "interests": "· Organic printed electronics · Digital healthcare sensor platform · 3D artificial tissues and regenerative medicine · Inkjet printing process",
+    "perf": {
+      "주도논문": 21,
+      "공동논문": 0,
+      "특허": 6,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 1
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100584-정성준.md"
+  },
+  {
+    "id": "101951",
+    "name": "정우빈",
+    "dept": "화학공학과",
+    "email": "woobinjung@postech.ac.kr",
+    "homepage": "https://wbj.postech.ac.kr",
+    "interests": "· Biological computing systems using electrochemistry · CMOS-based electrochemical system · Brain-computer interface · Nano/micro-fabrication",
+    "perf": {
+      "주도논문": 4,
+      "공동논문": 2,
+      "특허": 0,
+      "과제": 22,
+      "학회": 1,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/101951-정우빈.md"
+  },
+  {
+    "id": "100339",
+    "name": "정우성",
+    "dept": "산업경영공학과",
+    "email": "wsjung@postech.ac.kr",
+    "homepage": "http://complex.postech.ac.kr/",
+    "interests": "· Science and Technology Policy · Complex System · Computational Social Science",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 1,
+      "특허": 2,
+      "과제": 30,
+      "학회": 2,
+      "저서": 1,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/100339-정우성.md"
+  },
+  {
+    "id": "100679",
+    "name": "정운룡",
+    "dept": "신소재공학과",
+    "email": "ujeong@postech.ac.kr",
+    "homepage": "http://hybrid.postech.ac.kr/",
+    "interests": "· Stretchable Electronics & electronic skin devices · Synthesis of Inorganic Nanomaterials in Solutions · Self-assembly of Nanomaterials · Strain-responsive Drug Delivery Systems",
+    "perf": {
+      "주도논문": 23,
+      "공동논문": 5,
+      "특허": 25,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 2
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/100679-정운룡.md"
+  },
+  {
+    "id": "100675",
+    "name": "정윤영",
+    "dept": "전자전기공학과",
+    "email": "ychung@postech.ac.kr",
+    "homepage": "http://chunglab.postech.ac.kr/",
+    "interests": "· Fabrication Technology – Novel fabrication process for flexible transistor – 3-D flexible circuit · Emerging Flexible Device – Active lens for the next generation wireless system – Flexible full-color electronic paper · Wearable Healthcare – Skin-attachable sensor – Electrical stimulation for healthcare applications",
+    "perf": {
+      "주도논문": 9,
+      "공동논문": 3,
+      "특허": 13,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 1
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/100675-정윤영.md"
+  },
+  {
+    "id": "101302",
+    "name": "정재훈",
+    "dept": "수학과",
+    "email": "jung153@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/jaehunjung",
+    "interests": "· Numerical Analysis · Scientific Computing · Mathematical Data Science/Machine Learning",
+    "perf": {
+      "주도논문": 11,
+      "공동논문": 7,
+      "특허": 3,
+      "과제": 30,
+      "학회": 30,
+      "저서": 2,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101302-정재훈.md"
+  },
+  {
+    "id": "102146",
+    "name": "정진호",
+    "dept": "인문사회학부",
+    "email": "jjung@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/jinhojung/home",
+    "interests": "· Market analysis to examine an existence of market power exercised by economic agents along the supply chain of agricultural commodities or food products. · Utilization of online microdata to conduct event studies in a timely manner and mitigate information asymmetry. · Investment decision making under uncertainty. · Analysis of government policies related to agriculture, food, and trade. · Automation of collecting and processing data for disseminating knowledge and information with higher frequency.",
+    "perf": {
+      "주도논문": 1,
+      "공동논문": 2,
+      "특허": 0,
+      "과제": 2,
+      "학회": 2,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/102146-정진호.md"
+  },
+  {
+    "id": "100825",
+    "name": "조강우",
+    "dept": "환경공학부",
+    "email": "kwcho1982@postech.ac.kr",
+    "homepage": "http://create.postech.ac.kr/",
+    "interests": "· Electrochemical Wastewater Treatment and Energy Conversion, Heterogeneous Catalysts for Redox Processes, Process Intensification and Field Application, Micropollutants Control",
+    "perf": {
+      "주도논문": 13,
+      "공동논문": 0,
+      "특허": 6,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "수소"
+    ],
+    "wikiPath": "wiki/faculty/100825-조강우.md"
+  },
+  {
+    "id": "20099",
+    "name": "조길원",
+    "dept": "화학공학과",
+    "email": "kwcho@postech.ac.kr",
+    "homepage": "http://crg.postech.ac.kr/",
+    "interests": "· Physical Properties of Polymers · Polymer Surface, Interface, Thin Film and Adhesion · Organic Electronics Materials and Devices · Interface Engineering · Electronic Skin",
+    "perf": {
+      "주도논문": 33,
+      "공동논문": 20,
+      "특허": 6,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 2
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/20099-조길원.md"
+  },
+  {
+    "id": "20596",
+    "name": "조문호",
+    "dept": "신소재공학과",
+    "email": "mhjo@postech.ac.kr",
+    "homepage": "http://dmpl.postech.ac.kr/",
+    "interests": "<IBS Center for Van der Waals quantum solids> · Atomic epitaxy of 2D van der Waals materials · Advanced semiconductors for AI era · Material platforms for quantum-computing and quantum-sensing technology",
+    "perf": {
+      "주도논문": 10,
+      "공동논문": 12,
+      "특허": 2,
+      "과제": 9,
+      "학회": 21,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/20596-조문호.md"
+  },
+  {
+    "id": "100777",
+    "name": "조민수",
+    "dept": "컴퓨터공학과",
+    "email": "mscho@postech.ac.kr",
+    "homepage": "http://cvlab.postech.ac.kr",
+    "interests": "· Computer Vision · Machine Learning · Pattern Recognition",
+    "perf": {
+      "주도논문": 1,
+      "공동논문": 2,
+      "특허": 10,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100777-조민수.md"
+  },
+  {
+    "id": "100941",
+    "name": "조성문",
+    "dept": "수학과",
+    "email": "sungmuncho@postech.ac.kr",
+    "homepage": "https://sites.google.com/site/sungmuncho12/",
+    "interests": "· Number theory",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 7,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100941-조성문.md"
+  },
+  {
+    "id": "101166",
+    "name": "조성현",
+    "dept": "컴퓨터공학과",
+    "email": "s.cho@postech.ac.kr",
+    "homepage": "http://cg.postech.ac.kr/",
+    "interests": "· Computational Photography · Image/video processing · Computer Graphics · Computer Vision",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 0,
+      "특허": 7,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101166-조성현.md"
+  },
+  {
+    "id": "100636",
+    "name": "조승환",
+    "dept": "화학과",
+    "email": "seunghwan@postech.ac.kr",
+    "homepage": "http://chogroup.postech.ac.kr/",
+    "interests": "· Transition-metal catalyzed asymmetric reactions · Design and synthesis of new types of organoboron compounds · Stereo-and Chemoselective cross-couplings",
+    "perf": {
+      "주도논문": 10,
+      "공동논문": 1,
+      "특허": 0,
+      "과제": 30,
+      "학회": 4,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/100636-조승환.md"
+  },
+  {
+    "id": "20394",
+    "name": "조윤제",
+    "dept": "생명과학과",
+    "email": "yunje@postech.ac.kr",
+    "homepage": "https://yunje8.wixsite.com/sbclab",
+    "interests": "· Chromosome biology: How genome maintenance can be achieved in mammalian cells · DNA damage response: How DNA damages are sensed and repaired · Receptor Biology: Understanding the structure and function of GPCRs and Tyrosine Kinase receptors",
+    "perf": {
+      "주도논문": 5,
+      "공동논문": 2,
+      "특허": 1,
+      "과제": 30,
+      "학회": 13,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/20394-조윤제.md"
+  },
+  {
+    "id": "102141",
+    "name": "조은경",
+    "dept": "컴퓨터공학과",
+    "email": "eunkyungjo@postech.ac.kr",
+    "homepage": "https://eunkyungjo.com/",
+    "interests": "· Human-Computer Interaction · Computer-Supported Cooperative Work · Health Informatics",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 5,
+      "학회": 5,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/102141-조은경.md"
+  },
+  {
+    "id": "20583",
+    "name": "조준호",
+    "dept": "전자전기공학과",
+    "email": "jcho@postech.ac.kr",
+    "homepage": "http://cisl.postech.ac.kr/cisl/jcho/",
+    "interests": "· Digital communications and network · Financial Signal Processing · Intelligent sysems for communications and finance · Information theory and machine learning · PoC, Testbed, and Prototype Design and Implementation",
+    "perf": {
+      "주도논문": 1,
+      "공동논문": 0,
+      "특허": 3,
+      "과제": 20,
+      "학회": 10,
+      "저서": 0,
+      "기술이전": 1
+    },
+    "nationalTech": [
+      "차세대 통신"
+    ],
+    "wikiPath": "wiki/faculty/20583-조준호.md"
+  },
+  {
+    "id": "100743",
+    "name": "조중욱",
+    "dept": "친환경소재대학원",
+    "email": "jungwook@postech.ac.kr",
+    "homepage": "http://csp.postech.ac.kr/",
+    "interests": "· Structure and properties of various slag systems for steelmaking and casting process · Crystallization behavior of glasses · Application of computational thermodynamics to solidification of steels · Controlling solidification structure using Oxide Metallurgy technology",
+    "perf": {
+      "주도논문": 11,
+      "공동논문": 9,
+      "특허": 2,
+      "과제": 30,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100743-조중욱.md"
+  },
+  {
+    "id": "101729",
+    "name": "조창순",
+    "dept": "신소재공학과",
+    "email": "cho23@postech.ac.kr",
+    "homepage": "http://ngo.postech.ac.kr/",
+    "interests": "· Solar Energy Conversion: Photovoltaics based on perovskites, quantum materials, etc. · Advanced Optoelectronics: LED Displays, Lasers, Sensors, etc. · Photophysics Study: Spectroscopy analysis · AI-Designed Devices: Multiphysics modeling for optoelectronics",
+    "perf": {
+      "주도논문": 6,
+      "공동논문": 8,
+      "특허": 0,
+      "과제": 23,
+      "학회": 1,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/101729-조창순.md"
+  },
+  {
+    "id": "101539",
+    "name": "조창신",
+    "dept": "친환경소재대학원",
+    "email": "jochangshin@postech.ac.kr",
+    "homepage": "http://nedl.postech.ac.kr/",
+    "interests": "· Next-generation battery systems · Electrode materials · Nanostructured materials · Organic/inorganic hybrid materials synthesis",
+    "perf": {
+      "주도논문": 27,
+      "공동논문": 7,
+      "특허": 2,
+      "과제": 30,
+      "학회": 23,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "이차전지"
+    ],
+    "wikiPath": "wiki/faculty/101539-조창신.md"
+  },
+  {
+    "id": "102126",
+    "name": "조철현",
+    "dept": "수학과",
+    "email": "chocheol@postech.ac.kr",
+    "homepage": "http://math.postech.ac.kr/",
+    "interests": "· Symplectic Topology · Mirror symmetry · Singularity",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 6,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/102126-조철현.md"
+  },
+  {
+    "id": "101048",
+    "name": "조항진",
+    "dept": "기계공학과",
+    "email": "jhj04@postech.ac.kr",
+    "homepage": "http://thesystem.postech.ac.kr",
+    "interests": "· Heat & fluid transfer phenomena · Boiling and condensation on engineered surfaces · Advanced energy systems · Thermal/energy sensing devices · High fidelity simulation for heat transfer phenomena",
+    "perf": {
+      "주도논문": 24,
+      "공동논문": 4,
+      "특허": 1,
+      "과제": 30,
+      "학회": 10,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101048-조항진.md"
+  },
+  {
+    "id": "20279",
+    "name": "조현보",
+    "dept": "산업경영공학과",
+    "email": "hcho@postech.ac.kr",
+    "homepage": "http://idea-lab.kr",
+    "interests": "· Smart Manufacturing and Smart Factory · Industrial Data Analytics and AI · Value Chain Data Analytics and AI",
+    "perf": {
+      "주도논문": 1,
+      "공동논문": 0,
+      "특허": 1,
+      "과제": 30,
+      "학회": 8,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/20279-조현보.md"
+  },
+  {
+    "id": "20308",
+    "name": "주태하",
+    "dept": "화학과",
+    "email": "thjoo@postech.ac.kr",
+    "homepage": "http://femto.postech.ac.kr/",
+    "interests": "· Dynamics in condensed phases by employing femtosecond time domain spectroscopies · Development of new techniques in femtosecond lasers and time domain measurements · Experimental and theoretical approaches towards coherent molecular reaction dynamics in excited states",
+    "perf": {
+      "주도논문": 6,
+      "공동논문": 2,
+      "특허": 0,
+      "과제": 14,
+      "학회": 1,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/20308-주태하.md"
+  },
+  {
+    "id": "20613",
+    "name": "지승훈",
+    "dept": "물리학과",
+    "email": "jhish@postech.ac.kr",
+    "homepage": "http://cnpl.postech.ac.kr/",
+    "interests": "· First principles calculations of condensed matter · Graphene and 2D materials · Molecular Dynamics using Machine Learning Potentials · Phase change materials · Chiral phonons and thermal Hall effect",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 2,
+      "특허": 0,
+      "과제": 13,
+      "학회": 10,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "양자"
+    ],
+    "wikiPath": "wiki/faculty/20613-지승훈.md"
+  },
+  {
+    "id": "101160",
+    "name": "지형민",
+    "dept": "화학과",
+    "email": "hmchi@postech.ac.kr",
+    "homepage": "http://chi.postech.ac.kr",
+    "interests": "· Development of catalytic, enantioselective reactions · Development of organocatalysts with novel scaffolds · Mechanistic studies of organic reactions · Total synthesis of natural products and biologically active compounds",
+    "perf": {
+      "주도논문": 4,
+      "공동논문": 2,
+      "특허": 0,
+      "과제": 28,
+      "학회": 1,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101160-지형민.md"
+  },
+  {
+    "id": "100799",
+    "name": "진현규",
+    "dept": "기계공학과",
+    "email": "hgjin@postech.ac.kr",
+    "homepage": "http://telab-postech.com/",
+    "interests": "· Thermal science · Thermal energy conversion materials / devices · Thermoelectric energy conversion · Thermochemical hydrogen production · Carbon-neutral fuel production · Thermal management",
+    "perf": {
+      "주도논문": 21,
+      "공동논문": 7,
+      "특허": 3,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "수소",
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/100799-진현규.md"
+  },
+  {
+    "id": "100064",
+    "name": "차재춘",
+    "dept": "수학과",
+    "email": "jccha@postech.ac.kr",
+    "homepage": "http://gt.postech.ac.kr/~jccha/",
+    "interests": "· Geometric Topology - Knot Theory - Topology of Low Dimensional Manifolds · Related Algebra and Algebraic Topology",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 13,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100064-차재춘.md"
+  },
+  {
+    "id": "20385",
+    "name": "차형준",
+    "dept": "화학공학과",
+    "email": "hjcha@postech.ac.kr",
+    "homepage": "http://magic.postech.ac.kr/",
+    "interests": "· Cellular and molecular redesign for useful biomaterials · Biomedical applications of structural biomolecule-based biomaterials (e.g., mussel adhesive proteins, silk proteins, and natural polysaccharides) · Drug delivery therapeutic applications using structural biomolecule-based biomaterials",
+    "perf": {
+      "주도논문": 26,
+      "공동논문": 5,
+      "특허": 10,
+      "과제": 30,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 1
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/20385-차형준.md"
+  },
+  {
+    "id": "101144",
+    "name": "채민우",
+    "dept": "산업경영공학과",
+    "email": "mchae@postech.ac.kr",
+    "homepage": "https://sds.postech.ac.kr/",
+    "interests": "· Asymptotic Statistics · Statistical Learning · Nonparametric Bayesian Inference · Deep Learning",
+    "perf": {
+      "주도논문": 9,
+      "공동논문": 1,
+      "특허": 0,
+      "과제": 30,
+      "학회": 2,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/101144-채민우.md"
+  },
+  {
+    "id": "101578",
+    "name": "채수용",
+    "dept": "전자전기공학과",
+    "email": "sychae@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/apes-postech/home",
+    "interests": "· Power Electronics · Distributed Energy Resources · Fault detection and Pronogosis · Distributed Energy network",
+    "perf": {
+      "주도논문": 8,
+      "공동논문": 1,
+      "특허": 3,
+      "과제": 30,
+      "학회": 19,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101578-채수용.md"
+  },
+  {
+    "id": "102025",
+    "name": "천동원",
+    "dept": "신소재공학과",
+    "email": "dwchun@postech.ac.kr",
+    "homepage": "https://dongwonlab.postech.ac.kr/",
+    "interests": "· Hydrogen Energy Materials: Solid Stage Hydrogen Storage System, Hydrogen Production/Utilization · Metastable Metal-hydrides Synthesis · In-situ Characterization of Energy/Nano Materials: In-situ TEM, In-situ X-ray",
+    "perf": {
+      "주도논문": 3,
+      "공동논문": 10,
+      "특허": 0,
+      "과제": 16,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "수소"
+    ],
+    "wikiPath": "wiki/faculty/102025-천동원.md"
+  },
+  {
+    "id": "100821",
+    "name": "최규하",
+    "dept": "생명과학과",
+    "email": "kyuha@postech.ac.kr",
+    "homepage": "https://www.pgr.postech.ac.kr/",
+    "interests": "· Mechanism of meiotic recombination in plants · Control of meiotic crossover number and distribution · Plant genome engineering and design",
+    "perf": {
+      "주도논문": 3,
+      "공동논문": 2,
+      "특허": 1,
+      "과제": 15,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/100821-최규하.md"
+  },
+  {
+    "id": "100728",
+    "name": "최동구",
+    "dept": "산업경영공학과",
+    "email": "dgchoi@postech.ac.kr",
+    "homepage": "http://se.postech.ac.kr/",
+    "interests": "· Operations Management · Business Operation Design · Sequential/Multi-agent Decision System Operation",
+    "perf": {
+      "주도논문": 6,
+      "공동논문": 2,
+      "특허": 0,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/100728-최동구.md"
+  },
+  {
+    "id": "101896",
+    "name": "최민석",
+    "dept": "수학과",
+    "email": "mchoi@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/choiminseok",
+    "interests": "· Scientific machine learning · AI for Science · Uncertainty quantification · Stochastic modeling and simulation for high-dimensional PDEs",
+    "perf": {
+      "주도논문": 5,
+      "공동논문": 1,
+      "특허": 0,
+      "과제": 24,
+      "학회": 12,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "인공지능"
+    ],
+    "wikiPath": "wiki/faculty/101896-최민석.md"
+  },
+  {
+    "id": "101444",
+    "name": "최세규",
+    "dept": "생명과학과",
+    "email": "sekyuchoi@postech.ac.kr",
+    "homepage": "https://choilab.postech.ac.kr/",
+    "interests": "· Understanding the interactions between adult stem cells and their niches · In vivo lineage tracing for exploring the development and regeneration · Researches on hair follicle stem cells and melanocyte stem cells · Generation of skin organoid system",
+    "perf": {
+      "주도논문": 3,
+      "공동논문": 2,
+      "특허": 0,
+      "과제": 30,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/101444-최세규.md"
+  },
+  {
+    "id": "101033",
+    "name": "최수석",
+    "dept": "전자전기공학과",
+    "email": "choiss@postech.ac.kr",
+    "homepage": "https://csspostech.wixsite.com/css1",
+    "interests": "· Display Technology (Display Device, Display Mode, TFT Process, Light Emitting, Color, Emerging Technology) · Display Materials & Component · Stretcahble & Flexible Technolgies (Foldable, Rollable, Bendable, Stretchable) · Color Changing, Wavelenth Tuning · Transparent Display & Smart Window · Display Speaker · Haptic Technology and Emotional UI/UX · Micro Array Laser System (Chiral Laser & Organic VCSEL Laser) · Display Touch & Display Antenna · AR Device and Micro LED · Soft Robotics · Liquid Crystals Applications",
+    "perf": {
+      "주도논문": 9,
+      "공동논문": 3,
+      "특허": 5,
+      "과제": 30,
+      "학회": 30,
+      "저서": 1,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/101033-최수석.md"
+  },
+  {
+    "id": "20629",
+    "name": "최승문",
+    "dept": "컴퓨터공학과",
+    "email": "choism@postech.ac.kr",
+    "homepage": "www.postech.ac.kr/~choism/",
+    "interests": "· Haptics · Virtual Reality, Human-Computer Interaction, and Robotics · Applied Perception",
+    "perf": {
+      "주도논문": 12,
+      "공동논문": 6,
+      "특허": 8,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/20629-최승문.md"
+  },
+  {
+    "id": "100871",
+    "name": "최시영",
+    "dept": "신소재공학과",
+    "email": "youngchoi@postech.ac.kr",
+    "homepage": "http://aefi.postech.ac.kr/",
+    "interests": "· Aberration-corrected Scanning Transmission Electron Microscopy · Atomic scale imaging and electronic/chemical analysis · In-situ TEM/STEM analysis · Study on multifunctional/complex materials including multiferroic, piezoelectric, magnetostrictive materials, and so on. · Development of new electron microscopic analytical technique",
+    "perf": {
+      "주도논문": 22,
+      "공동논문": 20,
+      "특허": 6,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 1
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100871-최시영.md"
+  },
+  {
+    "id": "20177",
+    "name": "최영주",
+    "dept": "수학과",
+    "email": "yjc@postech.ac.kr",
+    "homepage": "http://yjchoie.postech.ac.kr",
+    "interests": "· Modular Form, Number Theory · L functions, Automorphic forms",
+    "perf": {
+      "주도논문": 3,
+      "공동논문": 2,
+      "특허": 0,
+      "과제": 16,
+      "학회": 14,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/20177-최영주.md"
+  },
+  {
+    "id": "102143",
+    "name": "최영준",
+    "dept": "물리학과",
+    "email": "youngjoon@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/yjchoilab",
+    "interests": "· Topological superconductivity: realization and detection of non-Abelian quasiparticles · Twisted/Rhombohedral multilayer graphene physics: investigation of emergent correlated phases · STM and quantum transport integration: correlating atomic-scale structure with macroscopic transport properties",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 9,
+      "학회": 0,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "양자"
+    ],
+    "wikiPath": "wiki/faculty/102143-최영준.md"
+  },
+  {
+    "id": "101538",
+    "name": "최창혁",
+    "dept": "화학과",
+    "email": "chchoi@postech.ac.kr",
+    "homepage": "https://www.ecatlab.com/",
+    "interests": "· Fundamental understandings of electrocatalysis · Electrochemical synthesis of useful products · Development of new electrocatalytic materials",
+    "perf": {
+      "주도논문": 24,
+      "공동논문": 13,
+      "특허": 1,
+      "과제": 30,
+      "학회": 15,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "수소"
+    ],
+    "wikiPath": "wiki/faculty/101538-최창혁.md"
+  },
+  {
+    "id": "20547",
+    "name": "최희철",
+    "dept": "화학과",
+    "email": "choihc@postech.ac.kr",
+    "homepage": "https://www.nmrl.postech.ac.kr/",
+    "interests": "· Synthesis of 2D materials via chemical vapor deposition · Development of highly efficient doping method · Solvated electrons and electrides · Reticular materials (MOF, COF, …) · Molecular Systems Electronics · Growth and property studies of Molecular crystals · Organic semiconductors & superconductors · Organic electronic devices",
+    "perf": {
+      "주도논문": 6,
+      "공동논문": 6,
+      "특허": 2,
+      "과제": 21,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/20547-최희철.md"
+  },
+  {
+    "id": "20241",
+    "name": "한성호",
+    "dept": "산업경영공학과",
+    "email": "shan@postech.ac.kr",
+    "homepage": "http://eden.postech.ac.kr/",
+    "interests": "· Experience Design · Human-Computer Interaction · Usability Engineering · Affective Product Design · Intelligent/Adaptive User Interfaces · Mobile and Telematics User Interfaces/Experience · Assistive Technology · Blockchain",
+    "perf": {
+      "주도논문": 4,
+      "공동논문": 0,
+      "특허": 4,
+      "과제": 27,
+      "학회": 6,
+      "저서": 1,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/20241-한성호.md"
+  },
+  {
+    "id": "20630",
+    "name": "한세광",
+    "dept": "신소재공학과",
+    "email": "skhanb@postech.ac.kr",
+    "homepage": "http://bnl.postech.ac.kr/",
+    "interests": "· Biomedical nanomaterials – Synthesis, characterization and applications · Biosensor and bioimaging · Drug delivery and tissue engineering · Wearable materials and devices",
+    "perf": {
+      "주도논문": 24,
+      "공동논문": 1,
+      "특허": 9,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 1
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/20630-한세광.md"
+  },
+  {
+    "id": "100647",
+    "name": "한수희",
+    "dept": "IT융합공학과",
+    "email": "sooheehan@postech.ac.kr",
+    "homepage": "http://cocel.postech.ac.kr",
+    "interests": "· Real-time reinforcement learning · Mathematical Instrumentation · Model-based battery informatics",
+    "perf": {
+      "주도논문": 38,
+      "공동논문": 2,
+      "특허": 8,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 1
+    },
+    "nationalTech": [
+      "첨단 모빌리티"
+    ],
+    "wikiPath": "wiki/faculty/100647-한수희.md"
+  },
+  {
+    "id": "102236",
+    "name": "한승용",
+    "dept": "기계공학과",
+    "email": "syhan01@postech.ac.kr",
+    "homepage": "http://seedpostech.ac.kr",
+    "interests": "· Soft and bio-integrated sensors · Physical-AI-oriented sensing systems · Soft engineering of materials and mechanical structures · Shape-changing materials and deformable 3D displays",
+    "perf": {
+      "주도논문": 10,
+      "공동논문": 3,
+      "특허": 0,
+      "과제": 8,
+      "학회": 3,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/102236-한승용.md"
+  },
+  {
+    "id": "100581",
+    "name": "한욱신",
+    "dept": "컴퓨터공학과",
+    "email": "wshan@postech.ac.kr",
+    "homepage": "dslab.postech.ac.kr/",
+    "interests": "· Parallel computation systems for big data analysis on modern hardware · Large-scale graph computation system · Intelligent computation system for structured and dark data · Cloud computing",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 0,
+      "특허": 23,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100581-한욱신.md"
+  },
+  {
+    "id": "101576",
+    "name": "한지훈",
+    "dept": "화학공학과",
+    "email": "jhhan@postech.ac.kr",
+    "homepage": "http://pse.postech.ac.kr/",
+    "interests": "· Sustainable process design of CO2/biomass-to-fuels/Chemicals · Systems-level analysis (technoeconomic assessment, lifecycle assessment) of renewable energy (H2) · Big Data Analytics, Machine Learning, and Artificial Intelligence in the field of Chemical Engineering · Supercapacitor/Battery Modelling & Simulation",
+    "perf": {
+      "주도논문": 20,
+      "공동논문": 2,
+      "특허": 0,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "이차전지"
+    ],
+    "wikiPath": "wiki/faculty/101576-한지훈.md"
+  },
+  {
+    "id": "20336",
+    "name": "한해욱",
+    "dept": "전자전기공학과",
+    "email": "hhan@postech.ac.kr",
+    "homepage": "https://sites.google.com/view/nano-biothzphotonicsnbtplab",
+    "interests": "· Nano-Bio Photonics · Terahertz Photonics · Terahertz Dynamics of Quantum Matters and Biomolecules · Semiconductor Lasers and LED Displays",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 2,
+      "특허": 0,
+      "과제": 9,
+      "학회": 2,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/20336-한해욱.md"
+  },
+  {
+    "id": "101938",
+    "name": "한현",
+    "dept": "신소재공학과",
+    "email": "hyeonhan@postech.ac.kr",
+    "homepage": "https://atom.postech.ac.kr",
+    "interests": "· Atomic control of epitaxial oxide thin film growth · Correlated properties and quantum phenomena in thin film heterostructures · Next-generation electronic devices, including iontronic, spintronic, superconducting diode, multiferroic, magnetoelectric, and neuromorphic devices",
+    "perf": {
+      "주도논문": 3,
+      "공동논문": 1,
+      "특허": 0,
+      "과제": 19,
+      "학회": 9,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "반도체·디스플레이"
+    ],
+    "wikiPath": "wiki/faculty/101938-한현.md"
+  },
+  {
+    "id": "100983",
+    "name": "허윤욱",
+    "dept": "친환경소재대학원",
+    "email": "yunuk01@postech.ac.kr",
+    "homepage": "http://adl.postech.ac.kr/",
+    "interests": "· Alloy design based on advanced material characterization · Fracture study in steel · Ultrafine grained steel · Precipitation hardening steel · Phase transformation of precipitate",
+    "perf": {
+      "주도논문": 15,
+      "공동논문": 20,
+      "특허": 3,
+      "과제": 30,
+      "학회": 26,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100983-허윤욱.md"
+  },
+  {
+    "id": "101857",
+    "name": "허윤하",
+    "dept": "생명과학과",
+    "email": "hur9111@postech.ac.kr",
+    "homepage": "https://hurlab.postech.ac.kr/",
+    "interests": "· Intercellular communication between tissue-resident stem cells and their microenvironment in tissue repair and mammalian embryonic development · Aging and cellular senescence in wound healing and tissue regeneration",
+    "perf": {
+      "주도논문": 2,
+      "공동논문": 1,
+      "특허": 0,
+      "과제": 19,
+      "학회": 3,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "첨단 바이오"
+    ],
+    "wikiPath": "wiki/faculty/101857-허윤하.md"
+  },
+  {
+    "id": "100032",
+    "name": "홍석봉",
+    "dept": "환경공학부",
+    "email": "sbhong@postech.ac.kr",
+    "homepage": "http://zeolites.postech.ac.kr/",
+    "interests": "· Ordered nanoporous materials synthesis · Green sustainable catalysis · Hydrogen/carbon dioxide separation",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 0,
+      "특허": 1,
+      "과제": 19,
+      "학회": 25,
+      "저서": 0,
+      "기술이전": 1
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100032-홍석봉.md"
+  },
+  {
+    "id": "100737",
+    "name": "홍원빈",
+    "dept": "전자전기공학과",
+    "email": "whong@postech.ac.kr",
+    "homepage": "http://mad.postech.ac.kr/",
+    "interests": "· Applied Electromagnetics · Antenna Theory and Design · Microwave Circuits · Remote Sensing",
+    "perf": {
+      "주도논문": 34,
+      "공동논문": 8,
+      "특허": 40,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "차세대 통신",
+      "반도체·디스플레이",
+      "이차전지",
+      "첨단 모빌리티",
+      "우주항공·해양"
+    ],
+    "wikiPath": "wiki/faculty/100737-홍원빈.md"
+  },
+  {
+    "id": "101937",
+    "name": "홍지현",
+    "dept": "친환경소재대학원",
+    "email": "jhong@postech.ac.kr",
+    "homepage": "https://ieml.postech.ac.kr",
+    "interests": "· Low-cost Li-ion battery materials (Mn-, Fe-based) · Next-generation battery systems (Na, Li metal, Zn) · Electrode materials desing synthesis, analysis · Synchrotron-based advanced materials characterization · Cathode-electrolyte interface chemistry · Electrochemical reaction dynamics and thermodynamics",
+    "perf": {
+      "주도논문": 9,
+      "공동논문": 5,
+      "특허": 0,
+      "과제": 30,
+      "학회": 20,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "이차전지"
+    ],
+    "wikiPath": "wiki/faculty/101937-홍지현.md"
+  },
+  {
+    "id": "100293",
+    "name": "황동수",
+    "dept": "환경공학부",
+    "email": "dshwang@postech.ac.kr",
+    "homepage": "http://lbem.postech.ac.kr/",
+    "interests": "· Natural polymers, Load bearing proteins, metalloprotein, and structural carbohydrate · Fouling & Antifouling · Bioloigical & Biomimetic materials",
+    "perf": {
+      "주도논문": 26,
+      "공동논문": 11,
+      "특허": 13,
+      "과제": 30,
+      "학회": 6,
+      "저서": 1,
+      "기술이전": 4
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100293-황동수.md"
+  },
+  {
+    "id": "20353",
+    "name": "황석환",
+    "dept": "환경공학부",
+    "email": "shwang@postech.ac.kr",
+    "homepage": "http://best.postech.ac.kr/",
+    "interests": "· Biological Waste(water) Management / Scale-up · Renewable Energy (Biogas production) · Environmental Bioprocess and Aritificial Intelligence Control · Environmental Ecological Engineering",
+    "perf": {
+      "주도논문": 5,
+      "공동논문": 0,
+      "특허": 5,
+      "과제": 30,
+      "학회": 30,
+      "저서": 1,
+      "기술이전": 1
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/20353-황석환.md"
+  },
+  {
+    "id": "101145",
+    "name": "황승준",
+    "dept": "화학과",
+    "email": "sjhwang17@postech.ac.kr",
+    "homepage": "https://hwanggroup.postech.ac.kr/",
+    "interests": "· Synthesis of inorganic and organometallic photo- and electro-catalysts for small molecule activation particularly for the energy application. · Development of novel main group catalysts which mimic the reactivities of transition metal catalysts · Development of electrocatalysts for asymmetric reactions and selective bond cleavages",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 0,
+      "특허": 0,
+      "과제": 29,
+      "학회": 25,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [
+      "수소"
+    ],
+    "wikiPath": "wiki/faculty/101145-황승준.md"
+  },
+  {
+    "id": "101303",
+    "name": "황인석",
+    "dept": "컴퓨터공학과",
+    "email": "i.hwang@postech.ac.kr",
+    "homepage": "https://www.his-lab.org/ ",
+    "interests": "· Human - AI Interaction · Human - Computer Interaction · Mobile, Wearable, Ubiquitous Systems · AI for Life-immersive Computing · VR, AR, XR, and Metaverse",
+    "perf": {
+      "주도논문": 0,
+      "공동논문": 0,
+      "특허": 2,
+      "과제": 30,
+      "학회": 27,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/101303-황인석.md"
+  },
+  {
+    "id": "20505",
+    "name": "황일두",
+    "dept": "생명과학과",
+    "email": "ihwang@postech.ac.kr",
+    "homepage": "http://dsn.postech.ac.kr/",
+    "interests": "· Molecular networks governing vascular development · Hormonal orchestration of plant stress resilience · RNA structural dynamics in plant development : Post-transcriptional regulation and secondary RNA processing",
+    "perf": {
+      "주도논문": 4,
+      "공동논문": 2,
+      "특허": 0,
+      "과제": 30,
+      "학회": 5,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/20505-황일두.md"
+  },
+  {
+    "id": "100484",
+    "name": "황현상",
+    "dept": "신소재공학과",
+    "email": "hwanghs@postech.ac.kr",
+    "homepage": "http://www.sidp.kr/",
+    "interests": "· Silicon semiconductor device & process · Resistive switching nonvolatile memory (ReRAM) · Neuromorphic device",
+    "perf": {
+      "주도논문": 40,
+      "공동논문": 4,
+      "특허": 24,
+      "과제": 30,
+      "학회": 30,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/100484-황현상.md"
+  },
+  {
+    "id": "20665",
+    "name": "황형주",
+    "dept": "수학과",
+    "email": "hjhwang@postech.ac.kr",
+    "homepage": "http://am2.postech.ac.kr/",
+    "interests": "· Mathematical AI · Scientific Machine Learning · AI-based Simulation · Mathematical Modeling",
+    "perf": {
+      "주도논문": 12,
+      "공동논문": 3,
+      "특허": 1,
+      "과제": 30,
+      "학회": 11,
+      "저서": 0,
+      "기술이전": 0
+    },
+    "nationalTech": [],
+    "wikiPath": "wiki/faculty/20665-황형주.md"
+  }
+]

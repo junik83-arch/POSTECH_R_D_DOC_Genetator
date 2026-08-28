@@ -1,7 +1,7 @@
 ---
 title: POSTECH 교원 R&D 위키 색인
 faculty_count: 298
-updated: 2026-08-27
+updated: 2026-08-28
 ---
 
 # 색인
@@ -10,7 +10,7 @@ updated: 2026-08-27
 
 - 전체 교원: **298명**
 - 학과 수: **16개**
-- 최종 생성일: 2026-08-27
+- 최종 생성일: 2026-08-28
 
 ## 학과별 교원 목록
 
@@ -34,6 +34,7 @@ updated: 2026-08-27
 ## 기타
 - [home.md](home.md) — 큐레이션된 진입점
 - [연구분야 키워드 인덱스](research-areas.md)
+- [국가전략기술 인덱스](national-strategic-tech.md)
 - [전체 교원 가나다순 목록](faculty-index.md)
 - [log.md](log.md) — 변경 이력
 - [open-questions.md](open-questions.md) — 모순·미해결 이슈

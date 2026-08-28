@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>교원 R&D 검색 · POSTECH R&D전략팀</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&family=Noto+Serif+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#16202e;
+    --line:#d5dbe2;
+    --panel-bg:#eef1f4;
+    --card-bg:#ffffff;
+    --field-bg:#ffffff;
+    --seal:#a3122e;
+    --ai-blue:#1a73e8;
+    --ai-bg:#e8f0fe;
+    --ai-border:#b6d4fe;
+    --text:#1c242e;
+    --muted:#6b7683;
+    --radius:10px;
+    --sans:"Noto Sans KR", system-ui, -apple-system, sans-serif;
+    --serif:"Noto Serif KR", serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:var(--sans);
+    color:var(--text);
+    background:var(--panel-bg);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:var(--ai-blue); }
+
+  header.appbar{
+    background:var(--ink);
+    color:#fff;
+    padding:14px 22px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+    border-bottom:3px solid var(--seal);
+  }
+  .appbar .mark{
+    font-family:var(--serif);
+    font-weight:600;
+    letter-spacing:.18em;
+    font-size:.85rem;
+    color:#cdd6e2;
+  }
+  .appbar h1{
+    font-size:1.1rem;
+    font-weight:700;
+    margin:0;
+  }
+  .appbar-right{
+    margin-left:auto;
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .appbar .back{
+    color:#cdd6e2;
+    text-decoration:none;
+    font-size:.85rem;
+  }
+  .appbar .back:hover{ color:#fff; }
+  .api-btn{
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.25);
+    color:#fff;
+    font-size:.76rem;
+    padding:5px 10px;
+    border-radius:6px;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    font-family:inherit;
+    transition:background .15s;
+  }
+  .api-btn:hover{ background:rgba(255,255,255,0.22); }
+  .api-btn.configured{ border-color:#5bb974; color:#a8dab5; }
+
+  main{
+    max-width:960px;
+    margin:0 auto;
+    padding:28px 22px 64px;
+  }
+
+  .search-panel{
+    background:var(--card-bg);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:18px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-bottom:20px;
+  }
+  .search-row{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  input[type="search"], input[type="text"]{
+    flex:2 1 260px;
+    padding:10px 12px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    background:var(--field-bg);
+    font-family:inherit;
+    font-size:.95rem;
+  }
+  select{
+    flex:1 1 160px;
+    padding:10px 12px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    background:var(--field-bg);
+    font-family:inherit;
+    font-size:.9rem;
+    color:var(--text);
+  }
+  input:focus, select:focus{
+    outline:2px solid var(--ai-blue);
+    outline-offset:1px;
+  }
+  .meta-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:.85rem;
+    color:var(--muted);
+  }
+  button.reset{
+    border:none;
+    background:none;
+    color:var(--ai-blue);
+    font-size:.85rem;
+    cursor:pointer;
+    padding:0;
+  }
+  button.reset:hover{ text-decoration:underline; }
+
+  #status{
+    color:var(--muted);
+    padding:24px 4px;
+  }
+
+  .results{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+
+  .person-card{
+    background:var(--card-bg);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px 18px;
+  }
+  .person-head{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .person-head h3{
+    margin:0;
+    font-size:1.05rem;
+  }
+  .person-head .dept{
+    font-size:.85rem;
+    color:var(--muted);
+  }
+  .person-interests{
+    margin:8px 0;
+    font-size:.9rem;
+    color:var(--text);
+  }
+  .tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin:8px 0 4px;
+  }
+  .tag{
+    font-size:.72rem;
+    font-weight:600;
+    padding:2px 9px;
+    border-radius:999px;
+    background:var(--ai-bg);
+    color:var(--ai-blue);
+    border:1px solid var(--ai-border);
+  }
+  .person-links{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    font-size:.82rem;
+    margin-top:8px;
+  }
+  .perf-inline{
+    font-size:.78rem;
+    color:var(--muted);
+    margin-top:6px;
+  }
+
+  mark{
+    background:#fff3b0;
+    color:inherit;
+    border-radius:2px;
+    padding:0 1px;
+  }
+
+  /* ── AI 자연어 검색 ── */
+  .ai-panel{
+    background:var(--ai-bg);
+    border:1px solid var(--ai-border);
+    border-radius:var(--radius);
+    padding:16px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-bottom:20px;
+  }
+  .ai-panel-head{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .ai-panel-title{
+    font-weight:700;
+    font-size:.92rem;
+  }
+  .ai-panel-hint{
+    font-size:.78rem;
+    color:var(--muted);
+  }
+  .ai-panel-row{
+    display:flex;
+    gap:10px;
+  }
+  .ai-panel-row input[type="text"]{
+    background:#fff;
+  }
+  .ai-answer{
+    background:#fff;
+    border:1px solid var(--ai-border);
+    border-radius:8px;
+    padding:10px 14px;
+    font-size:.88rem;
+  }
+  .ai-answer.loading{ color:var(--muted); }
+  .ai-answer.error{ border-color:#e6b3ad; color:#9a3324; background:#fdf2f0; }
+
+  /* ── 모달 (공문 생성기와 동일 패턴) ── */
+  .btn{
+    font-family:var(--sans);
+    font-size:.85rem;
+    font-weight:600;
+    border-radius:8px;
+    padding:10px 16px;
+    cursor:pointer;
+    border:1px solid var(--ink);
+    background:var(--ink);
+    color:#fff;
+    transition:opacity .15s, background .15s;
+  }
+  .btn:hover{ opacity:.9; }
+  .btn:disabled{ opacity:.5; cursor:default; }
+  .btn.ghost{ background:#fff; color:var(--ink); }
+  .btn.ghost:hover{ background:#f2f4f6; }
+
+  .modal-overlay{
+    display:none;
+    position:fixed; top:0; left:0; width:100%; height:100%;
+    background:rgba(0,0,0,0.5);
+    z-index:100;
+    align-items:center; justify-content:center;
+  }
+  .modal-overlay.show{ display:flex; }
+  .modal{
+    background:#fff;
+    border-radius:12px;
+    width:90%;
+    max-width:480px;
+    padding:22px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.25);
+  }
+  .modal h2{
+    margin:0 0 12px;
+    font-size:1.05rem;
+    color:var(--ink);
+    display:flex; align-items:center; gap:8px;
+  }
+  .modal p{
+    font-size:.82rem;
+    color:var(--muted);
+    margin:0 0 14px;
+    line-height:1.5;
+  }
+  .modal .api-link{
+    color:var(--ai-blue);
+    text-decoration:underline;
+    font-weight:600;
+  }
+  .modal .field{ margin-bottom:12px; }
+  .modal .field label{
+    display:block;
+    font-size:.8rem;
+    font-weight:500;
+    margin-bottom:5px;
+    color:var(--text);
+  }
+  .modal-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
+    margin-top:16px;
+  }
+
+  .toast{
+    position:fixed; bottom:22px; left:50%;
+    transform:translateX(-50%) translateY(20px);
+    background:var(--ink); color:#fff;
+    padding:10px 18px; border-radius:8px;
+    font-size:.85rem; opacity:0; pointer-events:none;
+    transition:.25s; z-index:150;
+  }
+  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<header class="appbar">
+  <span class="mark">POSTECH</span>
+  <h1>교원 R&D 검색</h1>
+  <div class="appbar-right">
+    <button type="button" class="api-btn" id="apiKeyModalBtn">
+      <span>🔑</span> <span id="apiKeyBtnText">Gemini API 키 설정</span>
+    </button>
+    <a class="back" href="../index.html">← 도구 모음으로</a>
+  </div>
+</header>
+
+<main>
+  <div class="search-panel">
+    <div class="search-row">
+      <input type="search" id="q" placeholder="이름, 연구분야, 키워드로 검색 (예: 양자, 이차전지, quantum, 김철수)" autocomplete="off" />
+      <select id="deptFilter">
+        <option value="">전체 학과</option>
+      </select>
+      <select id="techFilter">
+        <option value="">전체 국가전략기술</option>
+      </select>
+    </div>
+    <div class="meta-row">
+      <span id="resultCount"></span>
+      <button class="reset" id="resetBtn" type="button">필터 초기화</button>
+    </div>
+  </div>
+
+  <div class="ai-panel">
+    <div class="ai-panel-head">
+      <span class="ai-panel-title">🤖 AI에게 자연어로 물어보기</span>
+      <span class="ai-panel-hint">위 검색창은 단순 키워드 매칭이고, 여기는 복합 조건 질문(Gemini)용입니다</span>
+    </div>
+    <div class="ai-panel-row">
+      <input type="text" id="aiQuery" placeholder="예: 양자컴퓨팅 연구하면서 특허가 많은 교수 알려줘" autocomplete="off" />
+      <button type="button" class="btn" id="aiSearchBtn">질문하기</button>
+    </div>
+    <div id="aiAnswer" class="ai-answer" hidden></div>
+  </div>
+
+  <div id="status">불러오는 중…</div>
+  <div class="results" id="results"></div>
+</main>
+
+<div class="modal-overlay" id="apiKeyModal">
+  <div class="modal">
+    <h2><span>🔑</span> Google Gemini API 키 설정</h2>
+    <p>
+      Google AI Studio에서 발급받은 무료 API 키를 입력하세요.<br>
+      (일반적으로 <code>AIzaSy...</code> 형태로 시작합니다)<br>
+      키는 브라우저(LocalStorage)에만 저장되며, 공문 생성기와 같은 키를 공유합니다.
+    </p>
+    <div style="margin-bottom:12px;">
+      👉 <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noreferrer" class="api-link">Google AI Studio에서 무료 API Key 발급받기</a>
+    </div>
+    <div class="field">
+      <label>Gemini API Key</label>
+      <input type="text" id="apiKeyInput" placeholder="AIzaSy..." />
+    </div>
+    <div class="modal-actions">
+      <button type="button" class="btn ghost" id="closeApiModalBtn">취소</button>
+      <button type="button" class="btn" id="saveApiKeyBtn">저장하기</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  var GITHUB_BLOB_BASE = "https://github.com/junik83-arch/POSTECH_R_D_DOC_Genetator/blob/main/";
+
+  var state = { data: [], q: "", dept: "", tech: "", aiMode: false, aiResults: [] };
+
+  var els = {
+    q: document.getElementById("q"),
+    dept: document.getElementById("deptFilter"),
+    tech: document.getElementById("techFilter"),
+    status: document.getElementById("status"),
+    results: document.getElementById("results"),
+    count: document.getElementById("resultCount"),
+    reset: document.getElementById("resetBtn"),
+  };
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];
+    });
+  }
+
+  function highlight(text, query){
+    var safe = escapeHtml(text);
+    if(!query) return safe;
+    try {
+      var re = new RegExp("(" + query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "gi");
+      return safe.replace(re, "<mark>$1</mark>");
+    } catch(e){
+      return safe;
+    }
+  }
+
+  function perfTotal(perf){
+    var sum = 0;
+    for(var k in perf){ sum += (perf[k] || 0); }
+    return sum;
+  }
+
+  function matches(person, q, dept, tech){
+    if(dept && person.dept !== dept) return false;
+    if(tech && person.nationalTech.indexOf(tech) === -1) return false;
+    if(q){
+      // 관심분야 원문은 대부분 영어라 "양자"처럼 한글 단어로 검색해도 매칭이 안 될 수
+      // 있어, 국가전략기술 태그(정확한 한글 표준 명칭)도 검색 대상에 포함시킨다.
+      var haystack = (
+        person.name + " " + person.dept + " " + person.interests + " " + person.nationalTech.join(" ")
+      ).toLowerCase();
+      if(haystack.indexOf(q.toLowerCase()) === -1) return false;
+    }
+    return true;
+  }
+
+  function personCard(p, q){
+    var wikiUrl = GITHUB_BLOB_BASE + encodeURI(p.wikiPath);
+    var tagsHtml = p.nationalTech.map(function(t){
+      return '<span class="tag">' + escapeHtml(t) + '</span>';
+    }).join("");
+    var links = [];
+    links.push('<a href="' + wikiUrl + '" target="_blank" rel="noreferrer">위키 페이지 →</a>');
+    if(p.homepage){
+      links.push('<a href="' + escapeHtml(p.homepage) + '" target="_blank" rel="noreferrer">홈페이지 →</a>');
+    }
+    if(p.email){
+      links.push('<a href="mailto:' + escapeHtml(p.email) + '">' + escapeHtml(p.email) + '</a>');
+    }
+
+    return (
+      '<div class="person-card">' +
+        '<div class="person-head">' +
+          '<h3>' + highlight(p.name, q) + '</h3>' +
+          '<span class="dept">' + highlight(p.dept, q) + '</span>' +
+        '</div>' +
+        (p.interests ? '<div class="person-interests">' + highlight(p.interests, q) + '</div>' : '') +
+        (tagsHtml ? '<div class="tags">' + tagsHtml + '</div>' : '') +
+        '<div class="person-links">' + links.join(" · ") + '</div>' +
+        '<div class="perf-inline">실적 합계 ' + perfTotal(p.perf) + '건 (주도논문 ' + (p.perf["주도논문"]||0) + ', 특허 ' + (p.perf["특허"]||0) + ', 과제 ' + (p.perf["과제"]||0) + ')</div>' +
+      '</div>'
+    );
+  }
+
+  function render(){
+    if(state.aiMode){
+      els.count.textContent = state.aiResults.length + "명 (AI 검색 결과)";
+      if(state.aiResults.length === 0){
+        els.results.innerHTML = "";
+        els.status.style.display = "";
+        els.status.textContent = "AI가 조건에 맞는 교원을 찾지 못했습니다.";
+        return;
+      }
+      els.status.style.display = "none";
+      els.results.innerHTML = state.aiResults.map(function(p){ return personCard(p, ""); }).join("");
+      return;
+    }
+
+    var q = state.q.trim();
+    var filtered = state.data.filter(function(p){ return matches(p, q, state.dept, state.tech); });
+
+    els.count.textContent = filtered.length + "명 / 전체 " + state.data.length + "명";
+
+    if(filtered.length === 0){
+      els.results.innerHTML = "";
+      els.status.style.display = "";
+      els.status.textContent = "검색 결과가 없습니다. 다른 키워드나 필터를 시도해보세요.";
+      return;
+    }
+    els.status.style.display = "none";
+    els.results.innerHTML = filtered.map(function(p){ return personCard(p, q); }).join("");
+  }
+
+  function exitAiMode(){
+    if(!state.aiMode) return;
+    state.aiMode = false;
+    state.aiResults = [];
+    aiEls.answer.hidden = true;
+  }
+
+  function populateFilters(data){
+    var depts = Array.from(new Set(data.map(function(p){ return p.dept; }))).sort(function(a,b){ return a.localeCompare(b, "ko"); });
+    depts.forEach(function(d){
+      var opt = document.createElement("option");
+      opt.value = d; opt.textContent = d;
+      els.dept.appendChild(opt);
+    });
+
+    var techs = Array.from(new Set(data.reduce(function(acc, p){ return acc.concat(p.nationalTech); }, [])));
+    // 국가전략기술 표준 순서 유지 (build_wiki.py의 NATIONAL_TECH_CATEGORIES 와 동일 순서)
+    var order = ["반도체·디스플레이","이차전지","첨단 모빌리티","차세대 원자력","첨단 바이오","우주항공·해양","수소","사이버보안","인공지능","차세대 통신","첨단로봇·제조","양자"];
+    order.filter(function(t){ return techs.indexOf(t) !== -1; }).forEach(function(t){
+      var opt = document.createElement("option");
+      opt.value = t; opt.textContent = t;
+      els.tech.appendChild(opt);
+    });
+  }
+
+  els.q.addEventListener("input", function(){ state.q = els.q.value; exitAiMode(); render(); });
+  els.dept.addEventListener("change", function(){ state.dept = els.dept.value; exitAiMode(); render(); });
+  els.tech.addEventListener("change", function(){ state.tech = els.tech.value; exitAiMode(); render(); });
+  els.reset.addEventListener("click", function(){
+    state.q = ""; state.dept = ""; state.tech = "";
+    els.q.value = ""; els.dept.value = ""; els.tech.value = "";
+    exitAiMode();
+    render();
+  });
+
+  // ── API 키 관리 (공문 생성기와 같은 LocalStorage 키를 써서 등록을 공유) ──
+  var API_KEY_STORAGE = "postech_gemini_api_key";
+
+  function getApiKey(){
+    var raw = localStorage.getItem(API_KEY_STORAGE) || "";
+    return raw.trim().replace(/^["']|["']$/g, '');
+  }
+  function setApiKey(key){
+    var cleaned = key.trim().replace(/^["']|["']$/g, '');
+    localStorage.setItem(API_KEY_STORAGE, cleaned);
+    updateApiBtnState();
+  }
+  function updateApiBtnState(){
+    var k = getApiKey();
+    var btn = document.getElementById("apiKeyModalBtn");
+    var txt = document.getElementById("apiKeyBtnText");
+    if(k){
+      btn.classList.add("configured");
+      txt.textContent = "API 키 등록됨 (" + k.slice(0,6) + "...)";
+    } else {
+      btn.classList.remove("configured");
+      txt.textContent = "Gemini API 키 설정 필요";
+    }
+  }
+  updateApiBtnState();
+
+  var modal = document.getElementById("apiKeyModal");
+  var apiKeyInput = document.getElementById("apiKeyInput");
+  var toast = document.getElementById("toast");
+
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add("show");
+    setTimeout(function(){ toast.classList.remove("show"); }, 1800);
+  }
+
+  document.getElementById("apiKeyModalBtn").addEventListener("click", function(){
+    apiKeyInput.value = getApiKey();
+    modal.classList.add("show");
+  });
+  document.getElementById("closeApiModalBtn").addEventListener("click", function(){ modal.classList.remove("show"); });
+  document.getElementById("saveApiKeyBtn").addEventListener("click", function(){
+    var val = apiKeyInput.value.trim().replace(/^["']|["']$/g, '');
+    if(!val){ alert("API 키를 입력해주세요."); return; }
+    setApiKey(val);
+    modal.classList.remove("show");
+    showToast("API 키가 저장되었습니다.");
+  });
+
+  // ── Gemini 자연어 검색 (index.html/doc-generator.html과 동일한 REST 직접 호출 패턴:
+  //    동적 모델 탐색 + flash 계열 우선 정렬 + 폴백 후보 목록) ──
+  async function fetchAvailableModels(apiKey){
+    try {
+      var url = "https://generativelanguage.googleapis.com/v1beta/models?key=" + encodeURIComponent(apiKey);
+      var res = await fetch(url, { headers: { "x-goog-api-key": apiKey } });
+      if(res.ok){
+        var data = await res.json();
+        if(data.models && data.models.length > 0){
+          var models = data.models
+            .filter(function(m){
+              return m.supportedGenerationMethods && m.supportedGenerationMethods.includes("generateContent");
+            })
+            .map(function(m){ return m.name.replace(/^models\//, ''); });
+
+          models.sort(function(a, b){
+            function score(name){
+              if(name.indexOf("2.5-flash") !== -1) return 110;
+              if(name.indexOf("2.0-flash") !== -1) return 100;
+              if(name.indexOf("1.5-flash") !== -1) return 90;
+              if(name.indexOf("flash") !== -1) return 80;
+              if(name.indexOf("1.5-pro") !== -1) return 70;
+              if(name.indexOf("pro") !== -1) return 60;
+              return 10;
+            }
+            return score(b) - score(a);
+          });
+          if(models.length > 0) return models;
+        }
+      }
+    } catch(e){
+      console.warn("fetchAvailableModels error", e);
+    }
+    return ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash-latest", "gemini-1.5-flash", "gemini-pro"];
+  }
+
+  var AI_SYSTEM_PROMPT =
+    "당신은 POSTECH 교원 검색을 돕는 도우미입니다. 아래 JSON은 POSTECH 교원 목록입니다 " +
+    "(id, name=성명, dept=학과, interests=연구관심분야, nationalTech=국가전략기술 태그, perf=실적건수). " +
+    "사용자의 자연어 질문에 맞는 교원을 이 목록 안에서만 골라주세요. 목록에 없는 사실을 지어내지 마세요. " +
+    "다른 설명 없이 아래 JSON 스키마로만 답하세요: " +
+    '{"answer": "한두 문장 설명", "matches": ["일치하는 교원 id", ...]}. ' +
+    "matches는 관련도가 높은 순서로 최대 20명까지만 담고, 일치하는 사람이 없으면 빈 배열로 두세요.";
+
+  async function callGeminiJson(apiKey, models, userText){
+    var lastError = null;
+    for(var i = 0; i < models.length; i++){
+      var model = models[i];
+      var url = "https://generativelanguage.googleapis.com/v1beta/models/" + model + ":generateContent?key=" + encodeURIComponent(apiKey);
+      try {
+        var res = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "x-goog-api-key": apiKey },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: userText }] }],
+            generationConfig: { temperature: 0.1, responseMimeType: "application/json" }
+          })
+        });
+        if(res.ok){
+          var resJson = await res.json();
+          var text = resJson.candidates && resJson.candidates[0] && resJson.candidates[0].content && resJson.candidates[0].content.parts[0] && resJson.candidates[0].content.parts[0].text;
+          if(text){
+            var clean = text.replace(/```json/gi, '').replace(/```/g, '').trim();
+            return JSON.parse(clean);
+          }
+        } else {
+          var errData = await res.json().catch(function(){ return {}; });
+          lastError = new Error(errData.error ? errData.error.message : ("HTTP " + res.status));
+        }
+      } catch(e){
+        lastError = e;
+      }
+    }
+    throw lastError || new Error("AI 모델 연결에 실패했습니다.");
+  }
+
+  function buildAiDataset(){
+    return state.data.map(function(p){
+      return { id: p.id, name: p.name, dept: p.dept, interests: p.interests, nationalTech: p.nationalTech, perf: p.perf };
+    });
+  }
+
+  var aiEls = {
+    input: document.getElementById("aiQuery"),
+    btn: document.getElementById("aiSearchBtn"),
+    answer: document.getElementById("aiAnswer"),
+  };
+
+  async function runAiSearch(){
+    var apiKey = getApiKey();
+    if(!apiKey){
+      modal.classList.add("show");
+      alert("먼저 Google Gemini API 키를 입력해주세요.");
+      return;
+    }
+    var question = aiEls.input.value.trim();
+    if(!question){ alert("질문을 입력해주세요."); return; }
+
+    aiEls.btn.disabled = true;
+    aiEls.answer.hidden = false;
+    aiEls.answer.className = "ai-answer loading";
+    aiEls.answer.textContent = "🔍 AI가 교원 " + state.data.length + "명 중에서 찾는 중…";
+
+    try {
+      var models = await fetchAvailableModels(apiKey);
+      var dataset = buildAiDataset();
+      var userText = AI_SYSTEM_PROMPT + "\n\n[교원 목록 JSON]\n" + JSON.stringify(dataset) + "\n\n[질문]\n" + question;
+      var result = await callGeminiJson(apiKey, models, userText);
+
+      var matchedIds = Array.isArray(result.matches) ? result.matches.map(String) : [];
+      var byId = {};
+      state.data.forEach(function(p){ byId[String(p.id)] = p; });
+      var matchedPeople = matchedIds.map(function(id){ return byId[id]; }).filter(Boolean);
+
+      state.aiMode = true;
+      state.aiResults = matchedPeople;
+
+      aiEls.answer.className = "ai-answer";
+      aiEls.answer.innerHTML =
+        escapeHtml(result.answer || "결과를 찾았습니다.") +
+        (matchedPeople.length === 0 ? " (조건에 맞는 교원을 찾지 못했습니다.)" : "") +
+        ' · <button type="button" class="reset" id="clearAiBtn">일반 검색으로 돌아가기</button>';
+      document.getElementById("clearAiBtn").addEventListener("click", function(){
+        exitAiMode();
+        render();
+      });
+
+      render();
+    } catch(err){
+      aiEls.answer.className = "ai-answer error";
+      var msg = err && err.message ? err.message : String(err);
+      if(msg.indexOf("API_KEY_INVALID") !== -1 || msg.indexOf("credentials") !== -1 || msg.indexOf("authentication") !== -1){
+        msg = "API 키 인증 오류입니다. 키를 다시 확인해주세요.";
+      }
+      aiEls.answer.textContent = "❌ " + msg;
+    } finally {
+      aiEls.btn.disabled = false;
+    }
+  }
+
+  aiEls.btn.addEventListener("click", runAiSearch);
+  aiEls.input.addEventListener("keydown", function(e){
+    if(e.key === "Enter"){ e.preventDefault(); runAiSearch(); }
+  });
+
+  fetch("faculty-search-data.json")
+    .then(function(res){
+      if(!res.ok) throw new Error("HTTP " + res.status);
+      return res.json();
+    })
+    .then(function(data){
+      state.data = data;
+      populateFilters(data);
+      render();
+    })
+    .catch(function(err){
+      els.status.textContent = "데이터를 불러오지 못했습니다 (" + err.message + "). 잠시 후 다시 시도해주세요.";
+    });
+})();
+</script>
+
+</body>
+</html>
