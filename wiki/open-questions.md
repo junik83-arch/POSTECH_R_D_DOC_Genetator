@@ -24,14 +24,15 @@
 
 ## 위키 데이터 기반 폴백 요약의 신뢰도
 
-홈페이지 AI 요약이 없는 교원(42명 — 홈페이지 미등록·학과 공통 포털 제외·크롤링 실패)은
+홈페이지 AI 요약이 없는 교원(79명 — 홈페이지 미등록·학과 공통 포털 제외·크롤링 실패·크롤링은
+됐지만 Gemini가 본인 정보를 못 찾음)은
 대신 `sources/faculty_fallback_summary.json`의 요약이 "AI 요약 (위키 데이터 기반)"으로
 표시됩니다. 이 요약은 홈페이지 원문이 아니라 실적 데이터베이스의 구조화 필드(관심분야·실적
 건수·주요성과 등)만을 근거로 하므로, 위 "AI 생성 요약(Gemini)의 신뢰도" 항목과 같은 오귀속
 위험은 낮지만 **입력 자체가 홈페이지 크롤링보다 정보량이 적어** 요약이 상대적으로 단조롭거나
 일반적일 수 있습니다.
 
-**현재 42건은 `scripts/summarize_faculty_fallback.py`(Gemini)가 아니라, 2026-08-28에
+**현재 79건은 `scripts/summarize_faculty_fallback.py`(Gemini)가 아니라, 2026-08-28에
 Claude Code 세션이 직접 각 교원의 위키 필드를 읽고 수동으로 작성**한 것입니다(`sources/
 faculty_fallback_summary.json`의 각 항목 `model` 필드에 명시). 사용자가 이 세션에서
 Gemini API를 호출할 수 없는 상황(egress 차단)에서 "이번만 직접 요약해 넣어달라"고 요청해

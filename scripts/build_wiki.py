@@ -218,12 +218,22 @@ def normalize_records(records: list[dict]) -> None:
         r["홈페이지"] = (r.get("홈페이지") or "").strip()
 
 
+# summarize_homepages.py가 크롤링 원문에서 해당 교원 본인 정보를 못 찾았을 때 Gemini에게
+# 정확히 이 문장만 답하도록 지시하는 고정 문구 — 크롤링·요약 자체는 "성공"해 summary 필드가
+# 채워지지만, 내용은 실질적으로 빈 것이나 마찬가지라 get_homepage_summary()에서 빈 문자열과
+# 동일하게 취급한다(학과 공통 홈페이지가 크롤링되었지만 본인 소개가 없는 경우 등에서 발생 —
+# 37명 확인, open-questions.md 참고). 두 스크립트가 같은 문구를 쓰도록 여기서 한 번만 정의.
+HOMEPAGE_SUMMARY_NOT_FOUND = "홈페이지 원문에서 본인 관련 정보를 명확히 찾지 못했습니다."
+
+
 def get_homepage_summary(rec: dict, crawl: dict) -> str:
-    """홈페이지 크롤링 원문을 Gemini가 요약한 필드. 크롤링 원문 자체가 없으면
-    (홈페이지 미등록·학과 공통 포털 제외·크롤링 실패) 빈 문자열."""
+    """홈페이지 크롤링 원문을 Gemini가 요약한 필드. 크롤링 원문 자체가 없거나(홈페이지
+    미등록·학과 공통 포털 제외·크롤링 실패), 크롤링·요약은 됐지만 Gemini가 본인 정보를
+    못 찾았다고 답한 경우(HOMEPAGE_SUMMARY_NOT_FOUND) 빈 문자열."""
     homepage = rec.get("홈페이지", "") or ""
     crawled = crawl.get(homepage) if homepage else None
-    return (crawled.get("summary") or "").strip() if crawled and crawled.get("text") else ""
+    summary = (crawled.get("summary") or "").strip() if crawled and crawled.get("text") else ""
+    return "" if summary == HOMEPAGE_SUMMARY_NOT_FOUND else summary
 
 
 def render_faculty_page(rec: dict, crawl: dict, fallback: dict) -> str:

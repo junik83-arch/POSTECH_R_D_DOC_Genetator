@@ -250,5 +250,227 @@
     "source_hash": "a3bd553aa0879bc6",
     "model": "claude (manual, interactive session — not the Gemini pipeline)",
     "generated_at": "2026-08-28T12:29:22+00:00"
+  },
+  "20540": {
+    "summary": "박상준 교수는 한국 근현대문학을 연구하며, 신경향파 문학의 형성, 근대소설 텍스트의 시학, 이상·최재서와 1930년대 한국 모더니즘 등을 다룬 다수의 저서를 발표했다.",
+    "source_hash": "e78cbdc379a48bc2",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "101798": {
+    "summary": "Qirui Li 교수는 정수론적 기하학, Gross-Zagier 공식, 자기동형 표현, 타원곡선, p-가분군, 시무라 다양체를 연구하며, Lubin-Tate 공간 위 CM 사이클의 교차공식과 GL4의 산술적 기본 보조정리 증명 등의 논문을 발표했다.",
+    "source_hash": "7ff1969d92bb4537",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "20567": {
+    "summary": "김윤호 교수는 원자-광자 결맞음 상호작용, 광자 기반 양자정보처리, 양자통신, 양자광학, 비선형 양자광학을 연구하며, 국가전략기술 분야 중 양자(양자컴퓨팅·양자통신·양자센싱)로 분류된다. 비간섭광을 이용한 결맞음 이광자 라이다, 약한값 증폭을 통한 하이젠베르크 한계 계측 등의 논문을 Physical Review Letters·Nature Physics 등에 발표했다.",
+    "source_hash": "ee45ab05f05eb734",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "101580": {
+    "summary": "김희재 교수는 강상관계 물질의 초고속 동역학과 광학적 제어, 모드 분해 전자-포논 상호작용, 광전류와 양자기하학, 새로운 초고속·다차원 분광법 개발을 연구하며, 국가전략기술 분야 중 양자 기술로 분류된다. 포논 모드와 전자 에너지별로 분해한 전자-포논 결합 측정, 2차원 전자-포논 상관분광법 개발 등의 논문을 Nature Physics에 발표했다.",
+    "source_hash": "f8ae2b62fffe3f74",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "100053": {
+    "summary": "김원종 교수는 생체고분자화학, 스마트 약물/유전자 전달시스템, 나노바이오소재 기반 테라노스틱스, 다기능 나노조립체, 나노입자 기반 면역치료, 일산화질소 전달, DNA 나노의약을 연구하며, 국가전략기술 분야 중 첨단 바이오(유전자·세포치료, 감염병 백신·치료)로 분류된다. 일산화질소 반응성 마이크로니들 패치를 이용한 염증질환 치료, 일산화질소 소거 나노입자를 이용한 항암 면역치료 등의 논문을 ACS Nano·Advanced Materials 등에 발표했다.",
+    "source_hash": "dd4243260757a80a",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "100977": {
+    "summary": "박수진 교수는 전고체전지, 리튬 금속전지와 무음극전지, 듀얼이온전지, 고분자 바인더·분리막 설계, 수계 리튬/아연전지를 연구하며, 국가전략기술 분야 중 이차전지(리튬이온전지 및 핵심소재, 차세대 이차전지 소재·셀)로 분류된다. 고분자 기반 전고체 리튬금속전지의 전극 구조 설계, 실리콘 모노옥사이드 기반 고에너지밀도 급속충전 전지 등의 논문을 Nature Communications·Advanced Materials 등에 발표했다.",
+    "source_hash": "7637ece0d7cd5d6e",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "100157": {
+    "summary": "심지훈 교수는 전산화학과 고체화학, 밀도범함수이론(DFT)을 이용한 기능성 소재의 전산 설계, DFT와 다체 상호작용을 결합한 계산방법론 개발을 연구하며, 국가전략기술 분야 중 양자(양자컴퓨팅)로 분류된다. 위상 노달라인 반금속의 비등방적 쿨롱 상호작용 직접 관측, Au25 클러스터 기반 배위 골격의 발광 특성 연구 등의 논문을 발표했다.",
+    "source_hash": "cda9c89731e26105",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "100412": {
+    "summary": "이인수 교수는 금속·금속산화물 나노결정의 합성과 개질, 생체의학·촉매·에너지 응용을 위한 나노입자 제작, 2차원 나노구조 소재의 합성과 응용을 연구하며, 국가전략기술 분야 중 수소(수전해 수소생산)로 분류된다. 백금 합금 전기촉매 합성을 위한 표면 비정질화, 실리카 나노반응기 기반 촉매 설계 등의 논문을 ACS Nano·JACS 등에 발표했다.",
+    "source_hash": "0675edf75ae45b0d",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "100454": {
+    "summary": "임현석 교수는 단백질 표면 구조·기능을 모사하는 신규 합성분자 개발, 신약 후보물질 발굴을 위한 혁신 기술 플랫폼 개발, 암과 자가면역질환 치료제 개발을 연구하며, 국가전략기술 분야 중 첨단 바이오(유전자·세포치료)로 분류된다. DNA 인코딩 화학 라이브러리를 이용한 포스파타아제 저해제 발굴, 신규 E3 리가아제 기반 표적단백질분해 기술 개발 등의 논문을 JACS 등에 발표했다.",
+    "source_hash": "51a5636e64539d0d",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "20610": {
+    "summary": "김정훈 교수는 시냅스 가소성의 분자기전, 중독 행동의 세포생물학적 기반, 정서기억을 담당하는 신경회로 조절을 연구하며, 중독 기억에서 GluN2B 매개 무음 시냅스의 역할과 편도체 ErbB4의 PTSD 유사 공포반응 억제 기전 등의 논문을 발표했다.",
+    "source_hash": "e5b5a2ccfb6d5ab3",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "20164": {
+    "summary": "성영철 교수는 신종 병원체와 암으로 인한 난치성 질환 치료를 위한 신규 백신·면역치료제 개발을 연구하며, 독자적 핵심기술인 유연 비용해성 Fc(hyFc)와 감염병·암 치료용 DNA 백신을 개발했다. 제2형 당뇨병을 위한 이중특이 GLP-1/GLP-2 작용제의 임상 1상 시험, IL-2/IL-21 병행 프라이밍을 통한 CAR-NK세포 항암 기능 강화 등의 논문을 Nature Communications 등에 발표했다.",
+    "source_hash": "56b0e36e45a4cbf3",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "100455": {
+    "summary": "이승우 교수는 종양미세환경 내 면역세포의 역할과 암 면역치료 개발, 점막상피세포와 면역계의 상호작용, 조혈모·전구세포의 면역학적 조절을 연구하며, 국가전략기술 분야 중 첨단 바이오(감염병 백신·치료)로 분류된다. 장내미생물총을 이용한 암 면역치료 증진, IL-7 사이토카인 요법을 통한 면역관문억제제 효능 회복 등의 논문을 Nature Communications 계열지에 발표했다.",
+    "source_hash": "9d1929e2f4520429",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "100621": {
+    "summary": "임신혁 교수는 세포·분자 수준의 면역조절과 관용, Ets1 전사인자의 면역조절 역할, 면역세포 내 IL-10 유전자 조절기전, 숙주-미생물 상호작용, 알레르기·자가면역·암·자폐스펙트럼장애를 위한 마이크로바이옴 치료제 개발을 연구하며, 국가전략기술 분야 중 첨단 바이오로 분류된다. 장내미생물 유래 부티레이트를 통한 점막백신 효능 증진, 장-면역-뇌 축과 자폐스펙트럼장애의 연관성 등의 논문을 Nature Communications·Nature Immunology 등에 발표했다.",
+    "source_hash": "32634b57ed3a7aac",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "20505": {
+    "summary": "황일두 교수는 식물 유관속 발달을 조절하는 분자네트워크, 식물 스트레스 저항성의 호르몬 조절, 식물 발생에서의 RNA 구조 동역학(전사후 조절·2차 RNA 가공)을 연구하며, 사이토키닌 신호전달 경로 규명과 JULGI 매개 체관부 발달·잎 패턴형성 네트워크 연구 등의 논문을 PNAS·Molecular Plant 등에 발표했다.",
+    "source_hash": "e3de51f9141886ef",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "100219": {
+    "summary": "김종규 교수는 가시광선부터 심자외선까지 아우르는 반도체 발광소자, 2차원 소재 성장과 광전소자 응용, 에너지·환경 응용을 위한 3차원 나노구조 박막소재를 연구하며, 국가전략기술 분야 중 반도체·디스플레이 소재·부품·장비로 분류된다. 육방정 질화붕소(h-BN)의 웨이퍼 스케일 성장, 차세대 양자기술용 h-BN 기반 양자방출원 등의 논문을 Nature Materials 등에 발표했다.",
+    "source_hash": "7fb489f5a1bbaa94",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "100679": {
+    "summary": "정운룡 교수는 신축성 전자소자와 전자피부 소자, 용액공정 기반 무기 나노소재 합성, 나노소재 자기조립, 변형반응형 약물전달시스템을 연구하며, 국가전략기술 분야 중 반도체·디스플레이 소재·부품·장비로 분류된다. 주변 조건에서의 산화막 프린팅을 이용한 초박막 투명 유연회로 기판(Science), 자기 균열 기반 압전유도 센서(Nature Communications) 등의 논문을 발표했다.",
+    "source_hash": "1748b1168120f479",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "20596": {
+    "summary": "조문호 교수는 2차원 반데르발스 물질의 원자층 에피택시, 인공지능 시대를 위한 첨단 반도체, 양자컴퓨팅·양자센싱 기술을 위한 소재 플랫폼을 연구하며, 저차원 소재의 이종에피택시 개척과 2차원 반데르발스 반도체 트랜지스터의 산업적 확산에 기여했다. 육방정 질화붕소 무아레 양자우물의 고효율 심자외선 발광(Science), 결맞은 양자수송을 갖는 단결정 단층 반도체(Nature Electronics) 등의 논문을 발표했다.",
+    "source_hash": "9c6212b3fbcf8044",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "102144": {
+    "summary": "강대식 교수는 신경공학·뇌-기계 인터페이스, 고성능 마이크로/나노 센서, 생체모사·소프트 로보틱스, 로봇학습·강화학습, 2차원 초전도·양자소재를 연구하며, 국가전략기술 분야 중 첨단로봇·제조(고난도 자율조작, 인간·로봇 상호작용)와 첨단 바이오로 분류된다. 거미에서 영감을 받은 초민감 균열기반 센서(Nature), 로봇 조작을 위한 자기지도 물리기반 동역학(Nature Machine Intelligence) 등의 논문을 발표했다.",
+    "source_hash": "12a6a9edf696f7ee",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "100302": {
+    "summary": "김동성 교수는 고분자·하이드로겔을 위한 나노/마이크로 제조공정, 생체재료 가공을 위한 첨단 제조기술, 다중스케일 생체모사 구조설계, 생체재료 제작의 응용역학을 연구하며, 국가전략기술 분야 중 첨단 바이오로 분류된다. 전기방사 나노섬유 기반 오가노이드 균일·성숙화 기술, 조직 스케일의 체외 상피주름 형성 모델(Nature Communications) 등의 논문을 발표했다.",
+    "source_hash": "f5f5d0594b99ea98",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "20356": {
+    "summary": "문원규 교수는 음향·진동용 변환기, 전기기계 변환기의 모델링·해석, 나노/바이오 응용 변환기, 진동·소음 제어를 연구하며, 파라메트릭 어레이 스피커와 전계효과트랜지스터 기반 마이크로폰/하이드로폰 설계, 정밀 심음 측정을 통한 청진 성공률 향상 등의 논문을 발표했다.",
+    "source_hash": "152c99549a52dfde",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "101031": {
+    "summary": "이안나 교수는 박판·쉘 구조의 역학적 불안정성, 소프트 센서·액추에이터, 우주추진을 연구하며, 국가전략기술 분야 중 우주항공·해양으로 분류된다. 회전 아크방전을 이용한 뉴턴급 공기흡입식 플라즈마 추력기 개념, Koiter 비선형이론 기반 초박형 쉘의 물리기반 신경망 해석 등의 논문을 발표했다.",
+    "source_hash": "bcb1892f6326f27e",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "100958": {
+    "summary": "강석형 교수는 머신러닝 기반 전자설계자동화(EDA), 물리설계(P&R) 최적화, AI 하드웨어 설계·최적화, 양자 알고리즘·회로 최적화를 연구하며, 딥러닝 기반 회로 최적화와 모바일 트랜스포머 가속기 설계, 양자컴퓨터를 위한 큐비트 매핑 기법 개발 등에 기여했다.",
+    "source_hash": "3439f2b04a817122",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "20443": {
+    "summary": "김경태 교수는 지능형 레이더 시스템·신호처리, SAR/ISAR 영상화, 표적인식, 도래각 추정, 마이크로도플러 분석, 차량용 레이더, 디지털 빔포밍, 전자전, 전자기 산란을 연구하며, 국가전략기술 분야 중 우주항공·해양(우주관측·센싱)으로 분류된다. 드론 탑재 W-밴드 SAR의 압축센싱 기반 영상복원, 3차원 회전운동을 하는 고기동 표적의 고해상도 ISAR 영상화 등의 논문을 발표했다.",
+    "source_hash": "d4a5b034bd13d4fa",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "20376": {
+    "summary": "양경철 교수는 디지털통신을 위한 오류제어기법, 무선통신시스템, CDMA/OFDM/OFDMA 신호설계를 연구하며, 국가전략기술 분야 중 차세대 통신(5G 고도화)으로 분류된다. LDPC 부호의 분석과 설계, 다중안테나를 위한 시공간부호, 채널인지 기반 그래디언트 하강 비트반전 LDPC 복호 알고리즘 등의 논문을 발표했다.",
+    "source_hash": "9444c6a202930d7b",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "101352": {
+    "summary": "이병훈 교수는 정보처리 시스템·센서의 전력소비를 획기적으로 줄이는 극저전력 컴퓨팅 소자·아키텍처, 2차원 소재 기반 광검출기와 메모리 소자를 연구하며, 국가전략기술 분야 중 반도체·디스플레이(고성능·저전력 인공지능 반도체)와 우주항공·해양으로 분류된다. 극박막 텔루륨 트랜지스터의 두께조절 밴드엔지니어링, ZnO-Te 이종접합 기반 패턴분류기 등의 논문을 발표했다.",
+    "source_hash": "bf6d3c7f3ee8ca41",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "101025": {
+    "summary": "김광선 교수는 컴퓨터 구조, 근접 데이터 처리, 병렬 시스템, 메모리 시스템, 신경망처리장치(NPU), 프로그래밍 모델·컴파일러, 시뮬레이션 방법론, 스마트 NIC를 연구하며, 국가전략기술 분야 중 반도체·디스플레이(고성능·저전력 인공지능 반도체)로 분류된다. CXL 메모리에서의 저오버헤드 범용 근접 데이터 처리, 컴파일러 통합 고속 NPU 시뮬레이터(ONNXim) 등의 논문을 발표했다.",
+    "source_hash": "43f724698407ddef",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "100729": {
+    "summary": "배경민 교수는 소프트웨어 검증, 정형기법, 안전하고 신뢰할 수 있는 AI, 전산논리학을 연구하며, 국가전략기술 분야 중 사이버보안으로 분류된다. 재작성 모듈로 SMT를 이용한 다중태스크 PLC ST 프로그램의 유계 모델체킹, 신호시제논리의 SMT 기반 강건 모델체킹 등의 논문을 발표했다.",
+    "source_hash": "088fa64d593ba7c2",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "101165": {
+    "summary": "옥정슬 교수는 머신러닝, 강화학습, 신경망 분석, 계산사회과학을 연구하며, 국가전략기술 분야 중 인공지능(그 외 인공지능 기술)으로 분류된다. 구조화 강화학습, 확장 가능한 소셜네트워크 분석, 잠재 연속성을 갖는 밴딧에서의 전이학습 등의 논문을 NeurIPS·ICML·ACL 등 최상위 학회에 다수 발표했다.",
+    "source_hash": "2e2f6972cc106826",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "101365": {
+    "summary": "이기라 교수는 콜로이드 자기조립, 생체접착용 나노입자, 리튬이온전지용 고체전해질, 배터리 재활용, 해양 이산화탄소 제거용 콜로이드를 연구하며, 국가전략기술 분야 중 이차전지(리튬이온전지 및 핵심소재)로 분류된다. DNA 매개 콜로이드 초구조체, 메조다공성 나노입자 기반 생체접착제, 양극재 금속 재활용을 위한 미세유체 추출 등의 논문을 발표했다.",
+    "source_hash": "2aaeef5acddd911b",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "20607": {
+    "summary": "전상민 교수는 에너지 하베스팅, 탄소중립, 청정수·자원 회수를 연구하며, 국가전략기술 분야 중 이차전지(그 외 이차전지 기술)로 분류된다. 습도 유도 발전, 이산화탄소 광물화, 태양열 증기 발생과 무방류(ZLD) 공정, 축전식 탈염을 이용한 리튬 회수 등의 논문을 발표했다.",
+    "source_hash": "f9bb9a8b11e0a813",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "20385": {
+    "summary": "차형준 교수는 유용한 생체소재를 위한 세포·분자 수준의 재설계, 홍합접착단백질·실크단백질·천연다당류 등 구조생체분자 기반 생체소재의 생체의학적 응용, 약물전달치료를 연구하며, 국가전략기술 분야 중 첨단 바이오(유전자·세포치료)로 분류된다. 홍합단백질 기반 의료용 생체접착제를 상용화한 네이처글루텍 창업, 종양미세환경 반응형 접착성 단백질 나노입자를 이용한 췌장암 화학요법 등의 논문을 발표했다.",
+    "source_hash": "518abb0af83e44bd",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "100934": {
+    "summary": "권세윤 교수는 동위원소 지구화학, 오염원 추적, 중금속, 환경정책, 생물모니터링을 연구하며, 수은 안정동위원소를 이용해 미나마타협약 이행을 지원하고 생물모니터링을 위한 어류의 생태학적 특성을 규명했다. 오염된 하천·하구의 수은 오염원 추적과 북극권 대기 수은 제거 기작 규명 등의 논문을 Nature Communications 등에 발표했다.",
+    "source_hash": "0a0decdfb76ebe07",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "100130": {
+    "summary": "김형섭 교수는 구조 나노금속의 역학적 거동·공정에 대한 다중스케일 모델링, 초미세결정립 소재를 위한 강소성가공, 나노결정 구조금속, 고엔트로피합금, 아키텍처드 소재, 금속 3D 프린팅(적층제조)을 연구하며, 국가전략기술 분야 중 차세대 원자력(소형모듈원자로)으로 분류된다. 나노결정 금속의 K-E-B 크리프 변형기구 모델, 다공성 재료의 항복함수 개발 등에 기여했으며, 적층제조 합금의 강도-연성 시너지에 관한 논문을 다수 발표했다.",
+    "source_hash": "b3b1c57f5e9164f0",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "101433": {
+    "summary": "박규영 교수는 리튬·나트륨이온전지용 에너지저장소재, 소재·전지시스템 공정, 방사광 기반 소재분석 및 계산을 연구하며, 국가전략기술 분야 중 이차전지(리튬이온전지 및 핵심소재)로 분류된다. 폐배터리 NCM 양극재의 단결정 재생, 니켈 리치 양극재의 팽창흑연 코팅, 배터리급 리튬 순도 재평가(Nature Communications) 등의 논문을 발표했다.",
+    "source_hash": "0fa0e49b157b5fc1",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "20402": {
+    "summary": "정성모 교수는 친환경 대체 제철공정, 제선·제강 공정의 열역학·반응속도론 연구, 제철소 부산물 재활용, 철강 물리화학 분석법 개발을 연구하며, 국가전략기술 분야 중 수소로 분류된다. 수소를 이용한 철광석의 다단계 환원거동, 저품위광 소결기술 등 탄소중립 제철 관련 논문을 발표했다.",
+    "source_hash": "f43b78249422764a",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "100743": {
+    "summary": "조중욱 교수는 제강·주조공정용 슬래그계의 구조와 물성, 유리의 결정화 거동, 응고 전산열역학, 산화물야금을 이용한 응고조직 제어를 연구하며, TWIP강 연속주조용 몰드플럭스 기술(POCAST)과 미 산란을 이용한 주형 열전달 제어기술 개발에 기여했다. 레이저 분말베드융합 공정에서의 질화물·산화물 석출 제어에 관한 논문을 다수 발표했다.",
+    "source_hash": "209defa8c6a1bac8",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
+  },
+  "100983": {
+    "summary": "허윤욱 교수는 첨단 소재분석에 기반한 합금설계, 철강의 파괴 연구, 초미세결정립강, 석출강화강, 석출물의 상변태를 연구하며, 조성 피닝 기법을 이용한 초미세결정립강 제조와 석출강화강 개념을 정립했다. Fe-Mn-Al-C 오스테나이트계 경량강의 입계 석출과 취성파괴 거동, 중엔트로피합금의 주기적 스피노달 분해(Nature Communications) 등의 논문을 발표했다.",
+    "source_hash": "25c8793e0e529535",
+    "model": "claude (manual, interactive session — not the Gemini pipeline)",
+    "generated_at": "2026-08-28T21:49:00+00:00"
   }
 }
