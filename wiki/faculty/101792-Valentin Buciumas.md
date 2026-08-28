@@ -4,13 +4,13 @@ name: Valentin Buciumas
 department: 수학과
 email: buciumas@postech.ac.kr
 homepage: https://buciumas.github.io/
-updated: 2026-08-27
+updated: 2026-08-28
 ---
 
 # Valentin Buciumas (수학과)
 
 ## 기본 정보
-- 학과: [수학과](../departments/수학과.md)
+- 학과: [수학과](../domain/수학과.moc.md)
 - 이메일: buciumas@postech.ac.kr
 - 홈페이지: <https://buciumas.github.io/>
 
@@ -38,16 +38,37 @@ updated: 2026-08-27
 기재X
 
 ## 대표연구·최근 주도논문(제1/교신)
-METAPLECTIC COVERS OF p-ADIC GROUPS AND QUANTUM GROUPS AT ROOTS OF UNITY (2025; Duke Mathematical Journal); Colored vertex models and Iwahori Whittaker functions (2024; Selecta Mathematica, New Series); Iwahori‐metaplectic duality (2024; Journal of the London Mathematical Society)
+- METAPLECTIC COVERS OF p-ADIC GROUPS AND QUANTUM GROUPS AT ROOTS OF UNITY (2025
+- Duke Mathematical Journal)
+- Colored vertex models and Iwahori Whittaker functions (2024
+- Selecta Mathematica, New Series)
+- Iwahori‐metaplectic duality (2024
+- Journal of the London Mathematical Society)
 
 ## 주도논문 전체(제1/교신/단독)
-METAPLECTIC COVERS OF p-ADIC GROUPS AND QUANTUM GROUPS AT ROOTS OF UNITY (2025; Duke Mathematical Journal); Colored vertex models and Iwahori Whittaker functions (2024; Selecta Mathematica, New Series); Iwahori‐metaplectic duality (2024; Journal of the London Mathematical Society)
+- METAPLECTIC COVERS OF p-ADIC GROUPS AND QUANTUM GROUPS AT ROOTS OF UNITY (2025
+- Duke Mathematical Journal)
+- Colored vertex models and Iwahori Whittaker functions (2024
+- Selecta Mathematica, New Series)
+- Iwahori‐metaplectic duality (2024
+- Journal of the London Mathematical Society)
 
 ## 학회발표
-On some p-q dualities (Representation Theory Seminar); The fundamental local equivalence via special functions (Conference on Algebraic Representation Theory); Hecke algebras, Whittaker functions and quantum groups (Representation Theory Seminar); Whittaker functions on p-adic groups (Twelfth Bucharest Number Theory Days); Hecke algebras, Whittaker functions and quantum groups (Solvable Lattice Models, Number Theory and Combinatorics); Metaplectic Whittaker functions and Lusztig's quantum group (Representation Theory Seminar); Hecke algebras, Whittaker functions and quantum groups (Seminar on Pure Mathematics); Hecke algebras, Whittaker functions and quantum groups (Geometry, Algebra and Physics Seminar); Hecke algebras, Whittaker functions and quantum groups (SNU Algebra Camp 2024)
+- On some p-q dualities (Representation Theory Seminar)
+- The fundamental local equivalence via special functions (Conference on Algebraic Representation Theory)
+- Hecke algebras, Whittaker functions and quantum groups (Representation Theory Seminar)
+- Whittaker functions on p-adic groups (Twelfth Bucharest Number Theory Days)
+- Hecke algebras, Whittaker functions and quantum groups (Solvable Lattice Models, Number Theory and Combinatorics)
+- Metaplectic Whittaker functions and Lusztig's quantum group (Representation Theory Seminar)
+- Hecke algebras, Whittaker functions and quantum groups (Seminar on Pure Mathematics)
+- Hecke algebras, Whittaker functions and quantum groups (Geometry, Algebra and Physics Seminar)
+- Hecke algebras, Whittaker functions and quantum groups (SNU Algebra Camp 2024)
 
 ## 홈페이지 추가 정보
 > 크롤링 시각: 2026-08-27T00:58:58+00:00 · 출처: <https://buciumas.github.io/>
+
+<details>
+<summary>홈페이지 원문 보기</summary>
 
 Valentin Buciumas - Mathematics Homepage
 Assistant Professor
@@ -94,10 +115,15 @@ Sungmun Cho
 relative Langlands
 at POSTECH.
 
-### 홈페이지 내 세부 페이지
+</details>
+
+### 홈페이지 내 세부 페이지 (7개)
 
 #### Publications
 > 출처: <https://buciumas.github.io/publications.html>
+
+<details>
+<summary>내용 보기</summary>
 
 Publications
 My articles can be found on the
@@ -216,8 +242,13 @@ Math. Z.
 arxiv:
 1708.043
 
+</details>
+
 #### Teaching
 > 출처: <https://buciumas.github.io/teaching.html>
+
+<details>
+<summary>내용 보기</summary>
 
 Teaching
 I am currently teaching (Fall 2025)
@@ -233,8 +264,13 @@ I have previosly taught:
 2021 Spring: Calculus (University of Alberta, online)
 2019 Spring: Advanced Algebra (University of Queensland, undergraduate course) with M. Kamgarpour
 
+</details>
+
 #### Publications
 > 출처: <https://buciumas.github.io/publications>
+
+<details>
+<summary>내용 보기</summary>
 
 Publications
 My articles can be found on the
@@ -353,8 +389,13 @@ Math. Z.
 arxiv:
 1708.043
 
+</details>
+
 #### Valentin Buciumas - Mathematics Homepage
 > 출처: <https://buciumas.github.io/index.html>
+
+<details>
+<summary>내용 보기</summary>
 
 Valentin Buciumas - Mathematics Homepage
 Assistant Professor
@@ -401,8 +442,13 @@ Sungmun Cho
 relative Langlands
 at POSTECH.
 
+</details>
+
 #### Conferences and Seminars
 > 출처: <https://buciumas.github.io/seminars.html>
+
+<details>
+<summary>내용 보기</summary>
 
 Conferences and Seminars
 I am currently organizing the
@@ -444,8 +490,13 @@ I organized a learning seminar on
 integrable lattice models
 at University of Queensland in 2019.
 
+</details>
+
 #### POSTECH Representation Theory Seminar
 > 출처: <https://buciumas.github.io/postech-representation-theory/index>
+
+<details>
+<summary>내용 보기</summary>
 
 POSTECH Representation Theory Seminar
 General Information:
@@ -499,8 +550,13 @@ and
 Tomasz Przezdziecki
 will g
 
+</details>
+
 #### Workshop on Relative Langlands
 > 출처: <https://buciumas.github.io/postech-relative-langlands-workshop/index>
+
+<details>
+<summary>내용 보기</summary>
 
 Workshop on Relative Langlands
 General Information:
@@ -590,7 +646,9 @@ Lecture 2
 Lecture 3
 Lec
 
+</details>
+
 
 ## 출처
 - POSTECH R&D 실적 데이터베이스 (개인번호 101792)
-- 최종 갱신: 2026-08-27
+- 최종 갱신: 2026-08-28

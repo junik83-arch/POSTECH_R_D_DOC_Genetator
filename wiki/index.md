@@ -1,36 +1,40 @@
 ---
-title: POSTECH 교원 R&D 위키
+title: POSTECH 교원 R&D 위키 색인
 faculty_count: 298
-updated: 2026-08-27
+updated: 2026-08-28
 ---
 
-# POSTECH 교원 R&D 위키
+# 색인
 
-POSTECH R&D 실적 데이터베이스를 원본(source)으로 삼아 생성한 교원 지식베이스입니다. 구조와 갱신 규칙은 [SCHEMA.md](SCHEMA.md) 를 참고하세요.
+이 파일은 `scripts/build_wiki.py` 가 매번 다시 생성하는 **평면 카탈로그**입니다. 큐레이션된 진입점은 [home.md](home.md), 구조·갱신 규칙은 [CLAUDE.md](../CLAUDE.md) 를 보세요.
 
 - 전체 교원: **298명**
 - 학과 수: **16개**
-- 최종 생성일: 2026-08-27
+- 최종 생성일: 2026-08-28
 
-## 학과별 인덱스
+## 학과별 교원 목록
 
-- [IT융합공학과](departments/IT융합공학과.md) (11명)
-- [기계공학과](departments/기계공학과.md) (24명)
-- [물리학과](departments/물리학과.md) (28명)
-- [반도체공학과](departments/반도체공학과.md) (4명)
-- [산업경영공학과](departments/산업경영공학과.md) (16명)
-- [생명과학과](departments/생명과학과.md) (29명)
-- [수학과](departments/수학과.md) (20명)
-- [신소재공학과](departments/신소재공학과.md) (21명)
-- [인문사회학부](departments/인문사회학부.md) (11명)
-- [전자전기공학과](departments/전자전기공학과.md) (32명)
-- [첨단원자력공학부](departments/첨단원자력공학부.md) (1명)
-- [친환경소재대학원](departments/친환경소재대학원.md) (14명)
-- [컴퓨터공학과](departments/컴퓨터공학과.md) (34명)
-- [화학공학과](departments/화학공학과.md) (20명)
-- [화학과](departments/화학과.md) (22명)
-- [환경공학부](departments/환경공학부.md) (11명)
+- IT융합공학과 (11명) — MOC: [domain/IT융합공학과.moc.md](domain/IT융합공학과.moc.md)
+- 기계공학과 (24명) — MOC: [domain/기계공학과.moc.md](domain/기계공학과.moc.md)
+- 물리학과 (28명) — MOC: [domain/물리학과.moc.md](domain/물리학과.moc.md)
+- 반도체공학과 (4명) — MOC: [domain/반도체공학과.moc.md](domain/반도체공학과.moc.md)
+- 산업경영공학과 (16명) — MOC: [domain/산업경영공학과.moc.md](domain/산업경영공학과.moc.md)
+- 생명과학과 (29명) — MOC: [domain/생명과학과.moc.md](domain/생명과학과.moc.md)
+- 수학과 (20명) — MOC: [domain/수학과.moc.md](domain/수학과.moc.md)
+- 신소재공학과 (21명) — MOC: [domain/신소재공학과.moc.md](domain/신소재공학과.moc.md)
+- 인문사회학부 (11명) — MOC: [domain/인문사회학부.moc.md](domain/인문사회학부.moc.md)
+- 전자전기공학과 (32명) — MOC: [domain/전자전기공학과.moc.md](domain/전자전기공학과.moc.md)
+- 첨단원자력공학부 (1명) — MOC: [domain/첨단원자력공학부.moc.md](domain/첨단원자력공학부.moc.md)
+- 친환경소재대학원 (14명) — MOC: [domain/친환경소재대학원.moc.md](domain/친환경소재대학원.moc.md)
+- 컴퓨터공학과 (34명) — MOC: [domain/컴퓨터공학과.moc.md](domain/컴퓨터공학과.moc.md)
+- 화학공학과 (20명) — MOC: [domain/화학공학과.moc.md](domain/화학공학과.moc.md)
+- 화학과 (22명) — MOC: [domain/화학과.moc.md](domain/화학과.moc.md)
+- 환경공학부 (11명) — MOC: [domain/환경공학부.moc.md](domain/환경공학부.moc.md)
 
 ## 기타
+- [home.md](home.md) — 큐레이션된 진입점
 - [연구분야 키워드 인덱스](research-areas.md)
+- [국가전략기술 인덱스](national-strategic-tech.md)
 - [전체 교원 가나다순 목록](faculty-index.md)
+- [log.md](log.md) — 변경 이력
+- [open-questions.md](open-questions.md) — 모순·미해결 이슈
