@@ -891,7 +891,10 @@
   // REQUEST_TIMEOUT_MS 안에 안 끝나면 중단하고 다음 후보 모델로 넘어간다.
   var REQUEST_TIMEOUT_MS = 20000;
 
-  async function callGeminiJson(apiKey, models, userText, onProgress){
+  // thinkingBudget: 0 = 끔(단순 추출용, 빠름), -1 = 모델이 질문 난이도에 따라 알아서
+  // 조절(복잡한 판단이 필요한 단계용). 2.5 미만 모델엔 무시된다.
+  async function callGeminiJson(apiKey, models, userText, onProgress, thinkingBudget){
+    if(thinkingBudget == null) thinkingBudget = 0;
     var lastError = null;
     for(var i = 0; i < models.length; i++){
       var model = models[i];
@@ -909,9 +912,7 @@
             generationConfig: {
               temperature: 0.1,
               responseMimeType: "application/json",
-              // 2.5 계열은 기본적으로 "생각"(내부 추론) 단계를 거치는데, 이 작업처럼 단순
-              // 추출·정렬에는 불필요하게 느려지기만 해서 꺼둔다(2.5 미만 모델엔 무시됨).
-              thinkingConfig: { thinkingBudget: 0 }
+              thinkingConfig: { thinkingBudget: thinkingBudget }
             }
           })
         });
@@ -1039,7 +1040,7 @@
       var result = await callGeminiJson(apiKey, models, userText, function(model, idx, total){
         aiEls.answer.textContent = "🔍 후보 " + shortlist.length + "명 중 적합한 교원을 선별하는 중… (" + model + ")" +
           (idx > 0 ? " — 이전 모델이 느려서 다음 모델로 재시도 중" : "");
-      });
+      }, -1); // 최종 판단 단계는 질문이 복잡할 수 있어 thinking을 모델이 알아서 조절하게 둔다
 
       var rawMatches = Array.isArray(result.matches) ? result.matches : [];
       var reasons = {}, scores = {};
