@@ -56,15 +56,21 @@ https://<본인아이디>.github.io/postech-doc-generator/tools/doc-generator.ht
 
 이름·학과·연구분야·정부 12대 국가전략기술 분야로 POSTECH 교원 298명을 검색·필터링합니다.
 데이터는 [`tools/faculty-search-data.json`](tools/faculty-search-data.json)이며,
-`python3 scripts/build_wiki.py` 실행 시 [`wiki/`](wiki/)와 함께 자동 재생성됩니다. 각 검색
-결과는 GitHub의 교원 위키 페이지로 바로 연결됩니다. 위키의 구조와 운영 방식은
-[CLAUDE.md](CLAUDE.md), [wiki/home.md](wiki/home.md) 참고.
+`python3 scripts/build_wiki.py` 실행 시 [`wiki/`](wiki/)와 함께 자동 재생성됩니다. 위키의
+구조와 운영 방식은 [CLAUDE.md](CLAUDE.md), [wiki/home.md](wiki/home.md) 참고.
+
+- **현황 통계**: 전체 교원 수, 학과 수, 실적(논문·특허·과제 등) 합계
+- **학과별 분포**: 클릭하면 바로 그 학과로 필터링되는 막대 그래프
+- **상세 프로필**: 카드의 "상세 프로필 보기"를 누르면 연구키워드·주요성과·대표연구·학회발표·
+  저서 등 전체 섹션을 모달로 확인 (각 검색 결과는 GitHub의 교원 위키 페이지로도 바로 연결됩니다)
 
 **🤖 AI 자연어 검색**: 기본 검색창은 단순 키워드 매칭이지만, "AI에게 자연어로 물어보기"
-패널에서는 "양자컴퓨팅 연구하면서 특허가 많은 교수 알려줘"처럼 복합 조건을 문장으로 물어보면
-Gemini가 조건에 맞는 교원을 골라줍니다. 공문 생성기와 **같은 Gemini API 키를 공유**하므로
-(브라우저 LocalStorage, 같은 이름의 키 사용) 한쪽에서 키를 등록하면 다른 쪽에서도 바로
-쓸 수 있습니다.
+패널에서는 "LG생활건강 사업 포트폴리오에 맞는 연구자"처럼 복합 조건을 문장으로 물어보면
+Gemini가 교원 298명 목록 안에서만 골라 **교원별 추천 이유**와 함께 답합니다(목록에 없는
+내용은 지어내지 않도록 프롬프트에서 강제 — No Hallucination). 공문 생성기와 **같은 Gemini
+API 키를 공유**하므로(브라우저 LocalStorage, 같은 이름의 키 사용) 한쪽에서 키를 등록하면
+다른 쪽에서도 바로 쓸 수 있고, Gemini API는 브라우저 직접 호출(CORS)을 허용해 별도 프록시도
+필요 없습니다.
 
 ---
 

@@ -15,6 +15,7 @@
     --card-bg:#ffffff;
     --field-bg:#ffffff;
     --seal:#a3122e;
+    --seal-soft:#f5e7ea;
     --ai-blue:#1a73e8;
     --ai-bg:#e8f0fe;
     --ai-border:#b6d4fe;
@@ -335,6 +336,129 @@
     transition:.25s; z-index:150;
   }
   .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+  /* ── 현황 통계 + 학과 분포 ── */
+  .stat-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(110px, 1fr));
+    gap:10px;
+    margin-bottom:12px;
+  }
+  .stat-card{
+    background:var(--card-bg);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:11px 13px;
+  }
+  .stat-card .n{
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:1.35rem;
+    color:var(--ink);
+    line-height:1.2;
+  }
+  .stat-card .l{
+    font-size:.7rem;
+    color:var(--muted);
+    margin-top:2px;
+  }
+  .dept-bars{
+    background:var(--card-bg);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:12px 16px;
+    margin-bottom:20px;
+  }
+  .dept-bars-title{
+    font-size:.78rem;
+    font-weight:700;
+    color:var(--muted);
+    margin-bottom:6px;
+  }
+  .dept-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:.78rem;
+    padding:3px 0;
+    cursor:pointer;
+  }
+  .dept-row .dname{ flex:0 0 118px; color:var(--text); font-weight:500;
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .dept-row .bar-wrap{ flex:1; background:var(--panel-bg); border-radius:5px; overflow:hidden; height:12px; }
+  .dept-row .bar{ height:100%; background:linear-gradient(90deg, var(--ai-blue), #4fa4f7); border-radius:5px; }
+  .dept-row .dcount{ flex:0 0 40px; text-align:right; color:var(--muted); }
+  .dept-row.active .dname{ color:var(--seal); font-weight:700; }
+  .dept-row.active .bar{ background:linear-gradient(90deg, var(--seal), #d8637c); }
+
+  /* ── 상세 프로필 카드/모달 ── */
+  .person-more{
+    margin-top:10px;
+  }
+  .person-more button{
+    font-family:inherit;
+    font-size:.78rem;
+    font-weight:600;
+    color:var(--ai-blue);
+    background:none;
+    border:1px solid var(--ai-border);
+    border-radius:6px;
+    padding:4px 10px;
+    cursor:pointer;
+  }
+  .person-more button:hover{ background:var(--ai-bg); }
+  .modal.wide{ max-width:680px; max-height:85vh; overflow-y:auto; }
+  .detail-perf{
+    display:flex; flex-wrap:wrap; gap:6px;
+    margin:10px 0 16px;
+  }
+  .detail-perf span{
+    font-size:.74rem;
+    background:var(--panel-bg);
+    color:var(--text);
+    padding:3px 9px;
+    border-radius:6px;
+  }
+  .detail-section{ margin-bottom:16px; }
+  .detail-section h4{
+    font-size:.78rem;
+    letter-spacing:.02em;
+    color:var(--seal);
+    text-transform:uppercase;
+    margin:0 0 6px;
+    display:flex; align-items:center; gap:6px;
+  }
+  .detail-section h4::before{
+    content:"";
+    width:3px; height:12px;
+    background:var(--seal);
+    border-radius:2px;
+    display:inline-block;
+  }
+  .detail-section .content{
+    font-size:.86rem;
+    color:var(--text);
+    line-height:1.7;
+    word-break:keep-all;
+    white-space:pre-line;
+  }
+  .modal-close-x{
+    position:absolute; top:14px; right:16px;
+    background:none; border:none;
+    font-size:1.1rem; color:var(--muted); cursor:pointer;
+  }
+  .modal-inner{ position:relative; }
+
+  /* ── AI 결과 카드의 개별 추천 이유 ── */
+  .ai-reason{
+    margin-top:8px;
+    padding-top:8px;
+    border-top:1px dashed var(--line);
+    font-size:.82rem;
+    color:var(--ink);
+    line-height:1.5;
+  }
+  .ai-reason b{ color:var(--ai-blue); }
 </style>
 </head>
 <body>
@@ -351,6 +475,12 @@
 </header>
 
 <main>
+  <div class="stat-grid" id="statGrid"></div>
+  <div class="dept-bars" id="deptBars">
+    <div class="dept-bars-title">학과별 분포 (클릭하면 필터로 적용)</div>
+    <div id="deptBarsBody"></div>
+  </div>
+
   <div class="search-panel">
     <div class="search-row">
       <input type="search" id="q" placeholder="이름, 연구분야, 키워드로 검색 (예: 양자, 이차전지, quantum, 김철수)" autocomplete="off" />
@@ -404,13 +534,21 @@
     </div>
   </div>
 </div>
+
+<div class="modal-overlay" id="detailModal">
+  <div class="modal wide modal-inner">
+    <button type="button" class="modal-close-x" id="closeDetailBtn">✕</button>
+    <div id="detailBody"></div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
 (function(){
   var GITHUB_BLOB_BASE = "https://github.com/junik83-arch/POSTECH_R_D_DOC_Genetator/blob/main/";
 
-  var state = { data: [], q: "", dept: "", tech: "", aiMode: false, aiResults: [] };
+  var state = { data: [], byId: {}, q: "", dept: "", tech: "", aiMode: false, aiResults: [], aiReasons: {} };
 
   var els = {
     q: document.getElementById("q"),
@@ -420,6 +558,8 @@
     results: document.getElementById("results"),
     count: document.getElementById("resultCount"),
     reset: document.getElementById("resetBtn"),
+    statGrid: document.getElementById("statGrid"),
+    deptBarsBody: document.getElementById("deptBarsBody"),
   };
 
   function escapeHtml(s){
@@ -473,6 +613,9 @@
       links.push('<a href="mailto:' + escapeHtml(p.email) + '">' + escapeHtml(p.email) + '</a>');
     }
 
+    var reason = state.aiMode ? state.aiReasons[String(p.id)] : "";
+    var reasonHtml = reason ? '<div class="ai-reason"><b>AI 추천 이유</b> · ' + escapeHtml(reason) + '</div>' : "";
+
     return (
       '<div class="person-card">' +
         '<div class="person-head">' +
@@ -483,9 +626,90 @@
         (tagsHtml ? '<div class="tags">' + tagsHtml + '</div>' : '') +
         '<div class="person-links">' + links.join(" · ") + '</div>' +
         '<div class="perf-inline">실적 합계 ' + perfTotal(p.perf) + '건 (주도논문 ' + (p.perf["주도논문"]||0) + ', 특허 ' + (p.perf["특허"]||0) + ', 과제 ' + (p.perf["과제"]||0) + ')</div>' +
+        reasonHtml +
+        '<div class="person-more"><button type="button" data-id="' + escapeHtml(String(p.id)) + '">상세 프로필 보기</button></div>' +
       '</div>'
     );
   }
+
+  function renderStats(){
+    var totals = {};
+    state.data.forEach(function(p){
+      for(var k in p.perf){ totals[k] = (totals[k] || 0) + (p.perf[k] || 0); }
+    });
+    var depts = Array.from(new Set(state.data.map(function(p){ return p.dept; })));
+    var cards = [
+      { n: state.data.length, l: "전체 교원" },
+      { n: depts.length, l: "학과 수" },
+    ];
+    for(var k in totals){ cards.push({ n: totals[k], l: k + " 합계" }); }
+    els.statGrid.innerHTML = cards.map(function(c){
+      return '<div class="stat-card"><div class="n">' + c.n.toLocaleString() + '</div><div class="l">' + escapeHtml(c.l) + '</div></div>';
+    }).join("");
+  }
+
+  function renderDeptBars(){
+    var counts = {};
+    state.data.forEach(function(p){ counts[p.dept] = (counts[p.dept] || 0) + 1; });
+    var rows = Object.keys(counts).map(function(d){ return { name: d, count: counts[d] }; })
+      .sort(function(a,b){ return b.count - a.count; });
+    var maxCount = rows.reduce(function(m, r){ return Math.max(m, r.count); }, 1);
+
+    els.deptBarsBody.innerHTML = rows.map(function(r){
+      var pct = Math.round((r.count / maxCount) * 100);
+      var active = state.dept === r.name ? " active" : "";
+      return '<div class="dept-row' + active + '" data-dept="' + escapeHtml(r.name) + '">' +
+        '<div class="dname">' + escapeHtml(r.name) + '</div>' +
+        '<div class="bar-wrap"><div class="bar" style="width:' + pct + '%"></div></div>' +
+        '<div class="dcount">' + r.count + '명</div>' +
+      '</div>';
+    }).join("");
+
+    Array.prototype.forEach.call(els.deptBarsBody.querySelectorAll(".dept-row"), function(el){
+      el.addEventListener("click", function(){
+        var d = el.getAttribute("data-dept");
+        state.dept = (state.dept === d) ? "" : d;
+        els.dept.value = state.dept;
+        exitAiMode();
+        renderDeptBars();
+        render();
+      });
+    });
+  }
+
+  var detailModal = document.getElementById("detailModal");
+  function openDetail(id){
+    var p = state.byId[String(id)];
+    if(!p) return;
+    var perfBadges = Object.keys(p.perf || {}).map(function(k){
+      return '<span>' + escapeHtml(k) + ' ' + p.perf[k] + '</span>';
+    }).join("");
+    var sectionsHtml = Object.keys(p.sections || {}).map(function(label){
+      return '<div class="detail-section"><h4>' + escapeHtml(label) + '</h4><div class="content">' + escapeHtml(p.sections[label]) + '</div></div>';
+    }).join("");
+    var tagsHtml = p.nationalTech.map(function(t){ return '<span class="tag">' + escapeHtml(t) + '</span>'; }).join("");
+    var wikiUrl = GITHUB_BLOB_BASE + encodeURI(p.wikiPath);
+    var homepageHtml = p.homepage
+      ? '<a href="' + escapeHtml(p.homepage) + '" target="_blank" rel="noreferrer">' + escapeHtml(p.homepage) + '</a>'
+      : '<span style="color:var(--muted)">등록된 홈페이지 없음</span>';
+
+    document.getElementById("detailBody").innerHTML =
+      '<h2>' + escapeHtml(p.name) + ' <span style="font-size:.8rem;font-weight:500;color:var(--muted)">(' + escapeHtml(p.dept) + ')</span></h2>' +
+      '<p class="modal-sub" style="margin-top:-6px;font-size:.82rem;color:var(--muted);">' +
+        (p.email ? escapeHtml(p.email) + ' · ' : '') + homepageHtml +
+        ' · <a href="' + wikiUrl + '" target="_blank" rel="noreferrer">위키 페이지 →</a></p>' +
+      (tagsHtml ? '<div class="tags" style="margin:8px 0 14px;">' + tagsHtml + '</div>' : '') +
+      '<div class="detail-section"><h4>연구관심분야</h4><div class="content">' + escapeHtml(p.interests || "미기재") + '</div></div>' +
+      '<div class="detail-perf">' + perfBadges + '</div>' +
+      sectionsHtml;
+    detailModal.classList.add("show");
+  }
+  document.getElementById("closeDetailBtn").addEventListener("click", function(){ detailModal.classList.remove("show"); });
+  detailModal.addEventListener("click", function(e){ if(e.target === detailModal) detailModal.classList.remove("show"); });
+  els.results.addEventListener("click", function(e){
+    var btn = e.target.closest("button[data-id]");
+    if(btn) openDetail(btn.getAttribute("data-id"));
+  });
 
   function render(){
     if(state.aiMode){
@@ -520,6 +744,7 @@
     if(!state.aiMode) return;
     state.aiMode = false;
     state.aiResults = [];
+    state.aiReasons = {};
     aiEls.answer.hidden = true;
   }
 
@@ -542,12 +767,13 @@
   }
 
   els.q.addEventListener("input", function(){ state.q = els.q.value; exitAiMode(); render(); });
-  els.dept.addEventListener("change", function(){ state.dept = els.dept.value; exitAiMode(); render(); });
+  els.dept.addEventListener("change", function(){ state.dept = els.dept.value; exitAiMode(); renderDeptBars(); render(); });
   els.tech.addEventListener("change", function(){ state.tech = els.tech.value; exitAiMode(); render(); });
   els.reset.addEventListener("click", function(){
     state.q = ""; state.dept = ""; state.tech = "";
     els.q.value = ""; els.dept.value = ""; els.tech.value = "";
     exitAiMode();
+    renderDeptBars();
     render();
   });
 
@@ -641,7 +867,8 @@
     "(id, name=성명, dept=학과, interests=연구관심분야, nationalTech=국가전략기술 태그, perf=실적건수). " +
     "사용자의 자연어 질문에 맞는 교원을 이 목록 안에서만 골라주세요. 목록에 없는 사실을 지어내지 마세요. " +
     "다른 설명 없이 아래 JSON 스키마로만 답하세요: " +
-    '{"answer": "한두 문장 설명", "matches": ["일치하는 교원 id", ...]}. ' +
+    '{"answer": "한두 문장 설명", "matches": [{"id": "일치하는 교원 id", "reason": "이 교원을 고른 이유(한국어 1문장, ' +
+    '반드시 목록에 실제로 있는 interests/nationalTech/perf 내용에 근거)"}]}. ' +
     "matches는 관련도가 높은 순서로 최대 20명까지만 담고, 일치하는 사람이 없으면 빈 배열로 두세요.";
 
   async function callGeminiJson(apiKey, models, userText){
@@ -709,13 +936,20 @@
       var userText = AI_SYSTEM_PROMPT + "\n\n[교원 목록 JSON]\n" + JSON.stringify(dataset) + "\n\n[질문]\n" + question;
       var result = await callGeminiJson(apiKey, models, userText);
 
-      var matchedIds = Array.isArray(result.matches) ? result.matches.map(String) : [];
-      var byId = {};
-      state.data.forEach(function(p){ byId[String(p.id)] = p; });
-      var matchedPeople = matchedIds.map(function(id){ return byId[id]; }).filter(Boolean);
+      var rawMatches = Array.isArray(result.matches) ? result.matches : [];
+      var reasons = {};
+      var matchedIds = rawMatches.map(function(m){
+        if(m && typeof m === "object"){
+          if(m.reason) reasons[String(m.id)] = String(m.reason);
+          return String(m.id);
+        }
+        return String(m); // 이전 스키마({"matches": ["id", ...]})와도 호환
+      });
+      var matchedPeople = matchedIds.map(function(id){ return state.byId[id]; }).filter(Boolean);
 
       state.aiMode = true;
       state.aiResults = matchedPeople;
+      state.aiReasons = reasons;
 
       aiEls.answer.className = "ai-answer";
       aiEls.answer.innerHTML =
@@ -752,7 +986,10 @@
     })
     .then(function(data){
       state.data = data;
+      data.forEach(function(p){ state.byId[String(p.id)] = p; });
       populateFilters(data);
+      renderStats();
+      renderDeptBars();
       render();
     })
     .catch(function(err){
