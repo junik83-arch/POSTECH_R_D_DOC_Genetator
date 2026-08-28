@@ -481,7 +481,7 @@ def render_national_tech(records: list[dict]) -> str:
     return "\n".join(lines)
 
 
-def build_researchers_json(records: list[dict], crawl: dict) -> dict:
+def build_researchers_json(records: list[dict], crawl: dict, fallback: dict) -> dict:
     """대시보드(dashboard/index.html)가 fetch로 읽는 경량 JSON 인덱스를 만든다.
 
     wiki/faculty/*.md 와 같은 원본(sources/faculty_profiles_source.json)에서 결정론적으로
@@ -499,6 +499,10 @@ def build_researchers_json(records: list[dict], crawl: dict) -> dict:
         # 홈페이지 크롤링을 Gemini가 요약한 것 — wiki/faculty/*.md 상단 AI 요약과 같은
         # 필드(원본 그대로, 대시보드용으로 별도로 자르거나 손대지 않음).
         homepage_summary = get_homepage_summary(r, crawl)
+        # 홈페이지 요약이 없을 때만 쓰는 위키 데이터 기반 폴백 요약 — wiki/faculty/*.md 와
+        # 같은 우선순위(홈페이지 요약이 있으면 폴백은 안 씀).
+        fallback_entry = fallback.get(str(r["개인번호"])) if not homepage_summary else None
+        fallback_summary = (fallback_entry.get("summary") or "").strip() if fallback_entry else ""
 
         interests_raw = (r.get("관심분야") or "").strip()
         parsed = parse_text_public(r.get("text_public", ""))
@@ -523,6 +527,7 @@ def build_researchers_json(records: list[dict], crawl: dict) -> dict:
                 "email": r.get("이메일", ""),
                 "homepage": homepage,
                 "homepage_summary": homepage_summary,
+                "fallback_summary": fallback_summary,
                 "interests": render_list_or_text(interests_raw),
                 "perf": perf,
                 "perf_total": perf_total(perf),
@@ -585,7 +590,7 @@ def main() -> None:
     (WIKI_DIR / "research-areas.md").write_text(render_research_areas(records), encoding="utf-8")
     (WIKI_DIR / "national-strategic-tech.md").write_text(render_national_tech(records), encoding="utf-8")
 
-    researchers_json = build_researchers_json(records, crawl)
+    researchers_json = build_researchers_json(records, crawl, fallback)
     (WIKI_DIR / "researchers.json").write_text(
         json.dumps(researchers_json, ensure_ascii=False, separators=(",", ":")),
         encoding="utf-8",

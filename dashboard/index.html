@@ -542,6 +542,15 @@
     letter-spacing:.02em;
     margin:0 0 6px;
   }
+  /* 홈페이지 크롤링 정보가 없는 교원은 위키 데이터 기반 폴백 요약을 대신 보여준다 —
+     같은 상자 모양을 쓰되, 출처가 다르다는 걸 색으로도 구분(파랑=홈페이지, 회색=폴백). */
+  .ai-summary-box.fallback{
+    background:var(--panel-bg);
+    border-left-color:var(--muted);
+  }
+  .ai-summary-box.fallback .label{
+    color:var(--muted);
+  }
   .ai-summary-box p{
     font-size:.84rem;
     color:var(--ink-2);
@@ -1287,6 +1296,8 @@
     var mocPath = "../wiki/domain/" + encodeURIComponent(r.department) + ".moc.md";
     var summaryHtml = r.homepage_summary
       ? '<div class="ai-summary-box"><div class="label">🤖 AI 요약 (홈페이지 기반)</div><p>' + esc(r.homepage_summary) + '</p></div>'
+      : r.fallback_summary
+      ? '<div class="ai-summary-box fallback"><div class="label">🤖 AI 요약 (위키 데이터 기반)</div><p>' + esc(r.fallback_summary) + '</p></div>'
       : "";
     $("detailBody").innerHTML =
       '<h2>' + esc(r.name) + ' <span style="font-size:.8rem;font-weight:500;color:var(--muted)">(' + esc(r.department) + ')</span></h2>' +

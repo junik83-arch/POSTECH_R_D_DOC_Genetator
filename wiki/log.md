@@ -304,3 +304,20 @@ Playwright로 탭 전환(학과↔전략기술 단독 표시), 팀 구성 토글
   반영(정규식으로 남은 "N편/N건/N권" 패턴이 없는지 기계적으로 확인 후 저장).
 - `build_wiki.py` 재실행 후 idempotent 확인, 42개 페이지의 "AI 요약 (위키 데이터 기반)"
   박스에 실적 개수 표현이 하나도 남지 않은 것을 grep으로 확인.
+
+## [2026-08-28] feature | 대시보드 상세 모달에도 폴백 요약(위키 데이터 기반) 추가
+
+사용자가 "대시보드에서도 새로고침하면 반영되나?"라고 문의 — 위 두 항목의 폴백 요약은
+`wiki/faculty/*.md`에만 반영돼 있었고 `researchers.json`/대시보드는 대상이 아니었음(홈페이지
+기반 AI 요약을 대시보드에 추가했을 때와 같은 상황). 확인 후 이번에도 추가하기로 함.
+
+- `build_researchers_json()`이 `fallback`(faculty_fallback_summary.json)을 인자로 받도록
+  하고, 홈페이지 요약이 없을 때만 `fallback_summary` 필드를 채움(교원 페이지와 같은 우선순위
+  — 둘 다 있는 경우는 없음, 42명 폴백 + 256명 홈페이지 = 298명으로 확인).
+- `dashboard/index.html`: 상세 모달에 `.ai-summary-box.fallback`(회색 톤, 기존 파란
+  `.ai-summary-box`와 시각적으로 구분되도록 `--panel-bg`/`--muted` 재사용) 추가 —
+  `homepage_summary`가 없고 `fallback_summary`가 있을 때만 "AI 요약 (위키 데이터 기반)"
+  라벨로 표시.
+- Playwright로 로컬 서버 띄워 폴백 대상(박진수, 102075)과 홈페이지 요약 대상(염한웅, 100271)
+  두 상세 모달이 각각 올바른 색상·라벨로 렌더링되는 것, JS 에러 없는 것 확인(스크린샷으로
+  사용자에게 시각 확인 전달).
