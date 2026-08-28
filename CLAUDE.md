@@ -46,6 +46,9 @@ scripts/                        ← 3) 파이프라인
 
 tools/                           ← 위키 데이터를 쓰는 정적 웹앱 (GitHub Pages 배포)
   faculty-search.html             교원 검색 웹앱 (직접 작성, build_wiki.py가 건드리지 않음)
+                                   기본 검색은 키워드 매칭(클라이언트 JS), "AI에게 물어보기"는
+                                   Gemini API로 자연어 질문 처리 (사용자 자신의 API 키, doc-generator.html과
+                                   LocalStorage 키를 공유)
   faculty-search-data.json        [기계 생성] build_wiki.py가 함께 만드는 검색용 경량 데이터
   doc-generator.html              사업 안내 공문 생성기 — 이 위키와 무관한 별도 도구
 

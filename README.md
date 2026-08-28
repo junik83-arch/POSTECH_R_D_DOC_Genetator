@@ -60,6 +60,12 @@ https://<본인아이디>.github.io/postech-doc-generator/tools/doc-generator.ht
 결과는 GitHub의 교원 위키 페이지로 바로 연결됩니다. 위키의 구조와 운영 방식은
 [CLAUDE.md](CLAUDE.md), [wiki/home.md](wiki/home.md) 참고.
 
+**🤖 AI 자연어 검색**: 기본 검색창은 단순 키워드 매칭이지만, "AI에게 자연어로 물어보기"
+패널에서는 "양자컴퓨팅 연구하면서 특허가 많은 교수 알려줘"처럼 복합 조건을 문장으로 물어보면
+Gemini가 조건에 맞는 교원을 골라줍니다. 공문 생성기와 **같은 Gemini API 키를 공유**하므로
+(브라우저 LocalStorage, 같은 이름의 키 사용) 한쪽에서 키를 등록하면 다른 쪽에서도 바로
+쓸 수 있습니다.
+
 ---
 
 ## 🚀 GitHub 저장소 업로드 및 배포 가이드
