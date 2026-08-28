@@ -38,20 +38,14 @@ updated: 2026-08-28
 기재X
 
 ## 대표연구·최근 주도논문(제1/교신)
-- METAPLECTIC COVERS OF p-ADIC GROUPS AND QUANTUM GROUPS AT ROOTS OF UNITY (2025
-- Duke Mathematical Journal)
-- Colored vertex models and Iwahori Whittaker functions (2024
-- Selecta Mathematica, New Series)
-- Iwahori‐metaplectic duality (2024
-- Journal of the London Mathematical Society)
+- METAPLECTIC COVERS OF p-ADIC GROUPS AND QUANTUM GROUPS AT ROOTS OF UNITY (2025; Duke Mathematical Journal)
+- Colored vertex models and Iwahori Whittaker functions (2024; Selecta Mathematica, New Series)
+- Iwahori‐metaplectic duality (2024; Journal of the London Mathematical Society)
 
 ## 주도논문 전체(제1/교신/단독)
-- METAPLECTIC COVERS OF p-ADIC GROUPS AND QUANTUM GROUPS AT ROOTS OF UNITY (2025
-- Duke Mathematical Journal)
-- Colored vertex models and Iwahori Whittaker functions (2024
-- Selecta Mathematica, New Series)
-- Iwahori‐metaplectic duality (2024
-- Journal of the London Mathematical Society)
+- METAPLECTIC COVERS OF p-ADIC GROUPS AND QUANTUM GROUPS AT ROOTS OF UNITY (2025; Duke Mathematical Journal)
+- Colored vertex models and Iwahori Whittaker functions (2024; Selecta Mathematica, New Series)
+- Iwahori‐metaplectic duality (2024; Journal of the London Mathematical Society)
 
 ## 학회발표
 - On some p-q dualities (Representation Theory Seminar)
